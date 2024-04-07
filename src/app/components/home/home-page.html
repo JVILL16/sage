@@ -1,0 +1,133 @@
+<!-- <div class="container-fluid">
+  <div class="row home-row justify-content-center ">
+    <div class="col-5">
+      <div class="card" style="margin:0 auto;max-width:250px" >
+        <div *ngIf="!home_user">
+          <h5 class="card-header text-center title-cap">Memeber?</h5>
+        <div class="card-body">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['errors'] }" />
+                <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+                    <div *ngIf="f['username'].errors['required']">Username is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+                <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                    <div *ngIf="f['password'].errors['required']">Password is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary">Login</button>
+                <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                <a routerLink="register" class="btn btn-link">Register</a>
+            </div>
+        </form>
+        </div>
+        </div>
+        <div *ngIf="home_user">
+          <h5 class="card-header text-center title-cap">Welcome Back</h5>
+        <div class="card-body">
+  
+          <h1 style="font-size:medium">Hi {{user_first_name}}!</h1>
+          <p>You're logged in with Sage!!</p>
+  
+          <p><a (click)="loggingOut()" routerLink="/login">Logout</a></p>
+          
+        </div>
+        </div>
+        
+      </div>
+   
+    </div>
+    <div class="col-4">
+      <img width="400" style="margin:0 auto" height="400" src="assets/carousel-pics/home_logos.png" alt="homescreenlogo">
+    </div>
+  
+   
+  </div>
+</div>
+
+<div class="row home-row container-fluid">
+  <div class="col-md-12">
+    <div class="card" >
+      <div class="card-header title-cap">
+        About Us
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">What is Sage Paths?</h5>
+        <p class="card-text">Sage Paths is something in the making where I'm creating sections for different groups. It's also
+          a little sandbox for my web dev skills to test out different software/modules. Sage Paths came into mind since I could not think
+          of a name to create nor did know the purpose of this site (to go as far as making different sections/roles), 
+          hence why the word "Path" is in it. Furthermore, the process of making these sections will take time so please be patient </p>
+        <a href="#" class="btn btn-info">Learn More&nbsp;
+          <i class="fa fa-chevron-right" style="font-size:13px;"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="container-sage">
+  <div class="row home-header">
+    <img class="image-set" src="../assets/carousel-pics/sp_banner.gif" alt="headline">
+    <div class="card home-info" *ngIf="!home_user">
+      <h5 class="card-header text-center title-cap">Memeber?</h5>
+      <div class="card-body">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" formControlName="username" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f['errors'] }" />
+            <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+              <div *ngIf="f['username'].errors['required']">Username is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" formControlName="password" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+            <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+              <div *ngIf="f['password'].errors['required']">Password is required</div>
+            </div>
+          </div>
+          <div class="form-group text-center mt-3">
+            <button [disabled]="loading" class="btn btn-sm btn-primary">Login</button>
+            <img *ngIf="loading"
+              src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            <a routerLink="register" class="btn btn-sm btn-link">Register</a>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="card home-info" *ngIf="home_user">
+      <h5 class="card-header text-center title-cap">Welcome Back</h5>
+      <div class="card-body">
+
+        <h1 style="font-size:medium">Hi {{user_first_name}}!</h1>
+        <p>You're logged in with Sage!!</p>
+
+        <p><a (click)="loggingOut()" routerLink="/login">Logout</a></p>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="row home-sect-top">
+    <div class="col-xl-6" *ngFor="let pic of pic_icons">
+
+      <div class="card border border-dark border-2 bg-{{pic.Icon}}" style="margin:50px">
+
+        <div class="card-body">
+          <img class="head-icons" src="../assets/carousel-pics/sp_{{pic.Icon}}.png" [alt]="pic.Icon">
+          <h2>{{pic.Icon | uppercase}}</h2>
+          <!-- <span>{{pic.Body}}</span> -->
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>

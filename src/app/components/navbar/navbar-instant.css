@@ -1,0 +1,105 @@
+/* $laptop_min: 900px;
+$laptop_max: 2000px;
+$phone_portrait: 320px;
+$phone_landscape: 780px; */
+
+@font-face {
+  font-family: Daily-Q;
+  src: url("src/assets/fonts/daily-quantum/Daily Quantum.ttf");
+}
+
+/* // saving it for when it gets resovled
+// @media only screen and (min-width: $laptop) {
+//     .soc-media {
+//         @extend .offset-4;
+//       }
+// } */
+.title {
+  font-family: Daily-Q;
+  color: #fff;
+  font-size: 35px;
+  margin-left:15px;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  vertical-align: middle;
+ /* //background-color: #9c9c9c;
+  //background-position: cover;
+  */
+}
+/* .navbar-toggler{
+  border-color: white;
+} */
+.navbar-bg{
+  background: #343a40 !important;
+}
+@media only screen and (min-width: 320px) {
+  .navbar-brand{
+    margin-left:20px;
+  }
+  
+  .soc-media {
+    /* margin-left: 27%; */
+    text-align: center;
+  }
+  .link {
+    text-align: center;
+  }
+  #logo {
+    margin-right: 0;
+  }
+  .logo-size {
+    font-size: 100%;
+  }
+  .navbar .navbar-nav .nav-item .nav-link {
+    
+    padding-right: 0.35em;
+    padding-left: 0.35em;
+    color: white;
+    font-family: Daily-Q;
+    font-size: 25px;
+  }
+  
+}
+
+@media only screen and (min-width: 950px) and (max-width: 2000px) {
+
+  .navbar-brand{
+    margin-left:30px;
+    vertical-align: middle;
+  }
+  /* .nav-width{
+    margin-left: 20%;
+  } */
+  .soc-media {
+    margin-left: 40%;
+  }
+  .link {
+    
+    float:right;
+    
+  }
+  #logo {
+    margin-right: 0;
+  }
+  .logo-size {
+    font-size: 1.33333333em;
+  }
+  .nav-float-cpu{
+    float: right!important;
+  }
+
+  /* .navbar .navbar-nav .nav-item:not(:last-child) .nav-link {
+    border-right: 2px solid #000000;
+  } */
+  .navbar .navbar-nav .nav-item .nav-link {
+    padding: 0 0.5em;
+    padding-right: 1em;
+    padding-left: 1em;
+    color: white;
+    font-family: Daily-Q;
+    font-size: 30px;
+  }
+  .navbar{
+    border-bottom: 2px solid white;
+  }
+  
+}

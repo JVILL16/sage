@@ -1,0 +1,98 @@
+<!-- 
+  
+  Navigation Bar 
+
+-->
+<nav class="navbar navbar-expand-lg navbar-bg fixed-top">
+
+  <a class="navbar-brand active" id="logo" [routerLink]="visibleHomeView" routerLinkActive="active"><img width="50"
+      alt="Built Icon" src="assets/bh_icon.png">
+    <span id="teamName" class="title">Sage Paths</span>
+  </a>
+
+
+
+
+
+
+
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+
+  <div class="collapse navbar-collapse" id="navbarText">
+
+
+
+
+    <div class="container">
+      <ul class="navbar-nav link ">
+        <li class="nav-item">
+          <a class="nav-link  text-nowrap" data-bs-toggle="collapse" data-bs-target="#navbarText"
+          aria-controls="navbarText" aria-expanded="false" routerLink="/">Home</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link  text-nowrap" data-bs-toggle="collapse" data-bs-target="#navbarText"
+          aria-controls="navbarText" aria-expanded="false" routerLink="/about-us">About Us</a>
+        </li>
+
+        <!-- <li class="nav-item">
+          <a class="nav-link text-nowrap" data-bs-toggle="collapse" data-bs-target="#navbarText"
+          aria-controls="navbarText" aria-expanded="false" routerLink="/">Profile</a>
+        </li> -->
+
+        <!-- <li class="nav-item">
+          <a class="nav-link  text-nowrap" data-bs-toggle="collapse" data-bs-target="#navbarText"
+          aria-controls="navbarText" aria-expanded="false" routerLink="/register">Shop</a>
+        </li> -->
+
+     
+        <li *ngIf="!showUsersTab" class="nav-item">
+          <a class="nav-link text-nowrap" data-bs-toggle="collapse" data-bs-target="#navbarText"
+          aria-controls="navbarText" aria-expanded="false" routerLink="/login">Sign In</a>
+        </li>
+        <li *ngIf="!showUsersTab" class="nav-item">
+          <a class="nav-link text-nowrap" data-bs-toggle="collapse" data-bs-target="#navbarText"
+          aria-controls="navbarText" aria-expanded="false" routerLink="/register">Register</a>
+        </li>
+
+        <li *ngIf="showAdminTab" class="nav-item">
+          <a class="nav-link  text-nowrap" data-bs-toggle="collapse" data-bs-target="#navbarText"
+          aria-controls="navbarText" aria-expanded="false" routerLink="/admin">Admin</a>
+        </li>
+
+       
+      </ul>
+    </div>
+
+
+
+    <!-- <div class="soc-media">
+      <a class="fa-stack logo-size" style="color:rgb(4, 178, 231)" href="https://twitter.com/sagejherm">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+      </a>&nbsp;
+      <a class="fa-stack logo-size" style="color:rgb(241, 155, 129)" href="https://www.instagram.com/jheremi_v2/">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+      </a>&nbsp;
+      <a class="fa-stack logo-size" style="color:rgb(7, 97, 199)" href="https://www.facebook.com/NoahsAutoDetailing/">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+      </a>&nbsp;
+      <a class="fa-stack logo-size" style="color:rgb(255, 234, 44)" href="https://www.snapchat.com/add/jheremi_v2/">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-snapchat-ghost fa-stack-1x fa-inverse"></i>
+      </a>
+  
+    </div> -->
+
+  </div>
+
+
+
+</nav>

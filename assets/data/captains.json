@@ -1,0 +1,25 @@
+{
+  "captains":[
+    {
+      "id": "P0001",
+      "name": "tyler",
+      "desc": "iPhone X 128GB Internal Memory, 8GB RAM, 6 Inch IPS Display",
+      "price": 499,
+      "updated": "Wed Sep 20 2019 17:22:41 GMT+0700"
+    },
+    {
+      "id": "P0002",
+      "name": "harry",
+      "desc": "Harry been playing ultimate for 4 years and has been making BIG moves this off season to make sure that he and this team are ready to surprise everyone this next year.",
+      "price": 699,
+      "updated": "Wed Sep 20 2019 17:22:41 GMT+0700"
+    },
+    {
+      "id": "P0003",
+      "name": "george",
+      "desc": "Liquid Retina HD display 6.1-inch (diagonal) all-screen LCD Multi-Touch display with IPS technology 1792-by-828-pixel resolution at 326 ppi 1400:1 contrast ratio (typical)",
+      "price": 599,
+      "updated": "Wed Sep 20 2019 17:22:41 GMT+0700"
+    }
+  ]
+}

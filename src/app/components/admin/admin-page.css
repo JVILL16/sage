@@ -1,0 +1,77 @@
+@font-face {
+    font-family: Daily-Q;
+    src: url('src/assets/fonts/daily-quantum/Daily Quantum.ttf');
+}
+.carousel-item img {
+    width: 100%;
+}
+.title-cap {
+    font-family: Daily-Q;
+    color: white;
+    font-weight: bold;
+    font-size: 33px;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+   /* // background-color: #9c9c9c;
+    */
+    background-position: 50%;
+    background-image: url('src/assets/thumbnail-background.png');
+}
+.card-head {
+    background-size: cover;
+    background-position: 50%;
+    background-image: url('src/assets/thumbnail-background.png');
+}
+.title {
+    font-family: Daily-Q;
+    color: #fff;
+    font-size: 50px;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+   /* //background-color: #9c9c9c;
+    //background-position: cover;
+    */
+}
+#teamName {
+    font-weight: bold;
+    color: white;
+    padding-left: 0;
+    font-size: 20px;
+    font-stretch: wider;
+}
+.soc-media {
+   /* // float:left;
+    */
+    margin-left: 60%;
+}
+.btn-success {
+    border-color: #f89b4f;
+    background-color: #f89b4f;
+   /* //color:rgb(251, 249, 249);
+    */
+}
+.btn-success:hover {
+    border-color: #73bffd;
+    background-color: #73bffd;
+}
+.btn-info {
+    border-color: #f89b4f;
+    background-color: #f89b4f;
+   /* //color:rgb(251, 249, 249);
+    */
+}
+.btn-info:hover {
+    border-color: #73bffd;
+    background-color: #73bffd;
+}
+
+
+@media only screen and (min-width: 320px) {
+
+
+    
+
+}
+
+@media only screen and (min-width: 950px) and (max-width: 2000px) {
+
+    
+}

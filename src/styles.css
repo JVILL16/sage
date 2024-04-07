@@ -1,0 +1,82 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+
+/* $laptop_min: 900px;
+$laptop_max: 2000px;
+$phone_portrait: 320px;
+$phone_landscape: 780px; */
+@font-face {
+  font-family: Daily-Q;
+  src: url('src/assets/fonts/daily-quantum/Daily Quantum.ttf');
+}
+.home-row {
+  margin-bottom:200px;
+}
+.container-fluid{
+  padding-top:50px;
+}
+.container-fluid .card{
+  margin-bottom: 20px;
+}
+.container-sage{
+  width:100%;
+  overflow:hidden;
+}
+body{
+  background-color: gray !important;
+}
+.gradient-main {
+  background: linear-gradient( rgb(138, 117, 154) 0%, rgb(197, 139, 241) 100%);
+  color: #FFF;
+}
+.gradient-clutch{
+  background: radial-gradient(circle, rgba(255,226,135,1) 0%, rgba(254,123,155,1) 100%);
+  color: #FFF;
+}
+
+
+  @media only screen 
+  and (min-width: 320px) { 
+
+    body{
+      position: relative;
+      padding-top:55px;
+      overflow-x: hidden;
+      /* background-size: cover; */
+      /* background-image: url(assets/thumbnail-background.png);
+       */
+      
+    }
+
+   .image-set{
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+    margin-bottom:75px;
+    /* opacity: .9; */
+}
+
+}
+
+@media only screen 
+and (min-width: 950px) 
+and (max-width: 2000px) { 
+
+  body{
+    padding-top:55px;
+    overflow-x: hidden;
+    position: relative;
+    /* background-size: cover; */
+     /* background-image: url(assets/thumbnail-background.png);
+       */
+  }
+
+  .image-set{
+    background-size: cover;
+    position: relative;
+    height: 450px; 
+    overflow: hidden;
+    /* opacity: .9; */
+}
+}
+
