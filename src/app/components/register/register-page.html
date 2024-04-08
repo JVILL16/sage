@@ -46,19 +46,7 @@
                         
                     </div>
                       
-                    <div class="info-picture">
-                        <input type="file" #file accept="image/*" 
-                      (change)="fileChangeEvent($event)" style="display: none;" />
-                    
-                          <img [src]="profileImage?profileImage:''" 
-                          (click)="handleFileClick(file)" alt="Profile image" />
-                    
-                      <p (click)="handleFileClick(file)">Change profile picture</p>
-                    </div>
-                    
-                    <app-image-cropper 
-                      [imageChangedEvent]="imageToCrop" 
-                      (done)="onCrop($event)"></app-image-cropper>
+
                         
                         <div class="text-center my-2">
                             <button type="submit" class="btn btn-primary btn-sm" (click)="postdata()">Register</button>

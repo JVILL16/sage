@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ImageCropperModule } from 'ngx-image-cropper';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,7 +21,6 @@ import { AdminComponent } from './components/admin/admin-page';
 import { RegisterComponent } from './components/register/register-page';
 import { ErrorInterceptor } from './service/helpers/error.interceptor';
 import { AlertComponent } from './service/alert/alert.component';
-import { ImageCropComponent } from './components/image/upload.component';
 
 
 @NgModule({
@@ -36,8 +34,7 @@ import { ImageCropComponent } from './components/image/upload.component';
     NavbarComponent,
     FooterComponent,
     LoadingComponent,
-    AlertComponent,
-    ImageCropComponent
+    AlertComponent
     
   ],
   imports: [
@@ -46,8 +43,7 @@ import { ImageCropComponent } from './components/image/upload.component';
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
-    ImageCropperModule
+    ReactiveFormsModule
   ],
   providers: [
     AuthGuard,

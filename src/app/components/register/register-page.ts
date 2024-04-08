@@ -82,30 +82,6 @@ export class RegisterComponent {
   }
 
 
-  handleFileClick(file: HTMLInputElement): void {
-    file.click(); // trigger input file
-  }
-
-  fileChangeEvent(event: any): void {
-    if (event.target.files.length) {
-      this.imageToCrop = event;
-    } else {
-      this.profileImage = '';
-    }
-  }
-
-  onCrop(image: File) {
-    if (image) {
-      console.log('cropped image ready for upload:', image);
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.profileImage = e.target.result;
-      };
-      reader.readAsDataURL(image);
-    } else {
-      this.profileImage = '';
-    }
-  }
   // get email() { return this.angForm.get('email'); }
   // get password() { return this.angForm.get('password'); }
   // get username() { return this.angForm.get('username'); }
