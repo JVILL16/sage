@@ -29,17 +29,11 @@
         left: 100px;  */
     }
     
-    .title-cap {
-        font-family: Daily-Q;
+    .gradient-main {
         color: white;
-        
         font-size: 14px;
-        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-       /* // background-color: #9c9c9c;
-        */
-        background-position: 50%;
-        background-image: url('src/assets/thumbnail-background.png');
-    }
+        text-align: center;
+      }
     
     
     .home-info {
@@ -96,18 +90,11 @@
         left: 100px;  */
     }
     
-    .title-cap {
-        font-family: Daily-Q;
+    .gradient-main {
         color: white;
-        
         font-size: 33px;
-        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-       /* // background-color: #9c9c9c;
-        */
-        background-position: 50%;
-        background-image: url('src/assets/thumbnail-background.png');
-    }
-    
+        text-align: center;
+      }
     
     .home-info {
         position: absolute;

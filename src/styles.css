@@ -14,24 +14,38 @@ $phone_landscape: 780px; */
 }
 .container-fluid{
   padding-top:50px;
+  padding-bottom:50px;
 }
 .container-fluid .card{
   margin-bottom: 20px;
 }
-.container-sage{
+.container-header{
   width:100%;
   overflow:hidden;
 }
 body{
   background-color: gray !important;
 }
+
 .gradient-main {
-  background: linear-gradient( rgb(138, 117, 154) 0%, rgb(197, 139, 241) 100%);
-  color: #FFF;
+  font-family: Daily-Q;
+  color: white !important;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  background: linear-gradient(#ed63ff, #b773f7);
+  
 }
 .gradient-clutch{
-  background: radial-gradient(circle, rgba(255,226,135,1) 0%, rgba(254,123,155,1) 100%);
-  color: #FFF;
+  font-family: Daily-Q;
+  color: white !important;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  background: linear-gradient(#ff6b6b,#fc976f,#fd9f3a);
+}
+
+.gradient-examples {
+  font-family: Daily-Q;
+  color: white;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  background: linear-gradient(#3f87a6, #f69d3c);
 }
 
 
