@@ -12,6 +12,7 @@ export class ClutchComponent implements OnInit {
   title = 'Clutch page';
   error = '';
   users!: User[];
+  tournaments!: any[];
 
   constructor(private api: ApiService) { }
 

@@ -1,0 +1,26 @@
+.image-cropper-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .4);
+    z-index: 9999;
+  }
+  .image-cropper-wrapper .image-cropper-content {
+    width: 330px !important;
+    position: absolute !important;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFFFFF;
+    box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.4);
+    border-radius: 25px;
+    padding: 25px 25px 100px !important;
+  }
+  .image-cropper-wrapper .form-btn {
+    position: absolute;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+  }

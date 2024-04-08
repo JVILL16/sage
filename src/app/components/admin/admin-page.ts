@@ -32,8 +32,8 @@ export class AdminComponent implements OnInit {
         private auth: AuthenticationService,
         private router: Router) {
 
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
-        console.log(this.currentUser[0].first_name);
+        this.currentUser = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
+        console.log(this.currentUser[0]);
         //this.user_first_name = this.currentUser[0].first_name;
     }
 

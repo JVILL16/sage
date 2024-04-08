@@ -27,6 +27,9 @@ import { AuthenticationService } from 'src/app/service/auth.service';
 export class RegisterComponent {
   title = 'register';
 
+
+  profileImage = '';
+  imageToCrop: File;
   // angForm: FormGroup;
 
   email: string ="";
@@ -76,6 +79,32 @@ export class RegisterComponent {
     //       console.log(error);
     //     }
     //   });
+  }
+
+
+  handleFileClick(file: HTMLInputElement): void {
+    file.click(); // trigger input file
+  }
+
+  fileChangeEvent(event: any): void {
+    if (event.target.files.length) {
+      this.imageToCrop = event;
+    } else {
+      this.profileImage = '';
+    }
+  }
+
+  onCrop(image: File) {
+    if (image) {
+      console.log('cropped image ready for upload:', image);
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.profileImage = e.target.result;
+      };
+      reader.readAsDataURL(image);
+    } else {
+      this.profileImage = '';
+    }
   }
   // get email() { return this.angForm.get('email'); }
   // get password() { return this.angForm.get('password'); }
