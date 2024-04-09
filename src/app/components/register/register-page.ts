@@ -28,8 +28,7 @@ export class RegisterComponent {
   title = 'register';
 
 
-  profileImage = '';
-  imageToCrop: File;
+  
   // angForm: FormGroup;
 
   email: string ="";
