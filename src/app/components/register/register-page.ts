@@ -88,7 +88,7 @@ export class RegisterComponent {
 
       reader.onload = (event) => {
         // called once readAsDataURL is completed
-        this.url = event.target.result;
+        this.url = event.target?.result;
         console.log(this.url);
       };
     }
