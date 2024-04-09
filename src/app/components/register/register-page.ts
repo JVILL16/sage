@@ -27,7 +27,7 @@ import { AuthenticationService } from 'src/app/service/auth.service';
 export class RegisterComponent {
   title = 'register';
 
-
+  url: any = '';
   
   // angForm: FormGroup;
 
@@ -79,7 +79,23 @@ export class RegisterComponent {
     //     }
     //   });
   }
+  
+  onSelectFile(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
 
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => {
+        // called once readAsDataURL is completed
+        this.url = event.target.result;
+        console.log(this.url);
+      };
+    }
+  }
+  public delete() {
+    this.url = null;
+  }
 
   // get email() { return this.angForm.get('email'); }
   // get password() { return this.angForm.get('password'); }

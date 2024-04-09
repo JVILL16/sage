@@ -46,7 +46,23 @@
                         
                     </div>
                       
-
+                    <div class="image-container">
+                        <label class="hoverable" for="fileInput">
+                          <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'" />
+                          <div class="hover-text">Choose file</div>
+                          <div class="background"></div>
+                        </label>
+                        <br />
+                        <input
+                          id="fileInput"
+                          type="file"
+                          [(ngModel)]="url"
+                          class="select-profile-picture"
+                          (change)="onSelectFile($event)"
+                        />
+                        <span class="message">Tap here to select your picture</span>
+                      </div>
+                      <br /><button *ngIf="url" (click)="delete()">delete</button>
                         
                         <div class="text-center my-2">
                             <button type="submit" class="btn btn-primary btn-sm" (click)="postdata()">Register</button>
