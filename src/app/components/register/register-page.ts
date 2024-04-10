@@ -31,7 +31,16 @@ import { AuthenticationService } from 'src/app/service/auth.service';
       // transition(':leave', [
       //   animate('200ms ease-in', style({transform: 'translateY(-100%)'}))
       // ])
-    ])
+    ]),
+    trigger('fadeInLeft', [
+      transition(':enter', [
+        style({ opacity: 0,transform: 'translateX(-100%)' }),
+        animate('800ms ease-in', style({ opacity: 1,transform: 'translateX(0%)' }))
+       ]),
+      //  transition(':leave', [
+      //   animate('200ms', style({transform: 'translateX(100%)'}))
+      // ])
+      ])
   ]
 })
 
@@ -41,6 +50,9 @@ export class RegisterComponent {
   url: any = '';
   
   // angForm: FormGroup;
+
+  registerSuccess : boolean = false;
+  registerError : boolean = false;
 
   email: string ="";
   password: string ="";
@@ -126,8 +138,10 @@ export class RegisterComponent {
     }
     else if(this.sectOne && this.sectTwo && !this.sectThree)
       this.sectThree = true;
-    else
-      console.log("yay");
+    else{
+      this.nextHidden = true;this.prevHidden = true;
+    }
+    
   }
 
   onPrevious() {
@@ -140,8 +154,9 @@ export class RegisterComponent {
       this.sectOne = false;this.prevHidden = true;
     }
       
-    else
-      console.log("yay");
+    else{
+      this.nextHidden = true;this.prevHidden = true;
+    }
   }
 
   

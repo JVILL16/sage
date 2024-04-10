@@ -5,14 +5,20 @@
             <div [@fadeIn] class="card" style="margin:0 auto;max-width:800px;">
                 <h2 class="card-header gradient-main">Registration</h2> <!--text-center title-cap-->
                 <div class="card-body">
-
+                    
                     <div class="register-tier">
                         <div [ngClass]="{ 'success-circle': sectOne, 'circle active': !sectOne }"><i *ngIf="sectOne" class="fa-regular fa-circle-check"></i><span *ngIf="!sectOne">1</span></div>
                         <div [ngClass]="{ 'success-circle': sectTwo,'circle': (!sectTwo && sectOne)|| !sectOne ,'active': !sectTwo && sectOne }"><i *ngIf="sectTwo" class="fa-regular fa-circle-check"></i><span *ngIf="!sectTwo">2</span></div>
                         <div [ngClass]="{ 'success-circle': sectThree, 'circle': (!sectThree && sectTwo) || !sectTwo, 'active': !sectThree && sectTwo  }"><i *ngIf="sectThree" class="fa-regular fa-circle-check"></i><span *ngIf="!sectThree">3</span></div>
                     </div>
+                    <div *ngIf="registerSuccess" class="alert alert-success" role="alert">
+                        <h4>Thank you for registering</h4> Please be on a look out for a activation code in your email inbox.
+                    </div>
+                    <div *ngIf="registerError" class="alert alert-danger" role="alert">
+                        <h4>Error has occured</h4> Please look at error and email owner of the site to further assist you.
+                    </div>
                     <div >
-                        <table [@fadeIn] *ngIf="!sectOne && !sectTwo && !sectThree" class="table table-sm table-data my-2" style="margin:0 auto;max-width:400px">
+                        <table [@fadeInLeft] *ngIf="!sectOne && !sectTwo && !sectThree" class="table table-sm table-data my-2" style="margin:0 auto;max-width:400px">
                             <tr>
                                 <th>First Name</th>
 
@@ -33,7 +39,7 @@
                                 </td>
                             </tr>
                         </table>
-                        <table [@fadeIn] *ngIf="sectOne && !sectTwo && !sectThree" class="table table-sm table-data my-2" style="margin:0 auto;max-width:400px">
+                        <table [@fadeInLeft] *ngIf="sectOne && !sectTwo && !sectThree" class="table table-sm table-data my-2" style="margin:0 auto;max-width:400px">
                             <tr>
                                 <th>Username</th>
 
@@ -58,10 +64,13 @@
                                         class="form-control form-control-sm" placeholder="Email Address"></td>
                             </tr>
                         </table>
-                        <table [@fadeIn] *ngIf="sectOne && sectTwo && !sectThree" class="table table-sm table-data my-2" style="margin:0 auto;max-width:600px">
+                        <table [@fadeInLeft] *ngIf="sectOne && sectTwo && !sectThree" class="table table-sm table-data my-2" style="margin:0 auto;max-width:400px">
 
                             <tr>
                                 <th>Please select the following to sign up for:</th>
+                                
+                            </tr>
+                            <tr>
                                 <td class="form-check form-check-inline" *ngFor="let role of roles; let i = index">
     
                                     <input class="form-check-input me-2" [(ngModel)]="role.checked" type="checkbox"
@@ -102,7 +111,7 @@
                 </div>
                 <div class="card-footer mt-3 ">
                     
-                    <button type="submit" class="btn btn-sm btn-success m-3 float-end" *ngIf="sectOne && sectTwo && !sectThree" (click)="sectThree=true;">Register
+                    <button type="submit" class="btn btn-sm btn-success m-3 float-end" *ngIf="sectOne && sectTwo && !sectThree" (click)="sectThree=true;registerSuccess=true;">Register
                         <i class="fa-solid fa-square-plus"></i></button>
                     <button type="button" class="btn btn-sm btn-primary m-3 float-end" [hidden]="nextHidden" (click)="onNext()">Next <i
                         class="fa-solid fa-arrow-right"></i></button>
