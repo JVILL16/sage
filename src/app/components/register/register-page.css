@@ -13,3 +13,167 @@
     border:var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
     --bs-border-opacity: 1;
   }
+ 
+  .register-tier {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px; /* Adjust as needed  500 for 5*/
+    margin: 50px auto; /* Adjust as needed */
+    
+  }
+  
+  .circle {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #007bff; /* Adjust as needed */
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    z-index: 2;
+    animation: backup .1s cubic-bezier(0.895, 0.030, 0.685, 0.220) backwards;
+    
+  }
+
+
+  .circle::before{
+    content: '';
+    position: absolute;
+    height: 2px;
+    background-color: #007bff; /* Adjust as needed */
+    width: 100px; /* Adjust to cover the distance between circles */
+    top: 50%;
+    left: 100%;
+    transform: translateY(-1px);
+    z-index: -1;
+  }
+  
+  .circle:last-child::before {
+    display: none; /* Hide line after last circle */
+  }
+  .register-tier .active {
+    background-color: #007bff;
+  }
+  .register-tier .active ~ .circle{
+    background-color: white; /* Adjust as needed */
+    border:2px solid #b0d6ff;
+    color:#007bff;
+  }
+  .register-tier .active ~ .circle::before{
+    content: '';
+    position: absolute;
+    height: 2px;
+    background-color: #b0d6ff; /* Adjust as needed */
+    width: 100px; /* Adjust to cover the distance between circles */
+    top: 50%;
+    left: 100%;
+    transform: translateY(-1px);
+    z-index: -1;
+  }
+  
+  .success-circle{
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgb(50, 189, 50); /* Adjust as needed */
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    z-index: 2;
+    animation: check .1s cubic-bezier(0.895, 0.030, 0.685, 0.220) forwards;
+    
+  }
+
+  .success-circle::before{
+    content: '';
+    position: absolute;
+    height: 2px;
+    background-color: rgb(50, 189, 50); /* Adjust as needed */
+    width: 100px; /* Adjust to cover the distance between circles */
+    top: 50%;
+    left: 100%;
+    transform: translateY(-1px);
+    z-index: -1;
+  }
+
+  .success-circle:last-child::before {
+    display: none; /* Hide line after last circle */
+  }
+  @keyframes check {
+    0% {
+      width: 1.5em;
+      height: 1.5em;
+      border-width: 5px;
+    }
+    10% {
+      width: 1.5em;
+      height: 1.5em;
+      opacity: 0.1;
+      background: rgb(50, 189, 50);
+      border-width: 15px;
+    }
+    12% {
+      width: 1.5em;
+      height: 1.5em;
+      opacity: 0.4;
+      background: rgb(50, 189, 50);
+      border-width: 0;
+    }
+    50% {
+      width: 2em;
+      height: 2em;
+      background: #00d478;
+      border: 0;
+      opacity: 0.6;
+    }
+    100% {
+      width: 2em;
+      height: 2em;
+      background: #00d478;
+      border: 0;
+      opacity: 1;
+    }
+  }
+  @keyframes backup {
+    0% {
+      width: 1.5em;
+      height: 1.5em;
+      border-width: 5px;
+    }
+    10% {
+      width: 1.5em;
+      height: 1.5em;
+      opacity: 0.1;
+      background: #007bff;
+      border-width: 15px;
+    }
+    12% {
+      width: 1.5em;
+      height: 1.5em;
+      opacity: 0.4;
+      background: #007bff;
+      border-width: 0;
+    }
+    50% {
+      width: 2em;
+      height: 2em;
+      background: #007bff;
+      border: 0;
+      opacity: 0.6;
+    }
+    100% {
+      width: 2em;
+      height: 2em;
+      background: #007bff;
+      border: 0;
+      opacity: 1;
+    }
+  }

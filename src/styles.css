@@ -9,6 +9,9 @@ $phone_landscape: 780px; */
   font-family: Daily-Q;
   src: url('src/assets/fonts/daily-quantum/Daily Quantum.ttf');
 }
+.btn-success{
+  --bs-btn-bg:rgb(50, 189, 50) !important;
+}
 .home-row {
   margin-bottom:200px;
 }
@@ -24,7 +27,7 @@ $phone_landscape: 780px; */
   overflow:hidden;
 }
 body{
-  background-color: gray !important;
+  background-color: #808080 !important;
 }
 
 .gradient-main {

@@ -5,183 +5,109 @@
             <div [@fadeIn] class="card" style="margin:0 auto;max-width:800px;">
                 <h2 class="card-header gradient-main">Registration</h2> <!--text-center title-cap-->
                 <div class="card-body">
-                    <ul class="nav nav-pills justify-content-center">
-                        <li class="nav-item">
-                            <button class="nav-link active" id="firstSect-tab" data-bs-toggle="tab"
-                                data-bs-target="#firstSect" type="button" role="tab" aria-controls="firstSect"
-                                aria-selected="true">1</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link" id="secondSect-tab" data-bs-toggle="tab"
-                                data-bs-target="#secondSect" type="button" role="tab" aria-controls="secondSect"
-                                aria-selected="false">2</button>
-                        </li>
-                        <li class="nav-item">
-                            <button class="nav-link" id="thirdSect-tab" data-bs-toggle="tab" data-bs-target="#thirdSect"
-                                type="button" role="tab" aria-controls="thirdSect" aria-selected="false">3</button>
-                        </li>
 
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="firstSect" role="tabpanel" aria-labelledby="firstSect-tab">
-                            <table class="table table-sm table-data my-2" style="margin:0 auto;max-width:400px">
-                                <tr>
-                                    <th>First Name</th>
-                                    
-                                </tr>
-                                <tr>
-                                    <td><input type="text" autocomplete="off" [(ngModel)]="first_name"
-                                        class="form-control form-control-sm" placeholder="First Name"></td>
-                                
-                                </tr>
-                                <tr>
-                                    <th>Last Name</th>
-                                    
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="text" autocomplete="off" [(ngModel)]="last_name"
-                                            class="form-control form-control-sm" placeholder="Last Name">
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="tab-pane" id="secondSect" role="tabpanel" aria-labelledby="secondSect-tab">
-                            <table class="table table-sm table-data my-2" style="margin:0 auto;max-width:400px">
-                                <tr>
-                                    <th>Username</th>
-                                   
-                                </tr>
-                                <tr>
-                                    <td><input type="text" autocomplete="off" [(ngModel)]="username"
+                    <div class="register-tier">
+                        <div [ngClass]="{ 'success-circle': sectOne, 'circle active': !sectOne }"><i *ngIf="sectOne" class="fa-regular fa-circle-check"></i><span *ngIf="!sectOne">1</span></div>
+                        <div [ngClass]="{ 'success-circle': sectTwo,'circle': (!sectTwo && sectOne)|| !sectOne ,'active': !sectTwo && sectOne }"><i *ngIf="sectTwo" class="fa-regular fa-circle-check"></i><span *ngIf="!sectTwo">2</span></div>
+                        <div [ngClass]="{ 'success-circle': sectThree, 'circle': (!sectThree && sectTwo) || !sectTwo, 'active': !sectThree && sectTwo  }"><i *ngIf="sectThree" class="fa-regular fa-circle-check"></i><span *ngIf="!sectThree">3</span></div>
+                    </div>
+                    <div >
+                        <table [@fadeIn] *ngIf="!sectOne && !sectTwo && !sectThree" class="table table-sm table-data my-2" style="margin:0 auto;max-width:400px">
+                            <tr>
+                                <th>First Name</th>
+
+                            </tr>
+                            <tr>
+                                <td><input type="text" autocomplete="off" [(ngModel)]="first_name"
+                                        class="form-control form-control-sm" placeholder="Enter your firstname"></td>
+
+                            </tr>
+                            <tr>
+                                <th>Last Name</th>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" autocomplete="off" [(ngModel)]="last_name"
+                                        class="form-control form-control-sm" placeholder="Enter you lastname">
+                                </td>
+                            </tr>
+                        </table>
+                        <table [@fadeIn] *ngIf="sectOne && !sectTwo && !sectThree" class="table table-sm table-data my-2" style="margin:0 auto;max-width:400px">
+                            <tr>
+                                <th>Username</th>
+
+                            </tr>
+                            <tr>
+                                <td><input type="text" autocomplete="off" [(ngModel)]="username"
                                         class="form-control form-control-sm" placeholder="Username"></td>
-                                
-                                </tr>
-                                <tr>
-                                    <th>Password</th>
-                                </tr>
-                                <tr>
-                                    <td><input type="password" autocomplete="off" [(ngModel)]="password"
-                                            class="form-control form-control-sm" placeholder="Password"></td>
-                                </tr>
-                                <tr>
-                                    <th>Email</th>
-                                </tr>
-                                <tr>
-                                    <td><input type="email" autocomplete="off" [(ngModel)]="email"
-                                            class="form-control form-control-sm" placeholder="Email Address"></td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="tab-pane" id="thirdSect" role="tabpanel" aria-labelledby="thirdSect-tab">
-                            <table class="table table-sm table-data my-2" style="margin:0 auto;max-width:500px">
-                                
-                                <tr>
-                                    <th>Please select the following to sign up for:</th>
-                                    <td class="form-check form-check-inline"
-                                        *ngFor="let role of roles; let i = index">
-                                            
-                                                <input class="form-check-input me-2" [(ngModel)]="role.checked"
-                                                    type="checkbox" id="{{role.value}}Check">
-                                                <label class="form-check-label" for="{{role.value}}Check">
-                                                    {{role.value}}
-                                                </label>
-                                            
-                                        </td>
-                                </tr>
-                                <tr>
-                                    <th>Phone</th>
-                                </tr>
-                                <tr>
-                                    <td><input type="text" autocomplete="off" [(ngModel)]="phone"
-                                            class="form-control form-control-sm" placeholder="Phone"></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="image-container">
-                                            <label class="hoverable" for="fileInput">
-                                                <img width="60" [src]="url ? url : 'assets/pfp_default/user.png'" />
-                                                <div class="hover-text">Choose file</div>
-                                                <div class="background"></div>
-                                            </label>
-                                            <br />
-                                            <input id="fileInput" type="file" [(ngModel)]="url"
-                                                class="select-profile-picture" (change)="onSelectFile($event)" />
-                                            <span class="message">Tap here to select your picture</span>
-                                        </div>
-                                        <br /><button *ngIf="url" (click)="delete()">delete</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="text-center my-2">
-                                            <button type="submit" class="btn btn-primary btn-sm" (click)="postdata()">Register</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <!-- <table class="table table-bordered table-data my-2" style="margin:0 auto;max-width:800px">
-                        <tr>
-                            <th>Username</th>
-                            <th>Password</th>
-                        </tr>
-                        <tr>
-                            <td><input type="text" autocomplete="off" [(ngModel)]="username"  class="form-control form-control-sm" placeholder="User Name"></td>
-                            <td><input type="password" autocomplete="off" [(ngModel)]="password" class="form-control form-control-sm" placeholder="Password"></td>
-                        </tr>
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                        </tr>
-                        <tr>
-                            <td><input type="text" autocomplete="off" [(ngModel)]="first_name" class="form-control form-control-sm" placeholder="First Name"></td>
-                            <td>
-                                <input type="text" autocomplete="off" [(ngModel)]="last_name" class="form-control form-control-sm" placeholder="Last Name">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Email</th>
-                            <th>Phone</th>
-                        </tr>
-                        <tr>
-                            <td><input type="email" autocomplete="off" [(ngModel)]="email" class="form-control form-control-sm" placeholder="Email Address"></td>
-                            <td>
-                                <input type="text" autocomplete="off" [(ngModel)]="phone" class="form-control form-control-sm" placeholder="Phone">
-                            </td>
-                        </tr>
-                    </table>
-                    <div class="text-center my-2" >
-                        <div class="form-check form-check-inline" *ngFor="let role of roles; let i = index">
-                            <input class="form-check-input me-3" [(ngModel)]="role.checked" type="checkbox" id="{{role.value}}Check">
-                            <label class="form-check-label" for="{{role.value}}Check">
-                                {{role.value}}
-                            </label>
-                        </div>
-                        
-                    </div>
-                      
-                    <div class="image-container">
-                        <label class="hoverable" for="fileInput">
-                          <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'" />
-                          <div class="hover-text">Choose file</div>
-                          <div class="background"></div>
-                        </label>
-                        <br />
-                        <input
-                          id="fileInput"
-                          type="file"
-                          [(ngModel)]="url"
-                          class="select-profile-picture"
-                          (change)="onSelectFile($event)"
-                        />
-                        <span class="message">Tap here to select your picture</span>
-                      </div>
-                      <br /><button *ngIf="url" (click)="delete()">delete</button> -->
 
+                            </tr>
+                            <tr>
+                                <th>Password</th>
+                            </tr>
+                            <tr>
+                                <td><input type="password" autocomplete="off" [(ngModel)]="password"
+                                        class="form-control form-control-sm" placeholder="Password"></td>
+                            </tr>
+                            <tr>
+                                <th>Email</th>
+                            </tr>
+                            <tr>
+                                <td><input type="email" autocomplete="off" [(ngModel)]="email"
+                                        class="form-control form-control-sm" placeholder="Email Address"></td>
+                            </tr>
+                        </table>
+                        <table [@fadeIn] *ngIf="sectOne && sectTwo && !sectThree" class="table table-sm table-data my-2" style="margin:0 auto;max-width:600px">
+
+                            <tr>
+                                <th>Please select the following to sign up for:</th>
+                                <td class="form-check form-check-inline" *ngFor="let role of roles; let i = index">
+    
+                                    <input class="form-check-input me-2" [(ngModel)]="role.checked" type="checkbox"
+                                        id="{{role.value}}Check">
+                                    <label class="form-check-label" for="{{role.value}}Check">
+                                        {{role.value}}
+                                    </label>
+    
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Phone</th>
+                            </tr>
+                            <tr>
+                                <td><input type="text" autocomplete="off" [(ngModel)]="phone"
+                                        class="form-control form-control-sm" placeholder="Phone"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="image-container m-4">
+                                        <label class="hoverable" for="fileInput">
+                                            <img width="60" [src]="url ? url : 'assets/pfp_default/user.png'" />
+                                            <div class="hover-text">Choose file</div>
+                                            <div class="background"></div>
+                                        </label>
+                                        <br />
+                                        <input id="fileInput" type="file" [(ngModel)]="url"
+                                            class="select-profile-picture" (change)="onSelectFile($event)" />
+                                    </div>
+                                    <br /><button *ngIf="url" class="btn btn-sm btn-danger" (click)="delete()">delete</button>
+                                </td>
+                            </tr>
+    
+                        </table>
+                    </div>
                     
-
+                    
+                </div>
+                <div class="card-footer mt-3 ">
+                    
+                    <button type="submit" class="btn btn-sm btn-success m-3 float-end" *ngIf="sectOne && sectTwo && !sectThree" (click)="sectThree=true;">Register
+                        <i class="fa-solid fa-square-plus"></i></button>
+                    <button type="button" class="btn btn-sm btn-primary m-3 float-end" [hidden]="nextHidden" (click)="onNext()">Next <i
+                        class="fa-solid fa-arrow-right"></i></button>
+                        <button type="button" class="btn btn-sm btn-secondary m-3 float-end" [hidden]="prevHidden" (click)="onPrevious()"><i
+                            class="fa-solid fa-arrow-left"></i> Previous</button>
                 </div>
             </div>
         </div>
