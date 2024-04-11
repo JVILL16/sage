@@ -1,0 +1,22 @@
+
+<div class="container-fluid mt-5">
+    <div class="card" style="margin: 0 auto;max-width:1000px">
+      <div class="card-body">
+        
+
+        <div class="profile">
+            <div class="profile-picture">
+                <img class="pfp-icon" [src]="currentUser[0].pfp ? currentUser[0].pfp : 'assets/pfp_default/user.png'" >
+                <button id="editIcon" class="pfp-edit btn btn-sm btn-secondary"><i class=" fa-solid fa-camera"></i></button>
+            </div>
+            <div class="profile-info">
+                <h1>{{currentUser[0].first_name}} {{currentUser[0].last_name}}</h1>
+                <p>Email: {{currentUser[0].email}}</p>
+                <p>Phone: {{currentUser[0].phone}}</p>
+                <p>Username: {{currentUser[0].username}}</p>
+            </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>

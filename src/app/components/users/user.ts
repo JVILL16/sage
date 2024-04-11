@@ -10,6 +10,7 @@ export interface User{
     password: string;
     email: string;
     phone: string;
+    pfp: string;
     date_created: Date;
     date_updated: Date;
     roles: Roles[];

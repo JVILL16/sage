@@ -19,6 +19,7 @@ import { AuthGuard } from './service/auth.guard';
 import { JwtInterceptor } from './service/helpers/jwt.interceptor';
 import { AdminComponent } from './components/admin/admin-page';
 import { RegisterComponent } from './components/register/register-page';
+import { ProfileComponent } from './components/profile/profile-page';
 import { ErrorInterceptor } from './service/helpers/error.interceptor';
 import { AlertComponent } from './service/alert/alert.component';
 
@@ -34,7 +35,8 @@ import { AlertComponent } from './service/alert/alert.component';
     NavbarComponent,
     FooterComponent,
     LoadingComponent,
-    AlertComponent
+    AlertComponent,
+    ProfileComponent
     
   ],
   imports: [

@@ -2,7 +2,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-xl-12 my-5">
-            <div [@fadeIn] class="card" style="margin:0 auto;max-width:800px;">
+            <div [@fadeInLeft] class="card" style="margin:0 auto;max-width:800px;">
                 <h2 class="card-header gradient-main">Registration</h2> <!--text-center title-cap-->
                 <div class="card-body">
                     
@@ -18,7 +18,7 @@
                         <h4>Error has occured</h4> Please look at error and email owner of the site to further assist you.
                     </div>
                     <div >
-                        <table [@fadeInLeft] *ngIf="!sectOne && !sectTwo && !sectThree" class="table table-sm table-data my-2" style="margin:0 auto;max-width:400px">
+                        <table  *ngIf="!sectOne && !sectTwo && !sectThree" class="table table-responsive table-sm table-data my-2" style="margin:0 auto;max-width:400px">
                             <tr>
                                 <th>First Name</th>
 
@@ -39,7 +39,7 @@
                                 </td>
                             </tr>
                         </table>
-                        <table [@fadeInLeft] *ngIf="sectOne && !sectTwo && !sectThree" class="table table-sm table-data my-2" style="margin:0 auto;max-width:400px">
+                        <table *ngIf="sectOne && !sectTwo && !sectThree" class="table table-responsive table-sm table-data my-2" style="margin:0 auto;max-width:400px">
                             <tr>
                                 <th>Username</th>
 
@@ -64,7 +64,7 @@
                                         class="form-control form-control-sm" placeholder="Email Address"></td>
                             </tr>
                         </table>
-                        <table [@fadeInLeft] *ngIf="sectOne && sectTwo && !sectThree" class="table table-sm table-data my-2" style="margin:0 auto;max-width:400px">
+                        <table  *ngIf="sectOne && sectTwo && !sectThree" class="table table-responsive table-sm table-data my-2" style="margin:0 auto;max-width:400px">
 
                             <tr>
                                 <th>Please select the following to sign up for:</th>

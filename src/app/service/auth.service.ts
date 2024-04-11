@@ -51,7 +51,7 @@ export class AuthenticationService {
 
     userregistration(username: string, email: string, password: string, first_name: string, last_name: string, phone:string,roles:any): Observable<User> {
 
-        return this.http.post<User>(`${environment.serverUrl}/auth/register`, { username, email, password, first_name, last_name, phone, roles })
+        return this.http.post<User>(`${environment.serverUrl}/auth/register`, { username, email, password, first_name, last_name, phone, roles})
             .pipe(map(user => {
                 return user;
             }));

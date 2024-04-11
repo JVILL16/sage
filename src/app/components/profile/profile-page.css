@@ -1,0 +1,48 @@
+.pfp-icon{
+    width:100px;
+    border-radius: 50%;
+    position: relative;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.profile-picture img {
+    
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.profile-info {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.profile-info h1 {
+    margin: 5px 0;
+}
+
+.profile-info p {
+    margin: 5px 0;
+}
+
+.pfp-edit{
+    transform: translate(340%,-110%);
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    display: flex;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    padding: 0;
+}

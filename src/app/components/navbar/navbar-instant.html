@@ -60,6 +60,11 @@
           aria-controls="navbarText" aria-expanded="false" routerLink="/register">Register</a>
         </li>
 
+        <li *ngIf="showUsersTab" class="nav-item">
+          <a class="nav-link text-nowrap" data-bs-toggle="collapse" data-bs-target="#navbarText"
+          aria-controls="navbarText" aria-expanded="false" routerLink="/profile">Profile</a>
+        </li>
+
         <li *ngIf="showAdminTab" class="nav-item">
           <a class="nav-link  text-nowrap" data-bs-toggle="collapse" data-bs-target="#navbarText"
           aria-controls="navbarText" aria-expanded="false" routerLink="/admin">Admin</a>
