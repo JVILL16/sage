@@ -31,6 +31,20 @@ export class ProfileComponent implements OnInit {
             this.currentUser = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
         else sessionStorage.clear();
       }
+      onSelectFile(event: any) {
+        if (event.target.files && event.target.files[0]) {
+          var reader = new FileReader();
     
+          reader.readAsDataURL(event.target.files[0]); // read file as data url
+    
+          reader.onload = (event) => {
+            // called once readAsDataURL is completed
+            console.log(event);
+            console.log(event.target?.result);
+            //this.currentUser[0].pfp = event.target?.result;
+            console.log(this.currentUser[0].pfp);
+          };
+        }
+      }
 
 }

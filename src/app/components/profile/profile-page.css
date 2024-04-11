@@ -36,6 +36,7 @@
 }
 
 .pfp-edit{
+    overflow: hidden;
     transform: translate(340%,-110%);
     align-items: center;
     justify-content: center;
@@ -45,4 +46,23 @@
     height: 30px;
     border-radius: 50%;
     padding: 0;
+    background: rgb(167, 167, 167) !important;
+    cursor:pointer !important;
 }
+.pfp-edit:hover{
+    
+    background: linear-gradient(rgb(133, 182, 255),rgb(185, 185, 185)) !important;
+}
+  .pfp-edit input[type=file] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+   
+  }
+.file-point{
+    cursor:pointer !important;
+}
+  .file-input {
+    display: none;
+  }

@@ -6,8 +6,15 @@
 
         <div class="profile">
             <div class="profile-picture">
-                <img class="pfp-icon" [src]="currentUser[0].pfp ? currentUser[0].pfp : 'assets/pfp_default/user.png'" >
-                <button id="editIcon" class="pfp-edit btn btn-sm btn-secondary"><i class=" fa-solid fa-camera"></i></button>
+                <img class="pfp-icon" [src]="'assets/pfp_default/user.png'" >
+                <div class="pfp-edit">
+                  <input id="fileInput" class="file-input" type="file" [(ngModel)]="currentUser[0].pfp" (change)="onSelectFile($event)" />
+                  <label for="fileInput" class="file-point">
+                    <i class=" fa-solid fa-camera"></i>
+                  </label>
+                </div>
+                
+                
             </div>
             <div class="profile-info">
                 <h1>{{currentUser[0].first_name}} {{currentUser[0].last_name}}</h1>
