@@ -18,6 +18,8 @@ import { first } from 'rxjs/operators';
 
 export class ProfileComponent implements OnInit {
     currentUser: User[] = [];
+    pfp_image : any;
+
 
     constructor(private api: ApiService, private auth: AuthenticationService, private router: Router) {this.home_login();}
 
@@ -32,19 +34,34 @@ export class ProfileComponent implements OnInit {
         else sessionStorage.clear();
       }
       onSelectFile(event: any) {
-        if (event.target.files && event.target.files[0]) {
-          var reader = new FileReader();
+        // if (event.target.files && event.target.files[0]) {
+        //   var reader = new FileReader();
     
-          reader.readAsDataURL(event.target.files[0]); // read file as data url
+        //   reader.readAsDataURL(event.target.files[0]); // read file as data url
     
-          reader.onload = (event) => {
-            // called once readAsDataURL is completed
-            console.log(event);
-            console.log(event.target?.result);
-            //this.currentUser[0].pfp = event.target?.result;
-            console.log(this.currentUser[0].pfp);
-          };
-        }
+        //   reader.onload = (event) => {
+        //     // called once readAsDataURL is completed
+        //     console.log(event);
+        //     console.log(event.target?.result);
+        //     //this.currentUser[0].pfp = event.target?.result;
+        //     console.log(this.currentUser[0].pfp);
+        //   };
+        // }
+        console.log(event.target.files[0]);
+        console.log(event.target.files);
+        this.pfp_image = event.target.files[0];
+      
       }
+      saveChanges() : void{
+        this.api.uploadImage(this.pfp_image, this.currentUser[0].account_id).subscribe({
+          next: (response) => {
+            console.log('Image uploaded successfully:', response.url);
+          },
+          error: (error) => {
+            console.error('Error uploading image:', error);
+          }
+        });
+      }
+
 
 }

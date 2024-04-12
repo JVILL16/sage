@@ -6,7 +6,7 @@
 
         <div class="profile">
             <div class="profile-picture">
-                <img class="pfp-icon" [src]="'assets/pfp_default/user.png'" >
+                <img class="pfp-icon" [src]="'/home1/sagejher/tmp/pfp/pfp_default/male_2.png'" >
                 <div class="pfp-edit">
                   <input id="fileInput" class="file-input" type="file" [(ngModel)]="currentUser[0].pfp" (change)="onSelectFile($event)" />
                   <label for="fileInput" class="file-point">
@@ -23,6 +23,10 @@
                 <p>Username: {{currentUser[0].username}}</p>
             </div>
         </div>
+      </div>
+
+      <div class="card-footer float-end">
+        <button class="btn btn-sm btn-success" [disabled]="!pfp_image" type="button" (click)="saveChanges()">Save Changes</button>
       </div>
   
     </div>

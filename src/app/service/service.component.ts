@@ -34,7 +34,15 @@ export class ApiService {
     return this.httpClient.get<User[]>(`${environment.serverUrl}/users/read`);
   }
 
-
+  uploadImage(image: File, cred: number): Observable<any> {
+    const formData = new FormData();
+    formData.append('image', image);
+    console.log(image);
+    return this.httpClient.post<any>(`${environment.serverUrl}/pfp/upload`, {formData, cred},{
+      reportProgress: true,
+      responseType: 'json'
+    });
+  }
   //token
   setToken(token: string): any {
     localStorage.setItem('token', token);
