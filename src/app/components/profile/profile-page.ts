@@ -11,57 +11,71 @@ import { first } from 'rxjs/operators';
 
 
 @Component({
-    selector: 'profile-page',
-    templateUrl: './profile-page.html',
-    styleUrls: ['./profile-page.css']
+  selector: 'profile-page',
+  templateUrl: './profile-page.html',
+  styleUrls: ['./profile-page.css']
 })
 
 export class ProfileComponent implements OnInit {
-    currentUser: User[] = [];
-    pfp_image : any;
+  currentUser: User[] = [];
+  pfp_image: any;
+  pfp_url: any;
+  pfp_current : any;
+
+  constructor(private api: ApiService, private auth: AuthenticationService, private router: Router) { this.home_login(); }
 
 
-    constructor(private api: ApiService, private auth: AuthenticationService, private router: Router) {this.home_login();}
 
+  ngOnInit() {
 
+  }
+  home_login() {
+    if (sessionStorage.getItem('currentUser')) {
+      this.currentUser = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
+      this.pfp_current = this.currentUser[0].pfp;
+      this.api.getUserProfile(this.currentUser[0].account_id, this.currentUser[0].pfp).subscribe({
+        next:(data: Blob) => {
+        const reader = new FileReader();
+        console.log(data);
+        reader.onload = () => {
+          this.pfp_url = reader.result as string;
+          //console.log(this.pfp_url);
+        };
+        reader.readAsDataURL(data);
+      },error:(error) => {
+        console.error('Error loading profile picture:', error);
+      }});
+    } else sessionStorage.clear();
+  }
+  onSelectFile(event: any) {
+    // if (event.target.files && event.target.files[0]) {
+    //   var reader = new FileReader();
 
-    ngOnInit() {
-        
-    }
-    home_login(){
-        if(sessionStorage.getItem('currentUser'))
-            this.currentUser = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
-        else sessionStorage.clear();
+    //   reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+    //   reader.onload = (event) => {
+    //     // called once readAsDataURL is completed
+    //     console.log(event);
+    //     console.log(event.target?.result);
+    //     //this.currentUser[0].pfp = event.target?.result;
+    //     console.log(this.currentUser[0].pfp);
+    //   };
+    // }
+    console.log(event.target.files[0]);
+    this.pfp_current = URL.createObjectURL(event.target.files[0]);
+    this.pfp_url = this.pfp_current;
+
+  }
+  saveChanges(): void {
+    this.api.uploadImage(this.pfp_current, this.currentUser[0].account_id).subscribe({
+      next: (response) => {
+        console.log('Image uploaded successfully:', response);
+      },
+      error: (error) => {
+        console.error('Error uploading image:', error);
       }
-      onSelectFile(event: any) {
-        // if (event.target.files && event.target.files[0]) {
-        //   var reader = new FileReader();
-    
-        //   reader.readAsDataURL(event.target.files[0]); // read file as data url
-    
-        //   reader.onload = (event) => {
-        //     // called once readAsDataURL is completed
-        //     console.log(event);
-        //     console.log(event.target?.result);
-        //     //this.currentUser[0].pfp = event.target?.result;
-        //     console.log(this.currentUser[0].pfp);
-        //   };
-        // }
-        console.log(event.target.files[0]);
-        console.log(event.target.files);
-        this.pfp_image = event.target.files[0];
-      
-      }
-      saveChanges() : void{
-        this.api.uploadImage(this.pfp_image, this.currentUser[0].account_id).subscribe({
-          next: (response) => {
-            console.log('Image uploaded successfully:', response.url);
-          },
-          error: (error) => {
-            console.error('Error uploading image:', error);
-          }
-        });
-      }
+    });
+  }
 
 
 }

@@ -34,14 +34,14 @@ export class ApiService {
     return this.httpClient.get<User[]>(`${environment.serverUrl}/users/read`);
   }
 
-  uploadImage(image: File, cred: number): Observable<any> {
+  public getUserProfile(account : number, filename: string){
+    return this.httpClient.get(`${environment.serverUrl}/pfp/download?account=${account}&filename=${filename}`,{ responseType: 'blob' });
+  }
+
+  public uploadImage(image: File, cred: number): Observable<any> {
     const formData = new FormData();
     formData.append('image', image);
-    console.log(image);
-    return this.httpClient.post<any>(`${environment.serverUrl}/pfp/upload`, {formData, cred},{
-      reportProgress: true,
-      responseType: 'json'
-    });
+    return this.httpClient.post<any>(`${environment.serverUrl}/pfp/upload`, formData, {params:{cred:cred}});
   }
   //token
   setToken(token: string): any {

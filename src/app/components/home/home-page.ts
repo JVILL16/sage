@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
     private auth: AuthenticationService,
     private alertService: AlertService,
     private load:AppComponent) { 
-     console.log(sessionStorage.getItem('currentUser'));
+     //console.log(sessionStorage.getItem('currentUser'));
      this.home_login();
     }
 
