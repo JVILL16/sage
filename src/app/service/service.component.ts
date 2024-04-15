@@ -34,6 +34,10 @@ export class ApiService {
     return this.httpClient.get<User[]>(`${environment.serverUrl}/users/read`);
   }
 
+  // public getUser(account: number): Observable<User[]> {
+
+  //   return this.httpClient.get<User[]>(`${environment.serverUrl}/users/read?id=${account}`);
+  // }
   public getUserProfile(account : number, filename: string){
     return this.httpClient.get(`${environment.serverUrl}/pfp/download?account=${account}&filename=${filename}`,{ responseType: 'blob' });
   }
