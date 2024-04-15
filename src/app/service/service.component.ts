@@ -38,10 +38,15 @@ export class ApiService {
     return this.httpClient.get(`${environment.serverUrl}/pfp/download?account=${account}&filename=${filename}`,{ responseType: 'blob' });
   }
 
-  public uploadImage(image: File, cred: number): Observable<any> {
+  public updateUser(user: User): Observable<User>{
+    return this.httpClient.post<User>(`${environment.serverUrl}/users/update`, user);
+  }
+
+  public uploadImage(image: File, cred: any){
     const formData = new FormData();
     formData.append('image', image);
-    return this.httpClient.post<any>(`${environment.serverUrl}/pfp/upload`, formData, {params:{cred:cred}});
+    formData.append('cred',cred);
+    return this.httpClient.post(`${environment.serverUrl}/pfp/upload`, formData);
   }
   //token
   setToken(token: string): any {

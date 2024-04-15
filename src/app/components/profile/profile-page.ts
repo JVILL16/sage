@@ -62,17 +62,26 @@ export class ProfileComponent implements OnInit {
     //   };
     // }
     console.log(event.target.files[0]);
-    this.pfp_current = URL.createObjectURL(event.target.files[0]);
-    this.pfp_url = this.pfp_current;
+    this.pfp_url = URL.createObjectURL(event.target.files[0]);
+    this.pfp_current = event.target.files[0];
+    this.currentUser[0].pfp = this.pfp_current.name;
 
   }
   saveChanges(): void {
-    this.api.uploadImage(this.pfp_current, this.currentUser[0].account_id).subscribe({
+    this.api.updateUser(this.currentUser[0]).subscribe({
       next: (response) => {
-        console.log('Image uploaded successfully:', response);
+        console.log('User record updated:\n', response);
       },
       error: (error) => {
-        console.error('Error uploading image:', error);
+        console.error('Error updated record:\n', error);
+      }
+    });
+    this.api.uploadImage(this.pfp_current, this.currentUser[0].account_id).subscribe({
+      next: (response) => {
+        console.log('Image uploaded successfully:\n', response);
+      },
+      error: (error) => {
+        console.error('Error uploading image:\n', error);
       }
     });
   }

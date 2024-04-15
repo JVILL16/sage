@@ -87,7 +87,7 @@ export class AuthenticationService {
     switchAdmin(userRoles:any) {
         if(userRoles.length > 1){
             for(var role of userRoles){
-                console.log(role);
+                //console.log(role);
                 if(role.profile_id == 231385){
                     this.checkAdmin.next(true);
                          break;
