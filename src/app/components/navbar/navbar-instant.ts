@@ -28,7 +28,6 @@ export class NavbarComponent implements OnInit{
     constructor(private auth: AuthenticationService) {
         
         this.auth.isAdmin.subscribe((data)=>{
-            console.log(data);
             this.showAdminTab = data;
         });
         this.auth.isLoggedIn.subscribe((data)=>{
@@ -38,7 +37,7 @@ export class NavbarComponent implements OnInit{
     }
     ngOnInit() {
         // this.visible = this.authService.isLoggedIn;
-        console.log(this.auth.isLoggedIn);
+        //console.log(this.auth.isLoggedIn);
         //this.visibleHomeView = this.authService.isLoggedIn ? '/' : '/';
         //this.visibleLoginView = this.authService.isLoggedIn ? '/admin' : '/login';
         

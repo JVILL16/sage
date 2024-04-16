@@ -20,8 +20,8 @@ export class ProfileComponent implements OnInit {
   currentUser: User[] = [];
   pfp_image: any;
   pfp_url: any;
-  pfp_current : any;
   pfp_new: any;
+  account: any;
 
   constructor(private api: ApiService, private auth: AuthenticationService, private router: Router) {console.log("Profile Construct Called"); }
 
@@ -36,21 +36,40 @@ export class ProfileComponent implements OnInit {
   home_login() {
     if (sessionStorage.getItem('currentUser')) {
       this.currentUser = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
-      this.pfp_current = this.currentUser[0].pfp;
       console.log(this.currentUser[0]);
-      this.api.getUserProfile(this.currentUser[0].account_id, this.currentUser[0].pfp).subscribe({
-        next:(data: Blob) => {
-        const reader = new FileReader();
-        console.log(data);
-        reader.onload = () => {
-          this.pfp_url = reader.result as string;
-          //console.log(this.pfp_url);
-        };
-        reader.readAsDataURL(data);
-      },error:(error) => {
-        console.error('Error loading profile picture:', error);
-      }});
+
+      // Get User Account
+      this.api.getUser(this.currentUser[0].account_id).subscribe({
+        next:(response:User) => {
+          
+          this.account = response;
+          console.log(this.account);
+          
+          //Get User PFP
+          this.api.getUserProfile(this.account?.account_id, this.account?.pfp).subscribe({
+            next:(data: Blob) => {
+            const reader = new FileReader();
+            console.log(data);
+            reader.onload = () => {
+              this.pfp_url = reader.result as string;
+              //console.log(this.pfp_url);
+            };
+            reader.readAsDataURL(data);
+          },error:(error) => {
+            console.error('Error loading profile picture:', error);
+          }});
+         
+        },error:(error) => {
+          console.error('Error getting profile:', error);
+        }
+      });
+      
+      
+      
+      
     } else sessionStorage.clear();
+
+   
   }
   onSelectFile(event: any) {
     // if (event.target.files && event.target.files[0]) {
@@ -69,11 +88,11 @@ export class ProfileComponent implements OnInit {
     console.log(event.target.files[0]);
     this.pfp_url = URL.createObjectURL(event.target.files[0]);
     this.pfp_new = event.target.files[0];
-    this.currentUser[0].pfp = this.pfp_new.name;
+    this.account.pfp = this.pfp_new.name;
 
   }
   saveChanges(): void {
-    this.api.updateUser(this.currentUser[0]).subscribe({
+    this.api.updateUser(this.account).subscribe({
       next: (response) => {
         console.log('User record updated:\n', response);
       },
@@ -81,7 +100,7 @@ export class ProfileComponent implements OnInit {
         console.error('Error updated record:\n', error);
       }
     });
-    this.api.uploadImage(this.pfp_new, this.currentUser[0].account_id).subscribe({
+    this.api.uploadImage(this.pfp_new, this.account?.account_id).subscribe({
       next: (response) => {
         console.log('Image uploaded successfully:\n', response);
       },

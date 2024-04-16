@@ -31,13 +31,13 @@ export class ApiService {
   //get users data from public api 
   public getUsersData(): Observable<User[]> {
 
-    return this.httpClient.get<User[]>(`${environment.serverUrl}/users/read`);
+    return this.httpClient.get<User[]>(`${environment.serverUrl}/users/list`);
   }
 
-  // public getUser(account: number): Observable<User[]> {
+  public getUser(account: number): Observable<User> {
 
-  //   return this.httpClient.get<User[]>(`${environment.serverUrl}/users/read?id=${account}`);
-  // }
+    return this.httpClient.get<User>(`${environment.serverUrl}/users/user?account=${account}`);
+  }
   public getUserProfile(account : number, filename: string){
     return this.httpClient.get(`${environment.serverUrl}/pfp/download?account=${account}&filename=${filename}`,{ responseType: 'blob' });
   }
