@@ -1,9 +1,23 @@
+
+.bg-color{
+    background: linear-gradient(#ed63ff, #b773f7);
+}
+
+.fixed-height-card {
+    height: 200px; /* Set your desired fixed height here */
+    overflow-y: auto; /* Add scroll if content exceeds fixed height */
+  }
+  
 .pfp-icon{
     width:100px;
     border-radius: 50%;
     position: relative;
 }
-
+.edit-button{
+    float:left;
+    width: 60px;
+    background: linear-gradient(rgb(133, 182, 255),rgb(185, 185, 185)) !important;
+}
 .profile {
     display: flex;
     align-items: center;
@@ -48,6 +62,8 @@
     padding: 0;
     background: rgb(167, 167, 167) !important;
     cursor:pointer !important;
+    border: 2px solid #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 .pfp-edit:hover{
     
@@ -62,7 +78,35 @@
   }
 .file-point{
     cursor:pointer !important;
+    
 }
   .file-input {
     display: none;
   }
+
+  /* table input[type="text"] {
+    background: transparent;
+    border-width: 0 0 2px;
+    border-color: black;
+    outline:none;
+  }
+  table input[type="text"]:focus {
+    
+    outline:none;
+  } */
+  .form-control {
+    background: transparent;
+    border-width: 0 0 2px;
+    border-color: black;
+    outline:none;
+  }
+  .form-control:focus {
+    box-shadow: none; /* Remove the box shadow */
+    border-color: #ced4da; /* Set the border color to a neutral color */
+}
+  /* input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+} */

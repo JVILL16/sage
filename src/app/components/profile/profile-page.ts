@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding, OnChanges, Input } from '@angular/core';
 import { ApiService } from '../../service/service.component';
 import { User } from '../users/user';
 import { Observable } from 'rxjs';
@@ -7,22 +7,54 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertService } from '../../service/alert.service';
 import { filter, first } from 'rxjs/operators';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 
 
 @Component({
   selector: 'profile-page',
   templateUrl: './profile-page.html',
-  styleUrls: ['./profile-page.css']
+  styleUrls: ['./profile-page.css'],
+  animations: [
+    trigger('slideInLeft', [
+      transition(':enter', [
+        style({ transform: 'translateX(-100%)' }),
+        animate('800ms ease-out', style({ transform: 'translateX(0)' })),
+      ]),
+      // transition(":leave", [
+      //   animate('500ms ease-out', style({ transform: 'translateX(-100%)' })),
+      // ])
+    ]),
+    trigger('fadeInTop', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(-20%)' }),
+        animate(800, style({ opacity: 0.7, transform: 'translateY(0%)' }))
+      ]),
+      transition(':leave', [
+        animate('200ms ease-in', style({transform: 'translateY(-20%)'}))
+      ])
+    ]),
+    trigger('fadeInLeft', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateX(-20%)' }),
+        animate('300ms ease-in', style({ opacity: 0.7, transform: 'translateX(0%)' }))
+      ]),
+       transition(':leave', [
+        animate('200ms ease-out', style({transform: 'translateX(20%)'}))
+      ])
+    ])
+  ]
 })
 
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit{
   currentUser: User[] = [];
   pfp_image: any;
   pfp_url: any;
   pfp_new: any;
-  account: any;
-
+  og_account: any = {};
+  @Input() account: any = {};
+  edit_screen: boolean = false;
+  save_changes : boolean = false;
   constructor(private api: ApiService, private auth: AuthenticationService, private router: Router) {console.log("Profile Construct Called"); }
 
 
@@ -30,8 +62,22 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.home_login(); 
     console.log("Profile ONINIT Called");
-
    
+  }
+  undoChanges(og_user: User) : void{
+    this.edit_screen=!this.edit_screen
+    if(this.edit_screen) this.account = { ...og_user};
+  }
+  checkForChanges(): void {
+    // Compare current object with original object
+    if (JSON.stringify(this.account) !== JSON.stringify(this.og_account)) {
+      console.log('Object has changed!');
+      this.save_changes = true;
+      // Perform actions if the object has changed
+    } else {
+      console.log('Object has not changed.');
+      this.save_changes = false;
+    }
   }
   home_login() {
     if (sessionStorage.getItem('currentUser')) {
@@ -42,11 +88,13 @@ export class ProfileComponent implements OnInit {
       this.api.getUser(this.currentUser[0].account_id).subscribe({
         next:(response:User) => {
           
-          this.account = response;
+          this.og_account = response;
+          
+          this.account = { ...this.og_account };
           console.log(this.account);
           
           //Get User PFP
-          this.api.getUserProfile(this.account?.account_id, this.account?.pfp).subscribe({
+          this.api.getUserProfile(this.og_account.account_id, this.og_account.pfp).subscribe({
             next:(data: Blob) => {
             const reader = new FileReader();
             console.log(data);
@@ -72,24 +120,11 @@ export class ProfileComponent implements OnInit {
    
   }
   onSelectFile(event: any) {
-    // if (event.target.files && event.target.files[0]) {
-    //   var reader = new FileReader();
-
-    //   reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-    //   reader.onload = (event) => {
-    //     // called once readAsDataURL is completed
-    //     console.log(event);
-    //     console.log(event.target?.result);
-    //     //this.currentUser[0].pfp = event.target?.result;
-    //     console.log(this.currentUser[0].pfp);
-    //   };
-    // }
     console.log(event.target.files[0]);
     this.pfp_url = URL.createObjectURL(event.target.files[0]);
     this.pfp_new = event.target.files[0];
     this.account.pfp = this.pfp_new.name;
-
+    this.save_changes = true;
   }
   saveChanges(): void {
     this.api.updateUser(this.account).subscribe({
