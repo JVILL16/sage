@@ -29,19 +29,19 @@ import { trigger, transition, style, animate } from '@angular/animations';
       transition(':enter', [
         style({ opacity: 0, transform: 'translateY(-20%)' }),
         animate(800, style({ opacity: 0.7, transform: 'translateY(0%)' }))
-      ]),
-      transition(':leave', [
-        animate('200ms ease-in', style({transform: 'translateY(-20%)'}))
-      ])
+       ]),
+      // transition(':leave', [
+      //   animate('200ms ease-in', style({transform: 'translateY(-20%)'}))
+      // ])
     ]),
     trigger('fadeInLeft', [
       transition(':enter', [
         style({ opacity: 0, transform: 'translateX(-20%)' }),
         animate('300ms ease-in', style({ opacity: 0.7, transform: 'translateX(0%)' }))
       ]),
-       transition(':leave', [
-        animate('200ms ease-out', style({transform: 'translateX(20%)'}))
-      ])
+      //  transition(':leave', [
+      //   animate('200ms ease-out', style({transform: 'translateX(20%)'}))
+      // ])
     ])
   ]
 })
@@ -55,6 +55,9 @@ export class ProfileComponent implements OnInit{
   @Input() account: any = {};
   edit_screen: boolean = false;
   save_changes : boolean = false;
+  sections : any = [];
+
+
   constructor(private api: ApiService, private auth: AuthenticationService, private router: Router) {console.log("Profile Construct Called"); }
 
 
@@ -66,7 +69,8 @@ export class ProfileComponent implements OnInit{
   }
   undoChanges(og_user: User) : void{
     this.edit_screen=!this.edit_screen
-    if(this.edit_screen) this.account = { ...og_user};
+    if(this.edit_screen){ this.account = { ...og_user};this.save_changes=false; }
+    
   }
   checkForChanges(): void {
     // Compare current object with original object
@@ -88,11 +92,14 @@ export class ProfileComponent implements OnInit{
       this.api.getUser(this.currentUser[0].account_id).subscribe({
         next:(response:User) => {
           
+          //Original Account Information
           this.og_account = response;
-          
+          //Copy of Account for Editing purposes
           this.account = { ...this.og_account };
           console.log(this.account);
           
+          this.tabSections(this.og_account.roles);
+
           //Get User PFP
           this.api.getUserProfile(this.og_account.account_id, this.og_account.pfp).subscribe({
             next:(data: Blob) => {
@@ -118,6 +125,16 @@ export class ProfileComponent implements OnInit{
     } else sessionStorage.clear();
 
    
+  }
+
+  tabSections(roles: any): void{
+    this.sections.push( 'overview' );
+    roles.forEach((role:any) =>{
+      if(role.profile !== 'admin' || role.profile !== 'user'){
+        this.sections.push( role.profile );
+      }
+    });
+    this.sections.push('settings');
   }
   onSelectFile(event: any) {
     console.log(event.target.files[0]);

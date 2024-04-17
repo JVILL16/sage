@@ -9,20 +9,24 @@ import { AdminComponent } from './components/admin/admin-page';
 import { RegisterComponent } from './components/register/register-page';
 import { ClutchComponent } from './components/clutch/clutch-page';
 import { ProfileComponent } from './components/profile/profile-page';
+import { SectionsComponent } from './components/sections/sections-page';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent},
+  { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'about-us', component: AboutComponent },
-  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] }, 
   { path: 'register', component: RegisterComponent },
   { path: 'clutch', component: ClutchComponent },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]  },
+  { path: ':username', component: ProfileComponent, canActivate: [AuthGuard],
+    children: [
+      { path: 'detail/:section', component: SectionsComponent, canActivate: [AuthGuard] },]
+  },
+  { path: ':username/admin', component: AdminComponent, canActivate: [AuthGuard] },
 
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
-  
+
 ];
 
 @NgModule({

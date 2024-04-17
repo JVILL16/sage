@@ -2,32 +2,46 @@
 .bg-color{
     background: linear-gradient(#ed63ff, #b773f7);
 }
+.icon-bg{
+  background: transparent !important;;
+}
 
 .fixed-height-card {
     height: 200px; /* Set your desired fixed height here */
     overflow-y: auto; /* Add scroll if content exceeds fixed height */
   }
-  
+  .profile-div{
+    margin-left:300px;
+    margin-right:300px;
+}
 .pfp-icon{
     width:100px;
     border-radius: 50%;
     position: relative;
 }
 .edit-button{
-    float:left;
-    width: 60px;
-    background: linear-gradient(rgb(133, 182, 255),rgb(185, 185, 185)) !important;
+    /* float:left;
+    width: 60px; */
+    background: transparent !important;
+}
+.edit-button:hover{
+  background: linear-gradient(rgb(133, 182, 255),rgb(185, 185, 185)) !important;
+}
+
+.edit-header{
+  border-bottom: 2px solid black !important;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 .profile {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-top: 50px;
+    /* margin-top: 50px; */
 }
 
 .profile-picture img {
-    
     width: 150px;
     height: 150px;
     border-radius: 50%;
@@ -37,11 +51,11 @@
 }
 
 .profile-info {
-    text-align: center;
+    text-align: left;
     margin-top: 20px;
 }
 
-.profile-info h1 {
+.profile-info h3 {
     margin: 5px 0;
 }
 
@@ -95,18 +109,20 @@
     outline:none;
   } */
   .form-control {
-    background: transparent;
+    /* background: transparent; 
     border-width: 0 0 2px;
-    border-color: black;
-    outline:none;
+    border-color: black; */
+    border: 2px solid transparent !important;
+    /* outline:none; */
+    border-radius: 0;
+    font-size: 10px;
+    cursor: pointer;
+    background: linear-gradient(white 0 0) bottom / 0% 2px no-repeat
+    transparent;
+  transition: 1s;
   }
   .form-control:focus {
     box-shadow: none; /* Remove the box shadow */
-    border-color: #ced4da; /* Set the border color to a neutral color */
+    /* border-color: #ced4da;  Set the border color to a neutral color */
+    background-size: 100% 2px;
 }
-  /* input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-    outline: none;
-} */

@@ -21,12 +21,16 @@ export class NavbarComponent implements OnInit{
     visibleHomeView: any;
     visibleLoginView: any;
     currentUser: any;
+    username: any;
     showAdminTab: any;
     showUsersTab: any;
     count = 0;
 
     constructor(private auth: AuthenticationService) {
-        
+        if (sessionStorage.getItem('currentUser')) {
+            this.currentUser = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
+            this.username = this.currentUser[0].username
+        }
         this.auth.isAdmin.subscribe((data)=>{
             this.showAdminTab = data;
         });

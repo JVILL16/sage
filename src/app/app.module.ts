@@ -22,6 +22,7 @@ import { RegisterComponent } from './components/register/register-page';
 import { ProfileComponent } from './components/profile/profile-page';
 import { ErrorInterceptor } from './service/helpers/error.interceptor';
 import { AlertComponent } from './service/alert/alert.component';
+import { SectionsComponent } from './components/sections/sections-page';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { AlertComponent } from './service/alert/alert.component';
     FooterComponent,
     LoadingComponent,
     AlertComponent,
-    ProfileComponent
+    ProfileComponent,
+    SectionsComponent
     
   ],
   imports: [

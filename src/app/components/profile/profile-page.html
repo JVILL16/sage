@@ -1,67 +1,101 @@
 <div class="container-fluid mt-5">
-  <div class="card bg-color" style="margin: 0 auto;max-width:800px">
-    <div class="card-body">
-
-
-      <div class="profile">
-        <div class="profile-picture">
-          <img class="pfp-icon" [src]="pfp_url">
-          <div class="pfp-edit">
-            <input id="fileInput" class="file-input" type="file" accept="image/*" (change)="onSelectFile($event)" />
-            <label for="fileInput" class="file-point">
-              <i class=" fa-solid fa-camera"></i>
-            </label>
+  <div class="row profile-div">
+    <div class="col-xl-3">
+      <div class="card bg-color shadow-lg " style="margin: 0 auto;max-width:800px">
+        <div class="card-body">
+    
+    
+          <div class="profile">
+            <div class="profile-picture">
+              <img class="pfp-icon" [src]="pfp_url">
+              <div class="pfp-edit">
+                <input id="fileInput" class="file-input" type="file" accept="image/*" (change)="onSelectFile($event)" />
+                <label for="fileInput" class="file-point">
+                  <i class=" fa-solid fa-camera"></i>
+                </label>
+              </div>
+    
+    
+            </div>
+            <div class="container-fluid">
+              <div class="d-grid">
+                <button class="btn btn-sm btn-outline-dark rounded-pill edit-button " (click)="undoChanges(og_account);">Edit</button>
+              </div>
+            
+              <div [@fadeInLeft] *ngIf="!edit_screen" class="profile-info">
+                <h3 class="d-block overflow-hidden">{{og_account.first_name}} {{og_account.last_name}}</h3>
+                <p ><b>{{og_account.username}}</b></p>
+                <p>{{og_account.email}}</p>
+                <p>{{og_account.phone}}</p>
+    
+              </div>
+              <div [@fadeInLeft] *ngIf="edit_screen">
+                <div class="edit-header"><h4><i class="fa-solid fa-circle-info icon-bg"></i>  General</h4></div>
+                <table class="table table-responsive table-sm table-data my-3" style="margin:0 auto;max-width:400px">
+                  
+                  <tr>
+                    <th>First Name</th>
+                    <td><input type="text" autocomplete="off" [(ngModel)]="account.first_name" (change)="checkForChanges()"
+                        class="form-control form-control-sm" placeholder="Enter your firstname"></td>
+                  </tr>
+                  <tr>
+                    <th>Last Name</th>
+                    <td><input type="text" autocomplete="off" [(ngModel)]="account.last_name" (change)="checkForChanges()"
+                        class="form-control form-control-sm" placeholder="Enter your lastname"></td>
+                  </tr>
+                  <tr>
+                    <th>Email</th>
+                    <td><input type="text" autocomplete="off" [(ngModel)]="account.email" (change)="checkForChanges()"
+                        class="form-control form-control-sm" placeholder="Enter your email"></td>
+                  </tr>
+                  <tr>
+                    <th>Phone</th>
+                    <td><input type="text" autocomplete="off" [(ngModel)]="account.phone" (change)="checkForChanges()"
+                        class="form-control form-control-sm" placeholder="Enter your phone number"></td>
+                  </tr>
+                  <tr>
+                    <th>Username</th>
+                    <td><input type="text" autocomplete="off" [(ngModel)]="account.username" (change)="checkForChanges()"
+                        class="form-control form-control-sm" placeholder="Enter your username"></td>
+                  </tr>
+                </table>
+              </div>
+              
+            </div>
+            
+    
           </div>
-
-
         </div>
-        <button class="btn btn-sm rounded-pill edit-button " (click)="undoChanges(og_account);">Edit</button>
-        <div class="row">
-          
-          <div [@fadeInLeft] *ngIf="!edit_screen" class="profile-info">
-            <h1>{{og_account.first_name}} {{og_account.last_name}}</h1>
-            <p><b>{{og_account.username}}</b></p>
-            <p>{{og_account.email}}</p>
-            <p>{{og_account.phone}}</p>
-
-          </div>
-          <div [@fadeInLeft] *ngIf="edit_screen">
-            <table class="table table-responsive table-sm table-data my-3" style="margin:0 auto;max-width:400px">
-              <tr>
-                <th>First Name</th>
-                <td><input type="text" autocomplete="off" [(ngModel)]="account.first_name" (change)="checkForChanges()"
-                    class="form-control form-control-sm" placeholder="Enter your firstname"></td>
-              </tr>
-              <tr>
-                <th>Last Name</th>
-                <td><input type="text" autocomplete="off" [(ngModel)]="account.last_name" (change)="checkForChanges()"
-                    class="form-control form-control-sm" placeholder="Enter your lastname"></td>
-              </tr>
-              <tr>
-                <th>Email</th>
-                <td><input type="text" autocomplete="off" [(ngModel)]="account.email" (change)="checkForChanges()"
-                    class="form-control form-control-sm" placeholder="Enter your email"></td>
-              </tr>
-              <tr>
-                <th>Phone</th>
-                <td><input type="text" autocomplete="off" [(ngModel)]="account.phone" (change)="checkForChanges()"
-                    class="form-control form-control-sm" placeholder="Enter your phone number"></td>
-              </tr>
-              <tr>
-                <th>Username</th>
-                <td><input type="text" autocomplete="off" [(ngModel)]="account.username" (change)="checkForChanges()"
-                    class="form-control form-control-sm" placeholder="Enter your username"></td>
-              </tr>
-            </table>
-          </div>
-        </div>
-
+    <div [@fadeInTop] *ngIf="edit_screen && save_changes" class="m-3">
+      
+      <button class="btn btn-sm btn-success float-end" type="button" [disabled]="!save_changes" (click)="saveChanges()">Save</button>
+      <button class="btn btn-sm btn-secondary float-end me-2" type="button" [disabled]="!save_changes" (click)="saveChanges()">Cancel</button>
+    </div>
+        
       </div>
     </div>
-
-    <div [@fadeInTop]="edit_screen" *ngIf="edit_screen" class="card-footer float-end">
-      <button class="btn btn-sm btn-success" type="button" [disabled]="!save_changes" (click)="saveChanges()">Save Changes</button>
+    <div class="col-xl-9">
+      <div class="card shadow-lg">
+        <div class="card-body">
+          <ul class="nav nav-tabs">
+            <li class="nav-item" *ngFor="let section of sections">
+              <a class="nav-link active" aria-current="page" routerLink="detail/{{section}}">{{section}}</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" routerLink="detail/clutch">Clutch</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/detail/kickball">Kickball</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"><i class="fa-solid fa-gear"></i>  Settings</a>
+            </li> -->
+          </ul>
+          <sections-page></sections-page>
+          <router-outlet></router-outlet>
+          
+        </div>
+      </div>
     </div>
-
   </div>
 </div>
