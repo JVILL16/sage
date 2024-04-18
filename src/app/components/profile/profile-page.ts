@@ -56,6 +56,7 @@ export class ProfileComponent implements OnInit{
   edit_screen: boolean = false;
   save_changes : boolean = false;
   sections : any = [];
+  section_admin : boolean = false;
 
 
   constructor(private api: ApiService, private auth: AuthenticationService, private router: Router) {console.log("Profile Construct Called"); }
@@ -65,7 +66,11 @@ export class ProfileComponent implements OnInit{
   ngOnInit() {
     this.home_login(); 
     console.log("Profile ONINIT Called");
-   
+    // this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event: any) => {
+    //   this.edit_screen = false;
+    //   this.save_changes = false;
+    // });
+    
   }
   undoChanges(og_user: User) : void{
     this.edit_screen=!this.edit_screen
@@ -128,12 +133,18 @@ export class ProfileComponent implements OnInit{
   }
 
   tabSections(roles: any): void{
-    this.sections.push( 'overview' );
-    roles.forEach((role:any) =>{
-      if(role.profile !== 'admin' || role.profile !== 'user'){
+    this.section_admin = false;
+    roles.forEach((role:any) => {
+
+      if(role.profile === 'user')
+        this.sections.unshift( 'overview');
+      else if(role.profile === 'admin')
+        this.section_admin = true;
+      else
         this.sections.push( role.profile );
-      }
+        
     });
+    if(this.section_admin) this.sections.push('admin');
     this.sections.push('settings');
   }
   onSelectFile(event: any) {

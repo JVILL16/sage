@@ -19,9 +19,10 @@ const routes: Routes = [
   { path: 'clutch', component: ClutchComponent },
   { path: ':username', component: ProfileComponent, canActivate: [AuthGuard],
     children: [
-      { path: 'detail/:section', component: SectionsComponent, canActivate: [AuthGuard] },]
+      { path: '', redirectTo: 'detail/overview', pathMatch: 'full' },
+      { path: 'detail/:section', component: SectionsComponent, canActivate: [AuthGuard] }]
   },
-  { path: ':username/admin', component: AdminComponent, canActivate: [AuthGuard] },
+  
 
 
   // otherwise redirect to home
@@ -29,9 +30,52 @@ const routes: Routes = [
 
 ];
 
+
+// function getMillis(hours: number) {
+//   return hours * 60 * 60 * 100;
+// }
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+
+  //This looks good for any future stuff that I want for night and day types (including getMillis function)
+
+  // providers: [
+  //   {
+  //     provide: ROUTES,
+  //     useFactory: () => {
+  //       let routes: Routes = [];
+  //       const currentTime = new Date().getTime();
+
+  //       if (currentTime < getMillis(6) || currentTime > getMillis(18)) {
+  //         routes.push({
+  //           path: 'night',
+  //           component: NightComponent
+  //         });
+  //       }
+  //       else {
+  //         routes.push({
+  //           path: 'day',
+  //           component: DayComponent
+  //         });
+  //       }
+
+  //       if (Math.random() < 0.5) {
+  //         routes.push({
+  //           path: 'secret',
+  //           component: TopSecretComponent
+  //         });
+  //       }
+
+  //       return [
+  //         ...routes,
+  //         ...standardRoutes
+  //       ];
+  //     },
+  //     multi: true
+  //   }
+  // ]
 })
 export class AppRoutingModule { }
 

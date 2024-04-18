@@ -2,7 +2,17 @@
     <div class="row">
         <div class="card">
             <div class="card-body">
-                <h1>Welcome to the {{section}} Page</h1>
+                <h1>Welcome to the {{section | titlecase}} Page</h1>
+
+                <div *ngIf="section == 'clutch'">
+                    <p>Here is the link to go to Clucth Page
+                        <a routerLink="/clutch">Clutch</a>
+                    </p>
+
+                </div>
+                <div *ngIf="section == 'admin'">
+                    <admin-page></admin-page>
+                </div>
             </div>
         </div>
     </div>

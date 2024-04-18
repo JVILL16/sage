@@ -3,8 +3,8 @@
     <div class="col-xl-3">
       <div class="card bg-color shadow-lg " style="margin: 0 auto;max-width:800px">
         <div class="card-body">
-    
-    
+
+
           <div class="profile">
             <div class="profile-picture">
               <img class="pfp-icon" [src]="pfp_url">
@@ -14,34 +14,39 @@
                   <i class=" fa-solid fa-camera"></i>
                 </label>
               </div>
-    
-    
+
+
             </div>
             <div class="container-fluid">
               <div class="d-grid">
-                <button class="btn btn-sm btn-outline-dark rounded-pill edit-button " (click)="undoChanges(og_account);">Edit</button>
+                <button class="btn btn-sm btn-outline-dark rounded-pill edit-button "
+                  (click)="undoChanges(og_account);">Edit</button>
               </div>
-            
+
               <div [@fadeInLeft] *ngIf="!edit_screen" class="profile-info">
                 <h3 class="d-block overflow-hidden">{{og_account.first_name}} {{og_account.last_name}}</h3>
-                <p ><b>{{og_account.username}}</b></p>
+                <p><b>{{og_account.username}}</b></p>
                 <p>{{og_account.email}}</p>
                 <p>{{og_account.phone}}</p>
-    
+
               </div>
               <div [@fadeInLeft] *ngIf="edit_screen">
-                <div class="edit-header"><h4><i class="fa-solid fa-circle-info icon-bg"></i>  General</h4></div>
+                <div class="edit-header">
+                  <h4><i class="fa-solid fa-circle-info icon-bg"></i> General</h4>
+                </div>
                 <table class="table table-responsive table-sm table-data my-3" style="margin:0 auto;max-width:400px">
-                  
+
                   <tr>
                     <th>First Name</th>
-                    <td><input type="text" autocomplete="off" [(ngModel)]="account.first_name" (change)="checkForChanges()"
-                        class="form-control form-control-sm" placeholder="Enter your firstname"></td>
+                    <td><input type="text" autocomplete="off" [(ngModel)]="account.first_name"
+                        (change)="checkForChanges()" class="form-control form-control-sm"
+                        placeholder="Enter your firstname"></td>
                   </tr>
                   <tr>
                     <th>Last Name</th>
-                    <td><input type="text" autocomplete="off" [(ngModel)]="account.last_name" (change)="checkForChanges()"
-                        class="form-control form-control-sm" placeholder="Enter your lastname"></td>
+                    <td><input type="text" autocomplete="off" [(ngModel)]="account.last_name"
+                        (change)="checkForChanges()" class="form-control form-control-sm"
+                        placeholder="Enter your lastname"></td>
                   </tr>
                   <tr>
                     <th>Email</th>
@@ -55,45 +60,63 @@
                   </tr>
                   <tr>
                     <th>Username</th>
-                    <td><input type="text" autocomplete="off" [(ngModel)]="account.username" (change)="checkForChanges()"
-                        class="form-control form-control-sm" placeholder="Enter your username"></td>
+                    <td><input type="text" autocomplete="off" [(ngModel)]="account.username"
+                        (change)="checkForChanges()" class="form-control form-control-sm"
+                        placeholder="Enter your username"></td>
                   </tr>
                 </table>
               </div>
-              
+
             </div>
-            
-    
+
+
           </div>
         </div>
-    <div [@fadeInTop] *ngIf="edit_screen && save_changes" class="m-3">
-      
-      <button class="btn btn-sm btn-success float-end" type="button" [disabled]="!save_changes" (click)="saveChanges()">Save</button>
-      <button class="btn btn-sm btn-secondary float-end me-2" type="button" [disabled]="!save_changes" (click)="saveChanges()">Cancel</button>
-    </div>
-        
+        <div [@fadeInTop] *ngIf="edit_screen && save_changes" class="m-3">
+
+          <button class="btn btn-sm btn-success float-end" type="button" [disabled]="!save_changes"
+            (click)="saveChanges()">Save</button>
+          <button class="btn btn-sm btn-secondary float-end me-2" type="button" [disabled]="!save_changes"
+            (click)="saveChanges()">Cancel</button>
+        </div>
+
       </div>
     </div>
     <div class="col-xl-9">
       <div class="card shadow-lg">
         <div class="card-body">
-          <ul class="nav nav-tabs">
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <button *ngFor="let section of sections" class="nav-link" [ngClass]="{ 'active': section=='overview' }"
+                id="nav-{{section}}-tab" data-bs-toggle="tab" routerLink="detail/{{section}}"
+                [attr.data-bs-target]="'#nav-'+ section" type="button" role="tab" [attr.aria-controls]="'nav-'+section"
+                attr.aria-selected="{{section=='overview' ? true: false}}">
+                <i *ngIf="section=='settings'" class="fa-solid fa-gear"></i>
+                {{section | titlecase}}
+              </button>
+
+            </div>
+          </nav>
+          <div class="tab-content" id="nav-tabContent">
+            <div *ngFor="let section of sections" class="tab-pane fade"
+              [ngClass]="{ 'active show': section=='overview' }" id="nav-{{section}}" role="tabpanel"
+              [attr.aria-labelledby]="'nav-'+section+'-tab'">
+
+              <router-outlet></router-outlet>
+            </div>
+
+          </div>
+
+          <!-- <ul class="nav nav-tabs">
+           
             <li class="nav-item" *ngFor="let section of sections">
-              <a class="nav-link active" aria-current="page" routerLink="detail/{{section}}">{{section}}</a>
+              <a class="nav-link" aria-current="page" routerLink="detail/{{section}}">
+                <i *ngIf="section=='settings'" class="fa-solid fa-gear"></i>  
+                {{section}}
+              </a>
             </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link" routerLink="detail/clutch">Clutch</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/detail/kickball">Kickball</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"><i class="fa-solid fa-gear"></i>  Settings</a>
-            </li> -->
           </ul>
-          <sections-page></sections-page>
-          <router-outlet></router-outlet>
-          
+          <router-outlet></router-outlet> -->
         </div>
       </div>
     </div>

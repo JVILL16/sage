@@ -13,6 +13,7 @@ export class AuthenticationService {
 
     private loggedIn = new BehaviorSubject<boolean>(false);
     private checkAdmin = new BehaviorSubject<boolean>(false);
+    private userName = new BehaviorSubject<string>('');
 
 
     currentUser: any;
@@ -21,6 +22,9 @@ export class AuthenticationService {
     }
     get isAdmin() {
         return this.checkAdmin.asObservable();
+    }
+    get getUsername() {
+        return this.userName.asObservable();
     }
 
     constructor(private http: HttpClient) { }
@@ -37,6 +41,7 @@ export class AuthenticationService {
                     console.log(this.currentUser);
                     this.loggedIn.next(true);
                     this.switchAdmin(this.currentUser[0].roles);
+                    this.userName.next(this.currentUser[0].username);
                     
                 } else {
                     console.log('login failed try again and refresh');
@@ -81,6 +86,7 @@ export class AuthenticationService {
         // remove user from session storage to log user out
         this.loggedIn.next(false);
         this.checkAdmin.next(false);
+        this.userName.next('');
         sessionStorage.removeItem('currentUser');
     }
 

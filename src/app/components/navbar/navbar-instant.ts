@@ -27,16 +27,20 @@ export class NavbarComponent implements OnInit{
     count = 0;
 
     constructor(private auth: AuthenticationService) {
-        if (sessionStorage.getItem('currentUser')) {
-            this.currentUser = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
-            this.username = this.currentUser[0].username
-        }
+        
         this.auth.isAdmin.subscribe((data)=>{
             this.showAdminTab = data;
+            console.log(this.showAdminTab);
         });
         this.auth.isLoggedIn.subscribe((data)=>{
             
             this.showUsersTab = data;
+            console.log(this.showUsersTab);
+        });
+        this.auth.getUsername.subscribe((data)=>{
+            
+            this.username = data;
+            console.log(this.username);
         });
     }
     ngOnInit() {

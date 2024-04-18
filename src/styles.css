@@ -9,24 +9,30 @@ $phone_landscape: 780px; */
   font-family: Daily-Q;
   src: url('src/assets/fonts/daily-quantum/Daily Quantum.ttf');
 }
-.btn-success{
-  --bs-btn-bg:rgb(50, 189, 50) !important;
+
+.btn-success {
+  --bs-btn-bg: rgb(50, 189, 50) !important;
 }
+
 .home-row {
-  margin-bottom:200px;
+  margin-bottom: 200px;
 }
-.container-fluid{
-  padding-top:50px;
-  padding-bottom:50px;
+
+.container-fluid {
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
-.container-fluid .card{
+
+.container-fluid .card {
   margin-bottom: 20px;
 }
-.container-header{
-  width:100%;
-  overflow:hidden;
+
+.container-header {
+  width: 100%;
+  overflow: hidden;
 }
-body{
+
+body {
   background-color: #808080 !important;
 }
 
@@ -35,13 +41,14 @@ body{
   color: white !important;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   background: linear-gradient(#ed63ff, #b773f7);
-  
+
 }
-.gradient-clutch{
+
+.gradient-clutch {
   font-family: Daily-Q;
   color: white !important;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-  background: linear-gradient(#ff6b6b,#fc976f,#fd9f3a);
+  background: linear-gradient(#ff6b6b, #fc976f, #fd9f3a);
 }
 
 .gradient-examples {
@@ -52,48 +59,52 @@ body{
 }
 
 
-  @media only screen 
-  and (min-width: 320px) { 
+@media only screen and (min-width: 320px) {
 
-    body{
-      position: relative;
-      padding-top:55px;
-      overflow-x: hidden;
-      /* background-size: cover; */
-      /* background-image: url(assets/thumbnail-background.png);
+  body {
+    position: relative;
+    padding-top: 55px;
+    overflow-x: hidden;
+    /* background-size: cover; */
+    /* background-image: url(assets/thumbnail-background.png);
        */
-      
-    }
 
-   .image-set{
+  }
+
+  .image-set {
     background-size: cover;
     position: relative;
     overflow: hidden;
-    margin-bottom:75px;
+    margin-bottom: 75px;
     /* opacity: .9; */
-}
+
+
+  }
+
+  /* th,
+  td {
+    padding: 2px;
+    font-size: 10px;
+  } */
 
 }
 
-@media only screen 
-and (min-width: 950px) 
-and (max-width: 2000px) { 
+@media only screen and (min-width: 950px) and (max-width: 2000px) {
 
-  body{
-    padding-top:55px;
+  body {
+    padding-top: 55px;
     overflow-x: hidden;
     position: relative;
     /* background-size: cover; */
-     /* background-image: url(assets/thumbnail-background.png);
+    /* background-image: url(assets/thumbnail-background.png);
        */
   }
 
-  .image-set{
+  .image-set {
     background-size: cover;
     position: relative;
-    height: 450px; 
+    height: 450px;
     overflow: hidden;
     /* opacity: .9; */
+  }
 }
-}
-

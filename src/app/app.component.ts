@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingComponent } from './components/loading/loading.component';
 
@@ -9,6 +9,13 @@ import { LoadingComponent } from './components/loading/loading.component';
 })
 export class AppComponent implements OnInit {
   
+  //when the user navigates away from the Angular application or refreshes the page, 
+  //the session storage will be cleared, ensuring that any session-specific data stored 
+  //in the browser is removed. 
+  @HostListener('window:beforeunload', ['$event'])
+    clearSessionStorage(event:any) {
+        sessionStorage.clear();
+    }
 
   title = 'jherm-site';
   loading: boolean = false;
