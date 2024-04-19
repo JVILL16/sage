@@ -1,8 +1,7 @@
-<div class="container-fluid">
+<div class="container-fluid " *ngIf="section != 'admin'" >
     <div class="row">
-        <div class="card">
-            <div class="card-body">
-                <h1>Welcome to the {{section | titlecase}} Page</h1>
+        <div class="col-xl-12">
+            <h3>Welcome to the {{section | titlecase}} Page</h3>
 
                 <div *ngIf="section == 'clutch'">
                     <p>Here is the link to go to Clucth Page
@@ -10,10 +9,9 @@
                     </p>
 
                 </div>
-                <div *ngIf="section == 'admin'">
-                    <admin-page></admin-page>
-                </div>
-            </div>
         </div>
     </div>
+</div>
+<div *ngIf="section == 'admin'">
+    <admin-page></admin-page>
 </div>

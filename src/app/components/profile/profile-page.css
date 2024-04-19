@@ -1,4 +1,36 @@
+.nav-tabs{
+  --bs-nav-tabs-border-color: none !important;
+}
 
+.nav-tabs > button.tab-bg-clutch.active  {
+  background: #ff6b6b;
+  border:none !important;
+}
+
+.nav-tabs > button.tab-bg-overview.active  {
+  background: none;
+  border:none !important;
+}
+.nav-tabs > button.tab-bg-admin.active  {
+  background: #ac4a4a;
+  border:none !important;
+}
+.nav-tabs > button.tab-bg-kickball.active  {
+  background: #abcfff;
+  border:none !important;
+}
+.card.tab-bg-clutch{
+  background: linear-gradient(#ff6b6b, #fc976f, #fd9f3a);
+}
+.card.tab-bg-overview{
+  background: none;
+}
+.card.tab-bg-kickball{
+  background: linear-gradient(#abcfff, #77b1fc, #3d91ff);
+}
+.card.tab-bg-admin{
+  background: linear-gradient(#ac4a4a, #e25d5d, #fc4848);
+}
 .bg-color{
     background: linear-gradient(#ed63ff, #b773f7);
 }

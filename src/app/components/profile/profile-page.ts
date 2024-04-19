@@ -59,13 +59,15 @@ export class ProfileComponent implements OnInit{
   section_admin : boolean = false;
 
 
-  constructor(private api: ApiService, private auth: AuthenticationService, private router: Router) {console.log("Profile Construct Called"); }
+  constructor(private api: ApiService, 
+              private auth: AuthenticationService, 
+              private router: Router,
+              private alertService: AlertService) {}
 
 
 
   ngOnInit() {
     this.home_login(); 
-    console.log("Profile ONINIT Called");
     // this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event: any) => {
     //   this.edit_screen = false;
     //   this.save_changes = false;
@@ -91,7 +93,7 @@ export class ProfileComponent implements OnInit{
   home_login() {
     if (sessionStorage.getItem('currentUser')) {
       this.currentUser = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
-      console.log(this.currentUser[0]);
+      //console.log(this.currentUser[0]);
 
       // Get User Account
       this.api.getUser(this.currentUser[0].account_id).subscribe({
@@ -101,7 +103,7 @@ export class ProfileComponent implements OnInit{
           this.og_account = response;
           //Copy of Account for Editing purposes
           this.account = { ...this.og_account };
-          console.log(this.account);
+          //console.log(this.account);
           
           this.tabSections(this.og_account.roles);
 
@@ -109,7 +111,7 @@ export class ProfileComponent implements OnInit{
           this.api.getUserProfile(this.og_account.account_id, this.og_account.pfp).subscribe({
             next:(data: Blob) => {
             const reader = new FileReader();
-            console.log(data);
+            //console.log(data);
             reader.onload = () => {
               this.pfp_url = reader.result as string;
               //console.log(this.pfp_url);
@@ -117,17 +119,22 @@ export class ProfileComponent implements OnInit{
             reader.readAsDataURL(data);
           },error:(error) => {
             console.error('Error loading profile picture:', error);
+            this.alertService.error('Sorry, was not able to load profile picture.');
           }});
-         
+          this.alertService.success('Profile information loaded');
         },error:(error) => {
           console.error('Error getting profile:', error);
+          this.alertService.error('Sorry, was not able to retrieve your profile information.');
         }
       });
       
       
       
       
-    } else sessionStorage.clear();
+    } else{
+      sessionStorage.clear();
+      this.alertService.error('Please login into your account to use this feature.');
+    } 
 
    
   }
@@ -148,7 +155,7 @@ export class ProfileComponent implements OnInit{
     this.sections.push('settings');
   }
   onSelectFile(event: any) {
-    console.log(event.target.files[0]);
+    //console.log(event.target.files[0]);
     this.pfp_url = URL.createObjectURL(event.target.files[0]);
     this.pfp_new = event.target.files[0];
     this.account.pfp = this.pfp_new.name;

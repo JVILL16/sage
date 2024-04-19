@@ -83,42 +83,43 @@
       </div>
     </div>
     <div class="col-xl-9">
-      <div class="card shadow-lg">
-        <div class="card-body">
-          <nav>
-            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-              <button *ngFor="let section of sections" class="nav-link" [ngClass]="{ 'active': section=='overview' }"
-                id="nav-{{section}}-tab" data-bs-toggle="tab" routerLink="detail/{{section}}"
-                [attr.data-bs-target]="'#nav-'+ section" type="button" role="tab" [attr.aria-controls]="'nav-'+section"
-                attr.aria-selected="{{section=='overview' ? true: false}}">
-                <i *ngIf="section=='settings'" class="fa-solid fa-gear"></i>
-                {{section | titlecase}}
-              </button>
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <button *ngFor="let section of sections" class="nav-link tab-bg-{{section}}"
+            [ngClass]="{ 'active': section=='overview' }" id="nav-{{section}}-tab" data-bs-toggle="tab"
+            routerLink="detail/{{section}}" [attr.data-bs-target]="'#nav-'+ section" type="button" role="tab"
+            [attr.aria-controls]="'nav-'+section" attr.aria-selected="{{section=='overview' ? true: false}}">
+            <i *ngIf="section=='settings'" class="fa-solid fa-gear"></i>
+            {{section | titlecase}}
+          </button>
 
-            </div>
-          </nav>
-          <div class="tab-content" id="nav-tabContent">
-            <div *ngFor="let section of sections" class="tab-pane fade"
-              [ngClass]="{ 'active show': section=='overview' }" id="nav-{{section}}" role="tabpanel"
-              [attr.aria-labelledby]="'nav-'+section+'-tab'">
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div *ngFor="let section of sections" class="tab-pane fade" [ngClass]="{ 'active show': section=='overview' }"
+          id="nav-{{section}}" role="tabpanel" [attr.aria-labelledby]="'nav-'+section+'-tab'">
+          <div class="card border-top-0 shadow-lg tab-bg-{{section}}">
+            <div class="card-body">
 
               <router-outlet></router-outlet>
-            </div>
 
+            </div>
           </div>
 
-          <!-- <ul class="nav nav-tabs">
-           
-            <li class="nav-item" *ngFor="let section of sections">
-              <a class="nav-link" aria-current="page" routerLink="detail/{{section}}">
-                <i *ngIf="section=='settings'" class="fa-solid fa-gear"></i>  
-                {{section}}
-              </a>
-            </li>
-          </ul>
-          <router-outlet></router-outlet> -->
         </div>
+
       </div>
+
     </div>
   </div>
 </div>
+<!-- <ul class="nav nav-tabs">
+               
+                <li class="nav-item" *ngFor="let section of sections">
+                  <a class="nav-link" aria-current="page" routerLink="detail/{{section}}">
+                    <i *ngIf="section=='settings'" class="fa-solid fa-gear"></i>  
+                    {{section}}
+                  </a>
+                </li>
+              </ul>
+              <router-outlet></router-outlet> -->
