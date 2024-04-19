@@ -100,6 +100,7 @@ $phone_landscape: 780px; */
   }
   .navbar{
     border-bottom: 2px solid white;
+    z-index: 900; /* Lower z-index to ensure it appears behind the alert */
   }
   
 }

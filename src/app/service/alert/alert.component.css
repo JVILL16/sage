@@ -1,0 +1,10 @@
+.alert {
+    position: fixed; /* or absolute */
+    top: 20%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Centering trick */
+    width: 50%;
+
+    padding: 15px;
+    z-index: 1000; /* Higher z-index to ensure it appears on top */
+  }
