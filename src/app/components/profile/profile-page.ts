@@ -121,7 +121,7 @@ export class ProfileComponent implements OnInit{
             console.error('Error loading profile picture:', error);
             this.alertService.error('Sorry, was not able to load profile picture.');
           }});
-          this.alertService.success('Profile information loaded');
+          //this.alertService.success('Profile information loaded');
         },error:(error) => {
           console.error('Error getting profile:', error);
           this.alertService.error('Sorry, was not able to retrieve your profile information.');
@@ -164,10 +164,12 @@ export class ProfileComponent implements OnInit{
   saveChanges(): void {
     this.api.updateUser(this.account).subscribe({
       next: (response) => {
-        console.log('User record updated:\n', response);
+        //console.log('User record updated:\n', response);
+        this.alertService.success('The profile has been updated!');
       },
       error: (error) => {
-        console.error('Error updated record:\n', error);
+        //console.error('Error updated record:\n', error);
+        this.alertService.error('The was an error processing your updated profile.');
       }
     });
     this.api.uploadImage(this.pfp_new, this.account?.account_id).subscribe({

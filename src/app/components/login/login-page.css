@@ -8,12 +8,12 @@
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
    /* // background-color: #9c9c9c;
     */
-    background-position: 50%;
-    background-image: url('src/assets/thumbnail-background.png');
+   
 }
 .card-container.card {
 	max-width: 350px;
 	padding: 40px 40px;
+	background: none;
 }
 .btn {
 	font-weight: 700;
