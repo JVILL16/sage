@@ -5,6 +5,14 @@
 .carousel-item img {
     width: 100%;
 }
+td:nth-last-child(-n+2),
+th:nth-last-child(-n+2) {
+    position: sticky;
+    left: 0;
+  }
+.card{
+    background: none;
+}
 .title-cap {
     font-family: Daily-Q;
     color: white;

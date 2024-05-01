@@ -4,88 +4,89 @@
 
 -->
 <!-- <app-loading></app-loading> -->
-<div class="container-fluid mt-5">
-  <div class="card" style="margin: 0 auto;max-width:1300px">
-    <div class="card-body">
-      <div class="table-responsive">
-        <table class="table table-sm table-data table-bordered">
-          <thead class="table-dark">
-            <tr>
-              <th>Id</th>
-              <th>Account Id</th>
-              <th>Verified</th>
-              <th style="min-width:100px">First Name</th>
-              <th style="min-width:100px">Last Name</th>
-              <th>Username</th>
-              <th>Password</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th style="min-width:100px">Created On</th>
-              <th style="min-width:100px">Last Update</th>
-              <th class="text-center">Roles</th>
-              <th></th>
-            </tr>
+<!-- <div class="container-fluid mt-5">
+  
+</div> -->
+<div class="card mt-3" style="margin: 0 auto;max-width:1300px">
+  <h5 class="card-header gradient-admin">List of Users</h5>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-sm table-data table-bordered">
+        <thead class="table-dark">
+          <tr>
+            <th>Id</th>
+            <th>Account Id</th>
+            <th>Verified</th>
+            <th style="min-width:100px">First Name</th>
+            <th style="min-width:100px">Last Name</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th style="min-width:100px">Created On</th>
+            <th style="min-width:100px">Last Update</th>
+            <th class="text-center">Roles</th>
+            <th></th>
+          </tr>
 
-          </thead>
-          <tbody *ngFor="let user of users">
-            <tr>
-              <td class="text-center table-secondary">{{user.id}}</td>
-              <td class="text-center table-secondary">{{user.account_id}}</td>
-              <td>{{user.verified ? 'VERIFIED' : 'NOT VERIFIED'}}</td>
-              <td>{{user.first_name}}</td>
-              <td>{{user.last_name}}</td>
-              <td>{{user.username}}</td>
-              <td>{{user.password}}</td>
-              <td>{{user.email ? user.email : 'Email Invalid'}}</td>
-              <td>{{user.phone}}</td>
-              <td class="text-center">{{user.date_created | date:'shortDate'}}</td>
-              <td class="text-center">{{user.date_updated | date:'shortDate'}}</td>
-              <td class="text-center">
-                <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#addRoleModal"
-                  (click)="addRole(user)">Add Role</button>
-                <button class="btn btn-sm btn-primary" (click)="roleDisplayButton(user.id)">Display</button>
-              </td>
-              <td class="text-center"><button class="btn btn-sm btn-danger"
-                  (click)="deleteUser(user.id)">Delete</button></td>
-            </tr>
+        </thead>
+        <tbody *ngFor="let user of users">
+          <tr>
+            <td class="text-center table-secondary">{{user.id}}</td>
+            <td class="text-center table-secondary">{{user.account_id}}</td>
+            <td>{{user.verified ? 'VERIFIED' : 'NOT VERIFIED'}}</td>
+            <td>{{user.first_name}}</td>
+            <td>{{user.last_name}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.password}}</td>
+            <td>{{user.email ? user.email : 'Email Invalid'}}</td>
+            <td>{{user.phone}}</td>
+            <td class="text-center">{{user.date_created | date:'shortDate'}}</td>
+            <td class="text-center">{{user.date_updated | date:'shortDate'}}</td>
+            <td class="text-center">
+              <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#addRoleModal"
+                (click)="addRole(user)">Add Role</button>
+              <button class="btn btn-sm btn-primary" (click)="roleDisplayButton(user.id)">Display</button>
+            </td>
+            <td class="text-center"><button class="btn btn-sm btn-danger"
+                (click)="deleteUser(user.id)">Delete</button></td>
+          </tr>
 
-            <tr *ngIf="display_id === 'roles_display'+user.id && display_show">
-              <td colspan="13">
-                <table class="table table-sm table-data table-bordered" style="margin:0px auto;max-width:300px;">
-                  <thead class="table-info">
-                    <tr>
-                      <th style="min-width:100px">Profile Id</th>
-                      <th style="min-width:100px">Profile Name</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody *ngIf="user.roles.length > 0">
-                    <tr *ngFor="let roles of user.roles">
-                      <td>{{roles.profile_id}}</td>
-                      <td>{{roles.profile}}</td>
-                      <td><button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                          (click)="removeRole(roles.id)">Remove</button></td>
-                    </tr>
-                  </tbody>
-                  <tbody *ngIf="user.roles.length == 0">
-                    <tr>
-                      <td colspan="3">
-                        <div class="alert alert-sm alert-warning m-0">No Roles Assigned</div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </td>
-            </tr>
-          </tbody>
+          <tr *ngIf="display_id === 'roles_display'+user.id && display_show">
+            <td colspan="13">
+              <table class="table table-sm table-data table-bordered" style="margin:0px auto;max-width:300px;">
+                <thead class="table-info">
+                  <tr>
+                    <th style="min-width:100px">Profile Id</th>
+                    <th style="min-width:100px">Profile Name</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody *ngIf="user.roles.length > 0">
+                  <tr *ngFor="let roles of user.roles">
+                    <td>{{roles.profile_id}}</td>
+                    <td>{{roles.profile}}</td>
+                    <td><button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        (click)="removeRole(roles.id)">Remove</button></td>
+                  </tr>
+                </tbody>
+                <tbody *ngIf="user.roles.length == 0">
+                  <tr>
+                    <td colspan="3">
+                      <div class="alert alert-sm alert-warning m-0">No Roles Assigned</div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
 
-        </table>
-      </div>
+      </table>
     </div>
-
   </div>
-</div>
 
+</div>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">

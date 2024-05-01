@@ -1,136 +1,155 @@
-.nav-tabs{
+
+
+.nav-pills {
   --bs-nav-tabs-border-color: none !important;
 }
 
-.nav-tabs > button.tab-bg-clutch.active  {
+.nav-pills>button.tab-bg-clutch.active {
   background: #ff6b6b;
-  border:none !important;
+  border: none !important;
 }
 
-.nav-tabs > button.tab-bg-overview.active  {
-  background: none;
-  border:none !important;
+.nav-pills>button.tab-bg-overview.active {
+  background: #616161;;
+  border: none !important;
 }
-.nav-tabs > button.tab-bg-admin.active  {
+
+.nav-pills>button.tab-bg-admin.active {
   background: #ac4a4a;
-  border:none !important;
+  border: none !important;
 }
-.nav-tabs > button.tab-bg-kickball.active  {
+
+.nav-pills>button.tab-bg-kickball.active {
   background: #abcfff;
-  border:none !important;
+  border: none !important;
 }
-.card.tab-bg-clutch{
+/*
+.card.tab-bg-clutch {
   background: linear-gradient(#ff6b6b, #fc976f, #fd9f3a);
 }
-.card.tab-bg-overview{
+
+.card.tab-bg-overview {
   background: none;
 }
-.card.tab-bg-kickball{
+
+.card.tab-bg-kickball {
   background: linear-gradient(#abcfff, #77b1fc, #3d91ff);
 }
-.card.tab-bg-admin{
+
+.card.tab-bg-admin {
   background: linear-gradient(#ac4a4a, #e25d5d, #fc4848);
+} */
+
+.bg-color {
+  background: linear-gradient(#ed63ff, #b773f7);
 }
-.bg-color{
-    background: linear-gradient(#ed63ff, #b773f7);
-}
-.icon-bg{
-  background: transparent !important;;
+
+.icon-bg {
+  background: transparent !important;
+  ;
 }
 
 .fixed-height-card {
-    height: 200px; /* Set your desired fixed height here */
-    overflow-y: auto; /* Add scroll if content exceeds fixed height */
-  }
-  .profile-div{
-    margin-left:300px;
-    margin-right:300px;
-}
-.pfp-icon{
-    width:100px;
-    border-radius: 50%;
-    position: relative;
-}
-.edit-button{
-    /* float:left;
-    width: 60px; */
-    background: transparent !important;
-}
-.edit-button:hover{
-  background: linear-gradient(rgb(133, 182, 255),rgb(185, 185, 185)) !important;
+  height: 200px;
+  /* Set your desired fixed height here */
+  overflow-y: auto;
+  /* Add scroll if content exceeds fixed height */
 }
 
-.edit-header{
-  border-bottom: 2px solid black !important;
+
+.pfp-icon {
+  width: 100px;
+  border-radius: 50%;
+  position: relative;
+}
+
+.edit-button {
+  /* float:left;
+    width: 60px; */
+  background: transparent !important;
+}
+
+.edit-button:hover {
+  background: linear-gradient(rgb(133, 182, 255), rgb(185, 185, 185)) !important;
+}
+
+.edit-header {
+  border-bottom: 2px solid white !important;
   margin-top: 15px;
   margin-bottom: 15px;
 }
+
 .profile {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    /* margin-top: 50px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+  /* margin-top: 50px; */
 }
 
 .profile-picture img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #fff;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
 .profile-info {
-    text-align: left;
-    margin-top: 20px;
+  text-align: left;
+  margin-top: 20px;
 }
 
 .profile-info h3 {
-    margin: 5px 0;
+  margin: 5px 0;
 }
 
 .profile-info p {
-    margin: 5px 0;
+  margin: 5px 0;
 }
 
-.pfp-edit{
-    overflow: hidden;
-    transform: translate(340%,-110%);
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    display: flex;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    padding: 0;
-    background: rgb(167, 167, 167) !important;
-    cursor:pointer !important;
-    border: 2px solid #fff;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+.pfp-edit {
+  overflow: hidden;
+  transform: translate(340%, -110%);
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  display: flex;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  padding: 0;
+  background: rgb(167, 167, 167) !important;
+  cursor: pointer !important;
+  border: 2px solid #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
-.pfp-edit:hover{
-    
-    background: linear-gradient(rgb(133, 182, 255),rgb(185, 185, 185)) !important;
-}
-  .pfp-edit input[type=file] {
-    position: absolute;
-    left: 0;
-    top: 0;
-    opacity: 0;
-   
-  }
-.file-point{
-    cursor:pointer !important;
-    
-}
-  .file-input {
-    display: none;
-  }
 
-  /* table input[type="text"] {
+.pfp-edit:hover {
+
+  background: linear-gradient(rgb(133, 182, 255), rgb(185, 185, 185)) !important;
+}
+
+.pfp-edit input[type=file] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+
+}
+
+.file-point {
+  cursor: pointer !important;
+
+}
+
+.file-input {
+  display: none;
+}
+
+/* table input[type="text"] {
     background: transparent;
     border-width: 0 0 2px;
     border-color: black;
@@ -140,21 +159,46 @@
     
     outline:none;
   } */
-  .form-control {
-    /* background: transparent; 
+.form-control {
+  /* background: transparent; 
     border-width: 0 0 2px;
     border-color: black; */
-    border: 2px solid transparent !important;
-    /* outline:none; */
-    border-radius: 0;
-    font-size: 10px;
-    cursor: pointer;
-    background: linear-gradient(white 0 0) bottom / 0% 2px no-repeat
-    transparent;
+  border: 2px solid transparent !important;
+  /* outline:none; */
+  border-radius: 0;
+  font-size: 10px;
+  cursor: pointer;
+  background: linear-gradient(white 0 0) bottom / 0% 2px no-repeat transparent;
   transition: 1s;
-  }
-  .form-control:focus {
-    box-shadow: none; /* Remove the box shadow */
-    /* border-color: #ced4da;  Set the border color to a neutral color */
-    background-size: 100% 2px;
 }
+
+.form-control:focus {
+  box-shadow: none;
+  /* Remove the box shadow */
+  /* border-color: #ced4da;  Set the border color to a neutral color */
+  background-size: 100% 2px;
+}
+
+@media only screen and (min-width: 320px) {
+  .profile-div {
+    /* margin: 75px 10px 100px 10px */
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  /* .nav-link {
+    font-size: 5px;
+    padding: 0.5rem 0.5rem;
+  } */
+}
+
+@media only screen and (min-width: 950px) and (max-width: 2000px) {
+  .profile-div {
+    margin-left: 300px;
+    margin-right: 300px;
+  }
+}
+
+
+
+  

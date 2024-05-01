@@ -36,6 +36,7 @@ body {
   background-color: #343a40 !important;
 }
 
+
 .gradient-main {
   font-family: Daily-Q;
   color: white !important;
@@ -49,6 +50,13 @@ body {
   color: white !important;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   background: linear-gradient(#ff6b6b, #fc976f, #fd9f3a);
+}
+
+.gradient-admin {
+  font-family: Daily-Q;
+  color: white !important;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  background: linear-gradient(#ac4a4a, #e25d5d, #fc4848);
 }
 
 .gradient-examples {
