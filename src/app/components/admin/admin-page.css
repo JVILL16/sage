@@ -5,10 +5,15 @@
 .carousel-item img {
     width: 100%;
 }
-td:nth-last-child(-n+2),
-th:nth-last-child(-n+2) {
+.stick-d{
     position: sticky;
-    left: 0;
+    right: 0;
+   z-index: 1; /* Ensure the sticky columns are above other columns */
+  }
+  .stick-r{
+    position: sticky;
+    right: 60px;
+   z-index: 1; /* Ensure the sticky columns are above other columns */
   }
 .card{
     background: none;
