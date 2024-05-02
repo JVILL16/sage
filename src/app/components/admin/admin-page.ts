@@ -1,12 +1,13 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit,Output, HostBinding, EventEmitter } from '@angular/core';
 import { ApiService } from '../../service/service.component';
 import { User } from '../users/user';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { AuthenticationService } from '../../service/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertService } from '../../service/alert.service';
 import { first } from 'rxjs/operators';
+import { ModalsComponent } from '../../service/modals/modals.component';
 
 
 @Component({
@@ -28,9 +29,13 @@ export class AdminComponent implements OnInit {
     profileAddList: any = [];
     rmv_role_id: any;
 
+    //@Output() showModalWithData: EventEmitter<any> = new EventEmitter<any>();
+    private subject = new Subject<any>();
+
     constructor(private api: ApiService,
         private auth: AuthenticationService,
-        private router: Router) {
+        private router: Router,
+    private alertService: AlertService) {
 
         this.currentUser = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
         console.log(this.currentUser[0]);
@@ -86,16 +91,18 @@ export class AdminComponent implements OnInit {
             },
             error: (error) => {
                 console.log(error);
+                this.alertService.error(error);
             }
 
         });
     }
 
     addRole(roles: any) {
-        console.log(roles.roles);
+        //console.log(roles.roles);
         this.acc_id = roles.account_id;
         this.profileAddList = this.profileList.filter((p: any) => !roles.roles.some((r: any) => p.profile_id === r.profile_id));
-        console.log(this.profileAddList);
+        //console.log(this.profileAddList);
+        this.subject.next({view:'admin',account_id:this.acc_id, profiles:this.profileAddList, profile_id: null});
     }
     auth_AddRole() {
         for (var profile of this.profileAddList)
@@ -114,6 +121,7 @@ export class AdminComponent implements OnInit {
     }
     removeRole(id: number) {
         this.rmv_role_id = id;
+        this.subject.next({view:'admin',account_id: null, profiles: null, profile_id: this.rmv_role_id});
     }
     auth_RemoveRole(id: number) {
         this.auth.removerole(id).subscribe({
@@ -127,4 +135,10 @@ export class AdminComponent implements OnInit {
         this.getUsers();
     }
 
+
+
+    getModalView(): Observable<any> {
+        console.log(this.subject);
+        return this.subject.asObservable();
+    }
 }

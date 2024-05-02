@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertService } from '../../service/alert.service';
 import { filter, first } from 'rxjs/operators';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { AdminComponent } from '../admin/admin-page';
 
 
 
@@ -59,10 +60,12 @@ export class ProfileComponent implements OnInit{
   section_admin : boolean = false;
 
 
-  constructor(private api: ApiService, 
-              private auth: AuthenticationService, 
-              private router: Router,
-              private alertService: AlertService) {}
+  section_object : any = {};
+
+  constructor(private api: ApiService,
+    private auth: AuthenticationService,
+    private router: Router,
+    private alertService: AlertService) { }
 
 
 

@@ -34,32 +34,55 @@
 
               <tr>
                 <th>First Name</th>
-                <td><input type="text" autocomplete="off" [(ngModel)]="account.first_name"
-                    (change)="checkForChanges()" class="form-control form-control-sm"
-                    placeholder="Enter your firstname"></td>
+              </tr>
+              <tr>
+                <td><input type="text" autocomplete="off" [(ngModel)]="account.first_name" (change)="checkForChanges()"
+                    class="form-control form-control-sm" placeholder="Enter your firstname"></td>
               </tr>
               <tr>
                 <th>Last Name</th>
+              </tr>
+              <tr>
                 <td><input type="text" autocomplete="off" [(ngModel)]="account.last_name"
                     (change)="checkForChanges()" class="form-control form-control-sm"
                     placeholder="Enter your lastname"></td>
               </tr>
               <tr>
                 <th>Email</th>
+              </tr>
+              <tr>
                 <td><input type="text" autocomplete="off" [(ngModel)]="account.email" (change)="checkForChanges()"
                     class="form-control form-control-sm" placeholder="Enter your email"></td>
               </tr>
               <tr>
                 <th>Phone</th>
+              </tr>
+              <tr>
                 <td><input type="text" autocomplete="off" [(ngModel)]="account.phone" (change)="checkForChanges()"
                     class="form-control form-control-sm" placeholder="Enter your phone number"></td>
               </tr>
               <tr>
                 <th>Username</th>
+              </tr>
+              <tr>
                 <td><input type="text" autocomplete="off" [(ngModel)]="account.username"
                     (change)="checkForChanges()" class="form-control form-control-sm"
                     placeholder="Enter your username"></td>
               </tr>
+            </table>
+            <div class="edit-header">
+              <h4><i class="fa-solid fa-user-group icon-bg"></i> Roles</h4>
+            </div>
+            <table class="table table-responsive table-sm table-data my-3" style="margin:0 auto;max-width:400px">
+
+              <tr>
+                <th>Groups</th>
+              </tr>
+              <tr>
+                <td><input type="text" autocomplete="off" [(ngModel)]="account.first_name" (change)="checkForChanges()"
+                    class="form-control form-control-sm" placeholder="Enter your firstname"></td>
+              </tr>
+             
             </table>
           </div>
 
@@ -108,7 +131,7 @@
 
             </div>
           </div> -->
-          <router-outlet></router-outlet>
+          <router-outlet ></router-outlet>
         </div>
 
       </div>
@@ -127,3 +150,9 @@
                 </li>
               </ul>
               <router-outlet></router-outlet> -->
+
+
+
+
+  
+<app-modal></app-modal>            

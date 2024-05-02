@@ -23,6 +23,7 @@ import { ProfileComponent } from './components/profile/profile-page';
 import { ErrorInterceptor } from './service/helpers/error.interceptor';
 import { AlertComponent } from './service/alert/alert.component';
 import { SectionsComponent } from './components/sections/sections-page';
+import { ModalsComponent } from './service/modals/modals.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { SectionsComponent } from './components/sections/sections-page';
     LoadingComponent,
     AlertComponent,
     ProfileComponent,
-    SectionsComponent
+    SectionsComponent,
+    ModalsComponent
     
   ],
   imports: [
@@ -54,7 +56,9 @@ import { SectionsComponent } from './components/sections/sections-page';
     ApiService,
     AlertService,
     AuthenticationService,
-    LoadingComponent
+    LoadingComponent,
+    ModalsComponent,
+    AdminComponent
     // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   

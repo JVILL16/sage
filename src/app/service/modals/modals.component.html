@@ -1,0 +1,51 @@
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Deleting a Role</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this role?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" (click)="auth_RemoveRoleModal(component_object.profile_id);">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="addRoleModal" tabindex="-1" role="dialog" aria-labelledby="addRoleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addRoleModalLabel">Select the Following Roles:</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h3>Roles</h3>
+        <div class="form-check form-check-inline" *ngFor="let list of component_object.profiles">
+          <input class="form-check-input me-3" [(ngModel)]="list.checked" type="checkbox" id="{{list.id}}Check">
+          <label class="form-check-label" for="{{list.id}}Check">
+            {{list.profile}}
+          </label>
+
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" (click)="auth_AddRoleModal();">Save</button>
+        <!-- (click)="auth_AddRole(rmv_role_id)" -->
+      </div>
+    </div>
+  </div>
+</div>

@@ -135,4 +135,5 @@ body {
 ::-webkit-scrollbar-thumb {
   background: #df77ff; /* color of the thumb */
   border-radius: 10px;
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
 }
