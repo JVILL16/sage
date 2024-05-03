@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding, OnChanges, Input } from '@angular/core';
+import { Component, OnInit,Injectable, HostBinding, OnChanges, Input } from '@angular/core';
 import { ApiService } from '../../service/service.component';
 import { User } from '../users/user';
 import { Observable } from 'rxjs';
@@ -46,7 +46,6 @@ import { AdminComponent } from '../admin/admin-page';
     ])
   ]
 })
-
 export class ProfileComponent implements OnInit{
   currentUser: User[] = [];
   pfp_image: any;

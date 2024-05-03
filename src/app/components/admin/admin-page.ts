@@ -1,13 +1,14 @@
-import { Component, OnInit,Output, HostBinding, EventEmitter } from '@angular/core';
+import { Component, OnInit,Injectable,Output, HostBinding, EventEmitter } from '@angular/core';
 import { ApiService } from '../../service/service.component';
 import { User } from '../users/user';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { AuthenticationService } from '../../service/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertService } from '../../service/alert.service';
 import { first } from 'rxjs/operators';
 import { ModalsComponent } from '../../service/modals/modals.component';
+import { ModalsService } from 'src/app/service/modals.service';
 
 
 @Component({
@@ -25,20 +26,17 @@ export class AdminComponent implements OnInit {
 
     acc_id: any;
     profileList: any = [];
-    listAdd: any = [];
     profileAddList: any = [];
     rmv_role_id: any;
-
-    //@Output() showModalWithData: EventEmitter<any> = new EventEmitter<any>();
-    private subject = new Subject<any>();
 
     constructor(private api: ApiService,
         private auth: AuthenticationService,
         private router: Router,
-    private alertService: AlertService) {
+    private alertService: AlertService,
+private modalService: ModalsService) {
 
         this.currentUser = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
-        console.log(this.currentUser[0]);
+        //console.log(this.currentUser[0]);
         //this.user_first_name = this.currentUser[0].first_name;
     }
 
@@ -102,43 +100,16 @@ export class AdminComponent implements OnInit {
         this.acc_id = roles.account_id;
         this.profileAddList = this.profileList.filter((p: any) => !roles.roles.some((r: any) => p.profile_id === r.profile_id));
         //console.log(this.profileAddList);
-        this.subject.next({view:'admin',account_id:this.acc_id, profiles:this.profileAddList, profile_id: null});
+       this.modalService.getObject({view:'admin',account_id: this.acc_id, profiles: this.profileAddList, profile_id: null});
     }
-    auth_AddRole() {
-        for (var profile of this.profileAddList)
-            if (profile.checked) this.listAdd.push(profile.profile_id);
-        this.auth.rolesregister(this.acc_id, this.listAdd)
-            .pipe(first())
-            .subscribe({
-                next(data) {
-                    console.log(data);
-                },
-                error(error) {
-                    console.log(error);
-                }
-            });
-        this.getUsers();
-    }
+    
     removeRole(id: number) {
         this.rmv_role_id = id;
-        this.subject.next({view:'admin',account_id: null, profiles: null, profile_id: this.rmv_role_id});
-    }
-    auth_RemoveRole(id: number) {
-        this.auth.removerole(id).subscribe({
-            next(data: any) {
-                console.log(data);
-            },
-            error(error: any) {
-                console.log(error);
-            }
-        });
-        this.getUsers();
+        this.modalService.getObject({view:'admin',account_id: null, profiles: null, profile_id: this.rmv_role_id});
     }
 
 
 
-    getModalView(): Observable<any> {
-        console.log(this.subject);
-        return this.subject.asObservable();
-    }
+
+   
 }

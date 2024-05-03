@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertService } from '../alert.service';
 import { first } from 'rxjs/operators';
 import { AdminComponent } from 'src/app/components/admin/admin-page';
+import { ModalsService } from '../modals.service';
 
 @Component({
     selector: 'app-modal',
@@ -15,35 +16,52 @@ import { AdminComponent } from 'src/app/components/admin/admin-page';
     styleUrls: ['./modals.component.css']
 })
 
-export class ModalsComponent implements OnInit, OnDestroy {
+export class ModalsComponent {
 
     // @Input() component_object: any;
     private subscription!: Subscription;
-    component_object : any = {};
+    component_object : any;
+    
+    listAdd: any = [];
     // @Input() account_id : any;
     // @Input() profiles : any;
     // @Input() profile_id : any;
 
 
 
-    constructor(private admin: AdminComponent) { }
+    constructor(private modalService: ModalsService,private auth: AuthenticationService) { 
+        this.modalService.getModalView.subscribe((data:any)=>{
+            console.log(data);
+            this.component_object = data;
+            console.log(this.component_object);
+        });
+    }
 
-        ngOnInit(): void {
-            this.subscription = this.admin.getModalView().subscribe(object => { 
-                console.log(object);
-                this.component_object = object; 
-            });
-        }
-
-        ngOnDestroy() {
-            this.subscription.unsubscribe();
-        }
+       
 
         auth_RemoveRoleModal(id: number){
-            this.admin.auth_RemoveRole(id);
+            this.auth.removerole(id).subscribe({
+                next(data: any) {
+                    console.log(data);
+                },
+                error(error: any) {
+                    console.log(error);
+                }
+            });
         }
         auth_AddRoleModal(){
-            this.admin.auth_AddRole();
+            for (var profile of this.component_object.profiles)
+                if (profile.checked) this.listAdd.push(profile.profile_id);
+            this.auth.rolesregister(this.component_object.account_id, this.listAdd)
+                .pipe(first())
+                .subscribe({
+                    next(data) {
+                        console.log(data);
+                    },
+                    error(error) {
+                        console.log(error);
+                    }
+                });
         }
 }
 

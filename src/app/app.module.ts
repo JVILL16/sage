@@ -24,6 +24,7 @@ import { ErrorInterceptor } from './service/helpers/error.interceptor';
 import { AlertComponent } from './service/alert/alert.component';
 import { SectionsComponent } from './components/sections/sections-page';
 import { ModalsComponent } from './service/modals/modals.component';
+import { ModalsService } from './service/modals.service';
 
 
 @NgModule({
@@ -56,9 +57,9 @@ import { ModalsComponent } from './service/modals/modals.component';
     ApiService,
     AlertService,
     AuthenticationService,
+    AdminComponent,
+    ModalsService,
     LoadingComponent,
-    ModalsComponent,
-    AdminComponent
     // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   
