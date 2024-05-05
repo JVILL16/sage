@@ -1,4 +1,4 @@
-<div class="container-fluid " *ngIf="section != 'admin'" >
+<div *ngIf="section != 'admin'" class="container-fluid "  >
     <div class="row">
         <div class="col-xl-12">
             <h3>Welcome to the {{section | titlecase}} Page</h3>
@@ -7,6 +7,15 @@
                     <p>Here is the link to go to Clucth Page
                         <a routerLink="/clutch">Clutch</a>
                     </p>
+
+                </div>
+                <div *ngIf="section == 'settings'">
+                    <div class="edit-header">
+                        <h4><i class="fa-solid fa-circle-info icon-bg"></i> General</h4>
+                      </div>
+                    <div class="edit-header">
+                        <h4><i class="fa-solid fa-user-group icon-bg"></i> Roles</h4>
+                      </div>
 
                 </div>
         </div>

@@ -45,7 +45,7 @@ import { AdminComponent } from '../admin/admin-page';
       // ])
     ])
   ]
-})
+}) 
 export class ProfileComponent implements OnInit{
   currentUser: User[] = [];
   pfp_image: any;
@@ -180,6 +180,7 @@ export class ProfileComponent implements OnInit{
       },
       error: (error) => {
         console.error('Error uploading image:\n', error);
+        this.alertService.error(error);
       }
     });
 
