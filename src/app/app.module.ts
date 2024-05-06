@@ -25,6 +25,7 @@ import { AlertComponent } from './service/alert/alert.component';
 import { SectionsComponent } from './components/sections/sections-page';
 import { ModalsComponent } from './service/modals/modals.component';
 import { ModalsService } from './service/modals.service';
+import { NotFoundComponent } from './not-found.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { ModalsService } from './service/modals.service';
     AlertComponent,
     ProfileComponent,
     SectionsComponent,
-    ModalsComponent
+    ModalsComponent,
+    NotFoundComponent
     
   ],
   imports: [

@@ -41,31 +41,29 @@
                 <th>Last Name</th>
               </tr>
               <tr>
-                <td><input type="text" autocomplete="off" [(ngModel)]="account.last_name"
-                    (change)="checkForChanges()" class="form-control form-control-sm"
-                    placeholder="Enter your lastname"></td>
+                <td><input type="text" autocomplete="off" [(ngModel)]="account.last_name" (change)="checkForChanges()" 
+                  class="form-control form-control-sm" placeholder="Enter your lastname"></td>
               </tr>
               <tr>
                 <th>Email</th>
               </tr>
               <tr>
-                <td><input type="text" autocomplete="off" [(ngModel)]="account.email" (change)="checkForChanges()"
+                <td><input type="email" autocomplete="off" [(ngModel)]="account.email" (change)="checkForChanges()"
                     class="form-control form-control-sm" placeholder="Enter your email"></td>
               </tr>
               <tr>
                 <th>Phone</th>
               </tr>
               <tr>
-                <td><input type="text" autocomplete="off" [(ngModel)]="account.phone" (change)="checkForChanges()"
+                <td><input type="number" autocomplete="off" [(ngModel)]="account.phone" (change)="checkForChanges()"
                     class="form-control form-control-sm" placeholder="Enter your phone number"></td>
               </tr>
               <tr>
                 <th>Username</th>
               </tr>
               <tr>
-                <td><input type="text" autocomplete="off" [(ngModel)]="account.username"
-                    (change)="checkForChanges()" class="form-control form-control-sm"
-                    placeholder="Enter your username"></td>
+                <td><input type="text" autocomplete="off" [(ngModel)]="account.username" (change)="checkForChanges()" 
+                  class="form-control form-control-sm" placeholder="Enter your username"></td>
               </tr>
             </table>
            
