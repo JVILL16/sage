@@ -24,14 +24,15 @@ const routes: Routes = [
 
 
   { path: 'login', component: LoginComponent },
-  { path: '**', component: NotFoundComponent },
-
+ 
 
   { path: ':username', component: ProfileComponent, canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'detail/overview', pathMatch: 'full' },
       { path: 'detail/:section', component: SectionsComponent, canActivate: [AuthGuard] }]
-  }
+  },
+  
+  { path: '**', component: NotFoundComponent },
 
 
 ];
