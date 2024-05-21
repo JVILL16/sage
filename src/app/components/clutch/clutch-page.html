@@ -2,7 +2,8 @@
 <!--clutchTeam2023.jpg-->
 <div class="container-sage">
     <div class="row home-header">
-        <img class="image-set" src="../assets/carousel-pics/clutchTeam2023.jpg" alt="headline">
+        <img class="image-set" src="../assets/_T0A8284_animation.gif" alt="headline">
+       
     </div>
 </div>
 <div class="container-fluid">
@@ -101,6 +102,40 @@
                         Best known Open Ultimate Houston team ! Great group of dudes rostered to play in some sick tournaments with their pure athletic, 
                         dedicated, and mentally strong capabilites. If you haven't heard of them, be ready too and if you are interested in joining or donanting to the club,
                         please look at the google form and / or message any captains info for further information.
+                    </div>
+                </div>
+                <div class="card" *ngIf="roster!=null">
+                    <div class="card-header gradient-clutch">
+                        Roster
+                    </div>
+                    
+                    <div class="card-body">
+                        <h4 class="card-title"> Here is your 2024 roster as of date</h4>
+                        <table class="table table-responsive table-sm table-data table-bordered">
+                            <thead class="table-dark">
+                                <tr class="text-center">
+                                    <th>Name</th>
+                                    <th>Jersey</th>
+                                    <th>Roster</th>
+                               </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let player of roster" >
+                                    <td>
+                                        {{player.Name}}
+                                    </td>
+                                    <td>
+                                        {{player.Jersey}}
+                                    </td>
+                                    <td>
+                                        {{player.Roster}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                            
+                            
+                        </table>
+                        
                     </div>
                 </div>
             </div>

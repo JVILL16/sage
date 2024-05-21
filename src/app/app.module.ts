@@ -25,6 +25,8 @@ import { AlertComponent } from './service/alert/alert.component';
 import { SectionsComponent } from './components/sections/sections-page';
 import { ModalsComponent } from './service/modals/modals.component';
 import { ModalsService } from './service/modals.service';
+import { ClutchService } from './service/helpers/clutch.service';
+import { ClutchComponent } from './components/clutch/clutch-page';
 
 
 @NgModule({
@@ -41,7 +43,8 @@ import { ModalsService } from './service/modals.service';
     AlertComponent,
     ProfileComponent,
     SectionsComponent,
-    ModalsComponent
+    ModalsComponent,
+    ClutchComponent
     
   ],
   imports: [
@@ -57,6 +60,7 @@ import { ModalsService } from './service/modals.service';
     ApiService,
     AlertService,
     AuthenticationService,
+    ClutchService,
     AdminComponent,
     ModalsService,
     LoadingComponent,

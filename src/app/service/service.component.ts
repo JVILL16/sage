@@ -15,7 +15,6 @@ export class ApiService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      // 'Accept': 'application/json',
       // 'Access-Control-Allow-Headers': 'Content-Type',
       'Access-Control-Allow-Origin': '*',
 
@@ -54,7 +53,7 @@ export class ApiService {
   }
   //token
   setToken(token: string): any {
-    localStorage.setItem('token', token);
+    sessionStorage.setItem('token', token);
   }
 
   getToken(): any {
