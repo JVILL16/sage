@@ -7,10 +7,7 @@ import { take, map } from 'rxjs/operators';
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-    constructor(private router: Router, private authService: AuthenticationService) { 
-
-       
-    }
+    constructor(private router: Router, private authService: AuthenticationService) {  }
 
 
 
@@ -25,6 +22,14 @@ export class AuthGuard implements CanActivate {
                 } else {
                     this.router.navigate(['/login']); //, { queryParams: { returnUrl: state.url } }
                     return false;
+
+                    // // Allow access to NotFoundComponent without authentication
+                    // if (state.url === '/404') {
+                    //     return true;
+                    // } else {
+                    //     this.router.navigate(['/login']);
+                    //     return false;
+                    // }
                 }
 
             })

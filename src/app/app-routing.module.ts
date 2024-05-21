@@ -10,23 +10,30 @@ import { RegisterComponent } from './components/register/register-page';
 import { ClutchComponent } from './components/clutch/clutch-page';
 import { ProfileComponent } from './components/profile/profile-page';
 import { SectionsComponent } from './components/sections/sections-page';
+import { NotFoundComponent } from './not-found.component';
 
 const routes: Routes = [
+ 
+// order of routes does matter especially running auth guard routes
+
   { path: '', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
+  
   { path: 'about-us', component: AboutComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'clutch', component: ClutchComponent },
+
+
+  { path: 'login', component: LoginComponent },
+ 
+
   { path: ':username', component: ProfileComponent, canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'detail/overview', pathMatch: 'full' },
       { path: 'detail/:section', component: SectionsComponent, canActivate: [AuthGuard] }]
   },
   
+  { path: '**', component: NotFoundComponent },
 
-
-  // otherwise redirect to home
-  { path: '**', redirectTo: '' }
 
 ];
 

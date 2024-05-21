@@ -25,8 +25,12 @@ import { AlertComponent } from './service/alert/alert.component';
 import { SectionsComponent } from './components/sections/sections-page';
 import { ModalsComponent } from './service/modals/modals.component';
 import { ModalsService } from './service/modals.service';
+<<<<<<< HEAD
 import { ClutchService } from './service/helpers/clutch.service';
 import { ClutchComponent } from './components/clutch/clutch-page';
+=======
+import { NotFoundComponent } from './not-found.component';
+>>>>>>> 0aad769afe84aaf5b29f98ab6b6b18bb3491214a
 
 
 @NgModule({
@@ -44,7 +48,11 @@ import { ClutchComponent } from './components/clutch/clutch-page';
     ProfileComponent,
     SectionsComponent,
     ModalsComponent,
+<<<<<<< HEAD
     ClutchComponent
+=======
+    NotFoundComponent
+>>>>>>> 0aad769afe84aaf5b29f98ab6b6b18bb3491214a
     
   ],
   imports: [
