@@ -15,8 +15,8 @@
 
 
     .clutch-div{
-        margin-left:300px;
-        margin-right:300px;
+        margin-left:250px;
+        margin-right:250px;
     }
     .gradient-clutch{
         font-size: 20px !important;
@@ -25,3 +25,12 @@
     
 }
 
+/* Custom styles for smaller table */
+.small-table {
+    font-size: 0.8rem; /* Reduce font size */
+}
+.small-table th,
+.small-table td {
+    font-size: 0.7rem; 
+    padding: 0.25rem; /* Reduce padding */
+}

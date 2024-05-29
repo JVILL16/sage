@@ -16,30 +16,38 @@
                         SCHEDULE
                     </div>
                     <div class="card-body">
-                        <i class="fa fa-check-circle" aria-hidden="true"></i>
-                        <i class="fa-solid fa-circle-xmark"></i>
-
                         <!-- <ul *ngFor="let tourney of tournaments" class="list-group list-group-flush">
                             <li class="list-group-item">Cras justo odio</li>
                           </ul> -->
-                            <table>
-                                <tr>
+                          <table class="table small-table table-hover table-responsive table-data table-bordered">
+                            <thead class="table-dark">
+                                <tr class="text-center">
+                                    <th>Sanctioned</th>
                                     <th>Date</th>
                                     <th>Tourney</th>
                                     <th>Location</th>
+                               </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let tourney of tournaments" >
+                                    <td class="text-center">
+                                        <i *ngIf="tourney.Sanctioned=='Yes'" class="fa-solid fa-circle-check" style="color:rgb(121, 243, 121)"></i>
+                                        <i *ngIf="tourney.Sanctioned=='No'" class="fa-solid fa-circle-xmark" style="color:rgb(248, 119, 119)"></i>
+                                    <td>
+                                        {{tourney.Date}}
+                                    </td>
+                                    <td>
+                                        {{tourney.Tournament}}
+                                    </td>
+                                    <td>
+                                        {{tourney.Location}}
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        12/12/2015
-                                    </td>
-                                    <td>
-                                        Dog Days
-                                    </td>
-                                    <td>
-                                        Houston TX 
-                                    </td>
-                                </tr>
-                            </table>
+                            </tbody>
+                            
+                            
+                        </table>
+                        
                     </div>
                 </div>
             </div>
@@ -111,7 +119,7 @@
                     
                     <div class="card-body">
                         <h4 class="card-title"> Here is your 2024 roster as of date</h4>
-                        <table class="table table-responsive table-sm table-data table-bordered">
+                        <table class="table table-responsive small-table table-hover table-data table-bordered">
                             <thead class="table-dark">
                                 <tr class="text-center">
                                     <th>Name</th>

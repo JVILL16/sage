@@ -9,8 +9,8 @@ export class ClutchService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getClutchData(): any {
-    return this.httpClient.get<any>(`${environment.serverUrl}/auth/gsheets/read.php`);
+  public getClutchData(view:string): any {
+    return this.httpClient.get<any>(`${environment.serverUrl}/auth/gsheets/read?view=${view}`);
   }
 
 
