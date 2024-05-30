@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Pipe, PipeTransform } from '@angular/core';
 import { ApiService } from 'src/app/service/service.component';
 import { User } from '../users/user';
 import { ClutchService } from 'src/app/service/helpers/clutch.service';
@@ -17,8 +17,9 @@ export class ClutchComponent implements OnInit {
   tournaments:any;
   users!: User[];
 
-  constructor(private clutch: ClutchService) { }
 
+  constructor(private clutch: ClutchService) { }
+ 
   ngOnInit() {
     this.clutch.getClutchData('contact').subscribe(
       (data:any) => {
@@ -48,7 +49,30 @@ export class ClutchComponent implements OnInit {
       }
     );;
   }
- 
 
 
+}
+
+
+@Pipe({
+  name: 'TierFilter'
+})
+export class SearchPipe implements PipeTransform {
+  transform(groupBy: string): { [key: string]: Tier[] } {
+    if (!groupBy) {
+      return this.roster;
+    }
+
+    const groupedTiers: { [key: string]: Tier[] } = {};
+
+    this.roster.forEach(tier => {
+      const key = tier[groupBy];
+      if (!groupedTiers[key]) {
+        groupedTiers[key] = [];
+      }
+      groupedTiers[key].push(tier);
+    });
+
+    return groupedTiers;
+  }
 }

@@ -61,16 +61,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-6">
-                <div class="card">
-                    <div class="card-header gradient-clutch">
-                        NEWS
-                    </div>
-                    <div class="card-body">
-                        Thank you for testing our sign in page !
-                    </div>
-                </div>
-            </div>
+            
             
         </div>
         <div class="col-xl-8 row">
@@ -128,7 +119,7 @@
                                </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let player of roster" >
+                                <tr *ngFor="let player of roster | TierFilter: 'Tier'" >
                                     <td>
                                         {{player.Name}}
                                     </td>
@@ -146,6 +137,17 @@
                         
                     </div>
                 </div>
+            </div>
+            
+        </div>
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header gradient-clutch">
+                    CALENDAR
+                </div>
+                <div class="card-body">
+                    <calendar></calendar>
+                  </div>
             </div>
         </div>
     </div>
