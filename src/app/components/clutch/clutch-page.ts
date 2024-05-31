@@ -58,21 +58,25 @@ export class ClutchComponent implements OnInit {
   name: 'TierFilter'
 })
 export class SearchPipe implements PipeTransform {
-  transform(groupBy: string): { [key: string]: Tier[] } {
-    if (!groupBy) {
-      return this.roster;
+  transform(roster:any,filter: string): any[] {
+    if (!filter || !roster) {
+      return roster;
     }
 
-    const groupedTiers: { [key: string]: Tier[] } = {};
+    // Grouping logic
+    const groupedItems: any = {};
 
-    this.roster.forEach(tier => {
-      const key = tier[groupBy];
-      if (!groupedTiers[key]) {
-        groupedTiers[key] = [];
+    roster.forEach((item:any) => {
+      const groupKey = item[filter]; // Assuming filter is a property name in the item object
+      if (!groupedItems[groupKey]) {
+        groupedItems[groupKey] = [];
       }
-      groupedTiers[key].push(tier);
+      groupedItems[groupKey].push(item);
     });
 
-    return groupedTiers;
+    // Convert groupedItems object to an array of arrays
+    const groupedArray = Object.keys(groupedItems).map(key => ({ key, value: groupedItems[key] }));
+
+    return groupedArray;
   }
 }
