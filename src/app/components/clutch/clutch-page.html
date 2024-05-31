@@ -113,6 +113,7 @@
                         <table class="table table-responsive small-table table-hoverable table-hover table-data table-bordered">
                             <thead class="table-dark">
                                 <tr class="text-center">
+                                    <th></th>
                                     <th>Name</th>
                                     <th>Jersey</th>
                                     <th>Tier</th>
@@ -120,6 +121,9 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let player of captains " >
+                                    <td><i class="fa-solid fa-c me-2"></i>
+                                        <i class="fa-solid fa-paw me-2"></i>
+                                    </td>
                                     <td>
                                         {{player.Name}}
                                     </td>
@@ -131,6 +135,7 @@
                                     </td>
                                 </tr>
                                 <tr *ngFor="let player of veterans " >
+                                    <td><i class="fa-solid fa-paw me-2"></i></td>
                                     <td>
                                         {{player.Name}}
                                     </td>
@@ -142,6 +147,7 @@
                                     </td>
                                 </tr>
                                 <tr *ngFor="let player of incomers " >
+                                    <td><i class="fa-solid fa-star me-2"></i></td>
                                     <td>
                                         {{player.Name}}
                                     </td>
