@@ -26,7 +26,7 @@ import { SectionsComponent } from './components/sections/sections-page';
 import { ModalsComponent } from './service/modals/modals.component';
 import { ModalsService } from './service/modals.service';
 import { ClutchService } from './service/helpers/clutch.service';
-import { ClutchComponent, SearchPipe } from './components/clutch/clutch-page';
+import { ClutchComponent } from './components/clutch/clutch-page';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { NotFoundComponent } from './not-found.component';
 
@@ -48,8 +48,7 @@ import { NotFoundComponent } from './not-found.component';
     ModalsComponent,
     ClutchComponent,
     CalendarComponent,
-    NotFoundComponent,
-    SearchPipe
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

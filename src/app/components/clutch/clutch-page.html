@@ -103,23 +103,23 @@
                         please look at the google form and / or message any captains info for further information.
                     </div>
                 </div>
-                <div class="card" *ngIf="roster!=null">
+                <div class="card">
                     <div class="card-header gradient-clutch">
                         Roster
                     </div>
                     
                     <div class="card-body">
-                        <h4 class="card-title"> Here is your 2024 roster as of date</h4>
-                        <table class="table table-responsive small-table table-hover table-data table-bordered">
+                        <h4 class="card-title"> Clutch 2024 Roster</h4>
+                        <table class="table table-responsive small-table table-hoverable table-hover table-data table-bordered">
                             <thead class="table-dark">
                                 <tr class="text-center">
                                     <th>Name</th>
                                     <th>Jersey</th>
-                                    <th>Roster</th>
+                                    <th>Tier</th>
                                </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let player of roster | TierFilter: 'Tier'" >
+                                <tr *ngFor="let player of captains " >
                                     <td>
                                         {{player.Name}}
                                     </td>
@@ -127,7 +127,29 @@
                                         {{player.Jersey}}
                                     </td>
                                     <td>
-                                        {{player.Roster}}
+                                        {{player.Tier}}
+                                    </td>
+                                </tr>
+                                <tr *ngFor="let player of veterans " >
+                                    <td>
+                                        {{player.Name}}
+                                    </td>
+                                    <td>
+                                        {{player.Jersey}}
+                                    </td>
+                                    <td>
+                                        {{player.Tier}}
+                                    </td>
+                                </tr>
+                                <tr *ngFor="let player of incomers " >
+                                    <td>
+                                        {{player.Name}}
+                                    </td>
+                                    <td>
+                                        {{player.Jersey}}
+                                    </td>
+                                    <td>
+                                        {{player.Tier}}
                                     </td>
                                 </tr>
                             </tbody>

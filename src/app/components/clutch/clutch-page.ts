@@ -1,4 +1,4 @@
-import { Component, OnInit,Pipe, PipeTransform } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/service/service.component';
 import { User } from '../users/user';
 import { ClutchService } from 'src/app/service/helpers/clutch.service';
@@ -12,10 +12,20 @@ import { ClutchService } from 'src/app/service/helpers/clutch.service';
 export class ClutchComponent implements OnInit {
   title = 'Clutch page';
   error = '';
-  roster :any;
+  //roster :any;
   attendence: any;
   tournaments:any;
   users!: User[];
+
+  captains:any;
+  veterans:any;
+  incomers:any;
+  practice:any;
+
+  tierOne = (player:any) => player.Tier === '1';
+  tierTwo = (player:any) => player.Tier === '2';
+  tierThree = (player:any) => player.Tier === '3';
+  tierFour = (player:any) => player.Tier === '4';
 
 
   constructor(private clutch: ClutchService) { }
@@ -23,8 +33,12 @@ export class ClutchComponent implements OnInit {
   ngOnInit() {
     this.clutch.getClutchData('contact').subscribe(
       (data:any) => {
-        this.roster = data;
-        console.log(this.roster); // Handle the data as needed
+        //this.roster = data;
+        this.captains = data.filter(this.tierOne);
+        this.veterans = data.filter(this.tierTwo);
+        this.incomers = data.filter(this.tierThree);
+        this.practice = data.filter(this.tierFour);
+        console.log(this.captains); // Handle the data as needed
       },
       (error:any) => {
         console.error('Error fetching Google Sheets data:', error);
@@ -51,32 +65,4 @@ export class ClutchComponent implements OnInit {
   }
 
 
-}
-
-
-@Pipe({
-  name: 'TierFilter'
-})
-export class SearchPipe implements PipeTransform {
-  transform(roster:any,filter: string): any[] {
-    if (!filter || !roster) {
-      return roster;
-    }
-
-    // Grouping logic
-    const groupedItems: any = {};
-
-    roster.forEach((item:any) => {
-      const groupKey = item[filter]; // Assuming filter is a property name in the item object
-      if (!groupedItems[groupKey]) {
-        groupedItems[groupKey] = [];
-      }
-      groupedItems[groupKey].push(item);
-    });
-
-    // Convert groupedItems object to an array of arrays
-    const groupedArray = Object.keys(groupedItems).map(key => ({ key, value: groupedItems[key] }));
-
-    return groupedArray;
-  }
 }
