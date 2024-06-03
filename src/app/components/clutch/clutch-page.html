@@ -1,12 +1,12 @@
 
 <!--clutchTeam2023.jpg-->
-<div class="container-sage">
+<!-- <div class="container-sage">
     <div class="row home-header">
         <img class="image-set" src="../assets/_T0A8284_animation.gif" alt="headline">
        
     </div>
-</div>
-<div class="container-fluid">
+</div> -->
+<div class="container-fluid clutch-bg">
     <div class=" row clutch-div" >
         
         <div class="col-xl-4 row">
@@ -116,46 +116,36 @@
                                     <th></th>
                                     <th>Name</th>
                                     <th>Jersey</th>
-                                    <th>Tier</th>
                                </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let player of captains " >
-                                    <td><i class="fa-solid fa-c me-2"></i>
+                                <tr *ngFor="let player of captains " class="tr-captains">
+                                    <td class="text-center"><i class="fa-solid fa-c me-2"></i>
                                         <i class="fa-solid fa-paw me-2"></i>
                                     </td>
                                     <td>
                                         {{player.Name}}
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         {{player.Jersey}}
                                     </td>
-                                    <td>
-                                        {{player.Tier}}
-                                    </td>
                                 </tr>
-                                <tr *ngFor="let player of veterans " >
-                                    <td><i class="fa-solid fa-paw me-2"></i></td>
+                                <tr *ngFor="let player of veterans " class="tr-veterans">
+                                    <td class="text-center"><i class="fa-solid fa-paw me-2"></i></td>
                                     <td>
                                         {{player.Name}}
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         {{player.Jersey}}
                                     </td>
-                                    <td>
-                                        {{player.Tier}}
-                                    </td>
                                 </tr>
-                                <tr *ngFor="let player of incomers " >
-                                    <td><i class="fa-solid fa-star me-2"></i></td>
+                                <tr *ngFor="let player of incomers " class="tr-incomers">
+                                    <td class="text-center"><i class="fa-solid fa-star me-2"></i></td>
                                     <td>
                                         {{player.Name}}
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         {{player.Jersey}}
-                                    </td>
-                                    <td>
-                                        {{player.Tier}}
                                     </td>
                                 </tr>
                             </tbody>
@@ -169,14 +159,7 @@
             
         </div>
         <div class="col-xl-12">
-            <div class="card">
-                <div class="card-header gradient-clutch">
-                    CALENDAR
-                </div>
-                <div class="card-body">
-                    <calendar></calendar>
-                  </div>
-            </div>
+            <calendar></calendar>
         </div>
     </div>
 </div>

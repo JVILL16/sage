@@ -13,7 +13,7 @@
 
 @media only screen and (min-width: 950px) and (max-width: 2000px) {
 
-
+    
     .clutch-div{
         margin-left:250px;
         margin-right:250px;
@@ -25,6 +25,10 @@
     
 }
 
+ .card-body{
+    background-color: #343a40 !important;
+    color:white !important;
+ }
 /* Custom styles for smaller table */
 .small-table {
     font-size: 0.8rem; /* Reduce font size */
@@ -34,18 +38,30 @@
     font-size: 0.7rem; 
     padding: 0.25rem; /* Reduce padding */
 }
-.table-hoverable tbody tr:nth-child(1):hover {
-    background-color: #ffb60c; /* Change the background color on hover */
-    transform: scale(1.02); /* Increase the size of the row on hover */
-    transition: all 0.3s ease; /* Smooth transition */
+.table tbody tr.tr-captains:hover {
+    border: none !important;
+    --bs-table-hover-bg: #ffb300 !important; /* Change the background color on hover */
+    transform: scale(1.05); /* Increase the size of the row on hover */
+    transition: all 0.1s ease; /* Smooth transition */
   }
-  .table-hoverable tbody tr:nth-child(2):hover {
-    background-color: #ffcd59; /* Change the background color on hover */
-    transform: scale(1.02); /* Increase the size of the row on hover */
-    transition: all 0.3s ease; /* Smooth transition */
+  .table tbody tr.tr-veterans:hover {
+    border: none !important;
+    --bs-table-hover-bg: #ffca50 !important; /* Change the background color on hover */
+    transform: scale(1.05); /* Increase the size of the row on hover */
+    transition: all 0.1s ease; /* Smooth transition */
   }
-  .table-hoverable tbody tr:nth-child(3):hover {
-    background-color: #ffdd8d; /* Change the background color on hover */
-    transform: scale(1.02); /* Increase the size of the row on hover */
-    transition: all 0.3s ease; /* Smooth transition */
+  .table tbody tr.tr-incomers:hover {
+    border: none !important;
+    --bs-table-hover-bg: #fadc95 !important; /* Change the background color on hover */
+    transform: scale(1.05); /* Increase the size of the row on hover */
+    transition: all 0.1s ease; /* Smooth transition */
+  }
+  .table>tbody>tr>td,
+.table>tbody>tr>th {
+  border: none !important;
+}
+
+  .table-hoverable{
+    margin:0 auto;
+    max-width: 500px;
   }
