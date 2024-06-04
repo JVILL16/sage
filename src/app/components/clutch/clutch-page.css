@@ -25,6 +25,28 @@
     
 }
 
+.captain-pfp{
+    
+        vertical-align: middle;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+      }
+
+.clutch-header{
+    margin-top:40px;
+    margin-bottom:300px;
+}
+.clutch-title{
+    color:white;
+    font-family: Daily-Q;
+    font-size: 80px;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    /* margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 150px; */
+    /* margin: 75px 10px 100px 10px */
+}
  .card-body{
     background-color: #343a40 !important;
     color:white !important;

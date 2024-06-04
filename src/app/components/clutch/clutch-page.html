@@ -8,108 +8,46 @@
 </div> -->
 <div class="container-fluid clutch-bg">
     <div class=" row clutch-div" >
+        <div class="col-xl-12 clutch-header">
+            <img style="width:250px;height: 250px;" src="../assets/carousel-pics/sp_clutch.png">
+            <span class="clutch-title ms-4">Houston Clutch 2024</span>
+        </div>
+
+        <div class="col-xl-12 clutch-header">
+            <div class="text-center">
+                <span class="clutch-title">MEET&nbsp;&nbsp; OUR&nbsp;&nbsp; CAPTAINS</span>
+                <div class="row justify-content-center" >
+                    <div class="col-xl-4 my-4" *ngFor="let player of captains">
+                        <img class="captain-pfp" src="../assets/pfp_default/male_1.png">
+                        <h4 style="color:white">{{player.Name}}</h4>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+        <div class="col-xl-12 clutch-header">
+            <div class="card">
+                <div class="card-header gradient-clutch">
+                    ABOUT US
+                </div>
+                
+                <div class="card-body">
+                    <h4 class="card-title"> H-O-U CLUTCH</h4>
+                    Best known Open Ultimate Houston team ! Great group of dudes rostered to play in some sick tournaments with their pure athletic, 
+                    dedicated, and mentally strong capabilites. If you haven't heard of them, be ready too and if you are interested in joining or donanting to the club,
+                    please look at the google form and / or message any captains info for further information.
+                </div>
+            </div>
+        </div>
         
         <div class="col-xl-4 row">
             <div class="col-xl-12">
                 <div class="card">
-                    <div class="card-header gradient-clutch" >
-                        SCHEDULE
-                    </div>
-                    <div class="card-body">
-                        <!-- <ul *ngFor="let tourney of tournaments" class="list-group list-group-flush">
-                            <li class="list-group-item">Cras justo odio</li>
-                          </ul> -->
-                          <table class="table small-table table-hover table-responsive table-data table-bordered">
-                            <thead class="table-dark">
-                                <tr class="text-center">
-                                    <th>Sanctioned</th>
-                                    <th>Date</th>
-                                    <th>Tourney</th>
-                                    <th>Location</th>
-                               </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let tourney of tournaments" >
-                                    <td class="text-center">
-                                        <i *ngIf="tourney.Sanctioned=='Yes'" class="fa-solid fa-circle-check" style="color:rgb(121, 243, 121)"></i>
-                                        <i *ngIf="tourney.Sanctioned=='No'" class="fa-solid fa-circle-xmark" style="color:rgb(248, 119, 119)"></i>
-                                    <td>
-                                        {{tourney.Date}}
-                                    </td>
-                                    <td>
-                                        {{tourney.Tournament}}
-                                    </td>
-                                    <td>
-                                        {{tourney.Location}}
-                                    </td>
-                                </tr>
-                            </tbody>
-                            
-                            
-                        </table>
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-6">
-                <div class="card">
                     <div class="card-header gradient-clutch">
-                        CAPTAINS
-                    </div>
-                    <div class="card-body">
-                        Thank you for testing our sign in page !
-                    </div>
-                </div>
-            </div>
-            
-            
-        </div>
-        <div class="col-xl-8 row">
-            
-            <div class="col-xl-6">
-                <div class="card">
-                    <div class="card-header gradient-clutch">
-                        ANNOUNCEMENTS
-                    </div>
-                    <div class="card-body">
-                        <p>Clutch is going into its sixth club season year and we are looking for players interested in joining a competitive club team based out of Houston, TX. 
-                            Our goal is to assemble a team of players that are willing to fully buy-in and put in the work to be mentally and physically competitive. 
-                            Having a good time along the way goes without saying!</p>
-                        
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvOhfwO1g9ove7ZOhTQXUJrxNpguq4qG_nYSbF7OjTCr8xMA/viewform?usp=sf_link">Clutch 2024 Season</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-6">
-                <div class="card">
-                    <div class="card-header gradient-clutch">
-                        Welcome 
-                    </div>
-                    <div class="card-body">
-                        Thank you for testing our sign in page !
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-12">
-                <div class="card">
-                    <div class="card-header gradient-clutch">
-                        ABOUT US
+                        CLUTCH 2024 ROSTER
                     </div>
                     
                     <div class="card-body">
-                        <h4 class="card-title"> H-O-U CLUTCH</h4>
-                        Best known Open Ultimate Houston team ! Great group of dudes rostered to play in some sick tournaments with their pure athletic, 
-                        dedicated, and mentally strong capabilites. If you haven't heard of them, be ready too and if you are interested in joining or donanting to the club,
-                        please look at the google form and / or message any captains info for further information.
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header gradient-clutch">
-                        Roster
-                    </div>
-                    
-                    <div class="card-body">
-                        <h4 class="card-title"> Clutch 2024 Roster</h4>
                         <table class="table table-responsive small-table table-hoverable table-hover table-data table-bordered">
                             <thead class="table-dark">
                                 <tr class="text-center">
@@ -157,8 +95,71 @@
                 </div>
             </div>
             
+            
         </div>
-        <div class="col-xl-12">
+        <div class="col-xl-8 row">
+           
+            <div class="col-xl-6">
+                <div class="card">
+                    <div class="card-header gradient-clutch">
+                        ANNOUNCEMENTS
+                    </div>
+                    <div class="card-body">
+                        <p>Clutch is going into its sixth club season year and we are looking for players interested in joining a competitive club team based out of Houston, TX. 
+                            Our goal is to assemble a team of players that are willing to fully buy-in and put in the work to be mentally and physically competitive. 
+                            Having a good time along the way goes without saying!</p>
+                        
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvOhfwO1g9ove7ZOhTQXUJrxNpguq4qG_nYSbF7OjTCr8xMA/viewform?usp=sf_link">Clutch 2024 Season</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-xl-12">
+                
+                <div class="card">
+                    <div class="card-header gradient-clutch" >
+                        SCHEDULE
+                    </div>
+                    <div class="card-body">
+                        <!-- <ul *ngFor="let tourney of tournaments" class="list-group list-group-flush">
+                            <li class="list-group-item">Cras justo odio</li>
+                          </ul> -->
+                          <table class="table small-table table-hover table-responsive table-data table-bordered">
+                            <thead class="table-dark">
+                                <tr class="text-center">
+                                    <th>Sanctioned</th>
+                                    <th>Date</th>
+                                    <th>Tourney</th>
+                                    <th>Location</th>
+                               </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let tourney of tournaments" >
+                                    <td class="text-center">
+                                        <i *ngIf="tourney.Sanctioned=='Yes'" class="fa-solid fa-circle-check" style="color:rgb(121, 243, 121)"></i>
+                                        <i *ngIf="tourney.Sanctioned=='No'" class="fa-solid fa-circle-xmark" style="color:rgb(248, 119, 119)"></i>
+                                    <td>
+                                        {{tourney.Date}}
+                                    </td>
+                                    <td>
+                                        {{tourney.Tournament}}
+                                    </td>
+                                    <td>
+                                        {{tourney.Location}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                            
+                            
+                        </table>
+                        
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+        <div class="col-xl-12 row">
             <calendar></calendar>
         </div>
     </div>
