@@ -1,4 +1,3 @@
-
 <!--clutchTeam2023.jpg-->
 <!-- <div class="container-sage">
     <div class="row home-header">
@@ -7,137 +6,193 @@
     </div>
 </div> -->
 <div class="container-fluid clutch-bg">
-    <div class=" row clutch-div" >
-        <div class="col-xl-12 clutch-header">
-            <img style="width:250px;height: 250px;" src="../assets/carousel-pics/sp_clutch.png">
-            <span class="clutch-title ms-4">Houston Clutch 2024</span>
+    <div class=" row clutch-div ">
+        <div class="col-xl-12 ">
+            <div class="full-height">
+                <img style="width:250px;height: 250px;" src="../assets/carousel-pics/sp_clutch.png">
+                <span class="clutch-title ms-4">Houston Clutch 2024</span>
+            </div>
+            <div class="scroll-button">
+                <img src="../assets/white_arrows.png" (click)="scrollToSection()">
+            </div>
+
         </div>
 
         <div class="col-xl-12 clutch-header">
             <div class="text-center">
                 <span class="clutch-title">MEET&nbsp;&nbsp; OUR&nbsp;&nbsp; CAPTAINS</span>
-                <div class="row justify-content-center" >
+                <div class="row justify-content-center">
                     <div class="col-xl-4 my-4" *ngFor="let player of captains">
                         <img class="captain-pfp" src="../assets/pfp_default/male_1.png">
                         <h4 style="color:white">{{player.Name}}</h4>
                     </div>
                 </div>
-               
+
             </div>
         </div>
         <div class="col-xl-12 clutch-header">
+            <div class="row">
+                <div class="col-xl-4">
+                    <div class="card-header clutch-title gradient-clutch gradient-clutch-custom">CAPTAINS</div>
+                    <table class="table table-hover table-borderless" style="margin-top:50px">
+                        <tbody>
+                            <tr *ngFor="let player of captains " class="tr-captains">
+                                <td class="text-center"><i class="fa-solid fa-c me-2"></i>
+                                    <i class="fa-solid fa-paw me-2"></i>
+                                </td>
+                                <td class="text-center">
+                                    {{player.Jersey}}
+                                </td>
+                                <td>
+                                    {{player.Name}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-xl-4">
+                    <div class="card-header clutch-title gradient-clutch gradient-clutch-custom">VETERANS</div>
+                    <table class="table table-hoverable table-hover" style="margin-top:50px">
+                        <tbody>
+                            <tr *ngFor="let player of veterans " class="tr-veterans">
+                                <td class="text-center">
+                                    <i class="fa-solid fa-paw me-2"></i>
+                                </td>
+                                <td class="text-center">
+                                    {{player.Jersey}}
+                                </td>
+                                <td>
+                                    {{player.Name}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-xl-4">
+                    <div class="card-header clutch-title gradient-clutch gradient-clutch-custom">NEWBIES</div>
+                    <table class="table table-hoverable table-hover" style="margin-top:50px">
+                        <tbody>
+                            <tr *ngFor="let player of incomers " class="tr-incomers">
+                                <td class="text-center">
+                                    <i class="fa-solid fa-star me-2"></i>
+                                </td>
+                                <td class="text-center">
+                                    {{player.Jersey}}
+                                </td>
+                                <td>
+                                    {{player.Name}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-12 clutch-header" id="target-section">
             <div class="card">
                 <div class="card-header gradient-clutch">
-                    ABOUT US
+                    ABOUT&nbsp;&nbsp;US
                 </div>
-                
+
                 <div class="card-body">
                     <h4 class="card-title"> H-O-U CLUTCH</h4>
-                    Best known Open Ultimate Houston team ! Great group of dudes rostered to play in some sick tournaments with their pure athletic, 
-                    dedicated, and mentally strong capabilites. If you haven't heard of them, be ready too and if you are interested in joining or donanting to the club,
-                    please look at the google form and / or message any captains info for further information.
+                    <h1>Welcome to the Houston Clutch</h1>
+                    <p>As a dynamic and diverse group of athletes, we are dedicated to the thrilling and strategic sport
+                        of Ultimate Frisbee. Our team is not just about playing a game; it's about building a community,
+                        fostering sportsmanship, and pushing each other to new heights.</p>
+
+                    <h2>Goals</h2>
+                    <ul>
+                        <li><strong>Achieve Competitive Success:</strong> Strive for excellence in regional and national
+                            tournaments, showcasing our skills and teamwork.</li>
+                        <li><strong>Promote the Sport:</strong> Raise awareness and enthusiasm for Ultimate Frisbee
+                            within the Houston community, encouraging participation at all levels.</li>
+                        <li><strong>Personal Development:</strong> Support each player's growth, emphasizing physical
+                            fitness, strategic thinking, and leadership skills.</li>
+                    </ul>
+
+                    <h2>Expectations</h2>
+                    <ul>
+                        <li><strong>Commitment:</strong> Regular attendance at practices and games, dedication to
+                            improvement, and a positive attitude.</li>
+                        <li><strong>Teamwork:</strong> Foster a collaborative spirit, respect for teammates and
+                            opponents, and effective communication on and off the field.</li>
+                        <li><strong>Integrity:</strong> Uphold the principles of fair play, honesty, and respect that
+                            are the cornerstone of Ultimate Frisbee.</li>
+                    </ul>
+
+                    <h2>Inspiration</h2>
+                    <ul>
+                        <li><strong>Community:</strong> The vibrant Houston community and our loyal supporters who cheer
+                            us on at every match.</li>
+                        <li><strong>Legends of the Sport:</strong> Iconic players and teams who have elevated Ultimate
+                            Frisbee to new heights, inspiring us to reach for greatness.</li>
+                        <li><strong>Our Journey:</strong> Each practice, game, and tournament is a step toward our
+                            collective and individual goals, driving us to push boundaries and achieve our best.</li>
+                    </ul>
+
+                    <p>Join us in our exciting journey as we chase victories, celebrate our love for the game, and build
+                        lasting friendships. Together, we are more than just a team; we are the Houston Ultimate Frisbee
+                        family.</p>
+
                 </div>
             </div>
         </div>
-        
+
         <div class="col-xl-4 row">
             <div class="col-xl-12">
-                <div class="card">
-                    <div class="card-header gradient-clutch">
-                        CLUTCH 2024 ROSTER
-                    </div>
-                    
-                    <div class="card-body">
-                        <table class="table table-responsive small-table table-hoverable table-hover table-data table-bordered">
-                            <thead class="table-dark">
-                                <tr class="text-center">
-                                    <th></th>
-                                    <th>Name</th>
-                                    <th>Jersey</th>
-                               </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let player of captains " class="tr-captains">
-                                    <td class="text-center"><i class="fa-solid fa-c me-2"></i>
-                                        <i class="fa-solid fa-paw me-2"></i>
-                                    </td>
-                                    <td>
-                                        {{player.Name}}
-                                    </td>
-                                    <td class="text-center">
-                                        {{player.Jersey}}
-                                    </td>
-                                </tr>
-                                <tr *ngFor="let player of veterans " class="tr-veterans">
-                                    <td class="text-center"><i class="fa-solid fa-paw me-2"></i></td>
-                                    <td>
-                                        {{player.Name}}
-                                    </td>
-                                    <td class="text-center">
-                                        {{player.Jersey}}
-                                    </td>
-                                </tr>
-                                <tr *ngFor="let player of incomers " class="tr-incomers">
-                                    <td class="text-center"><i class="fa-solid fa-star me-2"></i></td>
-                                    <td>
-                                        {{player.Name}}
-                                    </td>
-                                    <td class="text-center">
-                                        {{player.Jersey}}
-                                    </td>
-                                </tr>
-                            </tbody>
-                            
-                            
-                        </table>
-                        
-                    </div>
-                </div>
+
             </div>
-            
-            
+
+
         </div>
         <div class="col-xl-8 row">
-           
+
             <div class="col-xl-6">
                 <div class="card">
                     <div class="card-header gradient-clutch">
                         ANNOUNCEMENTS
                     </div>
                     <div class="card-body">
-                        <p>Clutch is going into its sixth club season year and we are looking for players interested in joining a competitive club team based out of Houston, TX. 
-                            Our goal is to assemble a team of players that are willing to fully buy-in and put in the work to be mentally and physically competitive. 
+                        <p>Clutch is going into its sixth club season year and we are looking for players interested in
+                            joining a competitive club team based out of Houston, TX.
+                            Our goal is to assemble a team of players that are willing to fully buy-in and put in the
+                            work to be mentally and physically competitive.
                             Having a good time along the way goes without saying!</p>
-                        
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfvOhfwO1g9ove7ZOhTQXUJrxNpguq4qG_nYSbF7OjTCr8xMA/viewform?usp=sf_link">Clutch 2024 Season</a>
+
+                        <a
+                            href="https://docs.google.com/forms/d/e/1FAIpQLSfvOhfwO1g9ove7ZOhTQXUJrxNpguq4qG_nYSbF7OjTCr8xMA/viewform?usp=sf_link">Clutch
+                            2024 Season</a>
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-xl-12">
-                
+
                 <div class="card">
-                    <div class="card-header gradient-clutch" >
+                    <div class="card-header gradient-clutch">
                         SCHEDULE
                     </div>
                     <div class="card-body">
                         <!-- <ul *ngFor="let tourney of tournaments" class="list-group list-group-flush">
                             <li class="list-group-item">Cras justo odio</li>
                           </ul> -->
-                          <table class="table small-table table-hover table-responsive table-data table-bordered">
+                        <table class="table small-table table-hover table-responsive table-data table-bordered">
                             <thead class="table-dark">
                                 <tr class="text-center">
                                     <th>Sanctioned</th>
                                     <th>Date</th>
                                     <th>Tourney</th>
                                     <th>Location</th>
-                               </tr>
+                                </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let tourney of tournaments" >
+                                <tr *ngFor="let tourney of tournaments">
                                     <td class="text-center">
-                                        <i *ngIf="tourney.Sanctioned=='Yes'" class="fa-solid fa-circle-check" style="color:rgb(121, 243, 121)"></i>
-                                        <i *ngIf="tourney.Sanctioned=='No'" class="fa-solid fa-circle-xmark" style="color:rgb(248, 119, 119)"></i>
+                                        <i *ngIf="tourney.Sanctioned=='Yes'" class="fa-solid fa-circle-check"
+                                            style="color:rgb(121, 243, 121)"></i>
+                                        <i *ngIf="tourney.Sanctioned=='No'" class="fa-solid fa-circle-xmark"
+                                            style="color:rgb(248, 119, 119)"></i>
                                     <td>
                                         {{tourney.Date}}
                                     </td>
@@ -149,15 +204,15 @@
                                     </td>
                                 </tr>
                             </tbody>
-                            
-                            
+
+
                         </table>
-                        
+
                     </div>
                 </div>
-                
+
             </div>
-            
+
         </div>
         <div class="col-xl-12 row">
             <calendar></calendar>

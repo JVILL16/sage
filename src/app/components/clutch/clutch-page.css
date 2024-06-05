@@ -42,10 +42,6 @@
     font-family: Daily-Q;
     font-size: 80px;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-    /* margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom: 150px; */
-    /* margin: 75px 10px 100px 10px */
 }
  .card-body{
     background-color: #343a40 !important;
@@ -62,28 +58,80 @@
 }
 .table tbody tr.tr-captains:hover {
     border: none !important;
+    --bs-table-hover-color: black !important;
     --bs-table-hover-bg: #ffb300 !important; /* Change the background color on hover */
     transform: scale(1.05); /* Increase the size of the row on hover */
     transition: all 0.1s ease; /* Smooth transition */
   }
   .table tbody tr.tr-veterans:hover {
     border: none !important;
+    --bs-table-hover-color: black !important;
     --bs-table-hover-bg: #ffca50 !important; /* Change the background color on hover */
     transform: scale(1.05); /* Increase the size of the row on hover */
     transition: all 0.1s ease; /* Smooth transition */
   }
   .table tbody tr.tr-incomers:hover {
     border: none !important;
+    --bs-table-hover-color: black !important; 
     --bs-table-hover-bg: #fadc95 !important; /* Change the background color on hover */
     transform: scale(1.05); /* Increase the size of the row on hover */
     transition: all 0.1s ease; /* Smooth transition */
   }
   .table>tbody>tr>td,
 .table>tbody>tr>th {
+    color:white;
+    font-family: Daily-Q;
+    font-size: 50px;
   border: none !important;
+  background-color: rgba(255, 255, 255, 0);
 }
 
-  .table-hoverable{
-    margin:0 auto;
-    max-width: 500px;
+.table>tbody>tr:hover>td,
+.table>tbody>tr:hover>th {
+    color:black;
+}
+.gradient-clutch-custom{
+  font-size: 65px !important;
+  border-radius: 85% !important;
+}
+
+.scroll-button {
+  background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+    left: 50%;
+    bottom: 200px; /* Adjust this value to place the button higher or lower */
+    transition: all ease-in-out 0.2s;
+    animation: shake-slow 2s infinite ease;
+
+}
+.scroll-button img {
+  width: 50px; /* Adjust the size as needed */
+  height: auto;
+  display: block;
+}
+
+#target-section {
+  padding: 100px;
+}
+
+.full-height {
+  position: relative;
+  /* top: -200px; */
+  transform: translate(0%, -20%);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes shake-slow {
+  0%, 100% {
+      transform: translateY(0);
   }
+  50% {
+      transform: translateY(10px);
+  }
+}

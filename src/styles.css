@@ -34,14 +34,13 @@ $phone_landscape: 780px; */
    z-index: -1;
    top: 0;
    bottom: 0;
-   left: 0;
+   left: 0; /* might need to change when going to mobile*/
    right: 0;
    background-image: url("src/assets/carousel-pics/clutchTeam2023.jpg");
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover;
     /* background-color: rgba(95, 95, 95, 0.8); */
     opacity: 0.2;
-    filter:alpha(opacity=40);
     height:100%;
     width:100%;
 }

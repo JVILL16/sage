@@ -27,7 +27,12 @@ export class ClutchComponent implements OnInit {
   tierThree = (player:any) => player.Tier === '3';
   tierFour = (player:any) => player.Tier === '4';
 
-
+  scrollToSection() {
+    const element = document.getElementById('target-section');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
   constructor(private clutch: ClutchService) { }
  
   ngOnInit() {
