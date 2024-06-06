@@ -26,7 +26,15 @@
     padding:5px;
     /* border: 2px solid rgb(187, 187, 187); */
   }
-
+.calendar-alert{
+  /* border-radius:10%; */
+  background: linear-gradient(#7bc4ff,#2fabfd);
+  /* margin:-100px; */
+  padding:2px;
+  transform: translateX(-45%);
+  width:100%;
+  position: absolute;
+}
 @media only screen and (min-width: 320px) {
     .cal-div{
         margin-left:10px;
