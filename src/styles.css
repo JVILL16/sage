@@ -24,7 +24,6 @@ $phone_landscape: 780px; */
   
 }
 
-
 .clutch-bg{
   z-index: 1;
 }
@@ -109,6 +108,10 @@ body {
     /* opacity: .9; */
 
 
+  }
+
+  .clutch-bg::before{
+    background-position: center;
   }
 
   /* th,

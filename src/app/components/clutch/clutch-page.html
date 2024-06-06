@@ -6,10 +6,10 @@
     </div>
 </div> -->
 <div class="container-fluid clutch-bg">
-    <div class=" row clutch-div ">
+    <div class=" row clutch-div">
         <div class="col-xl-12 ">
             <div class="full-height">
-                <img style="width:250px;height: 250px;" src="../assets/carousel-pics/sp_clutch.png">
+                <img class="clutch-icon" src="../assets/carousel-pics/sp_clutch.png">
                 <span class="clutch-title ms-4">Houston Clutch 2024</span>
             </div>
             <div class="scroll-button">
@@ -17,7 +17,7 @@
             </div>
 
         </div>
-
+        
         <div class="col-xl-12 clutch-header">
             <div class="text-center">
                 <span class="clutch-title">MEET&nbsp;&nbsp; OUR&nbsp;&nbsp; CAPTAINS</span>
@@ -32,9 +32,9 @@
         </div>
         <div class="col-xl-12 clutch-header">
             <div class="row">
+                <div class="clutch-title ">CLUTCH&nbsp;&nbsp; 2024&nbsp;&nbsp; ROSTER</div>
                 <div class="col-xl-4">
-                    <div class="card-header clutch-title gradient-clutch gradient-clutch-custom">CAPTAINS</div>
-                    <table class="table table-hover table-borderless" style="margin-top:50px">
+                    <table class="table table-hover table-borderless" >
                         <tbody>
                             <tr *ngFor="let player of captains " class="tr-captains">
                                 <td class="text-center"><i class="fa-solid fa-c me-2"></i>
@@ -51,8 +51,7 @@
                     </table>
                 </div>
                 <div class="col-xl-4">
-                    <div class="card-header clutch-title gradient-clutch gradient-clutch-custom">VETERANS</div>
-                    <table class="table table-hoverable table-hover" style="margin-top:50px">
+                    <table class="table table-hoverable table-hover" >
                         <tbody>
                             <tr *ngFor="let player of veterans " class="tr-veterans">
                                 <td class="text-center">
@@ -69,8 +68,7 @@
                     </table>
                 </div>
                 <div class="col-xl-4">
-                    <div class="card-header clutch-title gradient-clutch gradient-clutch-custom">NEWBIES</div>
-                    <table class="table table-hoverable table-hover" style="margin-top:50px">
+                    <table class="table table-hoverable table-hover" >
                         <tbody>
                             <tr *ngFor="let player of incomers " class="tr-incomers">
                                 <td class="text-center">
