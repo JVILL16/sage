@@ -13,7 +13,7 @@
             </div>
         </div>
     </div>
-    <table class="table small-table table-responsive table-data table-bordered">
+    <table class="table table-sm table-responsive table-data table-bordered">
         <thead class="table-dark">
             <tr class="text-center" >
                 <th *ngFor="let dayName of dayNames">{{dayName}}</th>
@@ -21,11 +21,23 @@
         </thead>
         <tbody>
             <tr *ngFor="let week of daysInMonth()">
-                <td style="position: relative;padding: 50px;"[ngClass]="{'today': day?.Current, 'notInMonth': day==null}" *ngFor="let day of week">
+                <td class="day-entry" [ngClass]="{'today': day?.Current, 'notInMonth': day==null}" *ngFor="let day of week">
                     
                     <div *ngIf="day" class="dayNum border-bottom border-end">
                         {{day?.Day}}
                     </div>
+                    <table class="small-table table">
+                        <tr>
+                            <td>
+                                <div class="calendar-alert">Practice @ Rice 9AM</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="calendar-alert">Practice @ Rice 9AM</div>
+                            </td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
         </tbody>
