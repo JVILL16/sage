@@ -34,7 +34,18 @@
           <a class="nav-link  text-nowrap" data-bs-toggle="collapse" data-bs-target="#navbarText"
           aria-controls="navbarText" aria-expanded="false" routerLink="/">Home</a>
         </li>
-
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Paths
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" aria-expanded="false" routerLink="/"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a class="dropdown-item" aria-expanded="false" routerLink="/clutch"><i class="fa-solid fa-paw"></i> Clutch</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" aria-expanded="false" routerLink="/"><i class="fa-regular fa-futbol"></i> Kickball</a></li>
+            <li><a class="dropdown-item" aria-expanded="false" routerLink="/"><i class="fa-solid fa-cart-shopping"></i> Grocery</a></li>
+          </ul>
+        </li>
         <li class="nav-item">
           <a class="nav-link  text-nowrap" data-bs-toggle="collapse" data-bs-target="#navbarText"
           aria-controls="navbarText" aria-expanded="false" routerLink="/about-us">About Us</a>
@@ -49,7 +60,7 @@
           <a class="nav-link  text-nowrap" data-bs-toggle="collapse" data-bs-target="#navbarText"
           aria-controls="navbarText" aria-expanded="false" routerLink="/register">Shop</a>
         </li> -->
-
+        
      
         <li *ngIf="!showUsersTab" class="nav-item">
           <a class="nav-link text-nowrap" data-bs-toggle="collapse" data-bs-target="#navbarText"
