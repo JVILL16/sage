@@ -1,13 +1,18 @@
-<div *ngIf="section != 'admin'" class="container-fluid "  >
+<div class="container-fluid "  >
     <div class="row">
         <div class="col-xl-12">
-            <h3>Welcome to the {{section | titlecase}} Page</h3>
-
+            
                 <div *ngIf="section == 'clutch'">
-                    <p>Here is the link to go to Clucth Page
-                        <a routerLink="/clutch">Clutch</a>
-                    </p>
-
+                    
+                    <div class="card">
+                        <div class="card-header gradient-clutch">
+                            PRACTICE
+                        </div>
+                        <div class="card-body">
+                            <p>Here is the link to go to Clutch Page</p>
+                            <a routerLink="/clutch">Clutch</a>
+                        </div>
+                    </div>
                 </div>
                 <div *ngIf="section == 'settings'">
                     <div class="edit-header">
@@ -18,9 +23,10 @@
                       </div>
 
                 </div>
+                <div *ngIf="section == 'admin'">
+                    <admin-page></admin-page>
+                </div>
         </div>
     </div>
 </div>
-<div *ngIf="section == 'admin'">
-    <admin-page></admin-page>
-</div>
+

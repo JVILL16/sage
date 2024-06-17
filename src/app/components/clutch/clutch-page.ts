@@ -58,15 +58,7 @@ export class ClutchComponent implements OnInit {
         console.error('Error fetching Google Sheets data:', error);
       }
     );;
-    this.clutch.getClutchData('practice').subscribe(
-      (data:any) => {
-        this.attendence = data;
-        console.log(this.attendence); // Handle the data as needed
-      },
-      (error:any) => {
-        console.error('Error fetching Google Sheets data:', error);
-      }
-    );;
+    
   }
 
 
