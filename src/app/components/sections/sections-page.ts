@@ -14,7 +14,7 @@ import { AlertService } from 'src/app/service/alert.service';
     styleUrls: ['./sections-page.css']
   })
 
-export class SectionsComponent implements OnInit, OnDestroy {
+export class SectionsComponent implements OnInit{
    
   
     section: any;
@@ -45,6 +45,10 @@ export class SectionsComponent implements OnInit, OnDestroy {
         console.log(this.section);
       if(this.section == 'clutch')
         this.clutchSection();
+      else if(this.section == 'admin')
+        this.adminSection();
+      else if(this.section == 'settings')
+        this.settingsSection();
       else
         this.alert.error("This section is unavailable or under maintaince, please select a different section", this.section);
       })
@@ -52,9 +56,7 @@ export class SectionsComponent implements OnInit, OnDestroy {
       
     }
 
-    ngOnDestroy(){
-      this.sectionRoute.unsubscribe();
-    }
+    
     clutchSection() : void {
 
       this.clutch.getClutchData('practice').subscribe(
@@ -67,5 +69,11 @@ export class SectionsComponent implements OnInit, OnDestroy {
         }
       );;
     }
-    
+
+    settingsSection() : void{
+      console.log(this.section);
+    }
+    adminSection(): void{
+      console.log(this.section);
+    }
 }

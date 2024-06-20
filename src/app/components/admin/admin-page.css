@@ -16,7 +16,7 @@
    z-index: 1; /* Ensure the sticky columns are above other columns */
   }
 .card{
-    background: none;
+    background: #343a40 !important;
 }
 .title-cap {
     font-family: Daily-Q;

@@ -3,3 +3,8 @@
     margin-top: 15px;
     margin-bottom: 15px;
   }
+
+  .card{
+    background: #343a40 !important;
+    color:white;
+}
