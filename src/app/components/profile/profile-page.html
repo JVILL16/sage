@@ -95,9 +95,9 @@
       <nav>
         <div class="nav nav-pills" id="nav-tab" role="tablist">
           <button *ngFor="let section of sections" class="nav-link tab-bg-{{section}}"
-            [ngClass]="{ 'active': section=='overview' }" id="nav-{{section}}-tab" data-bs-toggle="tab"
+            [ngClass]="{ 'active': section==activeTab }" id="nav-{{section}}-tab" data-bs-toggle="tab"
             routerLink="detail/{{section}}" [attr.data-bs-target]="'#nav-'+ section" type="button" role="tab"
-            [attr.aria-controls]="'nav-'+section" attr.aria-selected="{{section=='overview' ? true: false}}">
+            [attr.aria-controls]="'nav-'+section" attr.aria-selected="{{section==activeTab ? true: false}}" (click)="setActiveTab(section)">
             <i *ngIf="section=='settings'" class="fa-solid fa-gear"></i>
             {{section | titlecase}}
           </button>
@@ -105,7 +105,7 @@
         </div>
       </nav>
       <div class="tab-content" id="nav-tabContent">
-        <div *ngFor="let section of sections" class="tab-pane fade" [ngClass]="{ 'active show': section=='overview' }"
+        <div *ngFor="let section of sections" class="tab-pane fade" [ngClass]="{ 'active show': section==activeTab }"
           id="nav-{{section}}" role="tabpanel" [attr.aria-labelledby]="'nav-'+section+'-tab'">
           <!-- <div class="card border-secondary shadow-lg tab-bg-{{section}}">
             <div class="card-body">

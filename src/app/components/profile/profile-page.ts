@@ -61,6 +61,11 @@ export class ProfileComponent implements OnInit{
 
   section_object : any = {};
 
+  activeTab: any;
+  private readonly storageKey = 'activePill';
+
+  
+
   constructor(private api: ApiService,
     private auth: AuthenticationService,
     private router: Router,
@@ -74,8 +79,21 @@ export class ProfileComponent implements OnInit{
     //   this.edit_screen = false;
     //   this.save_changes = false;
     // });
+    const savedTab = this.getActiveTab();
+    this.activeTab = savedTab ? savedTab : 'overview';
+    console.log(this.activeTab);
     
   }
+
+  setActiveTab(tabId: string): void {
+    sessionStorage.setItem(this.storageKey, tabId);
+    this.activeTab = tabId;
+  }
+
+  getActiveTab(): string | null {
+    return sessionStorage.getItem(this.storageKey);
+  }
+
   undoChanges(og_user: User) : void{
     this.edit_screen=!this.edit_screen
     if(this.edit_screen){ this.account = { ...og_user};this.save_changes=false; }

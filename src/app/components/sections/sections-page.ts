@@ -3,7 +3,7 @@ import { User } from '../users/user';
 import { AuthenticationService } from '../../service/auth.service';
 import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/service/service.component';
-import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { ActivatedRoute, Router, ParamMap, NavigationStart } from '@angular/router';
 import { ClutchService } from 'src/app/service/helpers/clutch.service';
 import { AlertService } from 'src/app/service/alert.service';
 
@@ -32,7 +32,14 @@ export class SectionsComponent implements OnInit, OnDestroy {
     
 
     ngOnInit() {
-     
+      // this.router.events.subscribe(event => {
+      //   if (event instanceof NavigationStart) {
+      //     if (event.navigationTrigger === 'popstate') {
+      //       console.log(event);
+      //       this.section = 'overview';
+      //     }
+      //   }
+      // });
       this.sectionRoute = this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
         this.section = params.get('section'); 
         console.log(this.section);
