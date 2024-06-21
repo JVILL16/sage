@@ -5,43 +5,58 @@
 .small-table th,
 .small-table td {
     font-size: 0.7rem; 
-    padding: 1rem; /* Reduce padding */
+    /* padding: 1rem;  */
 }
-.day-cell {
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: center;
-  }
+
   .today{
-    background: rgb(141, 194, 141);
+    background-color: rgb(141, 194, 141) !important;
   }
   .notInMonth{
-    background: rgb(138, 138, 138);
+    background-color: rgb(138, 138, 138) !important;
     
   }
-  .dayNum{
-    position:absolute;
-    top: 0;
-    left: 0;
-    padding:5px;
-    /* border: 2px solid rgb(187, 187, 187); */
-  }
-.calendar-alert{
-  border-radius: 5px;
-  background: linear-gradient(#7bc4ff,#2fabfd);
-/*   
-  transform: translateX(-45%); */
-  margin-top: 5px 0;
-  font-size: 0.5rem; 
-    padding: 2px;
-  position: absolute;
-  text-align: center;
-}
-.day-entry{
-  position: relative;
+
+
+/* .calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  width: 80%;
+  max-width: 1200px;
+} */
+
+.day-box {
+  background-color: #fff;
+  border: 1px solid #ddd;
   padding: 5px;
-  height: 120px;
-  margin:5px;
+  /* border-radius: 5px; */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.date {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.events {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.event-tab {
+  background-color: #007BFF;
+  color: #fff;
+  padding: 5px;
+  border-radius: 3px;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.event-tab:hover {
+  background-color: #0056b3;
 }
 @media only screen and (min-width: 320px) {
     .cal-div{

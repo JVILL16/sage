@@ -3,17 +3,45 @@
     <div class="text-center">
         <div class="col-xl-12 row">
             <div class="col-xl-4">
-                <button type="button" class="btn btn-primary btn-sm">Previous</button>
+                <button type="button" class="btn btn-primary btn-sm" (click)="goToPreviousMonth()">Previous</button>
             </div>
             <div class="col-xl-4 text-center">
                 <h3>{{getCurrentMonth()}} {{getCurrentYear()}}</h3>
             </div>
             <div class="col-xl-4">
-                <button type="button" class="btn btn-primary btn-sm">Next</button>
+                <button type="button" class="btn btn-primary btn-sm" (click)="goToNextMonth()">Next</button>
             </div>
         </div>
     </div>
-    <table class="table table-sm table-responsive table-data table-bordered">
+   
+    <table class="small-table table table-responsive">
+        <thead class="table-dark">
+            <tr class="text-center" >
+                <th *ngFor="let dayName of dayNames">{{dayName}}</th>
+           </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let week of daysInMonth()" >
+                <td class="day-box" [ngClass]="{'today': day?.Current, 'notInMonth': day==null}" *ngFor="let day of week">
+                    
+                    <div *ngIf="day" >
+                        <div class="date">
+                            {{day?.Day}}
+                        </div>
+                        <div class="events">
+                            <div class="event-tab">Event 1</div>
+                            <div class="event-tab">Event 2</div>
+                            <div class="event-tab">Event 3</div>
+                        </div>
+                    </div>
+                    
+                </td>
+            </tr>
+        </tbody>
+        
+        
+    </table>
+    <!-- <table class="table table-sm table-responsive table-data table-bordered">
         <thead class="table-dark">
             <tr class="text-center" >
                 <th *ngFor="let dayName of dayNames">{{dayName}}</th>
@@ -43,5 +71,5 @@
         </tbody>
         
         
-    </table>
+    </table> -->
 </div>

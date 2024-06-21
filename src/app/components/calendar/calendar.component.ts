@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/service/service.component';
 import { User } from '../users/user';
 import { ClutchService } from 'src/app/service/helpers/clutch.service';
@@ -11,10 +11,30 @@ import { ClutchService } from 'src/app/service/helpers/clutch.service';
 
 export class CalendarComponent {
 
+  @Input() collection: any = [];
+
+
   currentDate = new Date();
   dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   numWeeks : any;
 
+  newCollection = [
+    {
+      Name:'Practices @ 9AM-12PM',
+      Dates: ["5/25/2024","6/1/2024","6/8/2024","6/22/2024","7/6/2024"],
+      Location: 'Houston, TX - Rice Field 6'
+    },
+    {
+      Name:'Mini Camp',
+      Dates: ["6/15/2024","6/16/2024","6/29/2024","6/30/2024"],
+      Location: 'Houston, TX - Rice Field 6' 
+    },
+    {
+      Name:'Texas Two Finger',
+      Dates: ["6/29/2024","6/30/2024"],
+      Location: 'Dallas, TX'
+    }
+  ];
 
   constructor() { }
   getCurrentMonth() {
@@ -23,6 +43,14 @@ export class CalendarComponent {
 
   getCurrentYear() {
     return this.currentDate.getFullYear();
+  }
+
+  goToPreviousMonth() {
+    this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() - 1, 1);
+  }
+
+  goToNextMonth() {
+    this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1, 1);
   }
 
   daysInMonth(){
@@ -41,7 +69,7 @@ export class CalendarComponent {
 
     // Add days from the current month
     for (let i = 1; i <= numDaysInMonth; i++) {
-      if(i === this.currentDate.getDate()){
+      if((i === new Date().getDate())&&(new Date().getMonth() === month)){
         days.push(
           {
             Date: new Date(year, month, i), 
