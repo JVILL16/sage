@@ -1,5 +1,5 @@
 
-<div class="table-responsive" style="margin:0 auto;max-width:800px">
+<div class="container-fluid table-responsive" style="margin:0 auto;max-width:800px">
     <div class="text-center">
         <div class="col-xl-12 row">
             <div class="col-xl-4">
@@ -28,18 +28,14 @@
                         <div class="date">
                             {{day?.Day}}
                         </div>
-                        <div class="events">
-                            <div class="event-tab">Event 1</div>
-                            <div class="event-tab">Event 2</div>
-                            <div class="event-tab">Event 3</div>
+                        <div class="events" *ngFor="let status of day?.Status">
+                            <div class="event-tab">{{status?.Name}}</div>
                         </div>
                     </div>
                     
                 </td>
             </tr>
         </tbody>
-        
-        
     </table>
     <!-- <table class="table table-sm table-responsive table-data table-bordered">
         <thead class="table-dark">

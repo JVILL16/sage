@@ -17,6 +17,7 @@ export class CalendarComponent {
   currentDate = new Date();
   dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   numWeeks : any;
+  dayObject : any;
 
   newCollection = [
     {
@@ -53,6 +54,16 @@ export class CalendarComponent {
     this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1, 1);
   }
 
+  eventsInMonth(day:any){
+    for(let i = 0; i < this.newCollection.length; i++){
+      for(let j = 0; j < this.newCollection[i].Dates.length;j++ ){
+        //getTime is able to compare the string dates
+        if(day?.Date.getTime() === new Date(this.newCollection[i].Dates[j]).getTime())
+          day?.Status.push({Name:this.newCollection[i].Name, Location:this.newCollection[i].Location});
+      }
+    }
+  }
+
   daysInMonth(){
     const days = [];
     const weeks = [];
@@ -66,29 +77,24 @@ export class CalendarComponent {
     for (let i = firstDayOfMonth - 1; i >= 0; i--) {
       days.push(null);
     }
-
     // Add days from the current month
     for (let i = 1; i <= numDaysInMonth; i++) {
-      if((i === new Date().getDate())&&(new Date().getMonth() === month)){
-        days.push(
-          {
-            Date: new Date(year, month, i), 
-            Day: i,
-            Status: [],
-            Current: true
-          });
-      }else{
-        days.push(
-          {
-            Date: new Date(year, month, i), 
-            Day: i,
-            Status: [],
-            Current: false
-          });
-      }
-        
-    }
+      //Create day object 
+      this.dayObject = {
+        Date: new Date(year, month, i),
+        Day: i,
+        Status: [],
+        Current: false
+      };
+      days.push(this.dayObject);
 
+      //logic for seeing current day
+      if ((i === new Date().getDate()) && (new Date().getMonth() === month))
+        days[i].Current = true;
+      
+      //Adding events into the days array
+      this.eventsInMonth(days[i]);
+    }
     // Ensure total days displayed is a multiple of 7 (for a complete week)
     const totalDaysDisplayed = days.length;
     const remainingDays = 7 - (totalDaysDisplayed % 7);
