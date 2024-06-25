@@ -9,10 +9,12 @@ export class ClutchService {
 
   constructor(private httpClient: HttpClient) { }
 
+  //google sheets api
   public getClutchData(view:string): any {
     return this.httpClient.get<any>(`${environment.serverUrl}/auth/gsheets/read?view=${view}`);
   }
 
+ 
 
 
 }

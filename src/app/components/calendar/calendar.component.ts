@@ -11,7 +11,7 @@ import { ClutchService } from 'src/app/service/helpers/clutch.service';
 
 export class CalendarComponent {
 
-  @Input() collection: any = [];
+  @Input() collection?: any = [];
 
 
   currentDate = new Date();
@@ -27,7 +27,7 @@ export class CalendarComponent {
     },
     {
       Name:'Mini Camp',
-      Dates: ["6/15/2024","6/16/2024","6/29/2024","6/30/2024"],
+      Dates: ["6/15/2024","6/16/2024"],
       Location: 'Houston, TX - Rice Field 6' 
     },
     {
@@ -55,11 +55,12 @@ export class CalendarComponent {
   }
 
   eventsInMonth(day:any){
-    for(let i = 0; i < this.newCollection.length; i++){
-      for(let j = 0; j < this.newCollection[i].Dates.length;j++ ){
+    for(let i = 0; i < this.collection?.length; i++){
+      for(let j = 0; j < this.collection[i]?.dates.length;j++ ){
         //getTime is able to compare the string dates
-        if(day?.Date.getTime() === new Date(this.newCollection[i].Dates[j]).getTime())
-          day?.Status.push({Name:this.newCollection[i].Name, Location:this.newCollection[i].Location});
+        if(day?.Date.getTime() === new Date(this.collection[i].dates[j]).getTime())
+          day?.Status.push({Name:this.collection[i].name, Location:this.collection[i].location});
+        
       }
     }
   }
@@ -87,13 +88,13 @@ export class CalendarComponent {
         Current: false
       };
       days.push(this.dayObject);
-
-      //logic for seeing current day
-      if ((i === new Date().getDate()) && (new Date().getMonth() === month))
-        days[i].Current = true;
       
+      //logic for seeing current day
+      if ((days[i]?.Day === new Date().getDate()) && (new Date().getMonth() === month))
+        days[i].Current = true;
+      //console.log(days[i]?.Date);
       //Adding events into the days array
-      this.eventsInMonth(days[i]);
+      
     }
     // Ensure total days displayed is a multiple of 7 (for a complete week)
     const totalDaysDisplayed = days.length;
@@ -103,6 +104,11 @@ export class CalendarComponent {
         days.push(null);
       }
     }
+
+    for(let i = 0;i < days.length-1;i++){
+      this.eventsInMonth(days[i]);
+    }
+
     this.numWeeks = Math.ceil(days.length / 7);
 
     // Populate the numWeeks array

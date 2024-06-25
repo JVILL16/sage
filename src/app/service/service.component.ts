@@ -76,6 +76,11 @@ export class ApiService {
   }
 
 
+   //events api
+   public getEventsData(profile:any){
+    return this.httpClient.get<any>(`${environment.serverUrl}/events/e_read?profile=${profile}`);
+  }
+
 
 /**
  * 

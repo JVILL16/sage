@@ -20,9 +20,11 @@ export class SectionsComponent implements OnInit{
     section: any;
     sectionRoute: any;
     clutch_attendence : any;
+    clutch_events : any;
 
     constructor(private auth: AuthenticationService,
       private activatedRoute: ActivatedRoute, 
+      private api: ApiService,
       private router: Router,
       private alert: AlertService,
     private clutch: ClutchService) {
@@ -66,6 +68,15 @@ export class SectionsComponent implements OnInit{
         },
         (error:any) => {
           this.alert.error('Error fetching Google Sheets data:', error);
+        }
+      );;
+      this.api.getEventsData('179925').subscribe(
+        (data:any) => {
+          this.clutch_events = data;
+          console.log(this.clutch_events); // Handle the data as needed
+        },
+        (error:any) => {
+          this.alert.error('Error fetching Events for Clutch:', error.error);
         }
       );;
     }
