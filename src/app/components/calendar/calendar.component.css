@@ -52,6 +52,7 @@
 .event-tab {
   background-color: #007BFF;
   color: #fff;
+  margin:2px;
   padding: 5px;
   border-radius: 3px;
   font-size: 0.9em;

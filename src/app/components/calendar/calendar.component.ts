@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/service/service.component';
 import { User } from '../users/user';
 import { ClutchService } from 'src/app/service/helpers/clutch.service';
+import { ModalsService } from 'src/app/service/modals.service';
 
 @Component({
   selector: 'calendar',
@@ -16,28 +17,31 @@ export class CalendarComponent {
 
   currentDate = new Date();
   dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  numWeeks : any;
-  dayObject : any;
+  numWeeks: any;
+  dayObject: any;
 
-  newCollection = [
+  exCollection = [
     {
-      Name:'Practices @ 9AM-12PM',
-      Dates: ["5/25/2024","6/1/2024","6/8/2024","6/22/2024","7/6/2024"],
-      Location: 'Houston, TX - Rice Field 6'
+      Name: 'Practices @ 9AM-12PM',
+      Dates: ["5/25/2024", "6/1/2024", "6/8/2024", "6/22/2024", "7/6/2024"],
+      Location: 'Houston, TX - Rice Field 6',
+      Description: 'Example 1'
     },
     {
-      Name:'Mini Camp',
-      Dates: ["6/15/2024","6/16/2024"],
-      Location: 'Houston, TX - Rice Field 6' 
+      Name: 'Mini Camp',
+      Dates: ["6/15/2024", "6/16/2024"],
+      Location: 'Houston, TX - Rice Field 6',
+      Description: 'Example 2'
     },
     {
-      Name:'Texas Two Finger',
-      Dates: ["6/29/2024","6/30/2024"],
-      Location: 'Dallas, TX'
+      Name: 'Texas Two Finger',
+      Dates: ["6/29/2024", "6/30/2024"],
+      Location: 'Dallas, TX',
+      Description: 'Example 3'
     }
   ];
 
-  constructor() { }
+  constructor(private modalService: ModalsService) { }
   getCurrentMonth() {
     return this.currentDate.toLocaleString('default', { month: 'long' });
   }
@@ -54,18 +58,21 @@ export class CalendarComponent {
     this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1, 1);
   }
 
-  eventsInMonth(day:any){
-    for(let i = 0; i < this.collection?.length; i++){
-      for(let j = 0; j < this.collection[i]?.dates.length;j++ ){
+  eventsInMonth(day: any) {
+    //logic for seeing current day
+    if ((day?.Day === new Date().getDate()) && (new Date().getMonth() === this.currentDate.getMonth()) && (new Date().getFullYear() === this.currentDate.getFullYear()))
+      day.Current = true;
+    for (let i = 0; i < this.collection?.length; i++) {
+      for (let j = 0; j < this.collection[i]?.dates.length; j++) {
         //getTime is able to compare the string dates
-        if(day?.Date.getTime() === new Date(this.collection[i].dates[j]).getTime())
-          day?.Status.push({Name:this.collection[i].name, Location:this.collection[i].location});
-        
+        if (day?.Date.getTime() === new Date(this.collection[i].dates[j]).getTime())
+          day?.Status.push({ Name: this.collection[i].name, Location: this.collection[i].location, Description: this.collection[i].description });
+
       }
     }
   }
 
-  daysInMonth(){
+  daysInMonth() {
     const days = [];
     const weeks = [];
     const year = this.currentDate.getFullYear();
@@ -88,13 +95,9 @@ export class CalendarComponent {
         Current: false
       };
       days.push(this.dayObject);
-      
-      //logic for seeing current day
-      if ((days[i]?.Day === new Date().getDate()) && (new Date().getMonth() === month))
-        days[i].Current = true;
       //console.log(days[i]?.Date);
       //Adding events into the days array
-      
+
     }
     // Ensure total days displayed is a multiple of 7 (for a complete week)
     const totalDaysDisplayed = days.length;
@@ -105,10 +108,9 @@ export class CalendarComponent {
       }
     }
 
-    for(let i = 0;i < days.length-1;i++){
+    for (let i = 0; i < days.length - 1; i++) {
       this.eventsInMonth(days[i]);
     }
-
     this.numWeeks = Math.ceil(days.length / 7);
 
     // Populate the numWeeks array
@@ -120,5 +122,9 @@ export class CalendarComponent {
     return weeks;
   }
 
+  eventDetail(status: any, day:any) {
+    status['Date'] = day.Date;
+    this.modalService.getObject(status);
+  }
 
 }

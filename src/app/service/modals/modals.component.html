@@ -1,4 +1,4 @@
-<!-- Modal -->
+<!------------------------------------------------------ Modal : Admin Page ; Remove a Role ------------------------------------------------------>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -19,6 +19,7 @@
     </div>
   </div>
 </div>
+<!------------------------------------------------------ Modal : Admin Page ; Adding a Role ------------------------------------------------------>
 <div class="modal fade" id="addRoleModal" tabindex="-1" role="dialog" aria-labelledby="addRoleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -44,8 +45,60 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" class="btn btn-success" (click)="auth_AddRoleModal();">Save</button>
-        <!-- (click)="auth_AddRole(rmv_role_id)" -->
       </div>
+    </div>
+  </div>
+</div>
+<!------------------------------------------------------ Modal : Calendar Component ; Looking at an event -------------------------------------->
+<div class="modal fade" id="eventDetailModal" tabindex="-1" role="dialog" aria-labelledby="eventDetailModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header gradient-main">
+        <h5 class="modal-title" id="eventDetailModalLabel">Event Details</h5>
+      </div>
+      <div class="modal-body">
+
+        <div class="table-responsive" style="margin:0 auto; max-width:500px;">
+
+          <table class="table table-data table-borderedless">
+            <tr>
+              <th>Date:</th>
+              <td>{{component_object.Date | date: 'shortDate'}}</td>
+            </tr>
+            <tr>
+              <th>Event:</th>
+              <td>{{component_object.Name}}</td>
+            </tr>
+            <tr>
+              <th>Location:</th>
+              <td>{{component_object.Location}}</td>
+            </tr>
+            <tr>
+              <th>Description:</th>
+              <td>{{component_object.Description}}</td>
+            </tr>
+            <tr>
+              <th>Are you attending to {{component_object.Name}}? :</th>
+              <td><div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                  Yeah I'm attending!
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                  Sorry, I can't make it.
+                </label>
+              </div></td>
+            </tr>
+          </table>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
     </div>
   </div>
 </div>

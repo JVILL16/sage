@@ -57,6 +57,7 @@ export class ProfileComponent implements OnInit{
   save_changes : boolean = false;
   sections : any = [];
   section_admin : boolean = false;
+  section_c_admin : boolean = false;
 
 
   section_object : any = {};
@@ -167,6 +168,8 @@ export class ProfileComponent implements OnInit{
         this.sections.unshift( 'overview');
       else if(role.profile === 'admin')
         this.section_admin = true;
+      else if(role.profile === 'c_admin')
+        this.section_c_admin = true;
       else
         this.sections.push( role.profile );
         
@@ -185,11 +188,11 @@ export class ProfileComponent implements OnInit{
     this.api.updateUser(this.account).subscribe({
       next: (response) => {
         //console.log('User record updated:\n', response);
-        this.alertService.success('The profile has been updated!');
+        this.alertService.success('The profile has been updated!\n'+ response);
       },
       error: (error) => {
         //console.error('Error updated record:\n', error);
-        this.alertService.error('The was an error processing your updated profile.');
+        this.alertService.error('The was an error processing your updated profile.\n'+ error.error);
       }
     });
     this.api.uploadImage(this.pfp_new, this.account?.account_id).subscribe({

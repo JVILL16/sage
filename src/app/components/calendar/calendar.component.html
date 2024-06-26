@@ -29,7 +29,7 @@
                             {{day?.Day}}
                         </div>
                         <div class="events" *ngFor="let status of day?.Status">
-                            <div class="event-tab">{{status?.Name}}</div>
+                            <div class="event-tab" data-bs-toggle="modal" data-bs-target="#eventDetailModal" title="{{status?.Name}}" (click)="eventDetail(status,day)">{{ status?.Name | slice:0:15 }}{{status?.Name.length > 15 ? '...' : ''}}</div>
                         </div>
                     </div>
                     
