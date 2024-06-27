@@ -4,3 +4,8 @@
 .modal-footer{
     background: #343a40 !important;
 } */
+ .modal-table {
+    margin:0 auto; 
+    max-width:500px;
+ }
+ 

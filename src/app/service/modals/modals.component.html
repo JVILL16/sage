@@ -59,39 +59,32 @@
       </div>
       <div class="modal-body">
 
-        <div class="table-responsive" style="margin:0 auto; max-width:500px;">
+        <div class="table-responsive modal-table" >
 
           <table class="table table-data table-borderedless">
             <tr>
               <th>Date:</th>
-              <td>{{component_object.Date | date: 'shortDate'}}</td>
+              <td>{{component_object.Status?.Date | date: 'shortDate'}}</td>
             </tr>
             <tr>
               <th>Event:</th>
-              <td>{{component_object.Name}}</td>
+              <td>{{component_object.Status?.Name}}</td>
             </tr>
             <tr>
               <th>Location:</th>
-              <td>{{component_object.Location}}</td>
+              <td>{{component_object.Status?.Location}}</td>
             </tr>
             <tr>
               <th>Description:</th>
-              <td>{{component_object.Description}}</td>
+              <td>{{component_object.Status?.Description}}</td>
             </tr>
             <tr>
-              <th>Are you attending to {{component_object.Name}}? :</th>
-              <td><div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                <label class="form-check-label" for="flexRadioDefault1">
-                  Yeah I'm attending!
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                <label class="form-check-label" for="flexRadioDefault2">
-                  Sorry, I can't make it.
-                </label>
-              </div></td>
+              <th>Are you attending to {{component_object.Status?.Name}}? :</th>
+              <td><input class="form-check-input me-2" [(ngModel)]="attending" type="checkbox"
+                id="AttendCheck">
+            <label class="form-check-label" for="AttendCheck">
+                {{attending ? 'Yeah I\'m attending!':'Sorry I can\'t make it.'}}
+            </label></td>
             </tr>
           </table>
         </div>
@@ -99,6 +92,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" (click)="clutch_EventAttendModal(component_object.Status);">Submit</button>
     </div>
   </div>
 </div>

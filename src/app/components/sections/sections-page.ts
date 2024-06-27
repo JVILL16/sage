@@ -16,11 +16,14 @@ import { AlertService } from 'src/app/service/alert.service';
 
 export class SectionsComponent implements OnInit{
    
-  
+    currentUser: any;
+
     section: any;
     sectionRoute: any;
-    clutch_attendence : any;
+    
+    clutch_attend:any;
     clutch_events : any;
+    clutch_name:any;
 
     constructor(private auth: AuthenticationService,
       private activatedRoute: ActivatedRoute, 
@@ -28,7 +31,8 @@ export class SectionsComponent implements OnInit{
       private router: Router,
       private alert: AlertService,
     private clutch: ClutchService) {
-       
+      this.currentUser = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
+      this.clutch_name = this.currentUser[0].first_name + " " + this.currentUser[0].last_name;
     }
 
     
@@ -61,15 +65,17 @@ export class SectionsComponent implements OnInit{
     
     clutchSection() : void {
 
-      this.clutch.getClutchData('practice').subscribe(
+
+      this.clutch.getClutchUserData('practice',this.clutch_name).subscribe(
         (data:any) => {
-          this.clutch_attendence = data;
-          console.log(this.clutch_attendence); // Handle the data as needed
+          this.clutch_attend = data[0];
+          console.log(this.clutch_attend); // Handle the data as needed
         },
         (error:any) => {
           this.alert.error('Error fetching Google Sheets data:', error);
         }
       );;
+      
       this.api.getEventsData('179925').subscribe(
         (data:any) => {
           this.clutch_events = data;

@@ -3,6 +3,7 @@ import { ApiService } from 'src/app/service/service.component';
 import { User } from '../users/user';
 import { ClutchService } from 'src/app/service/helpers/clutch.service';
 import { ModalsService } from 'src/app/service/modals.service';
+import { AlertService } from 'src/app/service/alert.service';
 
 @Component({
   selector: 'calendar',
@@ -12,8 +13,12 @@ import { ModalsService } from 'src/app/service/modals.service';
 
 export class CalendarComponent {
 
+  @Input() attend?: any = [];
   @Input() collection?: any = [];
 
+  currentUser:any;
+  clutch_name:any;
+  clutch_user_attend: any;
 
   currentDate = new Date();
   dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -41,7 +46,7 @@ export class CalendarComponent {
     }
   ];
 
-  constructor(private modalService: ModalsService) { }
+  constructor(private modalService: ModalsService, private clutch: ClutchService, private alert: AlertService) { }
   getCurrentMonth() {
     return this.currentDate.toLocaleString('default', { month: 'long' });
   }
@@ -124,7 +129,8 @@ export class CalendarComponent {
 
   eventDetail(status: any, day:any) {
     status['Date'] = day.Date;
-    this.modalService.getObject(status);
+    this.modalService.getObject({Status:status,User:this.attend.User,Attend:this.attend.Attendance});
   }
 
+  
 }
