@@ -41,12 +41,19 @@ export class ModalsComponent {
         });
     }
 
-    clutch_EventAttendModal(status_obj:any){
-        if(this.attending)
+    clutch_EventAttendModal(status_obj: any) {
+        if (this.attending)
             this.attend = "Yes";
         else
             this.attend = "No";
-        this.clutch.updateClutchEventData(status_obj.User,status_obj.Date,this.attend);
+        this.clutch.updateClutchEventData(status_obj.User, status_obj.Status.Date.toLocaleDateString(), this.attend).subscribe({
+            next(response: any) {
+                console.log(response);
+            },
+            error(error: any) {
+                console.log(error)
+            }
+        });
     }
 
     auth_RemoveRoleModal(id: number) {

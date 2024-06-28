@@ -129,7 +129,9 @@ export class CalendarComponent {
 
   eventDetail(status: any, day:any) {
     status['Date'] = day.Date;
-    this.modalService.getObject({Status:status,User:this.attend.User,Attend:this.attend.Attendance});
+    //this is where i stopped to check if attendance was submitted or not
+    let attendance = this.attend.Attendance.some((item:any)=> item.Date === day.Date.toLocaleDateString() && day.Status!== '');
+    this.modalService.getObject({Status:status,User:this.attend.User,Attend:attendance});
   }
 
   

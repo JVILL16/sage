@@ -78,7 +78,7 @@
               <th>Description:</th>
               <td>{{component_object.Status?.Description}}</td>
             </tr>
-            <tr>
+            <tr *ngIf="!component_object.Attend">
               <th>Are you attending to {{component_object.Status?.Name}}? :</th>
               <td><input class="form-check-input me-2" [(ngModel)]="attending" type="checkbox"
                 id="AttendCheck">
@@ -87,12 +87,13 @@
             </label></td>
             </tr>
           </table>
+          <div *ngIf="component_object.Attend" class="alert alert-warning alert-sm">You submitted your attendance already.</div>
         </div>
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success" (click)="clutch_EventAttendModal(component_object.Status);">Submit</button>
+        <button type="button" *ngIf="!component_object.Attend" class="btn btn-success" (click)="clutch_EventAttendModal(component_object);">Submit</button>
     </div>
   </div>
 </div>

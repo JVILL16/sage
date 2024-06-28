@@ -1,6 +1,7 @@
 import { Output, Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,10 @@ export class ClutchService {
   }
  
 
-  public updateClutchEventData(user:string,date:string,status:string){
-    return this.httpClient.post<any>(`${environment.serverUrl}/auth/gsheets/update`, { user,date,status});
+  public updateClutchEventData(user:string,date:string,status:string): Observable<any> {
+    return this.httpClient.post<any>(`${environment.serverUrl}/auth/gsheets/update`, { user,date,status}).pipe(map(attending => {
+      return attending;
+  }));
   }
 
 
