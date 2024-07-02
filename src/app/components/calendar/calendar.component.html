@@ -1,5 +1,5 @@
 
-<div class="container-fluid table-responsive" style="margin:0 auto;max-width:800px">
+<div *ngIf="!datepicker" class="container-fluid table-responsive" style="margin:0 auto;max-width:800px">
     <div class="text-center">
         <div class="col-xl-12 row">
             <div class="col-xl-4">
@@ -37,35 +37,41 @@
             </tr>
         </tbody>
     </table>
-    <!-- <table class="table table-sm table-responsive table-data table-bordered">
+</div>
+
+<div *ngIf="datepicker" class="container-fluid table-responsive" style="margin:0 auto;max-width:280px">
+    <div class="text-center">
+        <div class="col-xl-12 row">
+            <div class="col-xl-4">
+                <button type="button" class="btn btn-primary btn-sm" (click)="goToPreviousMonth()">Previous</button>
+            </div>
+            <div class="col-xl-4 text-center">
+                <h3>{{getCurrentMonth()}} {{getCurrentYear()}}</h3>
+            </div>
+            <div class="col-xl-4">
+                <button type="button" class="btn btn-primary btn-sm" (click)="goToNextMonth()">Next</button>
+            </div>
+        </div>
+    </div>
+   
+    <table class="small-table table table-responsive">
         <thead class="table-dark">
             <tr class="text-center" >
                 <th *ngFor="let dayName of dayNames">{{dayName}}</th>
            </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let week of daysInMonth()">
-                <td class="day-entry" [ngClass]="{'today': day?.Current, 'notInMonth': day==null}" *ngFor="let day of week">
+            <tr *ngFor="let week of daysInMonth()" >
+                <td class="day-box-dp" [ngClass]="{'today': day?.Current, 'notInMonth': day==null}" *ngFor="let day of week">
                     
-                    <div *ngIf="day" class="dayNum border-bottom border-end">
-                        {{day?.Day}}
+                    <div *ngIf="day" >
+                        <div class="date">
+                            {{day?.Day}}
+                        </div>
                     </div>
-                    <table class="small-table table">
-                        <tr>
-                            <td>
-                                <div class="calendar-alert">Practice @ Rice 9AM</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="calendar-alert">Practice @ Rice 9AM</div>
-                            </td>
-                        </tr>
-                    </table>
+                    
                 </td>
             </tr>
         </tbody>
-        
-        
-    </table> -->
+    </table>
 </div>

@@ -9,3 +9,7 @@
     max-width:500px;
  }
  
+ .modal-table table tr th {
+    width:150px !important;
+ }
+ 

@@ -1,7 +1,7 @@
 <!------------------------------------------------------ Modal : Admin Page ; Remove a Role ------------------------------------------------------>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog-centered modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Deleting a Role</h5>
@@ -14,7 +14,8 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger" (click)="auth_RemoveRoleModal(component_object.profile_id);">Delete</button>
+        <button type="button" class="btn btn-danger"
+          (click)="auth_RemoveRoleModal(component_object.profile_id);">Delete</button>
       </div>
     </div>
   </div>
@@ -22,7 +23,7 @@
 <!------------------------------------------------------ Modal : Admin Page ; Adding a Role ------------------------------------------------------>
 <div class="modal fade" id="addRoleModal" tabindex="-1" role="dialog" aria-labelledby="addRoleModalLabel"
   aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog-centered modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="addRoleModalLabel">Select the Following Roles:</h5>
@@ -52,48 +53,62 @@
 <!------------------------------------------------------ Modal : Calendar Component ; Looking at an event -------------------------------------->
 <div class="modal fade" id="eventDetailModal" tabindex="-1" role="dialog" aria-labelledby="eventDetailModalLabel"
   aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header gradient-main">
         <h5 class="modal-title" id="eventDetailModalLabel">Event Details</h5>
       </div>
       <div class="modal-body">
 
-        <div class="table-responsive modal-table" >
+        <div class=" container-fluid table-responsive modal-table">
 
-          <table class="table table-data table-borderedless">
-            <tr>
-              <th>Date:</th>
-              <td>{{component_object.Status?.Date | date: 'shortDate'}}</td>
-            </tr>
-            <tr>
-              <th>Event:</th>
-              <td>{{component_object.Status?.Name}}</td>
-            </tr>
-            <tr>
-              <th>Location:</th>
-              <td>{{component_object.Status?.Location}}</td>
-            </tr>
-            <tr>
-              <th>Description:</th>
-              <td>{{component_object.Status?.Description}}</td>
-            </tr>
-            <tr *ngIf="!component_object.Attend">
-              <th>Are you attending to {{component_object.Status?.Name}}? :</th>
-              <td><input class="form-check-input me-2" [(ngModel)]="attending" type="checkbox"
-                id="AttendCheck">
-            <label class="form-check-label" for="AttendCheck">
-                {{attending ? 'Yeah I\'m attending!':'Sorry I can\'t make it.'}}
-            </label></td>
-            </tr>
+          <table class="table table-striped table-dark table-responsive table-data table-borderedless">
+            <tbody>
+              <tr>
+                <th>Date:</th>
+                <td>{{component_object.Status?.Date | date: 'shortDate'}}</td>
+              </tr>
+              <tr>
+                <th>Event:</th>
+                <td>{{component_object.Status?.Name}}</td>
+              </tr>
+              <tr>
+                <th>Location:</th>
+                <td>{{component_object.Status?.Location}}</td>
+              </tr>
+              <tr>
+                <th>Description:</th>
+                <td>{{component_object.Status?.Description}}</td>
+              </tr>
+            </tbody>
           </table>
-          <div *ngIf="component_object.Attend" class="alert alert-warning alert-sm">You submitted your attendance already.</div>
+          <table *ngIf="!component_object.Attend" class="table table-dark table-striped table-responsive table-data table-bordered">
+            <thead>
+              <tr>
+                <th>Are you attending to {{component_object.Status?.Name}}?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-center">
+                  <input class="form-check-input me-2" [(ngModel)]="attending" type="checkbox"
+                    id="AttendCheck">
+                  <label class="form-check-label" for="AttendCheck">
+                    {{attending ? 'Yeah I\'m attending!':'Sorry I can\'t make it.'}}
+                  </label>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div *ngIf="component_object.Attend" class="alert alert-warning alert-sm">You submitted your attendance
+            already.</div>
         </div>
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" *ngIf="!component_object.Attend" class="btn btn-success" (click)="clutch_EventAttendModal(component_object);">Submit</button>
+        <button type="button" *ngIf="!component_object.Attend" class="btn btn-success"
+          (click)="clutch_EventAttendModal(component_object);">Submit</button>
+      </div>
     </div>
   </div>
-</div>
