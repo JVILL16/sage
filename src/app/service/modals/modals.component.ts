@@ -72,10 +72,10 @@ export class ModalsComponent {
         this.auth.rolesregister(this.component_object.account_id, this.listAdd)
             .pipe(first())
             .subscribe({
-                next(data) {
+                next(data:any) {
                     console.log(data);
                 },
-                error(error) {
+                error(error:any) {
                     console.log(error);
                 }
             });

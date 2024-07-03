@@ -1,14 +1,19 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject  } from '@angular/core';
 import { ApiService } from 'src/app/service/service.component';
 import { User } from '../users/user';
 import { ClutchService } from 'src/app/service/helpers/clutch.service';
 import { ModalsService } from 'src/app/service/modals.service';
 import { AlertService } from 'src/app/service/alert.service';
+import { NgbCalendar, NgbDatepickerModule, NgbDateStruct, NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
+import { JsonPipe, CommonModule } from '@angular/common';
 
 @Component({
   selector: 'calendar',
   templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.css']
+  styleUrls: ['./calendar.component.css'],
+  standalone: true,
+  imports: [NgbDatepickerModule, FormsModule, JsonPipe,CommonModule]
 })
 
 export class CalendarComponent {
@@ -16,6 +21,25 @@ export class CalendarComponent {
   @Input() attend?: any = [];
   @Input() collection?: any = [];
   @Input() datepicker?: boolean = false;
+
+  model: NgbDateStruct | undefined;
+  modelList: Array<NgbDateStruct> = [];
+
+  isSelected(date: any)  {
+    console.log(this.modelList.indexOf(date));
+    console.log(this.modelList);
+    return this.modelList.indexOf(date) >= 0;
+  };
+  selectOne(date:any) {
+    if (this.modelList.indexOf(date) >= 0) {
+      this.modelList = this.modelList.filter((ele:any)=> {
+        return ele !== date;
+      });
+    } else {
+      this.modelList.push(date);
+    }
+    console.log(this.modelList);
+  }
 
   currentUser:any;
   clutch_name:any;
@@ -64,6 +88,14 @@ export class CalendarComponent {
     this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1, 1);
   }
 
+  //Datepicker Calendar
+
+
+
+
+
+
+  //Events Calendar
   eventsInMonth(day: any) {
     //logic for seeing current day
     if ((day?.Day === new Date().getDate()) && (new Date().getMonth() === this.currentDate.getMonth()) && (new Date().getFullYear() === this.currentDate.getFullYear()))
@@ -77,7 +109,6 @@ export class CalendarComponent {
       }
     }
   }
-
   daysInMonth() {
     const days = [];
     const weeks = [];
@@ -127,7 +158,6 @@ export class CalendarComponent {
     }
     return weeks;
   }
-
   eventDetail(status: any, day:any) {
     status['Date'] = day.Date;
     //this is where i stopped to check if attendance was submitted or not

@@ -21,7 +21,7 @@ export class ClutchService {
  
 
   public updateClutchEventData(user:string,date:string,status:string): Observable<any> {
-    return this.httpClient.post<any>(`${environment.serverUrl}/auth/gsheets/update`, { user,date,status}).pipe(map(attending => {
+    return this.httpClient.post<any>(`${environment.serverUrl}/auth/gsheets/update`, { user,date,status}).pipe(map((attending:any) => {
       return attending;
   }));
   }

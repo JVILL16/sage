@@ -39,39 +39,23 @@
     </table>
 </div>
 
-<div *ngIf="datepicker" class="container-fluid table-responsive" style="margin:0 auto;max-width:280px">
-    <div class="text-center">
-        <div class="col-xl-12 row">
-            <div class="col-xl-4">
-                <button type="button" class="btn btn-primary btn-sm" (click)="goToPreviousMonth()">Previous</button>
-            </div>
-            <div class="col-xl-4 text-center">
-                <h3>{{getCurrentMonth()}} {{getCurrentYear()}}</h3>
-            </div>
-            <div class="col-xl-4">
-                <button type="button" class="btn btn-primary btn-sm" (click)="goToNextMonth()">Next</button>
-            </div>
-        </div>
+<div *ngIf="datepicker" class="container-fluid">
+
+    <p>This datepicker uses a custom template to display days.</p>
+    
+    <ngb-datepicker [dayTemplate]="customDay" (dateSelect)="selectOne($event)"></ngb-datepicker>
+    
+    <ng-template #customDay let-date let-currentMonth="currentMonth" let-selected="selected" let-disabled="disabled"
+        let-focused="focused">
+        <span class="custom-day" [class.focused]="focused" [class.bg-primary]="isSelected(date)">{{ date.day }}</span>
+    </ng-template>
+    <div *ngIf="modelList.length>0">
+        <h1>Selected dates:</h1>
+        <pre>{{modelList| json}} </pre>
     </div>
+
+
+  
    
-    <table class="small-table table table-responsive">
-        <thead class="table-dark">
-            <tr class="text-center" >
-                <th *ngFor="let dayName of dayNames">{{dayName}}</th>
-           </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let week of daysInMonth()" >
-                <td class="day-box-dp" [ngClass]="{'today': day?.Current, 'notInMonth': day==null}" *ngFor="let day of week">
-                    
-                    <div *ngIf="day" >
-                        <div class="date">
-                            {{day?.Day}}
-                        </div>
-                    </div>
-                    
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    
 </div>

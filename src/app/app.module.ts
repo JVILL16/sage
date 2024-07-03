@@ -47,7 +47,6 @@ import { NotFoundComponent } from './not-found.component';
     SectionsComponent,
     ModalsComponent,
     ClutchComponent,
-    CalendarComponent,
     NotFoundComponent
   ],
   imports: [
@@ -56,7 +55,8 @@ import { NotFoundComponent } from './not-found.component';
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    CalendarComponent,
+    ReactiveFormsModule,
   ],
   providers: [
     AuthGuard,
