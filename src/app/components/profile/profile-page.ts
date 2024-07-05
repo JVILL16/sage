@@ -138,12 +138,12 @@ export class ProfileComponent implements OnInit{
               //console.log(this.pfp_url);
             };
             reader.readAsDataURL(data);
-          },error:(error) => {
+          },error:(error:any) => {
             console.error('Error loading profile picture:', error);
             this.alertService.error('Sorry, was not able to load profile picture.');
           }});
           //this.alertService.success('Profile information loaded');
-        },error:(error) => {
+        },error:(error:any) => {
           console.error('Error getting profile:', error);
           this.alertService.error('Sorry, was not able to retrieve your profile information.');
         }
@@ -186,20 +186,20 @@ export class ProfileComponent implements OnInit{
   }
   saveChanges(): void {
     this.api.updateUser(this.account).subscribe({
-      next: (response) => {
+      next: (response:any) => {
         //console.log('User record updated:\n', response);
         this.alertService.success('The profile has been updated!\n'+ response);
       },
-      error: (error) => {
+      error: (error:any) => {
         //console.error('Error updated record:\n', error);
         this.alertService.error('The was an error processing your updated profile.\n'+ error.error);
       }
     });
     this.api.uploadImage(this.pfp_new, this.account?.account_id).subscribe({
-      next: (response) => {
+      next: (response:any) => {
         console.log('Image uploaded successfully:\n', response);
       },
-      error: (error) => {
+      error: (error:any) => {
         console.error('Error uploading image:\n', error);
         this.alertService.error(error);
       }

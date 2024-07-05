@@ -24,6 +24,7 @@ export class SectionsComponent implements OnInit{
     clutch_attend:any;
     clutch_events : any;
     clutch_name:any;
+    clutch_admin:boolean = false;
 
     constructor(private auth: AuthenticationService,
       private activatedRoute: ActivatedRoute, 
@@ -59,7 +60,9 @@ export class SectionsComponent implements OnInit{
         this.alert.error("This section is unavailable or under maintaince, please select a different section", this.section);
       })
 
-      
+      console.log(this.clutch_admin);
+      this.clutch_admin = this.currentUser[0].roles.some((r:any)=>r.profile==='c_admin');
+      console.log(this.clutch_admin);
     }
 
     

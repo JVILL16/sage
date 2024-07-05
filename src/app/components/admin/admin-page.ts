@@ -56,12 +56,12 @@ private modalService: ModalsService) {
 
     deleteUser(id: any) {
         this.auth.userdelete(id).subscribe({
-            next: data => {
+            next: (data:any) => {
                 console.log(data);
                 this.getUsers();
                 //this.status = 'Delete successful';
             },
-            error: error => {
+            error: (error:any) => {
                 //this.errorMessage = error.message;
                 console.error('There was an error!', error);
             }
@@ -83,11 +83,11 @@ private modalService: ModalsService) {
 
     home_GetProfile(): void {
         this.auth.getProfileData().subscribe({
-            next: (response) => {
-                this.profileList = response.map(v => ({ ...v, checked: false }));
+            next: (response:any) => {
+                this.profileList = response.map((v:any) => ({ ...v, checked: false }));
                 console.log(this.profileList);
             },
-            error: (error) => {
+            error: (error:any) => {
                 console.log(error);
                 this.alertService.error(error);
             }

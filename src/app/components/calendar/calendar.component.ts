@@ -26,15 +26,16 @@ export class CalendarComponent {
   modelList: Array<NgbDateStruct> = [];
 
   isSelected(date: any)  {
-    console.log(this.modelList.indexOf(date));
-    console.log(this.modelList);
-    return this.modelList.indexOf(date) >= 0;
+    // console.log(this.modelList.indexOf(date));
+    // console.log(this.modelList);
+    //return this.modelList.indexOf(date) >= 0;
+    return this.modelList.some((d:any) => d.equals(date));
   };
-  selectOne(date:any) {
-    if (this.modelList.indexOf(date) >= 0) {
-      this.modelList = this.modelList.filter((ele:any)=> {
-        return ele !== date;
-      });
+  selectOne(date: any) {
+    console.log(date);
+    // console.log(this.modelList.indexOf(date));
+    if (this.isSelected(date)) {
+      this.modelList = this.modelList.filter((ele:any) => !ele.equals(date));
     } else {
       this.modelList.push(date);
     }

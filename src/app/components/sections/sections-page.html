@@ -35,7 +35,8 @@
                     </div>
                     <div class="card shadow-lg border-secondary">
                         <div class="card-header gradient-clutch">
-                            ATTENDENCE
+                            <span>ATTENDENCE</span>
+                            <button *ngIf="clutch_admin" class="btn btn-primary float-end" type="button">Add Event</button>
                         </div>
                         <div class="card-body">
                             <calendar [datepicker]="false" [attend]="clutch_attend" [collection]="clutch_events"></calendar>
