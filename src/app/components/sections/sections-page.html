@@ -36,10 +36,10 @@
                     <div class="card shadow-lg border-secondary">
                         <div class="card-header gradient-clutch">
                             <span>ATTENDENCE</span>
-                            <button *ngIf="clutch_admin" class="btn btn-primary float-end" type="button">Add Event</button>
+                            <button *ngIf="clutch_admin" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#eventAddModal" type="button" (click)="eventCreate()">Add Event</button>
                         </div>
                         <div class="card-body">
-                            <calendar [datepicker]="false" [attend]="clutch_attend" [collection]="clutch_events"></calendar>
+                            <calendar [attend]="clutch_attend" [collection]="clutch_events"></calendar>
                         </div>
                     </div>
                 </div>

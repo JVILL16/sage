@@ -13,3 +13,16 @@
     width:150px !important;
  }
  
+ .custom-day {
+    text-align: center;
+    padding: 0.185rem 0.25rem;
+    border-radius: 0.25rem;
+    display: inline-block;
+    width: 2rem;
+  }
+  .custom-day:hover, .custom-day.focused {
+    background-color: #e6e6e6;
+  }
+  .bg-primary {
+    border-radius: 1rem;
+  }

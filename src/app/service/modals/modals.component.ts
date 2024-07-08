@@ -6,15 +6,22 @@ import { AuthenticationService } from '../auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertService } from '../alert.service';
-import { first } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
 import { AdminComponent } from 'src/app/components/admin/admin-page';
 import { ModalsService } from '../modals.service';
 import { ClutchService } from '../helpers/clutch.service';
 
+
+import { JsonPipe, CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { NgbCalendar, NgbDatepickerModule, NgbDateStruct, NgbDate } from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
     selector: 'app-modal',
     templateUrl: './modals.component.html',
-    styleUrls: ['./modals.component.css']
+    styleUrls: ['./modals.component.css'],
+    standalone: true,
+    imports: [NgbDatepickerModule, FormsModule, JsonPipe, CommonModule]
 })
 
 export class ModalsComponent {
@@ -25,19 +32,65 @@ export class ModalsComponent {
 
     listAdd: any = [];
 
-    attending:boolean= false;
-    attend:any;
+
+
+    attending: boolean = false;
+    attend: any;
+
+    model: NgbDateStruct | undefined;
+    modelList: Array<NgbDateStruct> = [];
+
+
     // @Input() account_id : any;
     // @Input() profiles : any;
     // @Input() profile_id : any;
 
 
 
-    constructor(private modalService: ModalsService, private auth: AuthenticationService, private clutch: ClutchService) {
+    constructor(private modalService: ModalsService, private api: ApiService, private auth: AuthenticationService, private clutch: ClutchService) {
         this.modalService.getModalView.subscribe((data: any) => {
             console.log(data);
             this.component_object = data;
-            console.log(this.component_object);
+        });
+    }
+
+    dp_isSelected(date: any) {
+        // console.log(this.modelList.indexOf(date));
+        // console.log(this.modelList);
+        //return this.modelList.indexOf(date) >= 0;
+        return this.modelList.some((d: any) => d.equals(date));
+    };
+    dp_selectOne(date: any) {
+        console.log(date);
+        // console.log(this.modelList.indexOf(date));
+        if (this.dp_isSelected(date)) {
+            this.modelList = this.modelList.filter((ele: any) => !ele.equals(date));
+        } else {
+            this.modelList.push(date);
+        }
+        console.log(this.modelList);
+    }
+
+    clutch_AddEvent() {
+        this.modelList.map((d:any)=>{
+            //.padStart(2, '0')
+            const day = String(d.day);
+            const month = String(d.month);
+            const year = String(d.year);
+            const date =  `${month}/${day}/${year};`;
+            if (date !== undefined && date !== null) {
+                this.component_object.dates += date;
+            }
+            
+        });
+        console.log(this.component_object);
+        this.api.createEventData(this.component_object).subscribe({
+            next(response: any) {
+                console.log(response);
+            },
+            error(error: any) {
+                console.log(error)
+            }
         });
     }
 
@@ -72,10 +125,10 @@ export class ModalsComponent {
         this.auth.rolesregister(this.component_object.account_id, this.listAdd)
             .pipe(first())
             .subscribe({
-                next(data:any) {
+                next(data: any) {
                     console.log(data);
                 },
-                error(error:any) {
+                error(error: any) {
                     console.log(error);
                 }
             });

@@ -45,7 +45,7 @@ import { NotFoundComponent } from './not-found.component';
     AlertComponent,
     ProfileComponent,
     SectionsComponent,
-    ModalsComponent,
+    CalendarComponent,
     ClutchComponent,
     NotFoundComponent
   ],
@@ -55,7 +55,7 @@ import { NotFoundComponent } from './not-found.component';
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    CalendarComponent,
+    ModalsComponent,
     ReactiveFormsModule,
   ],
   providers: [

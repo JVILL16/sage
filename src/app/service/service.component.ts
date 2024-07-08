@@ -76,11 +76,13 @@ export class ApiService {
   }
 
 
-   //events api
-   public getEventsData(profile:any){
+  //events api
+  public getEventsData(profile: any) {
     return this.httpClient.get<any>(`${environment.serverUrl}/events/e_read?profile=${profile}`);
   }
-
+public createEventData(event: any) {
+  return this.httpClient.post<any>(`${environment.serverUrl}/events/e_create`,{event});
+}
 
 /**
  * 

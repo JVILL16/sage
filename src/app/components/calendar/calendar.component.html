@@ -38,19 +38,3 @@
         </tbody>
     </table>
 </div>
-
-<div *ngIf="datepicker" class="container-fluid">
-
-   
-    <ngb-datepicker [firstDayOfWeek]="7" [dayTemplate]="customDay" [outsideDays]="'collapsed'" (dateSelect)="selectOne($event)"></ngb-datepicker>
-    
-    <ng-template #customDay let-date let-currentMonth="currentMonth" let-selected="selected" let-disabled="disabled"
-        let-focused="focused">
-        <span class="custom-day" [class.focused]="focused" [class.bg-primary]="isSelected(date)">{{ date.day }}</span>
-    </ng-template>
-    <!-- <div *ngIf="modelList.length>0">
-        <h1>Selected dates:</h1>
-        <pre>{{modelList| json}} </pre>
-    </div> -->
-    
-</div>

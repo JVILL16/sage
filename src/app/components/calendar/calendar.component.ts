@@ -4,16 +4,11 @@ import { User } from '../users/user';
 import { ClutchService } from 'src/app/service/helpers/clutch.service';
 import { ModalsService } from 'src/app/service/modals.service';
 import { AlertService } from 'src/app/service/alert.service';
-import { NgbCalendar, NgbDatepickerModule, NgbDateStruct, NgbDate } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
-import { JsonPipe, CommonModule } from '@angular/common';
 
 @Component({
   selector: 'calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css'],
-  standalone: true,
-  imports: [NgbDatepickerModule, FormsModule, JsonPipe,CommonModule]
 })
 
 export class CalendarComponent {
@@ -22,25 +17,8 @@ export class CalendarComponent {
   @Input() collection?: any = [];
   @Input() datepicker?: boolean = false;
 
-  model: NgbDateStruct | undefined;
-  modelList: Array<NgbDateStruct> = [];
-
-  isSelected(date: any)  {
-    // console.log(this.modelList.indexOf(date));
-    // console.log(this.modelList);
-    //return this.modelList.indexOf(date) >= 0;
-    return this.modelList.some((d:any) => d.equals(date));
-  };
-  selectOne(date: any) {
-    console.log(date);
-    // console.log(this.modelList.indexOf(date));
-    if (this.isSelected(date)) {
-      this.modelList = this.modelList.filter((ele:any) => !ele.equals(date));
-    } else {
-      this.modelList.push(date);
-    }
-    console.log(this.modelList);
-  }
+  
+ 
 
   currentUser:any;
   clutch_name:any;

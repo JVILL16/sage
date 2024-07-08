@@ -82,7 +82,8 @@
               </tr>
             </tbody>
           </table>
-          <table *ngIf="!component_object.Attend" class="table table-dark table-striped table-responsive table-data table-bordered">
+          <table *ngIf="!component_object.Attend"
+            class="table table-dark table-striped table-responsive table-data table-bordered">
             <thead>
               <tr>
                 <th>Are you attending to {{component_object.Status?.Name}}?</th>
@@ -91,8 +92,7 @@
             <tbody>
               <tr>
                 <td class="text-center">
-                  <input class="form-check-input me-2" [(ngModel)]="attending" type="checkbox"
-                    id="AttendCheck">
+                  <input class="form-check-input me-2" [(ngModel)]="attending" type="checkbox" id="AttendCheck">
                   <label class="form-check-label" for="AttendCheck">
                     {{attending ? 'Yeah I\'m attending!':'Sorry I can\'t make it.'}}
                   </label>
@@ -112,3 +112,66 @@
       </div>
     </div>
   </div>
+</div>
+<!------------------------------------------------------ Modal : Calendar Component ; Adding an event -------------------------------------->
+<div class="modal fade" id="eventAddModal" tabindex="-1" role="dialog" aria-labelledby="eventAddModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header gradient-main">
+        <h5 class="modal-title" id="eventAddModalLabel">Add Event</h5>
+      </div>
+      <div class="modal-body">
+
+        <div class=" container-fluid table-responsive modal-table" style="margin:0 auto;max-width:500px;">
+
+          <table class="table table-responsive table-data table-borderedless">
+            <tbody>
+              <tr>
+                <th>Date:</th>
+                <td>
+                  <div class="container-fluid">
+                    <ngb-datepicker [firstDayOfWeek]="7" [dayTemplate]="customDay" [outsideDays]="'collapsed'"
+                      (dateSelect)="dp_selectOne($event)"></ngb-datepicker>
+
+                    <ng-template #customDay let-date let-currentMonth="currentMonth" let-selected="selected"
+                      let-disabled="disabled" let-focused="focused">
+                      <span class="custom-day" [class.focused]="focused" [class.bg-primary]="dp_isSelected(date)">{{
+                        date.day }}</span>
+                    </ng-template>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th>Name of Event:</th>
+              </tr>
+              <tr>
+                <td><input type="email" autocomplete="off" [(ngModel)]="component_object.name"
+                    class="form-control form-control-sm" placeholder="Place name of the event"></td>
+              </tr>
+              <tr>
+                <th>Location:</th>
+              </tr>
+              <tr>
+                <td><input type="email" autocomplete="off" [(ngModel)]="component_object.location"
+                    class="form-control form-control-sm" placeholder="Location of the event"></td>
+              </tr>
+              <tr>
+                <th>Description:</th>
+              </tr>
+              <tr>
+                <td><input type="email" autocomplete="off" [(ngModel)]="component_object.description"
+                    class="form-control form-control-sm" placeholder="Description"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" (click)="clutch_AddEvent();">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>

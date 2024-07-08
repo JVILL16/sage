@@ -6,6 +6,7 @@ import { ApiService } from 'src/app/service/service.component';
 import { ActivatedRoute, Router, ParamMap, NavigationStart } from '@angular/router';
 import { ClutchService } from 'src/app/service/helpers/clutch.service';
 import { AlertService } from 'src/app/service/alert.service';
+import { ModalsService } from 'src/app/service/modals.service';
 
 
 @Component({
@@ -20,18 +21,29 @@ export class SectionsComponent implements OnInit{
 
     section: any;
     sectionRoute: any;
+
+    section_id:any;
     
     clutch_attend:any;
     clutch_events : any;
     clutch_name:any;
     clutch_admin:boolean = false;
 
+    eventData: any = {
+      name:'',
+      dates: '',
+      location:'',
+      description:'',
+      p_name:''
+  }
+
     constructor(private auth: AuthenticationService,
       private activatedRoute: ActivatedRoute, 
       private api: ApiService,
       private router: Router,
       private alert: AlertService,
-    private clutch: ClutchService) {
+    private clutch: ClutchService,
+  private modalService: ModalsService) {
       this.currentUser = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
       this.clutch_name = this.currentUser[0].first_name + " " + this.currentUser[0].last_name;
     }
@@ -65,9 +77,14 @@ export class SectionsComponent implements OnInit{
       console.log(this.clutch_admin);
     }
 
+    eventCreate() {
+      this.eventData.p_name = this.section_id;
+      this.modalService.getObject(this.eventData);
+    }
     
     clutchSection() : void {
 
+      this.section_id = '179925';
 
       this.clutch.getClutchUserData('practice',this.clutch_name).subscribe(
         (data:any) => {
@@ -79,7 +96,7 @@ export class SectionsComponent implements OnInit{
         }
       );;
       
-      this.api.getEventsData('179925').subscribe(
+      this.api.getEventsData(this.section_id).subscribe(
         (data:any) => {
           this.clutch_events = data;
           console.log(this.clutch_events); // Handle the data as needed
