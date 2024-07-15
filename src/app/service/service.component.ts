@@ -83,7 +83,9 @@ export class ApiService {
 public createEventData(event: any) {
   return this.httpClient.post<any>(`${environment.serverUrl}/events/e_create`,event);
 }
-
+public insertGSheetEventData(event: any) {
+  return this.httpClient.post<any>(`${environment.serverUrl}/auth/gsheets/e_insert`,event);
+}
 /**
  * 
  * This is for file uploads [TEST] 4/11/24 10:11AM

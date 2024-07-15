@@ -26,3 +26,8 @@
   .bg-primary {
     border-radius: 1rem;
   }
+
+  .modal::backdrop {
+    background-color: #343a40 !important;
+    color: white;
+  }
