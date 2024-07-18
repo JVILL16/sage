@@ -12,6 +12,7 @@ import { Roles } from '../components/users/roles';
 export class ModalsService {
 
     private object = new BehaviorSubject<any>({});
+    private resetObject = new BehaviorSubject<boolean>(false);
 
     
     get getModalView() {
@@ -19,10 +20,18 @@ export class ModalsService {
         return this.object.asObservable();
     }
 
+    get getResetModalObj() {
+        return this.resetObject.asObservable();
+    }
+
     constructor(private http: HttpClient) { }
 
     getObject(globalObject:any) {
         this.object.next(globalObject);
+    }
+
+    getReset(check:any){
+        this.resetObject.next(check);
     }
    
 }

@@ -46,6 +46,19 @@ export class SectionsComponent implements OnInit{
   private modalService: ModalsService) {
       this.currentUser = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
       this.clutch_name = this.currentUser[0].first_name + " " + this.currentUser[0].last_name;
+      this.modalService.getResetModalObj.subscribe((data: any) => {
+        //console.log(data);
+        if (data) {
+          this.eventData = {
+            name: '',
+            dates: '',
+            location: '',
+            description: '',
+            p_name: this.section_id
+          }
+        }
+        //this.modalService.getReset(false);
+      });
     }
 
     
@@ -72,9 +85,9 @@ export class SectionsComponent implements OnInit{
         this.alert.error("This section is unavailable or under maintaince, please select a different section", this.section);
       })
 
-      console.log(this.clutch_admin);
       this.clutch_admin = this.currentUser[0].roles.some((r:any)=>r.profile==='c_admin');
-      console.log(this.clutch_admin);
+
+      
     }
 
     eventCreate() {

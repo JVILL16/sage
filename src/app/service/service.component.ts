@@ -37,18 +37,18 @@ export class ApiService {
 
     return this.httpClient.get<User>(`${environment.serverUrl}/users/user?account=${account}`);
   }
-  public getUserProfile(account : number, filename: string){
-    return this.httpClient.get(`${environment.serverUrl}/pfp/download?account=${account}&filename=${filename}`,{ responseType: 'blob' });
+  public getUserProfile(account: number, filename: string) {
+    return this.httpClient.get(`${environment.serverUrl}/pfp/download?account=${account}&filename=${filename}`, { responseType: 'blob' });
   }
 
-  public updateUser(user: User): Observable<User>{
+  public updateUser(user: User): Observable<User> {
     return this.httpClient.post<User>(`${environment.serverUrl}/users/update`, user);
   }
 
-  public uploadImage(image: File, cred: any){
+  public uploadImage(image: File, cred: any) {
     const formData = new FormData();
     formData.append('image', image);
-    formData.append('cred',cred);
+    formData.append('cred', cred);
     return this.httpClient.post(`${environment.serverUrl}/pfp/upload`, formData);
   }
   //token
@@ -80,32 +80,32 @@ export class ApiService {
   public getEventsData(profile: any) {
     return this.httpClient.get<any>(`${environment.serverUrl}/events/e_read?profile=${profile}`);
   }
-public createEventData(event: any) {
-  return this.httpClient.post<any>(`${environment.serverUrl}/events/e_create`,event);
-}
-public insertGSheetEventData(event: any) {
-  return this.httpClient.post<any>(`${environment.serverUrl}/auth/gsheets/e_insert`,event);
-}
-/**
- * 
- * This is for file uploads [TEST] 4/11/24 10:11AM
- * 
- * 
- */
-upload(file: File): Observable<any> {
-  const formData: FormData = new FormData();
+  public createEventData(event: any) {
+    return this.httpClient.post<any>(`${environment.serverUrl}/events/e_create`, event);
+  }
+  public insertGSheetEventData(event: any) {
+    return this.httpClient.post<any>(`${environment.serverUrl}/auth/gsheets/e_insert`, event);
+  }
+  /**
+   * 
+   * This is for file uploads [TEST] 4/11/24 10:11AM
+   * 
+   * 
+   */
+  upload(file: File): Observable<any> {
+    const formData: FormData = new FormData();
 
-  formData.append('file', file);
+    formData.append('file', file);
 
-  return this.httpClient.post(`${environment.serverUrl}/upload`,formData,{
-    reportProgress: true,
-    responseType: 'json'
-  });
-}
+    return this.httpClient.post(`${environment.serverUrl}/upload`, formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+  }
 
-getFiles(): Observable<any> {
-  return this.httpClient.get(`${environment.serverUrl}/files`);
-}
+  getFiles(): Observable<any> {
+    return this.httpClient.get(`${environment.serverUrl}/files`);
+  }
 
 
 
