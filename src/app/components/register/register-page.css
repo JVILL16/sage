@@ -2,6 +2,7 @@
 .gradient-main {
     text-align: center;
   }
+  
   .nav-pills{
     --bs-nav-pills-border-radius:50%;
     
@@ -107,6 +108,16 @@
   .success-circle:last-child::before {
     display: none; /* Hide line after last circle */
   }
+
+
+.scroll-default{
+  width: 300px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+
   @keyframes check {
     0% {
       width: 1.5em;

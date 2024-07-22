@@ -56,12 +56,18 @@ export class RegisterComponent {
   registerSuccess: boolean = false;
   registerError: boolean = false;
 
+
   email: string = "";
   password: string = "";
   username: string = "";
   first_name: string = "";
   last_name: string = "";
   phone: string = "";
+
+
+  currentStep: number = 0;
+  totalSteps: number = 3;
+  dft_list: any = ['male_1', 'female_1', 'male_2', 'female_2', 'male_3', 'female_3', 'user'];
 
 
   sectOne: boolean = false;
@@ -133,19 +139,22 @@ export class RegisterComponent {
    * 
    */
   postdata() {
-    for (var role of this.roles)
-      if (role.checked) this.role_submit.push(role.id);
-    this.auth.userregistration(this.username, this.email, this.password, this.first_name, this.last_name, this.phone, this.role_submit)
-      .pipe(first())
-      .subscribe({
-        next(data) {
-          console.log(data);
-          //this.router.navigate(['/login']);
-        },
-        error(error) {
-          console.log(error);
-        }
-      });
+    if (this.currentStep === this.totalSteps - 1) {
+      for (var role of this.roles)
+        if (role.checked) this.role_submit.push(role.id);
+      this.auth.userregistration(this.username, this.email, this.password, this.first_name, this.last_name, this.phone, this.role_submit)
+        .pipe(first())
+        .subscribe({
+          next(data) {
+            console.log(data);
+            //this.router.navigate(['/login']);
+          },
+          error(error) {
+            console.log(error);
+          }
+        });
+    }
+
   }
 
 
@@ -155,8 +164,9 @@ export class RegisterComponent {
    * 
    */
   onSelectFile(event: any) {
+    console.log(event);
     if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+      const reader = new FileReader();
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
@@ -165,47 +175,37 @@ export class RegisterComponent {
         this.url = event.target?.result;
         console.log(this.url);
       };
+    } else {
+      const reader = new FileReader();
+
+      reader.readAsDataURL(event); // read file as data url
+
+      reader.onload = (event) => {
+        // called once readAsDataURL is completed
+        this.url = event.target?.result;
+        console.log(this.url);
+      }
     }
   }
-  public delete() {
-    this.url = null;
-  }
 
+  defaultPFPClick(link: any) {
+    this.url = 'assets/pfp_default/' + link + '.png';
+  }
   /**
    * 
    * Functions for switching views 
-   * 
-   * (There should be a better logic but this should do for now)
+   *
    * 
    */
   onNext() {
-    if (!this.sectOne && !this.sectTwo && !this.sectThree) {
-      this.sectOne = true; this.prevHidden = false;
+    if (this.currentStep < this.totalSteps - 1) {
+      this.currentStep++;
     }
-
-    else if (this.sectOne && !this.sectTwo && !this.sectThree) {
-      this.sectTwo = true; this.nextHidden = true;
-    }
-    else if (this.sectOne && this.sectTwo && !this.sectThree)
-      this.sectThree = true;
-    else {
-      this.nextHidden = true; this.prevHidden = true;
-    }
-
   }
 
   onPrevious() {
-    if (this.sectOne && this.sectTwo && this.sectThree)
-      this.sectThree = false;
-    else if (this.sectOne && this.sectTwo && !this.sectThree) {
-      this.sectTwo = false; this.nextHidden = false;
-    }
-    else if (this.sectOne && !this.sectTwo && !this.sectThree) {
-      this.sectOne = false; this.prevHidden = true;
-    }
-
-    else {
-      this.nextHidden = true; this.prevHidden = true;
+    if (this.currentStep > 0) {
+      this.currentStep--;
     }
   }
 
