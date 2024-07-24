@@ -49,8 +49,6 @@ import { HttpEventType, HttpResponse } from '@angular/common/http';
 export class RegisterComponent {
   title = 'register';
 
-  url: any = '';
-
   // angForm: FormGroup;
 
   registerSuccess: boolean = false;
@@ -66,9 +64,12 @@ export class RegisterComponent {
 
 
   currentStep: number = 0;
-  totalSteps: number = 3;
+  totalSteps: number = 4;
   dft_list: any = ['male_1', 'female_1', 'male_2', 'female_2', 'male_3', 'female_3', 'user'];
-
+  pfp_image: any;
+  pfp_url: any = 'assets/pfp_default/user.png';
+  pfp_new: any;
+  pfp : any;
 
   sectOne: boolean = false;
   sectTwo: boolean = false;
@@ -87,7 +88,7 @@ export class RegisterComponent {
 
 
 
-  constructor(private fb: FormBuilder, private auth: AuthenticationService, private router: Router, private api: ApiService) { }
+  constructor(private fb: FormBuilder, private auth: AuthenticationService, private router: Router, private api: ApiService, private alertService: AlertService) { }
 
 
   ngOnInit() {
@@ -163,34 +164,50 @@ export class RegisterComponent {
    * Example file upload got from online
    * 
    */
+  // onSelectFile(event: any) {
+  //   console.log(event);
+  //   if (event.target.files && event.target.files[0]) {
+  //     const reader = new FileReader();
+
+  //     reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+  //     reader.onload = (event) => {
+  //       // called once readAsDataURL is completed
+  //       this.url = event.target?.result;
+  //       console.log(this.url);
+  //     };
+  //   } else {
+  //     const reader = new FileReader();
+
+  //     reader.readAsDataURL(event); // read file as data url
+
+  //     reader.onload = (event) => {
+  //       // called once readAsDataURL is completed
+  //       this.url = event.target?.result;
+  //       console.log(this.url);
+  //     }
+  //   }
+  // }
+
   onSelectFile(event: any) {
-    console.log(event);
-    if (event.target.files && event.target.files[0]) {
-      const reader = new FileReader();
-
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-      reader.onload = (event) => {
-        // called once readAsDataURL is completed
-        this.url = event.target?.result;
-        console.log(this.url);
-      };
-    } else {
-      const reader = new FileReader();
-
-      reader.readAsDataURL(event); // read file as data url
-
-      reader.onload = (event) => {
-        // called once readAsDataURL is completed
-        this.url = event.target?.result;
-        console.log(this.url);
-      }
+    //console.log(event.target.files[0]);
+    if(typeof event === "object"){
+      this.pfp_url = URL.createObjectURL(event?.target?.files[0]);
+      this.pfp_new = event?.target?.files[0];
+      
+    }else if(typeof event === "string"){
+      this.pfp_url = 'assets/pfp_default/' + event + '.png';
+      const file = new File([this.pfp_url],event+'.png',{type:'image/png'});
+      this.pfp_new = file;
+    }else{
+      this.alertService.error('Cannot upload this type of file, please select another.');
     }
+    this.pfp = this.pfp_new.name;
+    console.log(this.pfp_new);
+    
   }
 
-  defaultPFPClick(link: any) {
-    this.url = 'assets/pfp_default/' + link + '.png';
-  }
+ 
   /**
    * 
    * Functions for switching views 

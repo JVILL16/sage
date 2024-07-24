@@ -115,8 +115,24 @@
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
+  padding-bottom:10px;
 }
 
+
+.pfp-input {
+  display: none;
+}
+.register-table{
+  background-color: rgba(193, 193, 193, 0.908);
+  margin: 50px;
+  padding-top:50px;
+  padding-bottom:50px;
+}
+
+.register-table .form-check-label,
+.register-table .image-container{
+  background-color: rgba(255, 255, 255, 0);
+}
 
   @keyframes check {
     0% {

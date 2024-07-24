@@ -10,6 +10,7 @@
                         <div [ngClass]="{ 'success-circle': currentStep > 0, 'circle active':  currentStep <= 0}"><i *ngIf="currentStep > 0" class="fa-regular fa-circle-check"></i><span *ngIf="currentStep <= 0">1</span></div>
                         <div [ngClass]="{ 'success-circle': currentStep > 1,'circle active': currentStep <= 1 }"><i *ngIf="currentStep > 1" class="fa-regular fa-circle-check"></i><span *ngIf="currentStep <= 1">2</span></div>
                         <div [ngClass]="{ 'success-circle': currentStep > 2, 'circle active': currentStep <= 2  }"><i *ngIf="currentStep > 2" class="fa-regular fa-circle-check"></i><span *ngIf="currentStep <= 2">3</span></div>
+                        <div [ngClass]="{ 'success-circle': currentStep > 3, 'circle active': currentStep <= 3  }"><i *ngIf="currentStep > 3" class="fa-regular fa-circle-check"></i><span *ngIf="currentStep <= 3">4</span></div>
                     </div>
                     <div *ngIf="registerSuccess" class="alert alert-success" role="alert">
                         <h4>Thank you for registering</h4> Please be on a look out for a activation code in your email inbox.
@@ -17,29 +18,8 @@
                     <div *ngIf="registerError" class="alert alert-danger" role="alert">
                         <h4>Error has occured</h4> Please look at error and email owner of the site to further assist you.
                     </div>
-                    <div >
-                        <table  *ngIf="currentStep == 0" class="table table-responsive table-sm table-data my-2" style="margin:0 auto;max-width:400px">
-                            <tr>
-                                <th>First Name</th>
-
-                            </tr>
-                            <tr>
-                                <td><input type="text" autocomplete="off" [(ngModel)]="first_name"
-                                        class="form-control form-control-sm" placeholder="Enter your firstname"></td>
-
-                            </tr>
-                            <tr>
-                                <th>Last Name</th>
-
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="text" autocomplete="off" [(ngModel)]="last_name"
-                                        class="form-control form-control-sm" placeholder="Enter you lastname">
-                                </td>
-                            </tr>
-                        </table>
-                        <table *ngIf="currentStep == 1" class="table table-responsive table-sm table-data my-2" style="margin:0 auto;max-width:400px">
+                    <div class="register-table">
+                        <table *ngIf="currentStep == 0" class="table table-responsive table-sm table-data my-2" style="margin:0 auto;max-width:400px">
                             <tr>
                                 <th>Username</th>
 
@@ -64,6 +44,35 @@
                                         class="form-control form-control-sm" placeholder="Email Address"></td>
                             </tr>
                         </table>
+                        <table  *ngIf="currentStep == 1" class="table table-responsive table-sm table-data my-2" style="margin:0 auto;max-width:400px">
+                            <tr>
+                                <th>First Name</th>
+
+                            </tr>
+                            <tr>
+                                <td><input type="text" autocomplete="off" [(ngModel)]="first_name"
+                                        class="form-control form-control-sm" placeholder="Enter your firstname"></td>
+
+                            </tr>
+                            <tr>
+                                <th>Last Name</th>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" autocomplete="off" [(ngModel)]="last_name"
+                                        class="form-control form-control-sm" placeholder="Enter you lastname">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Phone:</th>
+                            </tr>
+                            <tr>
+                                <td><input type="text" autocomplete="off" [(ngModel)]="phone"
+                                        class="form-control form-control-sm" placeholder="Phone"></td>
+                            </tr>
+                        </table>
+                        
                         <table  *ngIf="currentStep == 2" class="table table-responsive table-sm table-data my-2" style="margin:0 auto;max-width:400px">
 
                             <tr>
@@ -81,13 +90,9 @@
     
                                 </td>
                             </tr>
-                            <tr>
-                                <th>Phone:</th>
-                            </tr>
-                            <tr>
-                                <td><input type="text" autocomplete="off" [(ngModel)]="phone"
-                                        class="form-control form-control-sm" placeholder="Phone"></td>
-                            </tr>
+                        </table>
+                        <table  *ngIf="currentStep == 3" class="table table-responsive table-sm table-data my-2" style="margin:0 auto;max-width:400px">
+
                             <tr>
                                 <th>Profile Picture:</th>
                             </tr>
@@ -95,15 +100,14 @@
                                 <td>
                                     <div class="image-container m-4">
                                         <label class="hoverable" for="fileInput">
-                                            <img width="60" [src]="url ? url : 'assets/pfp_default/user.png'" />
+                                            <img width="100" [src]="pfp_url" />
                                         </label>
                                         <br />
-                                        <input class="mt-2" id="fileInput" type="file" [(ngModel)]="url"
-                                            class="select-profile-picture" (change)="onSelectFile($event)" />
+                                        <input class="mt-2" id="fileInput"  type="file" accept="image/*" (change)="onSelectFile($event)" />
                                         <br />
                                         <div class="scroll-default mt-2">
-                                            <div *ngFor="let link of dft_list" class="img-thumbnail me-2" [ngClass]="{ 'bg-primary': url=='assets/pfp_default/'+link+'.png'}" style="display:inline-block;">
-                                                <img width="60" [src]="'assets/pfp_default/'+link+'.png'" (click)="defaultPFPClick(link);">
+                                            <div *ngFor="let link of dft_list" class="img-thumbnail me-2" [ngClass]="{ 'bg-primary': pfp==link+'.png'}" style="display:inline-block;">
+                                                <img width="60" [src]="'assets/pfp_default/'+link+'.png'" (click)="onSelectFile(link);">
                                             </div>
                                         </div>
                                     </div>
@@ -117,9 +121,9 @@
                 </div>
                 <div class="card-footer mt-3 ">
                     
-                    <button type="submit" class="btn btn-sm btn-success m-3 float-end" *ngIf="currentStep == 2" (click)="sectThree=true;registerSuccess=true;">Register
+                    <button type="submit" class="btn btn-sm btn-success m-3 float-end" *ngIf="currentStep == 3" (click)="sectThree=true;registerSuccess=true;">Register
                         <i class="fa-solid fa-square-plus"></i></button>
-                    <button type="button" class="btn btn-sm btn-primary m-3 float-end" [hidden]="currentStep == 2" (click)="onNext()">Next <i
+                    <button type="button" class="btn btn-sm btn-primary m-3 float-end" [hidden]="currentStep == 3" (click)="onNext()">Next <i
                         class="fa-solid fa-arrow-right"></i></button>
                         <button type="button" class="btn btn-sm btn-secondary m-3 float-end" [hidden]="currentStep == 0" (click)="onPrevious()"><i
                             class="fa-solid fa-arrow-left"></i> Previous</button>
