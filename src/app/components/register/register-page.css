@@ -47,7 +47,7 @@
     position: absolute;
     height: 2px;
     background-color: #007bff; /* Adjust as needed */
-    width: 100px; /* Adjust to cover the distance between circles */
+    width: 50px; /* Adjust to cover the distance between circles 100px */
     top: 50%;
     left: 100%;
     transform: translateY(-1px);
@@ -70,13 +70,15 @@
     position: absolute;
     height: 2px;
     background-color: #b0d6ff; /* Adjust as needed */
-    width: 100px; /* Adjust to cover the distance between circles */
+    width: 50px; /* Adjust to cover the distance between circles 100px */
     top: 50%;
     left: 100%;
     transform: translateY(-1px);
     z-index: -1;
   }
-  
+  .register-tier:last-child .active ~ .circle::before{
+    display: none;
+  }
   .success-circle{
     position: relative;
     width: 50px;
@@ -98,7 +100,7 @@
     position: absolute;
     height: 2px;
     background-color: rgb(50, 189, 50); /* Adjust as needed */
-    width: 100px; /* Adjust to cover the distance between circles */
+    width: 50px; /* Adjust to cover the distance between circles */
     top: 50%;
     left: 100%;
     transform: translateY(-1px);
@@ -111,7 +113,8 @@
 
 
 .scroll-default{
-  width: 300px;
+  margin:0 auto;
+  max-width: 300px;
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
@@ -122,15 +125,36 @@
 .pfp-input {
   display: none;
 }
+.pfp-upload-txt{
+  color:rgb(71, 138, 253);
+}
+.pfp-upload-txt:hover{
+  color:rgb(24, 107, 250);
+  text-decoration-line: underline;
+}
+.pfp-point {
+  cursor: pointer !important;
+}
+.pfp-view {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
 .register-table{
   background-color: rgba(193, 193, 193, 0.908);
-  margin: 50px;
-  padding-top:50px;
-  padding-bottom:50px;
+  margin:0 auto;
+  max-width:400px;
+  /* height:300px; */
 }
 
 .register-table .form-check-label,
-.register-table .image-container{
+.register-table .image-container,
+.register-table .scroll-default,
+.register-table .pfp-point,
+.register-table .text-start{
   background-color: rgba(255, 255, 255, 0);
 }
 

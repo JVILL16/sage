@@ -7,10 +7,10 @@
                 <div class="card-body">
                     
                     <div class="register-tier">
-                        <div [ngClass]="{ 'success-circle': currentStep > 0, 'circle active':  currentStep <= 0}"><i *ngIf="currentStep > 0" class="fa-regular fa-circle-check"></i><span *ngIf="currentStep <= 0">1</span></div>
-                        <div [ngClass]="{ 'success-circle': currentStep > 1,'circle active': currentStep <= 1 }"><i *ngIf="currentStep > 1" class="fa-regular fa-circle-check"></i><span *ngIf="currentStep <= 1">2</span></div>
-                        <div [ngClass]="{ 'success-circle': currentStep > 2, 'circle active': currentStep <= 2  }"><i *ngIf="currentStep > 2" class="fa-regular fa-circle-check"></i><span *ngIf="currentStep <= 2">3</span></div>
-                        <div [ngClass]="{ 'success-circle': currentStep > 3, 'circle active': currentStep <= 3  }"><i *ngIf="currentStep > 3" class="fa-regular fa-circle-check"></i><span *ngIf="currentStep <= 3">4</span></div>
+                        <div class="shadow" [ngClass]="{ 'success-circle': currentStep > 0, 'circle active':  currentStep <= 0}"><i *ngIf="currentStep > 0" class="fa-regular fa-circle-check"></i><span *ngIf="currentStep <= 0">1</span></div>
+                        <div class="shadow" [ngClass]="{ 'success-circle': currentStep > 1,'circle active': currentStep <= 1 }"><i *ngIf="currentStep > 1" class="fa-regular fa-circle-check"></i><span *ngIf="currentStep <= 1">2</span></div>
+                        <div class="shadow" [ngClass]="{ 'success-circle': currentStep > 2, 'circle active': currentStep <= 2  }"><i *ngIf="currentStep > 2" class="fa-regular fa-circle-check"></i><span *ngIf="currentStep <= 2">3</span></div>
+                        <div class="shadow" [ngClass]="{ 'success-circle': currentStep > 3, 'circle active': currentStep <= 3  }"><i *ngIf="currentStep > 3" class="fa-regular fa-circle-check"></i><span *ngIf="currentStep <= 3">4</span></div>
                     </div>
                     <div *ngIf="registerSuccess" class="alert alert-success" role="alert">
                         <h4>Thank you for registering</h4> Please be on a look out for a activation code in your email inbox.
@@ -18,15 +18,15 @@
                     <div *ngIf="registerError" class="alert alert-danger" role="alert">
                         <h4>Error has occured</h4> Please look at error and email owner of the site to further assist you.
                     </div>
-                    <div class="register-table">
-                        <table *ngIf="currentStep == 0" class="table table-responsive table-sm table-data my-2" style="margin:0 auto;max-width:400px">
+                    <div class="register-table shadow-lg p-3 mb-5 rounded">
+                        <table *ngIf="currentStep == 0" class="table table-responsive table-sm table-data my-2">
                             <tr>
                                 <th>Username</th>
 
                             </tr>
                             <tr>
                                 <td><input type="text" autocomplete="off" [(ngModel)]="username"
-                                        class="form-control form-control-sm" placeholder="Username"></td>
+                                        class="shadow form-control form-control-sm" placeholder="Username"></td>
 
                             </tr>
                             <tr>
@@ -34,24 +34,24 @@
                             </tr>
                             <tr>
                                 <td><input type="password" autocomplete="off" [(ngModel)]="password"
-                                        class="form-control form-control-sm" placeholder="Password"></td>
+                                        class="shadow form-control form-control-sm" placeholder="Password"></td>
                             </tr>
                             <tr>
                                 <th>Email</th>
                             </tr>
                             <tr>
                                 <td><input type="email" autocomplete="off" [(ngModel)]="email"
-                                        class="form-control form-control-sm" placeholder="Email Address"></td>
+                                        class="shadow form-control form-control-sm" placeholder="Email Address"></td>
                             </tr>
                         </table>
-                        <table  *ngIf="currentStep == 1" class="table table-responsive table-sm table-data my-2" style="margin:0 auto;max-width:400px">
+                        <table  *ngIf="currentStep == 1" class="table table-responsive table-sm table-data my-2">
                             <tr>
                                 <th>First Name</th>
 
                             </tr>
                             <tr>
                                 <td><input type="text" autocomplete="off" [(ngModel)]="first_name"
-                                        class="form-control form-control-sm" placeholder="Enter your firstname"></td>
+                                        class="shadow form-control form-control-sm" placeholder="Enter your firstname"></td>
 
                             </tr>
                             <tr>
@@ -61,7 +61,7 @@
                             <tr>
                                 <td>
                                     <input type="text" autocomplete="off" [(ngModel)]="last_name"
-                                        class="form-control form-control-sm" placeholder="Enter you lastname">
+                                        class="shadow form-control form-control-sm" placeholder="Enter you lastname">
                                 </td>
                             </tr>
                             <tr>
@@ -69,18 +69,18 @@
                             </tr>
                             <tr>
                                 <td><input type="text" autocomplete="off" [(ngModel)]="phone"
-                                        class="form-control form-control-sm" placeholder="Phone"></td>
+                                        class="shadow form-control form-control-sm" placeholder="Phone"></td>
                             </tr>
                         </table>
                         
-                        <table  *ngIf="currentStep == 2" class="table table-responsive table-sm table-data my-2" style="margin:0 auto;max-width:400px">
+                        <table  *ngIf="currentStep == 2" class="table table-responsive table-sm table-data my-2" >
 
                             <tr>
                                 <th>Please select the following to sign up for:</th>
                                 
                             </tr>
-                            <tr>
-                                <td class="form-check form-check-inline" *ngFor="let role of roles; let i = index">
+                            <tr *ngFor="let role of roles; let i = index">
+                                <td class="form-check form-check-inline" >
     
                                     <input class="form-check-input me-2" [(ngModel)]="role.checked" type="checkbox"
                                         id="{{role.value}}Check">
@@ -91,24 +91,25 @@
                                 </td>
                             </tr>
                         </table>
-                        <table  *ngIf="currentStep == 3" class="table table-responsive table-sm table-data my-2" style="margin:0 auto;max-width:400px">
-
+                        <table  *ngIf="currentStep == 3" class="table table-responsive table-sm table-data my-2" >
                             <tr>
-                                <th>Profile Picture:</th>
+                                <td class="text-center">
+                                    <div class="image-container m-4">
+                                        <img class="pfp-view" [src]="pfp_url" />
+                                    </div>
+                                </td>
                             </tr>
                             <tr>
-                                <td>
-                                    <div class="image-container m-4">
-                                        <label class="hoverable" for="fileInput">
-                                            <img width="100" [src]="pfp_url" />
-                                        </label>
-                                        <br />
-                                        <input class="mt-2" id="fileInput"  type="file" accept="image/*" (change)="onSelectFile($event)" />
-                                        <br />
-                                        <div class="scroll-default mt-2">
-                                            <div *ngFor="let link of dft_list" class="img-thumbnail me-2" [ngClass]="{ 'bg-primary': pfp==link+'.png'}" style="display:inline-block;">
-                                                <img width="60" [src]="'assets/pfp_default/'+link+'.png'" (click)="onSelectFile(link);">
-                                            </div>
+                                <td class="text-center">
+                                    <input class="mt-2" id="fileInput" class="pfp-input" type="file" accept="image/*" (change)="onSelectFile($event)" />
+                                    <label class="pfp-point" for="fileInput">
+                                        <span class="pfp-upload-txt">Upload Photo</span>
+                                    </label>
+                                    <h6 class="text-start">Default Photos:</h6>
+                                    <div class="scroll-default mt-2">
+                                        <div *ngFor="let link of dft_list" class="img-thumbnail me-2" [ngClass]="{ 'bg-primary': pfp==link+'.png'}"
+                                            style="display:inline-block;">
+                                            <img width="60" [src]="'assets/pfp_default/'+link+'.png'" (click)="onSelectFile(link);">
                                         </div>
                                     </div>
                                 </td>
