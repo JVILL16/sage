@@ -92,20 +92,20 @@ export class ApiService {
    * 
    * 
    */
-  upload(file: File): Observable<any> {
-    const formData: FormData = new FormData();
+  // upload(file: File): Observable<any> {
+  //   const formData: FormData = new FormData();
 
-    formData.append('file', file);
+  //   formData.append('file', file);
 
-    return this.httpClient.post(`${environment.serverUrl}/upload`, formData, {
-      reportProgress: true,
-      responseType: 'json'
-    });
-  }
+  //   return this.httpClient.post(`${environment.serverUrl}/upload`, formData, {
+  //     reportProgress: true,
+  //     responseType: 'json'
+  //   });
+  // }
 
-  getFiles(): Observable<any> {
-    return this.httpClient.get(`${environment.serverUrl}/files`);
-  }
+  // getFiles(): Observable<any> {
+  //   return this.httpClient.get(`${environment.serverUrl}/files`);
+  // }
 
 
 

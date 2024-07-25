@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../service/service.component';
-import { first } from 'rxjs/operators';
+import { first, timeout } from 'rxjs/operators';
 import { trigger, transition, animate, style, group, query } from '@angular/animations';
 import { AlertService } from '../../service/alert.service';
 import { Router } from '@angular/router';
@@ -93,46 +93,7 @@ export class RegisterComponent {
 
   ngOnInit() {
   }
-  selectFile(event: any): void {
-    this.selectedFiles = event.target.files;
-  }
-
-  upload(): void {
-    this.progress = 0;
-
-    if (this.selectedFiles) {
-      const file: File | null = this.selectedFiles.item(0);
-
-      if (file) {
-        this.currentFile = file;
-
-        this.api.upload(this.currentFile).subscribe({
-          next: (event: any) => {
-            if (event.type === HttpEventType.UploadProgress) {
-              this.progress = Math.round(100 * event.loaded / event.total);
-            } else if (event instanceof HttpResponse) {
-              this.message = event.body.message;
-              this.fileInfos = this.api.getFiles();
-            }
-          },
-          error: (err: any) => {
-            console.log(err);
-            this.progress = 0;
-
-            if (err.error && err.error.message) {
-              this.message = err.error.message;
-            } else {
-              this.message = 'Could not upload the file!';
-            }
-
-            this.currentFile = undefined;
-          }
-        });
-      }
-
-      this.selectedFiles = undefined;
-    }
-  }
+ 
   /**
    * 
    * Register function
@@ -143,22 +104,35 @@ export class RegisterComponent {
     if (this.currentStep === this.totalSteps - 1) {
       for (var role of this.roles)
         if (role.checked) this.role_submit.push(role.id);
-      this.auth.userregistration(this.username, this.email, this.password, this.first_name, this.last_name, this.phone, this.role_submit)
-        .pipe(first())
-        .subscribe({
-          next(data) {
-            console.log(data);
-            //this.router.navigate(['/login']);
-          },
-          error(error) {
-            console.log(error);
-          }
-        });
+      this.auth.userregistration(this.username, this.email, this.password, this.first_name, this.last_name, this.phone, this.role_submit, this.pfp).subscribe({
+        next: (response: any) => {
+          console.log(response);
+          this.alertService.success('Thank you for registering!\nPlease be on a look out for a activation code in your email inbox.');
+          this.uploadPFP(this.pfp,response?.data?.account_id);
+          this.registerSuccess=true;
+        },
+        error: (error: any) => {
+          console.error(error);
+          this.alertService.error('Error has occured.\nPlease look at error and email owner of the site to further assist you.');
+          this.registerError=true;
+        }
+      });
     }
 
   }
 
-
+uploadPFP(image:any,account:any):any{
+  this.api.uploadImage(image, account).subscribe({
+    next: (response:any) => {
+      //console.log('Image uploaded successfully:\n', response);
+      this.alertService.success(response?.message);
+    },
+    error: (error:any) => {
+      //console.error('Error uploading image:\n', error);
+      this.alertService.error(error?.message);
+    }
+  });
+}
   /**
    * 
    * Example file upload got from online

@@ -76,9 +76,9 @@
     transform: translateY(-1px);
     z-index: -1;
   }
-  .register-tier:last-child .active ~ .circle::before{
+  /* .register-tier:last-child .active ~ .circle::before{
     display: none;
-  }
+  } */
   .success-circle{
     position: relative;
     width: 50px;
@@ -144,9 +144,10 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 .register-table{
-  background-color: rgba(193, 193, 193, 0.908);
+  /* background-color: rgba(193, 193, 193, 0.908); */
   margin:0 auto;
   max-width:400px;
+  color:white;
   /* height:300px; */
 }
 
@@ -156,6 +157,24 @@
 .register-table .pfp-point,
 .register-table .text-start{
   background-color: rgba(255, 255, 255, 0);
+  color:white;
+}
+
+.title-cap {
+  font-family: Daily-Q;
+  color: white;
+  /* font-weight: bold; */
+  font-size: 50px;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+ /* // background-color: #9c9c9c;
+  */
+ 
+}
+.card-container.card {
+margin:0 auto;
+max-width:500px;
+/* padding: 40px 40px; */
+background: none;
 }
 
   @keyframes check {
