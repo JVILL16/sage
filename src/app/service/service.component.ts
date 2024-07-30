@@ -77,13 +77,13 @@ export class ApiService {
 
 
   //events api
-  public getEventsData(profile: any) {
+  public getEventsData(profile: any): any {
     return this.httpClient.get<any>(`${environment.serverUrl}/events/e_read?profile=${profile}`);
   }
-  public createEventData(event: any) {
+  public createEventData(event: any): any {
     return this.httpClient.post<any>(`${environment.serverUrl}/events/e_create`, event);
   }
-  public insertGSheetEventData(event: any) {
+  public insertGSheetEventData(event: any): any {
     return this.httpClient.post<any>(`${environment.serverUrl}/auth/gsheets/e_insert`, event);
   }
   /**
