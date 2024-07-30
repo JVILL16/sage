@@ -108,7 +108,17 @@ export class RegisterComponent {
         next: (response: any) => {
           console.log(response);
           this.alertService.success('Thank you for registering!\nPlease be on a look out for a activation code in your email inbox.');
-          this.uploadPFP(this.pfp,response?.data?.account_id);
+          
+          this.api.uploadImage(this.pfp_new, response?.data?.account_id).subscribe({
+            next: (uploadResponse:any) => {
+              //console.log('Image uploaded successfully:\n', response);
+              this.alertService.success(uploadResponse?.message);
+            },
+            error: (uploadError:any) => {
+              //console.error('Error uploading image:\n', error);
+              this.alertService.error(uploadError?.message);
+            }
+          });
           this.registerSuccess=true;
         },
         error: (error: any) => {
@@ -121,18 +131,7 @@ export class RegisterComponent {
 
   }
 
-uploadPFP(image:any,account:any):any{
-  this.api.uploadImage(image, account).subscribe({
-    next: (response:any) => {
-      //console.log('Image uploaded successfully:\n', response);
-      this.alertService.success(response?.message);
-    },
-    error: (error:any) => {
-      //console.error('Error uploading image:\n', error);
-      this.alertService.error(error?.message);
-    }
-  });
-}
+
   /**
    * 
    * Example file upload got from online

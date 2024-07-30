@@ -7,6 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import { User } from '../components/users/user';
 import { Roles } from '../components/users/roles';
+import { AlertService } from './alert.service';
 
 @Injectable()
 export class AuthenticationService {
@@ -27,24 +28,24 @@ export class AuthenticationService {
         return this.userName.asObservable();
     }
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private alertService:AlertService) { }
 
-    userlogin(username: string, password: string): Observable<User[]> {
-        return this.http.post<User[]>(`${environment.serverUrl}/auth/login`, { username: username, password: password })
+    userlogin(username: string, password: string): Observable<any> {
+        return this.http.post<any>(`${environment.serverUrl}/auth/login`, { username: username, password: password })
             .pipe(map(user => {
-                console.log(user);
+                //console.log(user);
                 // login successful if there's a jwt token in the response
-                if (user) { //&& user.token
+                if (user?.data) { //&& user.token
                     // store user details and jwt token in session storage to keep user logged in between page refreshes
-                    sessionStorage.setItem('currentUser', JSON.stringify(user));
+                    sessionStorage.setItem('currentUser', JSON.stringify(user?.data));
                     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
-                    console.log(this.currentUser);
+                    //console.log(this.currentUser);
                     this.loggedIn.next(true);
                     this.switchAdmin(this.currentUser[0].roles);
                     this.userName.next(this.currentUser[0].username);
                     
                 } else {
-                    console.log('login failed try again and refresh');
+                    this.alertService.error('login failed try again and refresh');
                 }
 
 
@@ -63,7 +64,7 @@ export class AuthenticationService {
     }
 
     userdelete(id:number){
-        return this.http.delete<User>(`${environment.serverUrl}/auth/remove?id=${id}`);
+        return this.http.delete<User>(`${environment.serverUrl}/auth/remove?account_id=${id}`);
     }
 
     rolesregister(account_id: number,roles: any): Observable<Roles> {

@@ -1,4 +1,6 @@
-<div role="alert" *ngIf="message" class="shadow-lg alert-dismissible fade show" [ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }">
-    <strong>{{message.text}}</strong>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="message=null"></button>
+<div *ngFor="let message of messages; index as i">
+    <div role="alert" *ngIf="message" class="shadow-lg alert-dismissible fade show" [style.--index]="i" [ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }">
+        <strong>{{message.text}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="messages.length==1? messages=[] : messages.splice(i,1)"></button>
+    </div>
 </div>
