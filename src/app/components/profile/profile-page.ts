@@ -2,13 +2,14 @@ import { Component, OnInit,Injectable, HostBinding, OnChanges, Input } from '@an
 import { ApiService } from '../../service/service.component';
 import { User } from '../users/user';
 import { Observable } from 'rxjs';
-import { AuthenticationService } from '../../service/auth.service';
+import { AuthenticationService } from '../../service/helpers/auth.service';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AlertService } from '../../service/alert.service';
+import { AlertService } from '../../service/helpers/alert.service';
 import { filter, first } from 'rxjs/operators';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { AdminComponent } from '../admin/admin-page';
+import { LoadingService } from 'src/app/service/helpers/loading.service';
 
 
 
@@ -70,7 +71,8 @@ export class ProfileComponent implements OnInit{
   constructor(private api: ApiService,
     private auth: AuthenticationService,
     private router: Router,
-    private alertService: AlertService) { }
+    private alertService: AlertService,
+  private load: LoadingService) { }
 
 
 

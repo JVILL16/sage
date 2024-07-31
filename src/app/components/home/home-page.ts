@@ -2,12 +2,12 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 import { ApiService } from '../../service/service.component';
 import { User } from '../users/user';
 import { Observable } from 'rxjs';
-import { AuthenticationService } from '../../service/auth.service';
+import { AuthenticationService } from '../../service/helpers/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AlertService } from '../../service/alert.service';
+import { AlertService } from '../../service/helpers/alert.service';
+import { LoadingService } from '../../service/helpers/loading.service';
 import { first } from 'rxjs/operators';
-import { AppComponent } from 'src/app/app.component';
 
 
 @Component({
@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private auth: AuthenticationService,
     private alertService: AlertService,
-    private load:AppComponent) { 
+    private load:LoadingService) { 
      //console.log(sessionStorage.getItem('currentUser'));
      this.home_login();
     }
@@ -80,7 +80,7 @@ export class HomeComponent implements OnInit {
     }
 
     this.loading = true;
-    this.load.show();
+    this.load.show('home');
     this.auth.userlogin(this.f['username'].value, this.f['password'].value)
       .pipe(first())
       .subscribe({
@@ -88,12 +88,12 @@ export class HomeComponent implements OnInit {
           // get return url from query parameters or default to home page
           this.router.navigate(['/']);
           this.home_login();
-          this.load.hide();
+          this.load.hide('home');
         },
         error: error => {
           this.alertService.error(error);
           this.loading = false;
-          this.load.hide();
+          this.load.hide('home');
         }
       });
     // .pipe(first())

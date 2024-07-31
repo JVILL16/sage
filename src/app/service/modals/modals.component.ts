@@ -2,13 +2,13 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ApiService } from '../service.component';
 import { User } from '../../components/users/user';
 import { Observable, Subscription } from 'rxjs';
-import { AuthenticationService } from '../auth.service';
+import { AuthenticationService } from '../helpers/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AlertService } from '../alert.service';
+import { AlertService } from '../helpers/alert.service';
 import { first, map } from 'rxjs/operators';
 import { AdminComponent } from 'src/app/components/admin/admin-page';
-import { ModalsService } from '../modals.service';
+import { ModalsService } from '../helpers/modals.service';
 import { ClutchService } from '../helpers/clutch.service';
 
 

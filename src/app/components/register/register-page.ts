@@ -3,11 +3,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../service/service.component';
 import { first, timeout } from 'rxjs/operators';
 import { trigger, transition, animate, style, group, query } from '@angular/animations';
-import { AlertService } from '../../service/alert.service';
+import { AlertService } from '../../service/helpers/alert.service';
 import { Router } from '@angular/router';
-import { AuthenticationService } from 'src/app/service/auth.service';
+import { AuthenticationService } from 'src/app/service/helpers/auth.service';
 import { Observable } from 'rxjs';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { LoadingService } from 'src/app/service/helpers/loading.service';
 
 
 
@@ -88,7 +89,7 @@ export class RegisterComponent {
 
 
 
-  constructor(private fb: FormBuilder, private auth: AuthenticationService, private router: Router, private api: ApiService, private alertService: AlertService) { }
+  constructor(private fb: FormBuilder, private auth: AuthenticationService, private router: Router, private api: ApiService, private alertService: AlertService, private load: LoadingService) { }
 
 
   ngOnInit() {
@@ -101,6 +102,7 @@ export class RegisterComponent {
    * 
    */
   postdata() {
+    this.load.show('register');
     if (this.currentStep === this.totalSteps - 1) {
       for (var role of this.roles)
         if (role.checked) this.role_submit.push(role.id);
@@ -113,54 +115,26 @@ export class RegisterComponent {
             next: (uploadResponse:any) => {
               //console.log('Image uploaded successfully:\n', response);
               this.alertService.success(uploadResponse?.message);
+              this.load.hide('register');
             },
             error: (uploadError:any) => {
               //console.error('Error uploading image:\n', error);
               this.alertService.error(uploadError?.message);
+              this.load.hide('register');
             }
           });
           this.registerSuccess=true;
         },
         error: (error: any) => {
-          console.error(error);
-          this.alertService.error('Error has occured.\nPlease look at error and email owner of the site to further assist you.');
+          this.alertService.error('Error has occured.\nPlease look at error and email owner of the site to further assist you.', error?.message);
           this.registerError=true;
+          this.load.hide('register');
         }
       });
     }
 
   }
 
-
-  /**
-   * 
-   * Example file upload got from online
-   * 
-   */
-  // onSelectFile(event: any) {
-  //   console.log(event);
-  //   if (event.target.files && event.target.files[0]) {
-  //     const reader = new FileReader();
-
-  //     reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-  //     reader.onload = (event) => {
-  //       // called once readAsDataURL is completed
-  //       this.url = event.target?.result;
-  //       console.log(this.url);
-  //     };
-  //   } else {
-  //     const reader = new FileReader();
-
-  //     reader.readAsDataURL(event); // read file as data url
-
-  //     reader.onload = (event) => {
-  //       // called once readAsDataURL is completed
-  //       this.url = event.target?.result;
-  //       console.log(this.url);
-  //     }
-  //   }
-  // }
 
   onSelectFile(event: any) {
     //console.log(event.target.files[0]);

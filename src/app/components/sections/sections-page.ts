@@ -1,12 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { User } from '../users/user';
-import { AuthenticationService } from '../../service/auth.service';
+import { AuthenticationService } from '../../service/helpers/auth.service';
 import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/service/service.component';
 import { ActivatedRoute, Router, ParamMap, NavigationStart } from '@angular/router';
 import { ClutchService } from 'src/app/service/helpers/clutch.service';
-import { AlertService } from 'src/app/service/alert.service';
-import { ModalsService } from 'src/app/service/modals.service';
+import { AlertService } from 'src/app/service/helpers/alert.service';
+import { ModalsService } from 'src/app/service/helpers/modals.service';
 
 
 @Component({

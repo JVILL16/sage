@@ -5,8 +5,8 @@ import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { User } from '../components/users/user';
-import { Roles } from '../components/users/roles';
+import { User } from '../../components/users/user';
+import { Roles } from '../../components/users/roles';
 import { AlertService } from './alert.service';
 
 @Injectable()

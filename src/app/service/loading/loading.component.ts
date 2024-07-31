@@ -1,14 +1,16 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { LoadingService } from '../helpers/loading.service'
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
-    selector: 'app-loading',
+    selector: 'loading',
     templateUrl: './loading.component.html',
     styleUrls: ['./loading.component.css']
 })
 
 export class LoadingComponent  {
 
-    loading: boolean = false;
+    
 
     // show(): any {
     //     this.loading = true;
@@ -28,5 +30,21 @@ export class LoadingComponent  {
 
     //     throw new Error("Method not implemented.");
     // }
+    private subscription!: Subscription;
+    loading: boolean = false;
+    
+
+    constructor(private loadService: LoadingService) { }
+
+    ngOnInit() {
+        this.subscription = this.loadService.getLoadStatus.subscribe((status:any) => { 
+            this.loading = status.status; 
+            console.log(status.component);
+        });
+    }
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
+    }
 
 }

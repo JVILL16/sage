@@ -3,9 +3,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { User } from '../users/user';
 import { ApiService } from '../../service/service.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthenticationService } from '../../service/auth.service';
-import { AlertService } from '../../service/alert.service';
+import { AuthenticationService } from '../../service/helpers/auth.service';
+import { AlertService } from '../../service/helpers/alert.service';
 import { first } from 'rxjs/operators';
+import { LoadingService } from 'src/app/service/helpers/loading.service';
 
 @Component({
     selector: 'login-page',
@@ -29,7 +30,8 @@ export class LoginComponent implements OnInit{
       private route: ActivatedRoute,
       private router: Router,
       private auth: AuthenticationService,
-      private alertService: AlertService) {}
+      private alertService: AlertService,
+      private load: LoadingService) {}
 
 
     ngOnInit(){
@@ -61,16 +63,19 @@ export class LoginComponent implements OnInit{
         }
 
         this.loading = true;
+      this.load.show('login');
       this.auth.userlogin(this.f['username'].value, this.f['password'].value)
         .pipe(first())
         .subscribe({
           next: () => {
             // get return url from query parameters or default to home page
             this.router.navigate(['/']);
+            this.load.hide('login');
           },
           error: error => {
             this.alertService.error(error);
             this.loading = false;
+            this.load.hide('login');
           }
         });    
         

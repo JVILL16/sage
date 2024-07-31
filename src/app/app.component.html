@@ -1,7 +1,7 @@
 <alert></alert>
+<loading></loading>
 <div *ngIf="!webpage_loading">    
     <navbar-instant></navbar-instant>
-    <router-outlet id="content-wrap"></router-outlet>
+    <router-outlet></router-outlet>
     <footer-instant></footer-instant>
 </div>
-<app-loading *ngIf="loading || webpage_loading"></app-loading>

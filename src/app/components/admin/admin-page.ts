@@ -2,13 +2,13 @@ import { Component, OnInit,Injectable,Output, HostBinding, EventEmitter } from '
 import { ApiService } from '../../service/service.component';
 import { User } from '../users/user';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { AuthenticationService } from '../../service/auth.service';
+import { AuthenticationService } from '../../service/helpers/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AlertService } from '../../service/alert.service';
+import { AlertService } from '../../service/helpers/alert.service';
 import { first } from 'rxjs/operators';
 import { ModalsComponent } from '../../service/modals/modals.component';
-import { ModalsService } from 'src/app/service/modals.service';
+import { ModalsService } from 'src/app/service/helpers/modals.service';
 
 
 @Component({

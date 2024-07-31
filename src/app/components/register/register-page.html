@@ -1,5 +1,5 @@
 <!-- [ngStyle]="blurBgScreen?{'-webkit-filter': 'blur(10px);'}:{}" -->
-<div class="container-fluid" *ngIf="!registerSuccess || !registerError ">
+<div class="container-fluid" *ngIf="!registerSuccess && !registerError ">
     <!-- <div *ngIf="registerSuccess" class="alert alert-success" role="alert" style="margin:0 auto;max-width:800px;">
         <h4>Thank you for registering</h4> Please be on a look out for a activation code in your email inbox.
     </div>
@@ -140,5 +140,10 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<div class="container-fluid" *ngIf="registerSuccess || registerError ">
+    <div class="alert alert-warning" role="alert" style="margin:0 auto;max-width:800px;">
+        <h4><i class="fa-solid fa-triangle-exclamation me-2"></i>Reloading</h4><p>Page is reloading, please wait while the site is checking for verification</p> 
     </div>
 </div>

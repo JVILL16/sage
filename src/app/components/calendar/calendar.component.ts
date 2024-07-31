@@ -2,8 +2,8 @@ import { Component, Input, OnInit, inject  } from '@angular/core';
 import { ApiService } from 'src/app/service/service.component';
 import { User } from '../users/user';
 import { ClutchService } from 'src/app/service/helpers/clutch.service';
-import { ModalsService } from 'src/app/service/modals.service';
-import { AlertService } from 'src/app/service/alert.service';
+import { ModalsService } from 'src/app/service/helpers/modals.service';
+import { AlertService } from 'src/app/service/helpers/alert.service';
 
 @Component({
   selector: 'calendar',

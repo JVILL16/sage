@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoadingComponent } from './components/loading/loading.component';
+import { LoadingService } from './service/helpers/loading.service';
+
 
 @Component({
   selector: 'app-root',
@@ -18,10 +19,9 @@ export class AppComponent implements OnInit {
     }
 
   title = 'jherm-site';
-  loading: boolean = false;
   webpage_loading: boolean = false;
  
-  constructor(private router:Router){}
+  constructor(private router:Router, private load: LoadingService){}
   //make a loading component a provider to add to the constructor ;
   //then make an object that determines if its a webpage load or ;
   //just a regular load
@@ -30,23 +30,17 @@ export class AppComponent implements OnInit {
 
  
   ngOnInit(): void {
+    this.load.show('app');
     this.webpage_loading = true;
-    let webpage = setTimeout(()=>{
+    setTimeout(()=>{
 
+      this.load.hide('app');
       this.webpage_loading = false;
+
 
     },5000);
     
    
-    
-    
-    /*throw new Error("Method not implemented.");*/
   }
-show(): any {
-    this.loading = true;
-}
-hide(): any {
-    
-    this.loading = false;
-}
+
 }
