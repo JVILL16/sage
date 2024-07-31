@@ -11,69 +11,49 @@
   </a>
 
 
-
-
-
-
-
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
     aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
 
-
   <div class="collapse navbar-collapse" id="navbarText">
 
-
-
-
     <div class="container">
-      <ul class="navbar-nav link ">
-        <li class="nav-item">
-          <a class="nav-link  text-nowrap" data-bs-toggle="collapse" data-bs-target="#navbarText"
+      <ul class="navbar-nav link placeholder-glow">
+        <li [ngClass]="{'placeholder':nav_load, 'nav-item': !nav_load}">
+          <a class="nav-link  text-nowrap" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show"
           aria-controls="navbarText" aria-expanded="false" routerLink="/">Home</a>
         </li>
         
-        <li class="nav-item">
-          <a class="nav-link  text-nowrap" data-bs-toggle="collapse" data-bs-target="#navbarText"
+        <li [ngClass]="{'placeholder':nav_load, 'nav-item': !nav_load}">
+          <a class="nav-link  text-nowrap" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show"
           aria-controls="navbarText" aria-expanded="false" routerLink="/about-us">About Us</a>
         </li>
-
-        <!-- <li class="nav-item">
-          <a class="nav-link text-nowrap" data-bs-toggle="collapse" data-bs-target="#navbarText"
-          aria-controls="navbarText" aria-expanded="false" routerLink="/">Profile</a>
-        </li> -->
-
-        <!-- <li class="nav-item">
-          <a class="nav-link  text-nowrap" data-bs-toggle="collapse" data-bs-target="#navbarText"
-          aria-controls="navbarText" aria-expanded="false" routerLink="/register">Shop</a>
-        </li> -->
-        
      
-        <li *ngIf="!showUsersTab" class="nav-item">
-          <a class="nav-link text-nowrap" data-bs-toggle="collapse" data-bs-target="#navbarText"
+        <li *ngIf="!showUsersTab" [ngClass]="{'placeholder':nav_load, 'nav-item': !nav_load}">
+          <a class="nav-link text-nowrap" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show"
           aria-controls="navbarText" aria-expanded="false" routerLink="/login">Sign In</a>
         </li>
-        <li *ngIf="!showUsersTab" class="nav-item">
-          <a class="nav-link text-nowrap" data-bs-toggle="collapse" data-bs-target="#navbarText"
+        <li *ngIf="!showUsersTab" [ngClass]="{'placeholder':nav_load, 'nav-item': !nav_load}">
+          <a class="nav-link text-nowrap" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show"
           aria-controls="navbarText" aria-expanded="false" routerLink="/register">Register</a>
         </li>
 
         <li *ngIf="showUsersTab" class="nav-item">
-          <a class="nav-link text-nowrap" data-bs-toggle="collapse" data-bs-target="#navbarText"
+          <a class="nav-link text-nowrap"
           aria-controls="navbarText" aria-expanded="false" routerLink="/{{username}}">Profile</a>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" [ngClass]="{'placeholder':nav_load, 'nav-item': !nav_load}">
           <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Paths
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" aria-expanded="false" routerLink="/"><i class="fa-solid fa-house"></i> Home</a></li>
-            <li><a class="dropdown-item" aria-expanded="false" routerLink="/clutch"><i class="fa-solid fa-paw"></i> Clutch</a></li>
+            <li><a class="dropdown-item" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" aria-controls="navbarText" aria-expanded="false" routerLink="/"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a class="dropdown-item" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" aria-controls="navbarText" aria-expanded="false" routerLink="/clutch"><i class="fa-solid fa-paw"></i> Clutch</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" aria-expanded="false" routerLink="/"><i class="fa-regular fa-futbol"></i> Kickball</a></li>
-            <li><a class="dropdown-item" aria-expanded="false" routerLink="/"><i class="fa-solid fa-cart-shopping"></i> Grocery</a></li>
+            <li><a class="dropdown-item" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" aria-controls="navbarText" aria-expanded="false" routerLink="/"><i class="fa-regular fa-futbol"></i> Kickball</a></li>
+            <li><a class="dropdown-item" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" aria-controls="navbarText"  aria-expanded="false" routerLink="/"><i class="fa-solid fa-cart-shopping"></i> Grocery</a></li>
           </ul>
         </li>
         <!-- <li *ngIf="showAdminTab" class="nav-item">

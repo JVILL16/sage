@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "jherm-site:build:production"
+              "buildTarget": "jherm-site:build:production"
             },
             "development": {
-              "browserTarget": "jherm-site:build:development"
+              "buildTarget": "jherm-site:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "jherm-site:build"
+            "buildTarget": "jherm-site:build"
           }
         },
         "test": {
