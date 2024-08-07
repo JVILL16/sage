@@ -74,7 +74,8 @@
 }
 
 #target-section {
-  padding: 100px;
+  /* padding: 100px; */
+  scroll-margin: 100px;
 }
 
 .scroll-button {
@@ -111,10 +112,10 @@
 }
 
 @media only screen and (min-width: 320px) {
-  .clutch-div {
+  /* .clutch-div {
     margin-left: 50px;
     margin-right: 50px;
-  }
+  } */
 
   .gradient-clutch {
     font-size: 14px !important;

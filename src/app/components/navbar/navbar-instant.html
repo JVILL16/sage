@@ -42,7 +42,7 @@
 
         <li *ngIf="showUsersTab" class="nav-item">
           <a class="nav-link text-nowrap"
-          aria-controls="navbarText" aria-expanded="false" routerLink="/{{username}}">Profile</a>
+          aria-controls="navbarText" aria-expanded="false" routerLink="user/{{username}}">Profile</a>
         </li>
         <li class="nav-item dropdown" [ngClass]="{'placeholder':nav_load, 'nav-item': !nav_load}">
           <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">

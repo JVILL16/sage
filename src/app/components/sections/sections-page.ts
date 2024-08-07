@@ -101,7 +101,7 @@ export class SectionsComponent implements OnInit{
 
       this.clutch.getClutchUserData('practice',this.clutch_name).subscribe(
         (data:any) => {
-          this.clutch_attend = data[0];
+          this.clutch_attend = data?.data[0];
           console.log(this.clutch_attend); // Handle the data as needed
         },
         (error:any) => {
@@ -111,7 +111,7 @@ export class SectionsComponent implements OnInit{
       
       this.api.getEventsData(this.section_id).subscribe(
         (data:any) => {
-          this.clutch_events = data;
+          this.clutch_events = data?.data;
           console.log(this.clutch_events); // Handle the data as needed
         },
         (error:any) => {
