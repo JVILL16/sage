@@ -5,10 +5,23 @@ import { ClutchService } from 'src/app/service/helpers/clutch.service';
 import { ModalsService } from 'src/app/service/helpers/modals.service';
 import { AlertService } from 'src/app/service/helpers/alert.service';
 
+import { trigger, transition, animate, style, group, query } from '@angular/animations';
+
 @Component({
   selector: 'calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css'],
+  animations: [
+    trigger('fadeInLeft', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateX(-100%)' }),
+        animate('800ms ease-in', style({ opacity: 1, transform: 'translateX(0%)' }))
+      ]),
+      //  transition(':leave', [
+      //   animate('200ms', style({transform: 'translateX(100%)'}))
+      // ])
+    ])
+  ]
 })
 
 export class CalendarComponent {
@@ -28,6 +41,8 @@ export class CalendarComponent {
   dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   numWeeks: any;
   dayObject: any;
+  mobileViewEvent: any = false;
+  mobileViewDay : any = [];
 
   exCollection = [
     {
@@ -101,6 +116,7 @@ export class CalendarComponent {
     for (let i = firstDayOfMonth - 1; i >= 0; i--) {
       days.push(null);
     }
+    
     // Add days from the current month
     for (let i = 1; i <= numDaysInMonth; i++) {
       //Create day object 
@@ -127,8 +143,14 @@ export class CalendarComponent {
     for (let i = 0; i < days.length - 1; i++) {
       this.eventsInMonth(days[i]);
     }
-    this.numWeeks = Math.ceil(days.length / 7);
+    // Check if the last 7 elements are null 
+    if (days.length >= 7 && days.slice(days.length - 7).every(el => el === null)) {
+      // Remove the last 7 elements
+      days.splice(days.length - 7, 7);
+    }
 
+    this.numWeeks = Math.ceil(days.length / 7);
+    console.log(days);
     // Populate the numWeeks array
     for (let i = 0; i < this.numWeeks; i++) {
       // Slice the days array to get the days for the current week
@@ -142,6 +164,14 @@ export class CalendarComponent {
     //this is where i stopped to check if attendance was submitted or not
     let attendance = this.attend.Attendance.some((item:any)=> item.Date === day.Date.toLocaleDateString() && item.Status!== '');
     this.modalService.getObject({Status:status,User:this.attend.User,Attend:attendance});
+  }
+
+  mobileEventList(day: any){
+    this.mobileViewEvent=!this.mobileViewEvent;
+    if(this.mobileViewEvent)
+      this.mobileViewDay = day;
+
+
   }
 
   

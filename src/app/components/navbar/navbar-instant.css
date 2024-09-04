@@ -25,13 +25,17 @@ $phone_landscape: 780px; */
   //background-position: cover;
   */
 }
+.dropdown-menu{
+  max-width:100px;
+  margin:0 auto;
+}
 /* .navbar-toggler{
   border-color: white;
 } */
 .navbar-bg{
   background: #343a40 !important;
 }
-@media only screen and (min-width: 320px) {
+@media only screen and (max-width: 900px) {
   .navbar-brand{
     margin-left:20px;
   }
@@ -58,9 +62,10 @@ $phone_landscape: 780px; */
     font-size: 25px;
   }
   
+  
 }
 
-@media only screen and (min-width: 950px) and (max-width: 2000px) {
+@media only screen and (min-width: 901px) {
 
   .navbar-brand{
     margin-left:30px;

@@ -15,8 +15,8 @@
         </div>
         <div class="container-fluid">
           <div class="d-grid">
-            <button class="btn btn-sm btn-outline-secondary rounded-pill edit-button "
-              (click)="undoChanges(og_account);">Edit</button>
+            <button class="btn btn-sm btn-outline-secondary rounded-pill edit-button" *ngIf="!edit_screen"
+              (click)="undoChanges(og_account);"><i class="fa-solid fa-pen-to-square me-2"></i> Edit</button>
           </div>
 
           <div [@fadeInLeft] *ngIf="!edit_screen" class="profile-info">
@@ -73,12 +73,12 @@
 
 
       </div>
-      <div class="mt-2">
+      <div class="mt-2" *ngIf="edit_screen">
 
         <button class="btn btn-sm btn-success float-end" type="button" [disabled]="!save_changes"
           (click)="saveChanges()">Save</button>
-        <button class="btn btn-sm btn-secondary float-end me-2" type="button" [disabled]="!save_changes"
-          (click)="saveChanges()">Cancel</button>
+        <button class="btn btn-sm btn-secondary float-end me-2" type="button" 
+          (click)="undoChanges(og_account);">Cancel</button>
       </div>
       <!-- <div class="card bg-color shadow-lg " style="margin: 0 auto;max-width:800px">
         <div class="card-body">
@@ -93,8 +93,8 @@
     <div class="col-xl-9">
     
       <nav>
-        <div class="nav nav-pills" id="nav-tab" role="tablist">
-          <button *ngFor="let section of sections" class="nav-link tab-bg-{{section}}"
+        <div class="nav nav-pills mobileSectionNav" id="nav-tab" role="tablist">
+          <button *ngFor="let section of sections" class="me-2 my-4 nav-link tab-bg-{{section}}"
             [ngClass]="{ 'active': section==activeTab }" id="nav-{{section}}-tab" data-bs-toggle="tab"
             routerLink="detail/{{section}}" [attr.data-bs-target]="'#nav-'+ section" type="button" role="tab"
             [attr.aria-controls]="'nav-'+section" attr.aria-selected="{{section==activeTab ? true: false}}" (click)="setActiveTab(section)">

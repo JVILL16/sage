@@ -98,7 +98,7 @@ export class ProfileComponent implements OnInit{
   }
 
   undoChanges(og_user: User) : void{
-    this.edit_screen=!this.edit_screen
+    this.edit_screen=!this.edit_screen;
     if(this.edit_screen){ this.account = { ...og_user};this.save_changes=false; }
     
   }

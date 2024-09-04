@@ -73,7 +73,7 @@
 
 .edit-button:hover {
   transition: 1s;
-  background: linear-gradient(rgb(133, 182, 255), rgb(185, 185, 185)) !important;
+  background: #818181 !important;
 }
 
 
@@ -97,7 +97,6 @@
 }
 
 .profile-info {
-  text-align: left;
   margin-top: 20px;
 }
 
@@ -186,17 +185,30 @@
     margin-left: 10px;
     margin-right: 10px;
   }
-
+  .profile-info {
+    text-align: center;
+  }
   /* .nav-link {
     font-size: 5px;
     padding: 0.5rem 0.5rem;
   } */
+   .mobileSectionNav{
+    justify-content: center;
+    font-size:10px;
+    min-width:50px;
+   }
+   .mobileSectionNav button{
+    padding:5px;
+   }
 }
 
 @media only screen and (min-width: 901px) {
   .profile-div {
     margin-left: 200px;
     margin-right: 200px;
+  }
+  .profile-info {
+    text-align: left;
   }
 }
 

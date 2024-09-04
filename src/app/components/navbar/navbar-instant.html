@@ -41,7 +41,7 @@
         </li>
 
         <li *ngIf="showUsersTab" class="nav-item">
-          <a class="nav-link text-nowrap"
+          <a class="nav-link text-nowrap"  data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show"
           aria-controls="navbarText" aria-expanded="false" routerLink="user/{{username}}">Profile</a>
         </li>
         <li class="nav-item dropdown" [ngClass]="{'placeholder':nav_load, 'nav-item': !nav_load}">

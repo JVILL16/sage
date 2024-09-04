@@ -5,6 +5,15 @@
                 <div *ngIf="section == 'clutch'">
                     <div class="card shadow-lg border-secondary">
                         <div class="card-header gradient-clutch">
+                            <span>SCHEDULE</span>
+                            <button *ngIf="clutch_admin" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#eventAddModal" type="button" (click)="eventCreate()">Add Event</button>
+                        </div>
+                        <div class="card-body">
+                            <calendar [attend]="clutch_attend" [collection]="clutch_events"></calendar>
+                        </div>
+                    </div>
+                    <div class="card shadow-lg border-secondary">
+                        <div class="card-header gradient-clutch">
                             ANNOUNCEMENTS
                         </div>
                         <div class="card-body">
@@ -19,7 +28,7 @@
                     </div>
                     <div class="card shadow-lg border-secondary">
                         <div class="card-header gradient-clutch">
-                            SCHEDULE
+                            TOURNAMENTS
                         </div>
                         <div class="card-body">
                             <table></table>
@@ -33,15 +42,7 @@
                             <table></table>
                         </div>
                     </div>
-                    <div class="card shadow-lg border-secondary">
-                        <div class="card-header gradient-clutch">
-                            <span>ATTENDENCE</span>
-                            <button *ngIf="clutch_admin" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#eventAddModal" type="button" (click)="eventCreate()">Add Event</button>
-                        </div>
-                        <div class="card-body">
-                            <calendar [attend]="clutch_attend" [collection]="clutch_events"></calendar>
-                        </div>
-                    </div>
+                    
                 </div>
                 <div *ngIf="section == 'settings'">
                     <div class="edit-header">

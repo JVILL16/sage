@@ -1,24 +1,30 @@
 .alert {
-    position: fixed; /* or absolute */
-  left: 50%; /* Center horizontally */
-  transform: translate(-50%, -50%); /* Centering trick */
-    
+  position: fixed;
+  /* or absolute */
+  left: 50%;
+  /* Center horizontally */
+  transform: translate(-50%, -50%);
+  /* Centering trick */
+  padding: 15px;
+  z-index: 1000;
+  /* Higher z-index to ensure it appears on top */
+}
 
-    padding: 15px;
-    z-index: 1000; /* Higher z-index to ensure it appears on top */
+
+@media only screen and (min-width: 901px) {
+  .alert {
+    top: calc(20% + (var(--index) * 10%));
+    ;
+    /* 20% Center vertically */
+    width: 50%;
   }
+}
 
-
-  @media only screen and (min-width: 901px){
-    .alert{
-      top: calc(20% + (var(--index) * 10%));; /* 20% Center vertically */
-      width: 50%;
-    }
+@media only screen and (max-width: 900px) {
+  .alert {
+    top: calc(20% + (var(--index) * 15%));
+    ;
+    /* 20% Center vertically */
+    width: 90%;
   }
-
-  @media only screen and (max-width: 900px) {
-    .alert{
-      top: calc(40% + (var(--index) * 10%));; /* 20% Center vertically */
-      width: 90%;
-    }
-  }
+}
