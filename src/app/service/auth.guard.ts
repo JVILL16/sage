@@ -22,7 +22,8 @@ export class AuthGuard implements CanActivate {
                     return true;
 
                 } else {
-                    this.router.navigate([_state.url]); //, { queryParams: { returnUrl: state.url } }
+                    this.router.navigate(['/login']);
+                    //this.router.navigate([_state.url]); //, { queryParams: { returnUrl: state.url } }
                     return false;
 
                     // // Allow access to NotFoundComponent without authentication
