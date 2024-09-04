@@ -45,9 +45,14 @@
         </div>
         
 
-        <div class="mt-3">
+        <div class="mt-3" *ngIf="mobileViewDay?.Status.length!=0">
             <div *ngFor="let status of mobileViewDay?.Status">
                 <div class="event-tab" data-bs-toggle="modal" data-bs-target="#eventDetailModal" title="{{status?.Name}}" (click)="eventDetail(status,mobileViewDay)">{{ status?.Name }}</div>
+            </div>
+        </div>
+        <div class="mt-3" *ngIf="mobileViewDay?.Status.length==0">
+            <div role="alert" class=" text-center alert alert-warning shadow-lg fade show">
+                <strong>No Events Listed.</strong>
             </div>
         </div>
     </div>

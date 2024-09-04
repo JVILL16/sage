@@ -91,6 +91,7 @@ export class HomeComponent implements OnInit {
           this.load.hide('home');
         },
         error: error => {
+          console.log(error);
           this.alertService.error(error);
           this.loading = false;
           this.load.hide('home');

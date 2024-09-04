@@ -33,19 +33,19 @@ export class AuthenticationService {
     userlogin(username: string, password: string): Observable<any> {
         return this.http.post<any>(`${environment.serverUrl}/auth/login`, { username: username, password: password })
             .pipe(map(user => {
-                //console.log(user);
+                console.log(user);
                 // login successful if there's a jwt token in the response
-                if (user?.data) { //&& user.token
+                if (user?.data && user?.data[0]?.roles) { //&& user.token
                     // store user details and jwt token in session storage to keep user logged in between page refreshes
                     sessionStorage.setItem('currentUser', JSON.stringify(user?.data));
                     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
-                    //console.log(this.currentUser);
+                    console.log(this.currentUser);
                     this.loggedIn.next(true);
-                    this.switchAdmin(this.currentUser[0].roles);
-                    this.userName.next(this.currentUser[0].username);
+                    this.switchAdmin(this.currentUser[0]?.roles);
+                    this.userName.next(this.currentUser[0]?.username);
                     
                 } else {
-                    this.alertService.error('login failed try again and refresh');
+                    this.alertService.error('Login failed try again and refresh');
                 }
 
 
