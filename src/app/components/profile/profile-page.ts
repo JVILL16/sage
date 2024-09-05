@@ -64,7 +64,6 @@ export class ProfileComponent implements OnInit{
   section_object : any = {};
 
   activeTab: any;
-  private readonly storageKey = 'activePill';
 
   
 
@@ -78,24 +77,19 @@ export class ProfileComponent implements OnInit{
 
   ngOnInit() {
     this.home_login(); 
-    // this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event: any) => {
-    //   this.edit_screen = false;
-    //   this.save_changes = false;
-    // });
-    const savedTab = this.getActiveTab();
-    this.activeTab = savedTab ? savedTab : 'overview';
-    console.log(this.activeTab);
+    
+    this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event: any) => {
+      // this.edit_screen = false;
+      // this.save_changes = false;
+      this.activeTab = sessionStorage.getItem('nav_section');
+    });
+    this.activeTab = 'overview';
+   
+    //console.log(sessionStorage.getItem('nav_section'));
     
   }
 
-  setActiveTab(tabId: string): void {
-    sessionStorage.setItem(this.storageKey, tabId);
-    this.activeTab = tabId;
-  }
-
-  getActiveTab(): string | null {
-    return sessionStorage.getItem(this.storageKey);
-  }
+ 
 
   undoChanges(og_user: User) : void{
     this.edit_screen=!this.edit_screen;

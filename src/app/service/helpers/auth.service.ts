@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
@@ -8,6 +8,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../../components/users/user';
 import { Roles } from '../../components/users/roles';
 import { AlertService } from './alert.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthenticationService {
@@ -28,23 +29,24 @@ export class AuthenticationService {
         return this.userName.asObservable();
     }
 
-    constructor(private http: HttpClient, private alertService:AlertService) { }
+    constructor(private http: HttpClient, private alertService:AlertService, private router: Router) { }
 
     userlogin(username: string, password: string): Observable<any> {
         return this.http.post<any>(`${environment.serverUrl}/auth/login`, { username: username, password: password })
             .pipe(map(user => {
-                console.log(user);
+                console.log(user?.status);
                 // login successful if there's a jwt token in the response
-                if (user?.data && user?.data[0]?.roles) { //&& user.token
+                if (user?.status===200) { //&& user.token
+                    this.router.navigate(['/']);
                     // store user details and jwt token in session storage to keep user logged in between page refreshes
                     sessionStorage.setItem('currentUser', JSON.stringify(user?.data));
                     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
-                    console.log(this.currentUser);
                     this.loggedIn.next(true);
-                    this.switchAdmin(this.currentUser[0]?.roles);
+                    this.checkAdmin.next(this.currentUser[0]?.roles.some((role:any)=> role.profile_id === 231385));
                     this.userName.next(this.currentUser[0]?.username);
                     
                 } else {
+                    this.router.navigate(['/']);
                     this.alertService.error('Login failed try again and refresh');
                 }
 
@@ -53,7 +55,7 @@ export class AuthenticationService {
             }));
     }
 
-
+ 
 
     userregistration(username: string, email: string, password: string, first_name: string, last_name: string, phone:string,roles:any, pfp:any): Observable<User> {
 
@@ -89,17 +91,5 @@ export class AuthenticationService {
         this.checkAdmin.next(false);
         this.userName.next('');
         sessionStorage.removeItem('currentUser');
-    }
-
-    switchAdmin(userRoles:any) {
-        if(userRoles.length > 1){
-            for(var role of userRoles){
-                //console.log(role);
-                if(role.profile_id == 231385){
-                    this.checkAdmin.next(true);
-                         break;
-                }
-            }
-        }else this.checkAdmin.next(false);
     }
 }

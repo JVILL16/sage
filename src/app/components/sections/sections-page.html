@@ -1,62 +1,92 @@
-<div class=""  >
+<div class="">
     <div class="row">
         <div class="col-xl-12">
-            
-                <div *ngIf="section == 'clutch'">
-                    <div class="card shadow-lg border-secondary">
-                        <div class="card-header gradient-clutch">
-                            <span>SCHEDULE</span>
-                            <button *ngIf="clutch_admin" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#eventAddModal" type="button" (click)="eventCreate()">Add Event</button>
-                        </div>
-                        <div class="card-body">
-                            <calendar [attend]="clutch_attend" [collection]="clutch_events"></calendar>
-                        </div>
+            <div *ngIf="section == 'overview'">
+                <div class="mt-3">
+                    <div role="alert" class=" text-center alert alert-warning shadow-lg fade show">
+                        <strong>Overview page is being worked on. Please come back again...</strong>
                     </div>
-                    <div class="card shadow-lg border-secondary">
-                        <div class="card-header gradient-clutch">
-                            ANNOUNCEMENTS
-                        </div>
-                        <div class="card-body">
-                            <span>
-                                Great minicamp C(B)lutch.
-                                As much as our skills are improving, I see us continuously growing closer together as a team, which is crucial for a group that wants to play at a high level.
-                                A couple notes:
-                                Guys are asking me how they can get better. Love that - I’ll always give you feedback if you take the time to show up. Know this though, my feedback is blunt, to the point, actionable things that, if executed, would allow you to be the player you want to be. I appreciate Rhyan Miller for taking tough feedback today. Know that if you ask, you’re getting truth from me.
-                                Second thing: leadership is going to start forming lines for T2F. Starting O line will play a lot. Starting D Line will play a lot. Subs will be exactly that, subs that come in when needed. You all know that a tournament in Tx heat is grueling and it’s a lot about survival. Subs will get to play a ton, but in the words of coach Hermann Boone “the best players will play”. We’re here to bring home wins for the team - play your role in that to the hilt, and earn your starting spot in practice.
-                                Fill in the spreadsheet, and more to come. Proud of you dudes!</span>
-                        </div>
-                    </div>
-                    <div class="card shadow-lg border-secondary">
-                        <div class="card-header gradient-clutch">
-                            TOURNAMENTS
-                        </div>
-                        <div class="card-body">
-                            <table></table>
-                        </div>
-                    </div>
-                    <div class="card shadow-lg border-secondary">
-                        <div class="card-header gradient-clutch">
-                            STATISTICS
-                        </div>
-                        <div class="card-body">
-                            <table></table>
-                        </div>
-                    </div>
-                    
                 </div>
-                <div *ngIf="section == 'settings'">
-                    <div class="edit-header">
-                        <h4><i class="fa-solid fa-circle-info icon-bg"></i> General</h4>
-                      </div>
-                    <div class="edit-header">
-                        <h4><i class="fa-solid fa-user-group icon-bg"></i> Roles</h4>
-                      </div>
+            </div>
+            <div *ngIf="section == 'kickball'">
+                <div class="mt-3">
+                    <div role="alert" class=" text-center alert alert-warning shadow-lg fade show">
+                        <strong>Kickball page is being worked on. Please come back again...</strong>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="section == 'grocery'">
+                <div class="mt-3">
+                    <div role="alert" class=" text-center alert alert-warning shadow-lg fade show">
+                        <strong>Grocery page is being worked on. Please come back again...</strong>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="section == 'clutch'">
+                <div class="card shadow-lg border-secondary">
+                    <div class="card-header gradient-clutch">
+                        <span>SCHEDULE</span>
+                        <button *ngIf="clutch_admin" class="btn btn-primary float-end" data-bs-toggle="modal"
+                            data-bs-target="#eventAddModal" type="button" (click)="eventCreate()">Add Event</button>
+                    </div>
+                    <div class="card-body">
+                        <calendar [attend]="clutch_attend" [collection]="clutch_events"></calendar>
+                    </div>
+                </div>
+                <div class="card shadow-lg border-secondary">
+                    <div class="card-header gradient-clutch">
+                        ANNOUNCEMENTS
+                    </div>
+                    <div class="card-body">
+                        <span>
+                            Great minicamp C(B)lutch.
+                            As much as our skills are improving, I see us continuously growing closer together as a
+                            team, which is crucial for a group that wants to play at a high level.
+                            A couple notes:
+                            Guys are asking me how they can get better. Love that - I’ll always give you feedback if you
+                            take the time to show up. Know this though, my feedback is blunt, to the point, actionable
+                            things that, if executed, would allow you to be the player you want to be. I appreciate
+                            Rhyan Miller for taking tough feedback today. Know that if you ask, you’re getting truth
+                            from me.
+                            Second thing: leadership is going to start forming lines for T2F. Starting O line will play
+                            a lot. Starting D Line will play a lot. Subs will be exactly that, subs that come in when
+                            needed. You all know that a tournament in Tx heat is grueling and it’s a lot about survival.
+                            Subs will get to play a ton, but in the words of coach Hermann Boone “the best players will
+                            play”. We’re here to bring home wins for the team - play your role in that to the hilt, and
+                            earn your starting spot in practice.
+                            Fill in the spreadsheet, and more to come. Proud of you dudes!</span>
+                    </div>
+                </div>
+                <div class="card shadow-lg border-secondary">
+                    <div class="card-header gradient-clutch">
+                        TOURNAMENTS
+                    </div>
+                    <div class="card-body">
+                        <table></table>
+                    </div>
+                </div>
+                <div class="card shadow-lg border-secondary">
+                    <div class="card-header gradient-clutch">
+                        STATISTICS
+                    </div>
+                    <div class="card-body">
+                        <table></table>
+                    </div>
+                </div>
 
+            </div>
+            <div *ngIf="section == 'settings'">
+                <div class="edit-header">
+                    <h4><i class="fa-solid fa-circle-info icon-bg"></i> General</h4>
                 </div>
-                <div *ngIf="section == 'admin'">
-                    <admin-page></admin-page>
+                <div class="edit-header">
+                    <h4><i class="fa-solid fa-user-group icon-bg"></i> Roles</h4>
                 </div>
+
+            </div>
+            <div *ngIf="section == 'admin'">
+                <admin-page></admin-page>
+            </div>
         </div>
     </div>
 </div>
-

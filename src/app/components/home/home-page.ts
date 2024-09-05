@@ -28,14 +28,22 @@ export class HomeComponent implements OnInit {
   currentUser: User[] = [];
   //users: Users[] = [];
   pic_icons: any = [
-    {Id: 1, Icon: 'clutch', 
-        Body:'This is a test to see how much of the body of text will fill up theis card body'},
-    {Id: 2, Icon: 'grocery', 
-        Body:''},
-    {Id: 3, Icon: 'sacc', 
-        Body:''},
-    {Id: 4, Icon: 'jam', 
-        Body:''},
+    {
+      Id: 1, Icon: 'clutch',
+      Body: 'This is a test to see how much of the body of text will fill up theis card body'
+    },
+    {
+      Id: 2, Icon: 'grocery',
+      Body: ''
+    },
+    {
+      Id: 3, Icon: 'sacc',
+      Body: ''
+    },
+    {
+      Id: 4, Icon: 'jam',
+      Body: ''
+    },
   ]
 
   users: User[] = [];
@@ -47,10 +55,10 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private auth: AuthenticationService,
     private alertService: AlertService,
-    private load:LoadingService) { 
-     //console.log(sessionStorage.getItem('currentUser'));
-     this.home_login();
-    }
+    private load: LoadingService) {
+    //console.log(sessionStorage.getItem('currentUser'));
+    this.home_login();
+  }
 
 
   ngOnInit() {
@@ -61,7 +69,7 @@ export class HomeComponent implements OnInit {
 
 
 
-    
+
   }
 
 
@@ -84,14 +92,12 @@ export class HomeComponent implements OnInit {
     this.auth.userlogin(this.f['username'].value, this.f['password'].value)
       .pipe(first())
       .subscribe({
-        next: () => {
+        next: (response:any) => {
           // get return url from query parameters or default to home page
-          this.router.navigate(['/']);
           this.home_login();
           this.load.hide('home');
         },
-        error: error => {
-          console.log(error);
+        error: (error:any) => {
           this.alertService.error(error);
           this.loading = false;
           this.load.hide('home');
@@ -111,14 +117,14 @@ export class HomeComponent implements OnInit {
     this.auth.logout();
   }
 
-home_login(){
-  if(sessionStorage.getItem('currentUser')){
-    this.home_user = true;
-        this.currentUser = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
-        console.log(this.currentUser[0].first_name);
-       
-        this.user_first_name = this.currentUser[0].first_name;
-   }else sessionStorage.clear();
-}
+  home_login() {
+    if (sessionStorage.getItem('currentUser')) {
+      this.home_user = true;
+      this.currentUser = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
+      console.log(this.currentUser[0].first_name);
+
+      this.user_first_name = this.currentUser[0].first_name;
+    } else sessionStorage.clear();
+  }
 
 }

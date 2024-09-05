@@ -150,7 +150,7 @@ export class CalendarComponent {
     }
 
     this.numWeeks = Math.ceil(days.length / 7);
-    console.log(days);
+    //console.log(days);
     // Populate the numWeeks array
     for (let i = 0; i < this.numWeeks; i++) {
       // Slice the days array to get the days for the current week

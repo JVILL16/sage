@@ -52,7 +52,7 @@ export class ModalsComponent {
 
     constructor(private modalService: ModalsService, private api: ApiService, private auth: AuthenticationService, private clutch: ClutchService) {
         this.modalService.getModalView.subscribe((data: any) => {
-            console.log(data);
+            //console.log(data);
             this.component_object = data;
         });
     }
@@ -67,7 +67,7 @@ export class ModalsComponent {
         return this.modelList.some((d: any) => d.equals(date));
     };
     dp_selectOne(date: any) {
-        console.log(date);
+        //console.log(date);
         // console.log(this.modelList.indexOf(date));
         if (this.dp_isSelected(date)) {
             this.modelList = this.modelList.filter((ele: any) => !ele.equals(date));
@@ -91,7 +91,7 @@ export class ModalsComponent {
             
         });
         this.component_object.dates.replace(/;$/, '');
-        console.log(this.component_object);
+        //console.log(this.component_object);
         // this.api.createEventData(this.component_object).subscribe({
         //     next(response: any) {
         //         console.log(response);
