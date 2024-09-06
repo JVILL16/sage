@@ -92,22 +92,22 @@ export class ModalsComponent {
         });
         this.component_object.dates.replace(/;$/, '');
         //console.log(this.component_object);
-        // this.api.createEventData(this.component_object).subscribe({
-        //     next(response: any) {
-        //         console.log(response);
-        //     },
-        //     error(error: any) {
-        //         console.log(error)
-        //     }
-        // });
-        // this.api.insertGSheetEventData(this.component_object).subscribe({
-        //     next(response: any) {
-        //         console.log(response);
-        //     },
-        //     error(error: any) {
-        //         console.log(error)
-        //     }
-        // });
+        this.api.createEventData(this.component_object).subscribe({
+            next(response: any) {
+                console.log(response);
+            },
+            error(error: any) {
+                console.log(error)
+            }
+        });
+        this.api.insertGSheetEventData(this.component_object).subscribe({
+            next(response: any) {
+                console.log(response);
+            },
+            error(error: any) {
+                console.log(error)
+            }
+        });
         this.closeModal();
         setTimeout(()=>{
 

@@ -27,7 +27,10 @@ export class SectionsComponent implements OnInit {
   clutch_attend: any;
   clutch_events: any;
   clutch_name: any;
+  clutch_statistics_links: any;
+  clutch_stat_link_player : any = '';
   clutch_admin: boolean = false;
+
 
   eventData: any = {
     name: '',
@@ -36,6 +39,8 @@ export class SectionsComponent implements OnInit {
     description: '',
     p_name: ''
   }
+
+  statisticLinks = (link:any) => link.category === 'Statistics';
 
   constructor(private auth: AuthenticationService,
     private activatedRoute: ActivatedRoute,
@@ -120,10 +125,41 @@ export class SectionsComponent implements OnInit {
     this.api.getEventsData(this.section_id).subscribe(
       (data: any) => {
         this.clutch_events = data?.data;
-        console.log(this.clutch_events); // Handle the data as needed
+        //console.log(this.clutch_events); // Handle the data as needed
       },
       (error: any) => {
         this.alert.error('Error fetching Events for Clutch:', error.error);
+      }
+    );;
+    this.api.getLinksData(this.section_id).subscribe(
+      (data: any) => {
+        this.clutch_statistics_links = data?.data.filter(this.statisticLinks);
+        let filter_UA_stat = this.clutch_statistics_links
+        .filter((link: any) => /https?:\/\/(www\.)?ultianalytics\./.test(link?.link))
+          .map((link: any) => {
+            return [
+              {
+                "name": link?.name + " Players",
+                "link": link?.link.replace(/\/[^\/]+$/, '') + "/players",
+                "input": false
+              },
+              {
+                "name": link?.name + " Individual Player",
+                "link": link?.link.replace(/\/[^\/]+$/, '') + "/player/",
+                "input": true
+              }
+            ]
+          });
+          this.clutch_statistics_links.forEach((link:any)=>{
+            let stat_index = this.clutch_statistics_links.findIndex((obj:any)=> obj?.name === link?.name);
+            if (stat_index !== -1) {
+              this.clutch_statistics_links.splice(stat_index + 1, 0, filter_UA_stat[0][0], filter_UA_stat[0][1]);
+            }
+          });
+          console.log(this.clutch_statistics_links);
+      },
+      (error: any) => {
+        this.alert.error('Error fetching Links for Clutch: ' + error.error);
       }
     );;
   }

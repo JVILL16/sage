@@ -70,7 +70,19 @@
                         STATISTICS
                     </div>
                     <div class="card-body">
-                        <table></table>
+                        <div *ngFor="let link of clutch_statistics_links">
+                            <a *ngIf="!link?.input" [href]="link?.link" target="_blank">{{link?.name}}</a>
+                            
+                            <div *ngIf="link?.input" class="form-group form-group-sm">
+                                <label for="exampleFormControlFile1">{{link?.name}}</label>
+                                <div>
+                                    <label class="input-group-text">{{link?.link}}</label>
+                                    <input type="text" class="form-control form-control-sm" [(ngModel)]="clutch_stat_link_player" id="basic-url" aria-describedby="basic-addon3">
+                                    <a class="btn btn-sm btn-primary" [href]="link?.link + clutch_stat_link_player"target="_blank">Launch</a>
+                                  
+                                </div>
+                               </div>
+                        </div>
                     </div>
                 </div>
 
