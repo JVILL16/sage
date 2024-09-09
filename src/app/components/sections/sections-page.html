@@ -23,11 +23,18 @@
                 </div>
             </div>
             <div *ngIf="section == 'clutch'">
+                <div *ngIf="clutch_admin" class="mb-4 text-center">
+                    <button class=" btn btn-info btn-sm rounded-pill me-2" data-bs-toggle="modal" data-bs-target="#linkAddModal"
+                        type="button" (click)="linkCreate()">
+                        <i class="fa-solid fa-link me-1"></i> Add Link</button>
+                    <button class="btn btn-sm btn-info rounded-pill" data-bs-toggle="modal" data-bs-target="#eventAddModal"
+                        type="button" (click)="eventCreate()">
+                        <i class="fa-solid fa-calendar-plus me-1"></i> Add Event</button>
+                </div>
+                
                 <div class="card shadow-lg border-secondary">
                     <div class="card-header gradient-clutch">
                         <span>SCHEDULE</span>
-                        <button *ngIf="clutch_admin" class="btn btn-primary float-end" data-bs-toggle="modal"
-                            data-bs-target="#eventAddModal" type="button" (click)="eventCreate()">Add Event</button>
                     </div>
                     <div class="card-body">
                         <calendar [attend]="clutch_attend" [collection]="clutch_events"></calendar>
@@ -72,16 +79,21 @@
                     <div class="card-body">
                         <div *ngFor="let link of clutch_statistics_links">
                             <a *ngIf="!link?.input" [href]="link?.link" target="_blank">{{link?.name}}</a>
+                            <button *ngIf="!link?.input" type="button" class="btn rounded-pill btn-danger btn-sm float-end"
+                                data-bs-toggle="modal" data-bs-target="#linkRmvModal" (click)="linkDelete(link)">
+                                <i class="fa-regular fa-trash-can"></i></button>
                             
                             <div *ngIf="link?.input" class="form-group form-group-sm">
-                                <label for="exampleFormControlFile1">{{link?.name}}</label>
-                                <div>
-                                    <label class="input-group-text">{{link?.link}}</label>
+                                <div>{{link?.name}}*</div>
+                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control form-control-sm" [(ngModel)]="clutch_stat_link_player" id="basic-url" aria-describedby="basic-addon3">
-                                    <a class="btn btn-sm btn-primary" [href]="link?.link + clutch_stat_link_player"target="_blank">Launch</a>
+                                    <a class="btn btn-sm btn-primary" [class.disabled]="clutch_stat_link_player==null||clutch_stat_link_player==''" [href]="link?.link + clutch_stat_link_player"target="_blank">Launch</a>
                                   
-                                </div>
+                                  </div>
                                </div>
+                        </div>
+                        <div class="card-footer mt-3 p-0">
+                            <div class="text-warning warning-playername">*Firstname only, input a player and hit launch </div>
                         </div>
                     </div>
                 </div>

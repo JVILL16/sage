@@ -29,6 +29,7 @@ export class ModalsComponent {
     // @Input() component_object: any;
     private subscription!: Subscription;
     component_object: any;
+    component_categories: any;
 
     listAdd: any = [];
 
@@ -40,9 +41,17 @@ export class ModalsComponent {
     model: NgbDateStruct | undefined;
     modelList: Array<NgbDateStruct> = [];
 
+    
 
     event_Submit: boolean = false;
+    link_Submit: boolean = false;
 
+    categories: any = [
+        { 
+            profile: '179925',
+            list: ['Schedule','Annoucements','Tournaments','Statistics']
+        }
+    ]
 
     // @Input() account_id : any;
     // @Input() profiles : any;
@@ -52,8 +61,10 @@ export class ModalsComponent {
 
     constructor(private modalService: ModalsService, private api: ApiService, private auth: AuthenticationService, private clutch: ClutchService) {
         this.modalService.getModalView.subscribe((data: any) => {
-            //console.log(data);
             this.component_object = data;
+            console.log(this.component_object);
+            this.component_categories = this.categories.filter((c: any) => c.profile === this.component_object?.p_name)[0]?.list;
+            //console.log(this.categories.filter((c: any) => c.profile === this.component_object?.p_name));
         });
     }
 
@@ -108,6 +119,7 @@ export class ModalsComponent {
                 console.log(error)
             }
         });
+        this.modalService.getRefresh('clutch_section');
         this.closeModal();
         setTimeout(()=>{
 
@@ -129,6 +141,37 @@ export class ModalsComponent {
             },
             error(error: any) {
                 console.log(error)
+            }
+        });
+    }
+
+    modal_AddLink() {
+        this.link_Submit = true;
+        
+        //console.log(this.component_object);
+        this.api.createLinkData(this.component_object).subscribe({
+            next(response: any) {
+                console.log(response);
+            },
+            error(error: any) {
+                console.log(error)
+            }
+        });
+        this.closeModal();
+        setTimeout(()=>{
+
+            this.link_Submit = false;
+      
+          },5000);
+    }
+    modal_DeleteLink(id:number) {
+        this.api.removeLinkData(id).subscribe({
+            next(data: any) {
+                console.log(data);
+                this.modalService.getRefresh('clutch_section');
+            },
+            error(error: any) {
+                console.log(error);
             }
         });
     }

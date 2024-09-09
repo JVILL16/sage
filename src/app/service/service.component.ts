@@ -94,6 +94,10 @@ export class ApiService {
   public createLinkData(event: any): any {
     return this.httpClient.post<any>(`${environment.serverUrl}/links/l_create`, event);
   }
+  
+  public removeLinkData(id: number): any {
+    return this.httpClient.delete(`${environment.serverUrl}/links/l_delete?id=${id}`);
+  }
   /**
    * 
    * This is for file uploads [TEST] 4/11/24 10:11AM

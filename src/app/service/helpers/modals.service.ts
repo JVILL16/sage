@@ -11,6 +11,7 @@ export class ModalsService {
 
     private object = new BehaviorSubject<any>({});
     private resetObject = new BehaviorSubject<boolean>(false);
+    private refreshPage = new BehaviorSubject<any>('');
 
     
     get getModalView() {
@@ -22,6 +23,10 @@ export class ModalsService {
         return this.resetObject.asObservable();
     }
 
+    get getRefreshPage() {
+        return this.refreshPage.asObservable();
+    }
+
     constructor(private http: HttpClient) { }
 
     getObject(globalObject:any) {
@@ -31,5 +36,8 @@ export class ModalsService {
     getReset(check:any){
         this.resetObject.next(check);
     }
-   
+
+    getRefresh(refresh:any){
+        this.refreshPage.next(refresh);
+    }
 }

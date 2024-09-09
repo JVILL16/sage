@@ -39,6 +39,12 @@ export class SectionsComponent implements OnInit {
     description: '',
     p_name: ''
   }
+  linkData: any = {
+    name: '',
+    category: '',
+    link:'',
+    p_name: ''
+  }
 
   statisticLinks = (link:any) => link.category === 'Statistics';
 
@@ -59,6 +65,13 @@ export class SectionsComponent implements OnInit {
           dates: '',
           location: '',
           description: '',
+          p_name: this.section_id
+        };
+        this.linkData = {
+          link_id:'',
+          name: '',
+          category: '',
+          link:'',
           p_name: this.section_id
         }
       }
@@ -97,13 +110,25 @@ export class SectionsComponent implements OnInit {
     });
 
     this.clutch_admin = this.currentUser[0].roles.some((r: any) => r.profile === 'c_admin');
-
+    this.modalService.getRefreshPage.subscribe((data: any) => {
+        if(data==='clutch_section')
+          this.clutchSection();
+        console.log(data);
+    });
 
   }
 
   eventCreate() {
     this.eventData.p_name = this.section_id;
     this.modalService.getObject(this.eventData);
+  }
+  linkCreate(){
+    this.linkData.p_name = this.section_id;
+    this.modalService.getObject(this.linkData);
+  }
+  linkDelete(linkData:any){
+    linkData.p_name = this.section_id;
+    this.modalService.getObject(linkData);
   }
   kickballSection(): void {
     this.section_id = '578343';
@@ -150,13 +175,10 @@ export class SectionsComponent implements OnInit {
               }
             ]
           });
-          this.clutch_statistics_links.forEach((link:any)=>{
-            let stat_index = this.clutch_statistics_links.findIndex((obj:any)=> obj?.name === link?.name);
-            if (stat_index !== -1) {
-              this.clutch_statistics_links.splice(stat_index + 1, 0, filter_UA_stat[0][0], filter_UA_stat[0][1]);
-            }
+          filter_UA_stat.forEach((link:any,index:any)=>{
+            var stat_index = index * 2 + 1
+            this.clutch_statistics_links.splice(stat_index, 0, link[0], link[1]);
           });
-          console.log(this.clutch_statistics_links);
       },
       (error: any) => {
         this.alert.error('Error fetching Links for Clutch: ' + error.error);
