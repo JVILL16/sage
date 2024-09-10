@@ -94,7 +94,7 @@
     
       <nav>
         <div class="nav nav-pills mobileSectionNav" id="nav-tab" role="tablist">
-          <button *ngFor="let section of sections" class="me-2 my-4 nav-link tab-bg-{{section}}"
+          <button *ngFor="let section of sections" class="me-2 nav-link tab-bg-{{section}}"
             [ngClass]="{ 'active': section==activeTab }" id="nav-{{section}}-tab" data-bs-toggle="tab"
             routerLink="detail/{{section}}" [attr.data-bs-target]="'#nav-'+ section" type="button" role="tab"
             [attr.aria-controls]="'nav-'+section" attr.aria-selected="{{section==activeTab ? true: false}}">

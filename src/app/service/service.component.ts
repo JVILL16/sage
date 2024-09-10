@@ -96,7 +96,7 @@ export class ApiService {
   }
   
   public removeLinkData(id: number): any {
-    return this.httpClient.delete(`${environment.serverUrl}/links/l_delete?id=${id}`);
+    return this.httpClient.delete(`${environment.serverUrl}/links/l_remove?id=${id}`);
   }
   /**
    * 
