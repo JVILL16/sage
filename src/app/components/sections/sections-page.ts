@@ -31,6 +31,8 @@ export class SectionsComponent implements OnInit {
   clutch_stat_link_player : any = '';
   clutch_admin: boolean = false;
 
+  kickball_username: any;
+  kickball_password:any;
 
   eventData: any = {
     name: '',

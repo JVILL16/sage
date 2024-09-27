@@ -74,6 +74,13 @@ body {
   background: linear-gradient(#ff6b6b, #fc976f, #fd9f3a);
 }
 
+.gradient-kickball {
+  font-family: Daily-Q;
+  color: white !important;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  background: linear-gradient(#8ec0f2, #58a4f0, #1584f2);
+}
+
 .gradient-admin {
   font-family: Daily-Q;
   color: white !important;
