@@ -28,10 +28,11 @@ import { AboutComponent } from './components/about/about-page';
 import { AdminComponent } from './components/admin/admin-page';
 import { RegisterComponent } from './components/register/register-page';
 import { ProfileComponent } from './components/profile/profile-page';
-import { SectionsComponent } from './components/sections/sections-page';
+import { KickballProfileComponent, SectionsComponent } from './components/sections/sections-page';
 import { ClutchComponent } from './components/clutch/clutch-page';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { NotFoundComponent } from './not-found.component';
+import { KickballService } from './service/python/kickball.service';
 
 
 
@@ -51,7 +52,8 @@ import { NotFoundComponent } from './not-found.component';
     SectionsComponent,
     CalendarComponent,
     ClutchComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    KickballProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +72,7 @@ import { NotFoundComponent } from './not-found.component';
     ClutchService,
     ModalsService,
     LoadingService,
+    KickballService
     // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   

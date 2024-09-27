@@ -7,6 +7,8 @@ import { ActivatedRoute, Router, ParamMap, NavigationStart } from '@angular/rout
 import { ClutchService } from 'src/app/service/helpers/clutch.service';
 import { AlertService } from 'src/app/service/helpers/alert.service';
 import { ModalsService } from 'src/app/service/helpers/modals.service';
+import { KickballService } from 'src/app/service/python/kickball.service';
+import { trigger, transition, animate, style, state, group, query } from '@angular/animations';
 
 
 @Component({
@@ -31,8 +33,6 @@ export class SectionsComponent implements OnInit {
   clutch_stat_link_player : any = '';
   clutch_admin: boolean = false;
 
-  kickball_username: any;
-  kickball_password:any;
 
   eventData: any = {
     name: '',
@@ -200,3 +200,35 @@ export class SectionsComponent implements OnInit {
     this.section_id = '231385';
   }
 }
+
+
+@Component({
+  selector: 'kickball-profile',
+  templateUrl: './kickball/kickball-profile.html',
+  styleUrls: ['./kickball/kickball-profile.css']
+})
+
+export class KickballProfileComponent implements OnInit {
+  kickball_username:any = '';
+  kickball_password:any = '';
+  valid_login:any  = false;
+  kickball_userInfo:any
+
+  constructor(private kbApi: KickballService, private alert: AlertService){}
+  
+  public login(){
+    this.kbApi.loginSACC(this.kickball_username,this.kickball_password).subscribe(
+      (data: any) => {
+        console.log(data);
+        this.valid_login = true;
+        this.kickball_userInfo = data.data;
+      },
+      (error: any) => {
+        this.alert.error('Error fetching Login from SACC: ' + error.error);
+        this.valid_login = false;
+      }
+    );;
+  }
+  ngOnInit() {}
+}
+
