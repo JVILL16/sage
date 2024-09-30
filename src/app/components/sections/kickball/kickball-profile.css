@@ -1,0 +1,27 @@
+.img_login {
+    position: absolute;
+    max-width: 200px;
+    max-height: 200px;
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    /* float: left; */
+    opacity: 0.3;
+    
+}
+
+.kb-login-card{
+    /* max-width:  400px; */
+    /* margin: 0 auto; */
+    background: none;
+    color:white;
+}
+
+.kb-login-card .form-control{
+    /* max-width:  400px; */
+    /* margin: 0 auto; */
+    background: none;
+    color:white;
+}

@@ -9,6 +9,7 @@ import { AlertService } from 'src/app/service/helpers/alert.service';
 import { ModalsService } from 'src/app/service/helpers/modals.service';
 import { KickballService } from 'src/app/service/python/kickball.service';
 import { trigger, transition, animate, style, state, group, query } from '@angular/animations';
+import { collapseAnimation, rubberBandAnimation } from 'angular-animations';
 
 
 @Component({
@@ -205,7 +206,10 @@ export class SectionsComponent implements OnInit {
 @Component({
   selector: 'kickball-profile',
   templateUrl: './kickball/kickball-profile.html',
-  styleUrls: ['./kickball/kickball-profile.css']
+  styleUrls: ['./kickball/kickball-profile.css'],
+  animations: [
+    rubberBandAnimation({anchor: 'rubber', direction: '=>', duration: 500})
+  ]
 })
 
 export class KickballProfileComponent implements OnInit {
@@ -213,6 +217,8 @@ export class KickballProfileComponent implements OnInit {
   kickball_password:any = '';
   valid_login:any  = false;
   kickball_userInfo:any
+
+  rubberState: any = false;
 
   constructor(private kbApi: KickballService, private alert: AlertService){}
   
