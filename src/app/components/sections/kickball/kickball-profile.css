@@ -1,7 +1,7 @@
 .img_login {
     position: absolute;
-    max-width: 200px;
-    max-height: 200px;
+    max-width: 150px;
+    max-height: 150px;
     padding: 0;
     margin-left: auto;
     margin-right: auto;
@@ -9,7 +9,22 @@
     right: 0;
     /* float: left; */
     opacity: 0.3;
-    
+    z-index:-1;
+}
+
+.kb-sacc-login input{
+    text-indent: 20px;
+}
+
+.kb-sacc-login input::placeholder{
+    color: white;
+}
+
+.kb-login-icons{
+    position: absolute;
+    font-size:15px;
+    padding: 10px;
+    z-index:1;
 }
 
 .kb-login-card{
@@ -24,4 +39,9 @@
     /* margin: 0 auto; */
     background: none;
     color:white;
+}
+
+.img-thumbnail{
+    width: 100px;
+    height: 100px;
 }

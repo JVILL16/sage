@@ -9,23 +9,37 @@
     <div class="card-header gradient-kickball" >
         <span>LOGIN</span>
     </div>
-    <div class="card-body" style="position:relative;">
+    <div class="card-body" >
         <img class="img_login" src="../assets/carousel-pics/sp_sacc.png" alt="Kickball_SACC">
+        <table class="kb-sacc-login" style="width:100%">
+            <tr>
+                <td>
+                    <i class="fa-solid fa-user kb-login-icons"></i>
+                    <input class="form-control" [(ngModel)]="kickball_username" type="text" placeholder="Username / Email">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <i class="fa-solid fa-lock kb-login-icons"></i>
+                    <input class="form-control" [(ngModel)]="kickball_password"  type="password" placeholder="Password">
+                </td>
+            </tr>
+            <tr>
+                <td><button class="btn btn-sm btn-primary m-2" (click)="login()">Sign In</button></td>
+            </tr>
+        </table>
         <!-- <iframe src="https://sanantoniossc.leaguelab.com/login" width="100%" height="600" frameborder="0"></iframe> -->
-        <h6>Username:</h6>
-        <input class="form-control form-control-sm" [(ngModel)]="kickball_username" type="text" placeholder="Username">
-        <h6>Passoword:</h6>
-        <input class="form-control form-control-sm" [(ngModel)]="kickball_password"  type="password" placeholder="Password">
-        <div class="text-center"><button class="btn btn-m btn-primary m-2" (click)="login()">Sign In</button></div>
+       
         
     </div>
     
 </div>
-<div class="card shadow-lg border-secondary mt-3"  *ngIf="valid_login">
-    <div class="card-header gradient-kickball">
-        <span>LOOK AT YOUR PROFILE</span>
-    </div>
-    <div class="card-body">
-       <pre>{{kickball_userInfo | json}}</pre>
+<div *ngIf="valid_login">
+    <div class="card shadow-lg kb-login-card border-secondary mt-3" *ngFor="let info of kickball_userInfo" >
+    
+        <div class="card-body">
+            <img [src]="info.TeamInfo.Photo ? info.TeamInfo.Photo : '../assets/carousel-pics/sp_sacc.png'" class="img-thumbnail me-3 float-start">
+            <h4>{{info.League}}</h4>
+        </div>
     </div>
 </div>
