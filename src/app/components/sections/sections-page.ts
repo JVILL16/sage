@@ -31,7 +31,7 @@ export class SectionsComponent implements OnInit {
   clutch_events: any;
   clutch_name: any;
   clutch_statistics_links: any;
-  clutch_stat_link_player : any = '';
+  clutch_stat_link_player: any = '';
   clutch_admin: boolean = false;
 
 
@@ -45,11 +45,11 @@ export class SectionsComponent implements OnInit {
   linkData: any = {
     name: '',
     category: '',
-    link:'',
+    link: '',
     p_name: ''
   }
 
-  statisticLinks = (link:any) => link.category === 'Statistics';
+  statisticLinks = (link: any) => link.category === 'Statistics';
 
   constructor(private auth: AuthenticationService,
     private activatedRoute: ActivatedRoute,
@@ -71,10 +71,10 @@ export class SectionsComponent implements OnInit {
           p_name: this.section_id
         };
         this.linkData = {
-          link_id:'',
+          link_id: '',
           name: '',
           category: '',
-          link:'',
+          link: '',
           p_name: this.section_id
         }
       }
@@ -114,9 +114,9 @@ export class SectionsComponent implements OnInit {
 
     this.clutch_admin = this.currentUser[0].roles.some((r: any) => r.profile === 'c_admin');
     this.modalService.getRefreshPage.subscribe((data: any) => {
-        if(data==='clutch_section')
-          this.clutchSection();
-        console.log(data);
+      if (data === 'clutch_section')
+        this.clutchSection();
+      console.log(data);
     });
 
   }
@@ -125,11 +125,11 @@ export class SectionsComponent implements OnInit {
     this.eventData.p_name = this.section_id;
     this.modalService.getObject(this.eventData);
   }
-  linkCreate(){
+  linkCreate() {
     this.linkData.p_name = this.section_id;
     this.modalService.getObject(this.linkData);
   }
-  linkDelete(linkData:any){
+  linkDelete(linkData: any) {
     linkData.p_name = this.section_id;
     this.modalService.getObject(linkData);
   }
@@ -163,7 +163,7 @@ export class SectionsComponent implements OnInit {
       (data: any) => {
         this.clutch_statistics_links = data?.data.filter(this.statisticLinks);
         let filter_UA_stat = this.clutch_statistics_links
-        .filter((link: any) => /https?:\/\/(www\.)?ultianalytics\./.test(link?.link))
+          .filter((link: any) => /https?:\/\/(www\.)?ultianalytics\./.test(link?.link))
           .map((link: any) => {
             return [
               {
@@ -178,10 +178,10 @@ export class SectionsComponent implements OnInit {
               }
             ]
           });
-          filter_UA_stat.forEach((link:any,index:any)=>{
-            var stat_index = index * 2 + 1
-            this.clutch_statistics_links.splice(stat_index, 0, link[0], link[1]);
-          });
+        filter_UA_stat.forEach((link: any, index: any) => {
+          var stat_index = index * 2 + 1
+          this.clutch_statistics_links.splice(stat_index, 0, link[0], link[1]);
+        });
       },
       (error: any) => {
         this.alert.error('Error fetching Links for Clutch: ' + error.error);
@@ -208,22 +208,30 @@ export class SectionsComponent implements OnInit {
   templateUrl: './kickball/kickball-profile.html',
   styleUrls: ['./kickball/kickball-profile.css'],
   animations: [
-    rubberBandAnimation({anchor: 'rubber', direction: '=>', duration: 500})
+    rubberBandAnimation({ anchor: 'rubber', direction: '=>', duration: 500 })
   ]
 })
 
 export class KickballProfileComponent implements OnInit {
-  kickball_username:any = '';
-  kickball_password:any = '';
-  valid_login:any  = false;
-  kickball_userInfo:any
+
+  currentUser: any;
+
+  kickball_username: any = '';
+  kickball_password: any = '';
+  valid_login: any = false;
+  kickball_userInfo: any
+
+  kb_login_cookie: boolean = false;
+  kb_login: any;
 
   rubberState: any = false;
 
-  constructor(private kbApi: KickballService, private alert: AlertService){}
-  
-  public login(){
-    this.kbApi.loginSACC(this.kickball_username,this.kickball_password).subscribe(
+  constructor(private kbApi: KickballService, private alert: AlertService) {
+    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
+  }
+
+  public login() {
+    this.kbApi.loginSACC(this.kickball_username, this.kickball_password).subscribe(
       (data: any) => {
         console.log(data);
         this.valid_login = true;
@@ -235,6 +243,25 @@ export class KickballProfileComponent implements OnInit {
       }
     );;
   }
-  ngOnInit() {}
+  ngOnInit() {
+    //console.log(this.currentUser[0]?.roles.find((p:any)=>p.profile==='kickball')?.section_id);
+    this.kbApi.getKBUser(this.currentUser[0]?.roles.find((p: any) => p.profile === 'kickball')?.section_id).subscribe(
+      (data: any) => {
+        //console.log(data); // Handle the data as needed
+        this.kb_login = data.data[0];
+        this.kb_login_cookie = this.kb_login?.username && this.kb_login?.password ? true : false;
+        console.log(this.kb_login_cookie);
+        if (this.kb_login_cookie) {
+          this.kickball_username = this.kb_login?.username;
+          this.kickball_password = this.kb_login?.password;
+          this.login();
+        } else this.valid_login = false;
+      },
+      async (error: any) => {
+        this.alert.error('Error fetching Events for Clutch:', error.error);
+      }
+    );
+
+  }
 }
 
