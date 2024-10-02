@@ -1,0 +1,43 @@
+
+<div class="container-fluid settings-font table-responsive mt-3">
+    <div class="edit-header">
+        <h4><i class="fa-solid fa-circle-info icon-bg"></i> General</h4>
+    </div>
+</div>
+
+<div class="container-fluid settings-font mt-3">
+    <div class="edit-header">
+        <h4><i class="fa-solid fa-people-group icon-bg"></i> Groups</h4>
+    </div>
+    <div role="alert" class="alert alert-dismissible alert-info m-2">
+        <strong>These are the follow groups you are in, 
+        if you'd like to join another group please scroll down this section to send out a message 
+        to group leader.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div class="table-responsive settings-kb-table mt-2">
+        <table class="caption-top w-100 table table-dark table-striped-columns table-sm table-borderless">
+            <caption class="text-white"><i class="fa-solid fa-person-running me-2"></i>Kickball</caption>
+            <tbody>
+                <tr>
+                    <th>
+                        Username / Email:
+                    </th>
+                    <td>
+                        {{kb_setting_username}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Password:
+                    </th>
+                    <td>
+                        {{kb_setting_password}}
+                    </td>
+                </tr>
+            </tbody>
+            
+        </table>
+    </div>
+    
+</div>

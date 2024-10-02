@@ -45,3 +45,20 @@
     width: 100px;
     height: 100px;
 }
+
+.custom-placeholder{
+    padding: 0.25rem;
+    background-color: var(--bs-body-bg);
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    max-width: 100%;
+    height:auto !important;
+    width:100%;
+}
+
+@media only screen and (min-width: 901px) {
+
+}
+@media only screen and (max-width: 900px) {
+    
+}
