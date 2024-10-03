@@ -1,9 +1,9 @@
 
-<div class="container-fluid settings-font table-responsive mt-3">
+<!-- <div class="container-fluid settings-font table-responsive mt-3">
     <div class="edit-header">
         <h4><i class="fa-solid fa-circle-info icon-bg"></i> General</h4>
     </div>
-</div>
+</div> -->
 
 <div class="container-fluid settings-font mt-3">
     <div class="edit-header">
@@ -17,14 +17,19 @@
     </div>
     <div class="table-responsive settings-kb-table mt-2">
         <table class="caption-top w-100 table table-dark table-striped-columns table-sm table-borderless">
-            <caption class="text-white"><i class="fa-solid fa-person-running me-2"></i>Kickball</caption>
+            <caption class="text-white"><i class="fa-solid fa-person-running me-2"></i>Kickball
+                <button *ngIf="!kb_setting_edit" class="btn btn-sm btn-primary float-end" type="button" (click)="kb_setting_edit=true;"><i class="fa-solid fa-pen-to-square me-2"></i>Edit</button>
+                <button *ngIf="kb_setting_edit" class="btn btn-sm btn-success float-end" type="button">Save</button>
+                <button *ngIf="kb_setting_edit" class="btn btn-sm btn-secondary float-end me-2" type="button" (click)="kb_setting_edit=false;">Cancel</button></caption>
+            
             <tbody>
                 <tr>
                     <th>
                         Username / Email:
                     </th>
                     <td>
-                        {{kb_setting_username}}
+                        <span *ngIf="!kb_setting_edit">{{kb_user_acc.username}}</span>
+                        <input type="text" class="form-control" [(ngModel)]="kb_user_acc.username" *ngIf="kb_setting_edit">
                     </td>
                 </tr>
                 <tr>
@@ -32,7 +37,8 @@
                         Password:
                     </th>
                     <td>
-                        {{kb_setting_password}}
+                        <span type="password" *ngIf="!kb_setting_edit">{{kb_user_acc.password}}</span>
+                        <input type="password" class="form-control" [(ngModel)]="kb_user_acc.password" *ngIf="kb_setting_edit">
                     </td>
                 </tr>
             </tbody>

@@ -323,6 +323,9 @@ export class SettingsProfileComponent implements OnInit {
   kb_section_id:any;
   kb_setting_username: any = '';
   kb_setting_password: any = '';
+  kb_user_acc : any = {};
+  copy_kb_user_acc : any = {}
+  kb_setting_edit: boolean = false;
 
   rubberState: any = false;
 
@@ -336,13 +339,13 @@ export class SettingsProfileComponent implements OnInit {
   public settings_kb_home(){
      this.kbApi.getKBUser(this.kb_section_id).subscribe(
       (data: any) => {
-        this.kb_setting_username = data.data[0]?.username;
-        this.kb_setting_password = data.data[0]?.password;
+        this.kb_user_acc = data.data[0];
       },
       async (error: any) => {
         this.alert.error('Error fetching Kickball user info:', error.error);
       }
     );
+     
   }
   ngOnInit() {
     this.settings_kb_home();
