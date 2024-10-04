@@ -41,15 +41,46 @@
     <div class="card shadow-sm kb-login-card border-secondary mt-3" *ngFor="let info of kickball_userInfo" >
     
         <div class="card-body">
-            <img [src]="info.TeamInfo.Photo ? info.TeamInfo.Photo : '../assets/carousel-pics/sp_sacc.png'" class="img-thumbnail me-3 float-start">
-            <h4>{{info.League}}</h4>
+            <table>
+                <tr>
+                    <td>
+                        <img [src]="info.TeamInfo.Photo ? info.TeamInfo.Photo : '../assets/carousel-pics/sp_sacc.png'" class="img-thumbnail me-3 float-start">
+                        <h5 class="text-decoration-underline">{{info.League}}</h5>
+                        <h6>{{info.TeamInfo.Name}}</h6>
+                    </td>
+                    <td style="width:10%">
+                        <span>League Skill:</span><br><span>{{info.Skill}}</span>
+                    </td>
+                </tr>
+            </table>
+        
+            
         </div>
         <div class="card-footer">
+           
+            <div class="text-center">
+                <button *ngIf="info.Links.Schedule" class="btn btn-sm btn-outline-info custom-btn-size me-2">
+                    <i class="fa-regular fa-calendar-days me-1"></i> Schedule
+                </button>
+                <button *ngIf="info.Links.Standings" class="btn btn-sm btn-outline-info custom-btn-size me-2">
+                    <i class="fa-solid fa-ranking-star me-1"></i> Standings
+                </button>
+                <button *ngIf="info.Links.TeamPage" class="btn btn-sm btn-outline-info custom-btn-size me-2">
+                    <i class="fa-solid fa-people-roof me-1"></i> Team Page
+                </button>
+                <button *ngIf="info.Links.Playoffs" class="btn btn-sm btn-outline-info custom-btn-size">
+                    <i class="fa-solid fa-trophy me-1"></i> Playoffs
+                </button>
+            </div>
+            
+            
+            
             
         </div>
     </div>
 </div>
 
+<!----------------------------------- Loading Placeholders ---------------------------------->
 <div *ngIf="kb_placeholder" class="placeholder-glow">
     <div class="placeholder col-12 card shadow-sm kb-login-card border-secondary mt-3">
         <div class="card-body row col-12">

@@ -5,7 +5,7 @@
     </div>
 </div> -->
 
-<div class="container-fluid settings-font mt-3">
+<div class="settings-font">
     <div class="edit-header">
         <h4><i class="fa-solid fa-people-group icon-bg"></i> Groups</h4>
     </div>
@@ -18,9 +18,9 @@
     <div class="table-responsive settings-kb-table mt-2">
         <table class="caption-top w-100 table table-dark table-striped-columns table-sm table-borderless">
             <caption class="text-white"><i class="fa-solid fa-person-running me-2"></i>Kickball
-                <button *ngIf="!kb_setting_edit" class="btn btn-sm btn-primary float-end" type="button" (click)="kb_setting_edit=true;"><i class="fa-solid fa-pen-to-square me-2"></i>Edit</button>
-                <button *ngIf="kb_setting_edit" class="btn btn-sm btn-success float-end" type="button">Save</button>
-                <button *ngIf="kb_setting_edit" class="btn btn-sm btn-secondary float-end me-2" type="button" (click)="kb_setting_edit=false;">Cancel</button></caption>
+                <button *ngIf="!kb_setting_edit" class="btn btn-sm btn-primary float-end" type="button" (click)="undoChanges();"><i class="fa-solid fa-pen-to-square me-2"></i>Edit</button>
+                <button *ngIf="kb_setting_edit" class="btn btn-sm btn-success float-end" [disabled]="!save_changes" (click)="saveKBUser()" type="button">Save</button>
+                <button *ngIf="kb_setting_edit" class="btn btn-sm btn-secondary float-end me-2" type="button" (click)="undoChanges();">Cancel</button></caption>
             
             <tbody>
                 <tr>
@@ -29,16 +29,16 @@
                     </th>
                     <td>
                         <span *ngIf="!kb_setting_edit">{{kb_user_acc.username}}</span>
-                        <input type="text" class="form-control" [(ngModel)]="kb_user_acc.username" *ngIf="kb_setting_edit">
+                        <input type="text" class="form-control form-control-sm" [(ngModel)]="copy_kb_user_acc.username" (change)="checkForChanges()" *ngIf="kb_setting_edit">
                     </td>
                 </tr>
                 <tr>
                     <th>
                         Password:
                     </th>
-                    <td>
-                        <span type="password" *ngIf="!kb_setting_edit">{{kb_user_acc.password}}</span>
-                        <input type="password" class="form-control" [(ngModel)]="kb_user_acc.password" *ngIf="kb_setting_edit">
+                    <td >
+                        <span class="col-8" [ngClass]="{'placeholder':kb_user_acc.password}" *ngIf="!kb_setting_edit">{{kb_user_acc.password ? '': 'No Password Available'}}</span>
+                        <input type="password" class="form-control form-control-sm" [(ngModel)]="copy_kb_user_acc.password" (change)="checkForChanges()" *ngIf="kb_setting_edit">
                     </td>
                 </tr>
             </tbody>

@@ -298,7 +298,11 @@ public kickball_home(){
       this.kickball_username = this.kb_login?.username;
       this.kickball_password = this.kb_login?.password;
       this.login();
-    } else this.valid_login = false;
+    } else {
+      this.valid_login = false;
+      this.kickball_username = this.kb_login?.username;
+      this.kickball_password = this.kb_login?.password;
+    }
   },
   async (error: any) => {
     this.alert.error('Error fetching Kickball user info:', error.error);
@@ -324,8 +328,9 @@ export class SettingsProfileComponent implements OnInit {
   kb_setting_username: any = '';
   kb_setting_password: any = '';
   kb_user_acc : any = {};
-  copy_kb_user_acc : any = {}
+  copy_kb_user_acc : any = {};
   kb_setting_edit: boolean = false;
+  save_changes: boolean = false;
 
   rubberState: any = false;
 
@@ -336,16 +341,49 @@ export class SettingsProfileComponent implements OnInit {
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
     this.kb_section_id = this.currentUser[0].roles.find((p: any) => p.profile === 'kickball')?.section_id;
   }
+
+  undoChanges() : void{
+    //console.log(this.kb_user_acc);
+    this.kb_setting_edit=!this.kb_setting_edit;
+    if(this.kb_setting_edit){ this.copy_kb_user_acc = { ...this.kb_user_acc};this.save_changes=false; }
+    //console.log(this.kb_user_acc);
+    
+  }
+  checkForChanges(): void {
+    // Compare current object with original object
+    if (JSON.stringify(this.kb_user_acc) !== JSON.stringify(this.copy_kb_user_acc)) {
+      console.log('Object has changed!');
+      this.save_changes = true;
+      // Perform actions if the object has changed
+    } else {
+      console.log('Object has not changed.');
+      this.save_changes = false;
+    }
+  }
   public settings_kb_home(){
      this.kbApi.getKBUser(this.kb_section_id).subscribe(
       (data: any) => {
         this.kb_user_acc = data.data[0];
+        this.copy_kb_user_acc = { ...this.kb_user_acc };
+        console.log(this.copy_kb_user_acc);
       },
       async (error: any) => {
-        this.alert.error('Error fetching Kickball user info:', error.error);
+        this.alert.error('Error fetching Kickball user info: '+ error.error);
       }
     );
      
+  }
+  public saveKBUser(): void {
+    this.kbApi.updateKBUser(this.copy_kb_user_acc, this.kb_section_id).subscribe(
+      (data:any) => {
+        this.alert.success('Your info in Kickball section has been updated: '+ data.message);
+        this.kb_setting_edit = false;
+        this.settings_kb_home();
+      },
+      async (error:any) => {
+        this.alert.error('Error fetching Kickball user info: '+ error.error);
+      }
+    );
   }
   ngOnInit() {
     this.settings_kb_home();

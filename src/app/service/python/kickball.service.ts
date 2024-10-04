@@ -20,6 +20,10 @@ export class KickballService {
     return this.httpClient.get<any>(`${environment.serverUrl}/auth/sacc/kb_user?kb_id=${kickball_id}`);
   }
 
+  public updateKBUser(kb_userinfo:any,kickball_id:number): any {
+    return this.httpClient.post<any>(`${environment.serverUrl}/auth/sacc/kb_update`,{username:kb_userinfo?.username,password:kb_userinfo?.password,kb_id:kickball_id});
+  }
+
   public loginSACC(username:string,password:string): any{
     return this.httpClient.post(`${environment.serverUrl}/auth/sacc/sacc`,{username:username,password:password})
   }
