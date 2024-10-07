@@ -29,7 +29,7 @@ export class SectionsComponent implements OnInit {
   profile_id: any;
 
 
-  
+
 
   constructor(private auth: AuthenticationService,
     private activatedRoute: ActivatedRoute,
@@ -74,7 +74,7 @@ export class SectionsComponent implements OnInit {
 
   }
 
-  
+
   kickballSection(): void {
     this.profile_id = '578343';
   }
@@ -112,7 +112,7 @@ export class ClutchProfileComponent implements OnInit {
   clutch_statistics_links: any;
   clutch_stat_link_player: any = '';
   clutch_admin: boolean = false;
-  
+
   eventData: any = {
     name: '',
     dates: '',
@@ -161,7 +161,7 @@ export class ClutchProfileComponent implements OnInit {
       if (data === 'clutch_section')
         this.clutch_home();
     });
-    
+
   }
 
   eventCreate() {
@@ -177,7 +177,7 @@ export class ClutchProfileComponent implements OnInit {
     this.modalService.getObject(linkData);
   }
 
-  public clutch_home(){
+  public clutch_home() {
     this.clutch_admin = this.currentUser[0].roles.some((r: any) => r.profile === 'c_admin');
     this.clutchApi.getClutchUserData('practice', this.clutch_name).subscribe(
       (data: any) => {
@@ -244,17 +244,20 @@ export class ClutchProfileComponent implements OnInit {
 export class KickballProfileComponent implements OnInit {
 
   currentUser: any;
-  profile_id:any;
-  section_id:any;
+  profile_id: any;
+  section_id: any;
 
   kickball_username: any = '';
   kickball_password: any = '';
   valid_login: boolean = true;
-  kickball_userInfo: any
+  kickball_userInfo: any;
+  kickball_objectInfo: any;
 
   kb_login_cookie: boolean = false;
   kb_login: any;
   kb_placeholder: boolean = false;
+
+  kb_breadcrumbs: any = [];
 
   rubberState: any = false;
 
@@ -275,7 +278,9 @@ export class KickballProfileComponent implements OnInit {
         console.log(data);
         this.valid_login = true;
         this.kb_placeholder = false;
-        this.kickball_userInfo = data.data;
+        this.kickball_userInfo = data.data.Profile;
+        this.kickball_objectInfo = data.data.ObjectLink;
+        this.kb_breadcrumbs.push(data.data.ObjectLink)
         this.load.hide('kb_profile');
       },
       (error: any) => {
@@ -286,31 +291,65 @@ export class KickballProfileComponent implements OnInit {
       }
     );;
   }
-public kickball_home(){
- //console.log(this.currentUser[0]?.roles.find((p:any)=>p.profile==='kickball')?.section_id);
- this.kbApi.getKBUser(this.section_id).subscribe(
-  (data: any) => {
-    //console.log(data); // Handle the data as needed
-    this.kb_login = data.data[0];
-    this.kb_login_cookie = this.kb_login?.username && this.kb_login?.password ? true : false;
-    //console.log(this.kb_login_cookie);
-    if (this.kb_login_cookie) {
-      this.kickball_username = this.kb_login?.username;
-      this.kickball_password = this.kb_login?.password;
-      this.login();
-    } else {
-      this.valid_login = false;
-      this.kickball_username = this.kb_login?.username;
-      this.kickball_password = this.kb_login?.password;
-    }
-  },
-  async (error: any) => {
-    this.alert.error('Error fetching Kickball user info:', error.error);
+  public kickball_home() {
+    //console.log(this.currentUser[0]?.roles.find((p:any)=>p.profile==='kickball')?.section_id);
+    this.kbApi.getKBUser(this.section_id).subscribe(
+      (data: any) => {
+        //console.log(data); // Handle the data as needed
+        this.kb_login = data.data[0];
+        this.kb_login_cookie = this.kb_login?.username && this.kb_login?.password ? true : false;
+        //console.log(this.kb_login_cookie);
+        if (this.kb_login_cookie) {
+          this.kickball_username = this.kb_login?.username;
+          this.kickball_password = this.kb_login?.password;
+          this.login();
+        } else {
+          this.valid_login = false;
+          this.kickball_username = this.kb_login?.username;
+          this.kickball_password = this.kb_login?.password;
+        }
+      },
+      async (error: any) => {
+        this.alert.error('Error fetching Kickball user info: ' + error.error);
+      }
+    );
   }
-);
-}
+
+  public kickball_link_team(link: string) {
+    this.kb_placeholder = true;
+    if (this.kickball_objectInfo.Tier === 'schedule')
+      this.kbApi.getKBScheduleInfo(link).subscribe(
+        (data: any) => {
+          console.log(data);
+          this.kickball_objectInfo = data.data.ObjectLink;
+          this.kb_breadcrumbs.push(data.data.ObjectLink);
+          this.kb_placeholder = false;
+        },
+        async (error: any) => {
+          this.alert.error('Error fetching Kickball Schedule Info: ' + error.error);
+          this.kb_placeholder = false;
+        });
+    else if (this.kickball_objectInfo.Tier === 'team')
+      this.kbApi.getKBTeamInfo(link).subscribe(
+        (data: any) => {
+          console.log(data);
+          this.kickball_objectInfo = data.data.ObjectLink;
+          this.kb_breadcrumbs.push(data.data.ObjectLink);
+          this.kb_placeholder = false;
+        },
+        async (error: any) => {
+          this.alert.error('Error fetching Kickball Team Info: ' + error.error);
+          this.kb_placeholder = false;
+        });
+    else{
+      this.alert.error('Error fetching Kickball Link');
+      this.kb_placeholder = false;
+    }
+      
+
+  }
   ngOnInit() {
-   this.kickball_home();
+    this.kickball_home();
 
   }
 }
@@ -324,11 +363,11 @@ public kickball_home(){
 export class SettingsProfileComponent implements OnInit {
 
   currentUser: any;
-  kb_section_id:any;
+  kb_section_id: any;
   kb_setting_username: any = '';
   kb_setting_password: any = '';
-  kb_user_acc : any = {};
-  copy_kb_user_acc : any = {};
+  kb_user_acc: any = {};
+  copy_kb_user_acc: any = {};
   kb_setting_edit: boolean = false;
   save_changes: boolean = false;
 
@@ -342,12 +381,12 @@ export class SettingsProfileComponent implements OnInit {
     this.kb_section_id = this.currentUser[0].roles.find((p: any) => p.profile === 'kickball')?.section_id;
   }
 
-  undoChanges() : void{
+  undoChanges(): void {
     //console.log(this.kb_user_acc);
-    this.kb_setting_edit=!this.kb_setting_edit;
-    if(this.kb_setting_edit){ this.copy_kb_user_acc = { ...this.kb_user_acc};this.save_changes=false; }
+    this.kb_setting_edit = !this.kb_setting_edit;
+    if (this.kb_setting_edit) { this.copy_kb_user_acc = { ...this.kb_user_acc }; this.save_changes = false; }
     //console.log(this.kb_user_acc);
-    
+
   }
   checkForChanges(): void {
     // Compare current object with original object
@@ -360,28 +399,28 @@ export class SettingsProfileComponent implements OnInit {
       this.save_changes = false;
     }
   }
-  public settings_kb_home(){
-     this.kbApi.getKBUser(this.kb_section_id).subscribe(
+  public settings_kb_home() {
+    this.kbApi.getKBUser(this.kb_section_id).subscribe(
       (data: any) => {
         this.kb_user_acc = data.data[0];
         this.copy_kb_user_acc = { ...this.kb_user_acc };
         console.log(this.copy_kb_user_acc);
       },
       async (error: any) => {
-        this.alert.error('Error fetching Kickball user info: '+ error.error);
+        this.alert.error('Error fetching Kickball user info: ' + error.error);
       }
     );
-     
+
   }
   public saveKBUser(): void {
     this.kbApi.updateKBUser(this.copy_kb_user_acc, this.kb_section_id).subscribe(
-      (data:any) => {
-        this.alert.success('Your info in Kickball section has been updated: '+ data.message);
+      (data: any) => {
+        this.alert.success('Your info in Kickball section has been updated: ' + data.message);
         this.kb_setting_edit = false;
         this.settings_kb_home();
       },
-      async (error:any) => {
-        this.alert.error('Error fetching Kickball user info: '+ error.error);
+      async (error: any) => {
+        this.alert.error('Error fetching Kickball user info: ' + error.error);
       }
     );
   }

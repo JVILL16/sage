@@ -24,8 +24,16 @@ export class KickballService {
     return this.httpClient.post<any>(`${environment.serverUrl}/auth/sacc/kb_update`,{username:kb_userinfo?.username,password:kb_userinfo?.password,kb_id:kickball_id});
   }
 
+  
   public loginSACC(username:string,password:string): any{
     return this.httpClient.post(`${environment.serverUrl}/auth/sacc/sacc`,{username:username,password:password})
+  }
+
+  public getKBTeamInfo(url:string): any {
+    return this.httpClient.post<any>(`${environment.serverUrl}/auth/sacc/sacc_team`,{url:url});
+  }
+  public getKBScheduleInfo(url:string): any{
+    return this.httpClient.post<any>(`${environment.serverUrl}/auth/sacc/sacc_schedule`,{url:url});
   }
 
 
