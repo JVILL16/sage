@@ -8,6 +8,7 @@ import { AuthGuard } from './service/auth.guard';
 import { AdminComponent } from './components/admin/admin-page';
 import { RegisterComponent } from './components/register/register-page';
 import { ClutchComponent } from './components/clutch/clutch-page';
+import { KickballComponent } from './components/kickball/kickball-page';
 import { ProfileComponent } from './components/profile/profile-page';
 import { SectionsComponent } from './components/sections/sections-page';
 import { NotFoundComponent } from './not-found.component';
@@ -21,7 +22,7 @@ const routes: Routes = [
   { path: 'about-us', component: AboutComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'clutch', component: ClutchComponent },
-
+  { path: 'kickball', component: KickballComponent },
 
   { path: 'login', component: LoginComponent },
  

@@ -5,8 +5,12 @@
     </div>
 </div> 
 -->
-<div class="m-2" style="overflow:scroll" *ngIf="kb_breadcrumbs.length!=0" >
-    <button class="btn btn-sm btn-primary" *ngFor="let linkName of kb_breadcrumbs">{{linkName?.Name}}</button>
+<div class="mt-3" *ngIf="kb_breadcrumbs.length!=0" [hidden]="kb_placeholder" style="display:flex;align-items: center;" >
+    <div *ngFor="let linkName of kb_breadcrumbs;let i = index" >
+        <button type="button" class="btn btn-sm btn-outline-primary me-2" title="{{linkName?.League}}" (click)="kickball_link_team(linkName?.Tier,linkName?.Link,i)" >{{linkName?.Name}}</button>
+        <i *ngIf="i < kb_breadcrumbs.length - 1" class="fa-solid fa-right-long me-2" style="color:rgb(47, 140, 246)"></i>
+    </div>
+    
 </div>
 
 <div *ngIf="!valid_login" [hidden]="kb_placeholder">
@@ -40,7 +44,7 @@
         
     </div>
 </div>
-<div *ngIf="kickball_objectInfo.Tier == 'team'">
+<div *ngIf="kickball_objectInfo?.Tier == 'team'" [hidden]="kb_placeholder">
     <div class="card shadow-sm kb-login-card border-secondary mt-3">
         <div>
             <pre>{{kickball_objectInfo | json}}</pre>
@@ -48,7 +52,7 @@
     </div>
 </div>
 
-<div *ngIf="kickball_objectInfo.Tier == 'schedule'">
+<div *ngIf="kickball_objectInfo?.Tier == 'schedule'" [hidden]="kb_placeholder">
     <div class="card shadow-sm kb-login-card border-secondary mt-3">
         <div>
             <pre>{{kickball_objectInfo | json}}</pre>
@@ -57,35 +61,36 @@
 </div>
 
 
-<div *ngIf="kickball_objectInfo.Tier == 'profile'" >
+<div *ngIf="kickball_objectInfo?.Tier == 'profile'" [hidden]="kb_placeholder">
     <div class="card shadow-sm kb-login-card border-secondary mt-3" *ngFor="let info of kickball_userInfo" >
     
         <div class="card-body">
-            <table>
-                <tr>
-                    <td>
-                        <img [src]="info.TeamInfo.Photo ? info.TeamInfo.Photo : '../assets/carousel-pics/sp_sacc.png'" class="img-thumbnail me-3 float-start">
-                        <h5 class="text-decoration-underline">{{info.League}}</h5>
-                        <h6>{{info.TeamInfo.Name}}</h6>
-                    </td>
-                    <td style="width:10%">
-                        <span>League Skill:</span><br><span>{{info.Skill}}</span>
-                    </td>
-                </tr>
-            </table>
+            <div class="detail-info">
+                <img [src]="info.TeamInfo.Photo ? info.TeamInfo.Photo : '../assets/carousel-pics/sp_sacc.png'" class="img-thumbnail me-3 float-start">
+                <span class="leagueName text-decoration-underline">{{info.League}}</span><br>
+                <span class="teamName">{{info.TeamInfo.Name}}</span><br>
+                <span *ngIf="info.PlayerTier=='Player'" class="badge rounded-pill text-bg-primary">Player</span>
+                <span *ngIf="info.PlayerTier=='Non-Player'" class="badge rounded-pill text-bg-secondary">Non-Player</span>
+                <span *ngIf="info.PlayerTier=='Captain'" class="badge rounded-pill text-bg-light">Captain</span>
+           
+            </div>
+            <div class="side-info">
+                <b>League Skill:</b><br><span>{{info.Skill}}</span>
+            </div>
+            
         
             
         </div>
         <div class="card-footer">
            
             <div class="text-center">
-                <button *ngIf="info.Links.Schedule" class="btn btn-sm btn-outline-info custom-btn-size me-2" (click)="kickball_link_team(info.Links.Schedule)">
+                <button *ngIf="info.Links.Schedule" class="btn btn-sm btn-outline-info custom-btn-size me-2" (click)="kickball_link_team('schedule',info.Links.Schedule,null)">
                     <i class="fa-regular fa-calendar-days me-1"></i> Schedule
                 </button>
                 <button *ngIf="info.Links.Standings" class="btn btn-sm btn-outline-info custom-btn-size me-2">
                     <i class="fa-solid fa-ranking-star me-1"></i> Standings
                 </button>
-                <button *ngIf="info.Links.TeamPage" class="btn btn-sm btn-outline-info custom-btn-size me-2" (click)="kickball_link_team(info.Links.TeamPage)">
+                <button *ngIf="info.Links.TeamPage" class="btn btn-sm btn-outline-info custom-btn-size me-2" (click)="kickball_link_team('team',info.Links.TeamPage,null)">
                     <i class="fa-solid fa-people-roof me-1"></i> Team Page
                 </button>
                 <button *ngIf="info.Links.Playoffs" class="btn btn-sm btn-outline-info custom-btn-size">

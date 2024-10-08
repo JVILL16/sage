@@ -315,33 +315,52 @@ export class KickballProfileComponent implements OnInit {
     );
   }
 
-  public kickball_link_team(link: string) {
+  public kickball_link_team(page:string,link: string,index:any) {
     this.kb_placeholder = true;
-    if (this.kickball_objectInfo.Tier === 'schedule')
+    if (page === 'schedule')
       this.kbApi.getKBScheduleInfo(link).subscribe(
         (data: any) => {
           console.log(data);
           this.kickball_objectInfo = data.data.ObjectLink;
-          this.kb_breadcrumbs.push(data.data.ObjectLink);
+          if(index!=null) this.kb_breadcrumbs.splice(index+1); else this.kb_breadcrumbs.push(data.data.ObjectLink);
           this.kb_placeholder = false;
         },
         async (error: any) => {
           this.alert.error('Error fetching Kickball Schedule Info: ' + error.error);
           this.kb_placeholder = false;
         });
-    else if (this.kickball_objectInfo.Tier === 'team')
+    else if (page === 'team')
       this.kbApi.getKBTeamInfo(link).subscribe(
         (data: any) => {
           console.log(data);
           this.kickball_objectInfo = data.data.ObjectLink;
-          this.kb_breadcrumbs.push(data.data.ObjectLink);
+          if(index!=null) this.kb_breadcrumbs.splice(index+1); else this.kb_breadcrumbs.push(data.data.ObjectLink);
           this.kb_placeholder = false;
         },
         async (error: any) => {
           this.alert.error('Error fetching Kickball Team Info: ' + error.error);
           this.kb_placeholder = false;
         });
-    else{
+    else if (page === 'profile')
+      this.kbApi.loginSACC(this.kickball_username, this.kickball_password).subscribe(
+        (data: any) => {
+          console.log(data);
+          this.valid_login = true;
+          this.kickball_userInfo = data.data.Profile;
+          this.kickball_objectInfo = data.data.ObjectLink;
+          console.log(index);
+          if (index!=null) this.kb_breadcrumbs.splice(index + 1); else this.kb_breadcrumbs.push(data.data.ObjectLink);
+          this.load.hide('kb_profile');
+          this.kb_placeholder = false;
+        },
+        (error: any) => {
+          this.alert.error('Error fetching Login from SACC: ' + error.error);
+          this.valid_login = false;
+          this.load.hide('kb_profile');
+          this.kb_placeholder = false;
+        }
+      ); 
+    else {
       this.alert.error('Error fetching Kickball Link');
       this.kb_placeholder = false;
     }

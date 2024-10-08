@@ -51,21 +51,74 @@
     width:100%;
 }
 
-.custom-btn-size{
-    --bs-btn-padding-y: .25rem;
-    --bs-btn-padding-x: .5rem;
-    --bs-btn-font-size: .75rem;
+
+.side-info {
+    height: 100%;
+    vertical-align: top;
+    box-sizing: border-box;
+    white-space: normal;
 }
+
 
 @media only screen and (min-width: 901px) {
     .img-thumbnail{
         width: 100px;
         height: 100px;
     }
+    /* .btn .btn-sm{
+        --bs-btn-padding-y: .25rem;
+        --bs-btn-padding-x: .5rem;
+        --bs-btn-font-size: .75rem;
+    } */
+     .leagueName{
+        font-size: 25px;
+     }
+     .teamName{
+        font-size: 20px;
+     }
+     .side-info{
+        padding: 0 20px;
+        width: 455px;
+        display: inline-block;
+        font-size: 10px;
+     }
+     .custom-btn-size{
+        --bs-btn-padding-y: .25rem;
+        --bs-btn-padding-x: .5rem;
+        --bs-btn-font-size: .75rem;
+    }
+
 }
 @media only screen and (max-width: 900px) {
     .img-thumbnail{
-        width: 20px;
-        height: 20px;
+        width: 45px;
+        height: 45px;
+        padding: 0.1rem;
+    }
+    .btn .btn-sm{
+        --bs-btn-padding-y: .2rem;
+        --bs-btn-padding-x: .25rem;
+        --bs-btn-font-size: .4rem;
+    }
+    .leagueName{
+       font-size: 10px;
+     }
+     .teamName{
+        font-size: 8px;
+     }
+    
+     .side-info {
+        padding: 0 5px;
+        width: auto;
+        display: block;
+        font-size: 8px;
+    }
+     .custom-btn-size{
+        --bs-btn-padding-y: .2rem;
+        --bs-btn-padding-x: .25rem;
+        --bs-btn-font-size: .4rem;
+    }
+    .badge{
+        --bs-badge-font-size: 0.4em;
     }
 }

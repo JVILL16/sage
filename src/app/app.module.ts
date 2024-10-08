@@ -30,6 +30,7 @@ import { RegisterComponent } from './components/register/register-page';
 import { ProfileComponent } from './components/profile/profile-page';
 import { ClutchProfileComponent, KickballProfileComponent, SectionsComponent, SettingsProfileComponent } from './components/sections/sections-page';
 import { ClutchComponent } from './components/clutch/clutch-page';
+import { KickballComponent } from './components/kickball/kickball-page';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { NotFoundComponent } from './not-found.component';
 import { KickballService } from './service/python/kickball.service';
@@ -52,6 +53,7 @@ import { KickballService } from './service/python/kickball.service';
     SectionsComponent,
     CalendarComponent,
     ClutchComponent,
+    KickballComponent,
     NotFoundComponent,
     ClutchProfileComponent,
     KickballProfileComponent,
