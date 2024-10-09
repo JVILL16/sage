@@ -1,90 +1,111 @@
+.card-body {
+    background-color: #343a40 !important;
+    color: white !important;
+}
+
 .kickball-div {
     margin-left: 250px;
     margin-right: 250px;
-  }
+}
 
-  .kickball-title {
+.kickball-title {
     text-align: center;
-    justify-content:center;
+    justify-content: center;
     color: white;
     font-family: Daily-Q;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-  }
+}
 
-  #target-section {
+#target-section {
     /* padding: 100px; */
     scroll-margin: 100px;
-  }
-  
-  .scroll-button {
+}
+
+.scroll-button {
     background: none;
     border: none;
     cursor: pointer;
     padding: 0;
-    width:50px;
-    position: sticky; /*  this was relative but had to change it to fix so navbar would align correctly*/
+    width: 50px;
+    position: sticky;
+    /*  this was relative but had to change it to fix so navbar would align correctly*/
     /* Adjust this value to place the button higher or lower */
     transition: all ease-in-out 0.2s;
     animation: shake-slow 2s infinite ease;
-  
-  }
-  
-  .scroll-button img {
+
+}
+
+.scroll-button img {
     width: 50px;
     /* Adjust the size as needed */
     height: auto;
     display: block;
-  }
+}
 
-  @media only screen and (min-width: 901px) {
-    
+@media only screen and (min-width: 901px) {
+
     .kickball-header {
         margin-top: 100px;
         margin-bottom: 300px;
-      }
+    }
 
-      .kickball-icon {
+    .kickball-icon {
         width: 250px;
         height: 250px;
-      }
-      .scroll-button {
+    }
+
+    .scroll-button {
         left: 50%;
         bottom: 100px;
-    
-      }
-      .kickball-title {
+
+    }
+
+    .kickball-title {
         font-size: 80px;
-      }
-  }
-  @media only screen and (max-width: 900px) {
+    }
+
+    .img-thumbnail{
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media only screen and (max-width: 900px) {
 
     .kickball-header {
         margin-top: 100px;
         margin-bottom: 200px;
-      }
+    }
 
     .kickball-icon {
         width: 100px;
         height: 100px;
-      }
-      .scroll-button {
+    }
+
+    .scroll-button {
         left: 45%;
         bottom: 100px;
-    
-      }
-      .kickball-title {
-        font-size: 40px;
-      }
-  }
 
-  @keyframes shake-slow {
+    }
+
+    .kickball-title {
+        font-size: 40px;
+    }
+    .img-thumbnail{
+        width: 45px;
+        height: 45px;
+        padding: 0.1rem;
+    }
+}
+
+@keyframes shake-slow {
 
     0%,
     100% {
-      transform: translateY(0);
+        transform: translateY(0);
     }
-  
+
     50% {
-      transform: translateY(10px);
+        transform: translateY(10px);
     }
-  }
+}
