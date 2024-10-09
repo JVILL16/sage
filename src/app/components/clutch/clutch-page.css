@@ -98,15 +98,7 @@
   display: block;
 }
 
-.full-height {
-  position: relative;
-  /* top: -200px; */
-  transform: translateY(-20%);
-  height: 80vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 .table-size{
   margin:0 auto;
 }

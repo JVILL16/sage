@@ -11,6 +11,12 @@ import { AlertService } from 'src/app/service/helpers/alert.service';
 
 export class KickballComponent implements OnInit {
 
+  scrollToSection() {
+    const element = document.getElementById('target-section');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
   constructor(private kbApi: KickballService, private alertService:AlertService) { }
   ngOnInit() {}
 }

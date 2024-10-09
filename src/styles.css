@@ -23,6 +23,35 @@ $phone_landscape: 780px; */
   padding-bottom: 50px;
   
 }
+.full-height {
+  position: relative;
+  /* top: -200px; */
+  transform: translateY(-20%);
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.kickball-bg{
+  z-index: 1;
+}
+.kickball-bg::before {
+  content: "";
+   position: fixed !important;
+   z-index: -1;
+   top: 0;
+   bottom: 0;
+   left: 0; /* might need to change when going to mobile*/
+   right: 0;
+   background-image: url("src/assets/carousel-pics/kb_home/kb_home_6.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; /* Anchors the image from the bottom */
+    /* background-color: rgba(95, 95, 95, 0.8); */
+    opacity: 0.2;
+    height:100%;
+    width:100%;
+}
 
 .clutch-bg{
   z-index: 1;
@@ -38,6 +67,7 @@ $phone_landscape: 780px; */
    background-image: url("src/assets/carousel-pics/clutchTeam2023.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center; /* Anchors the image from the bottom */
     /* background-color: rgba(95, 95, 95, 0.8); */
     opacity: 0.2;
     height:100%;
@@ -119,6 +149,9 @@ body {
   }
 
   .clutch-bg::before{
+    background-position: center;
+  }
+  .kickball-bg::before{
     background-position: center;
   }
 
