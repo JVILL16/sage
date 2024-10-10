@@ -36,5 +36,7 @@ export class KickballService {
     return this.httpClient.post<any>(`${environment.serverUrl}/auth/sacc/sacc_schedule`,{url:url});
   }
 
-
+  public getKBStatistics(): any {
+    return this.httpClient.get<any>(`${environment.serverUrl}/auth/gsheets/kickball/Ballers2024.json`);
+  }
 }

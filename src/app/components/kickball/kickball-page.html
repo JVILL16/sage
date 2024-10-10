@@ -87,37 +87,72 @@
                 </div>
         </div>
         <div class="col-xl-12 kickball-header">
-            <div class="kickball-title " id="target-section">Statistics</div>
-                <div class="card">
-
-                    <div class="card-body">
-                        <div>
-                            Todo:
-                            <p>1. get some pictures and make a carousal out of it</p>
-                            <p>2. top header picture is going to be the one on google survey</p>
-                            <p>3. have some divs ready for information about the page and future profile pages</p>
-                            <p>4. possible some palyer cards?</p>
-                            <p>5. statistics</p>
-                        </div>
-    
-                    </div>
-                </div>
-                <div class="col-xl-3">
+            <div  id="target-section">
+                <span class="kickball-title">Statistics</span>
+                <button type="button" class="float-end btn btn-sm" [ngClass]="{'btn-primary': !show_bad_stats, 'btn-info': show_bad_stats}"
+                (click)="show_bad_stats=!show_bad_stats">{{show_bad_stats ? 'Stats': 'Other Stats'}}</button>
+            
+            </div>
+            
+            <div class="row ">
+                <div class="col-12 col-xl-3" *ngFor="let player of player_stats" >
                     <div class="card">
-                        <div class="card-header gradient-kickball">Jheremi</div>
-                        <img [src]="'../assets/pfp_default/user.png'" class="img-thumbnail me-3 float-start">
-                        <div class="table-responsive">
-                            <table class="table table-data table-sm">
-                                <thead>
-
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-                            </table>
+                        <div class="card-header gradient-kickball">{{player.Name}}</div>
+                        <div class="card-body">
+                            <img [src]="'../assets/pfp_default/user.png'" class="img-thumbnail me-3 float-start">
+                            <div class="table-responsive">
+                                <table class="table table-data table-success table-bordered table-sm w-100" *ngIf="!show_bad_stats">
+                                    <tbody class="">
+                                        <tr class="fs-9">
+                                            <th *ngFor="let good of good_stats.slice(0, 5)"><span title="{{good.header}}">{{good.abbv}}</span>
+                                            </th>
+                                        </tr>
+                                        <tr class="fs-9">
+                                            <td class="text-center table-info" *ngFor="let stat of player.Stats.Good.slice(0, 5)">
+                                                <span  *ngFor="let key of (stat | keyvalue)">{{stat.value ? stat.value : '/'}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="fs-9">
+                                            <th *ngFor="let good of good_stats.slice(5)"><span title="{{good.header}}">{{good.abbv}}</span>
+                                            </th>
+                                        </tr>
+                                        <tr class="fs-9">
+                                            <td class="text-center table-info" *ngFor="let stat of player.Stats.Good.slice(5)">
+                                                <span *ngFor="let key of (stat | keyvalue)">{{stat.value ? stat.value : '/'}}</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="table table-data table-dark table-bordered table-sm w-100" *ngIf="show_bad_stats">
+                                    <tbody class="">
+                                        <tr class="fs-9">
+                                            <th *ngFor="let bad of bad_stats"><span title="{{bad.header}}">{{bad.abbv}}</span>
+                                            </th>
+                                        </tr>
+                                        <tr class="fs-9">
+                                            <td class="text-center table-info" *ngFor="let stat of player.Stats.Bad">
+                                                <span>{{stat.value ? stat.value : '/'}}</span>
+                                            </td>
+                                        </tr>
+                                        <!-- <tr class="fs-9">
+                                            <th *ngFor="let bad of bad_stats.slice(5, 9)"><span title="{{bad.header}}">{{bad.abbv}}</span>
+                                            </th>
+                                        </tr>
+                                        <tr class="fs-9">
+                                            <td class="text-center table-info" *ngFor="let stat of player.Stats.Bad.slice(5, 9)">
+                                                <span *ngFor="let key of (stat | keyvalue)">{{stat.value ? stat.value :
+                                                    '/'}}</span>
+                                            </td>
+                                        </tr> -->
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
+        
                     </div>
                 </div>
+                
+            </div>
         </div>
     </div>
    
