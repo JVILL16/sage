@@ -45,6 +45,10 @@ export class ApiService {
     return this.httpClient.post<User>(`${environment.serverUrl}/users/update`, user);
   }
 
+  public getTeamProfiles(filename: string) {
+    return this.httpClient.get(`${environment.serverUrl}/team/dl_t_pfp?filename=${filename}`, { responseType: 'blob' });
+  }
+
   public uploadImage(image: File, cred: any) {
     const formData = new FormData();
     formData.append('image', image);
