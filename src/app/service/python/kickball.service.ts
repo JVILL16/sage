@@ -24,8 +24,8 @@ export class KickballService {
     return this.httpClient.post<any>(`${environment.serverUrl}/auth/sacc/kb_update`,{username:kb_userinfo?.username,password:kb_userinfo?.password,kb_id:kickball_id});
   }
 
-  public getKBTeamList(team_id:string): any{
-    return this.httpClient.get<any>(`${environment.serverUrl}/team/read_team?team=${team_id}`);
+  public getKBTeamList(team:string): any{
+    return this.httpClient.get<any>(`${environment.serverUrl}/team/read_team?team=${team}`);
   }
 
   

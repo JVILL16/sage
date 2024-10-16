@@ -14,6 +14,15 @@
 }
 
 */
+.loading-section{
+    
+    margin-top:10%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    z-index:999; /* fixed background and where it loads (layered) */
+    
+}
 
 .loading-overlay{
     overflow: hidden !important;

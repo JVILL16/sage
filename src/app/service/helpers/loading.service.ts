@@ -8,12 +8,16 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class LoadingService {
 
     private load = new BehaviorSubject<any>({});
+    private miniLoad = new BehaviorSubject<any>({});
 
     get getLoadStatus() {
-        console.log(this.load);
+        //console.log(this.load);
         return this.load.asObservable();
     }
-
+    get getMiniLoadStatus() {
+        //console.log(this.load);
+        return this.miniLoad.asObservable();
+    }
     constructor(private http: HttpClient) { }
 
     show(component:any) {
@@ -22,6 +26,11 @@ export class LoadingService {
     hide(component:any) {
         this.load.next({component:component, status:false});
     }
-   
+    mini_show(component:any) {
+        this.miniLoad.next({component:component, status:true});
+    }
+    mini_hide(component:any) {
+        this.miniLoad.next({component:component, status:false});
+    }
    
 }

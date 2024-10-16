@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { LoadingService } from '../helpers/loading.service'
 import { Observable, Subscription } from 'rxjs';
 
@@ -10,7 +10,7 @@ import { Observable, Subscription } from 'rxjs';
 
 export class LoadingComponent  {
 
-    
+    @Input() isLoading$?: boolean = false;
 
     // show(): any {
     //     this.loading = true;
@@ -31,20 +31,28 @@ export class LoadingComponent  {
     //     throw new Error("Method not implemented.");
     // }
     private subscription!: Subscription;
+     private miniSubscription!: Subscription;
     loading: boolean = false;
+    mini_loading: boolean = false;
     
 
     constructor(private loadService: LoadingService) { }
 
     ngOnInit() {
-        this.subscription = this.loadService.getLoadStatus.subscribe((status:any) => { 
-            this.loading = status.status; 
-            console.log(status.component);
+        this.subscription = this.loadService.getLoadStatus.subscribe((data:any) => { 
+            this.loading = data.status; 
+            console.log(data.component);
         });
+        this.miniSubscription = this.loadService.getMiniLoadStatus.subscribe((data:any) => { 
+            this.mini_loading = data.status; 
+            console.log(data.component);
+        });
+        console.log(this.isLoading$);
     }
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
+        this.miniSubscription.unsubscribe();
     }
 
 }
