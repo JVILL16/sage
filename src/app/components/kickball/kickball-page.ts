@@ -112,6 +112,7 @@ export class KickballComponent implements OnInit {
           Good: goodStats,
           Bad: badStats,
         },
+        'Toggle': false,
         'Error': player?.Error,
       };
     });
@@ -119,6 +120,10 @@ export class KickballComponent implements OnInit {
     
     // Wait for all promises to resolve
     return Promise.all(playerStatsPromises);
+  }
+  public toggleStatsView(player: any): any {
+    console.log(this.player_stats);
+    player.Toggle = !player.Toggle;
   }
 
   // New helper function to fetch profile picture

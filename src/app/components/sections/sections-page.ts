@@ -256,6 +256,7 @@ export class KickballProfileComponent implements OnInit {
   kb_login_cookie: boolean = false;
   kb_login: any;
   kb_placeholder: boolean = false;
+  kickball_admin:any;
 
   kb_breadcrumbs: any = [];
 
@@ -268,6 +269,7 @@ export class KickballProfileComponent implements OnInit {
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
     this.profile_id = this.currentUser[0].roles.find((p: any) => p.profile === 'kickball')?.profile_id;
     this.section_id = this.currentUser[0].roles.find((p: any) => p.profile === 'kickball')?.section_id;
+    this.kickball_admin = this.currentUser[0].roles.some((r: any) => r.profile === 'kb_admin');
   }
 
   public login() {

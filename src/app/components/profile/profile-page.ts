@@ -59,6 +59,7 @@ export class ProfileComponent implements OnInit{
   sections : any = [];
   section_admin : boolean = false;
   section_c_admin : boolean = false;
+  section_kb_admin: boolean = false;
 
 
   section_object : any = {};
@@ -166,6 +167,8 @@ export class ProfileComponent implements OnInit{
         this.section_admin = true;
       else if(role.profile === 'c_admin')
         this.section_c_admin = true;
+      else if(role.profile === 'kb_admin')
+        this.section_kb_admin = true;
       else
         this.sections.push( role.profile );
         
