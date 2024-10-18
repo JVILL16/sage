@@ -150,7 +150,7 @@ private getProfilePicture(pfp: string): Promise<string> {
   public kickballHome(): any{
     this.load.show('kb_main');
     this.isLoadingStats = true;
-    this.kbApi.getKBTeamList('697924294').subscribe(
+    this.api.getTeamList('kickball','697924294').subscribe(
       (data: any) => {
         this.kb_roster = data?.data;
         this.kbApi.getKBStatistics().subscribe(

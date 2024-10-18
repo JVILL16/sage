@@ -262,16 +262,98 @@ export class KickballProfileComponent implements OnInit {
 
   rubberState: any = false;
 
+  eventData: any = {
+    name: '',
+    dates: '',
+    location: '',
+    description: '',
+    p_name: ''
+  }
+  linkData: any = {
+    name: '',
+    category: '',
+    link: '',
+    p_name: ''
+  }
+
+  rosterData: any = {
+    all: [],
+    rostered: []
+  }
+
   constructor(private kbApi: KickballService,
     private alert: AlertService,
-    private load: LoadingService) {
+    private load: LoadingService,
+    private modal: ModalsService,
+    private api: ApiService) {
 
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
     this.profile_id = this.currentUser[0].roles.find((p: any) => p.profile === 'kickball')?.profile_id;
     this.section_id = this.currentUser[0].roles.find((p: any) => p.profile === 'kickball')?.section_id;
     this.kickball_admin = this.currentUser[0].roles.some((r: any) => r.profile === 'kb_admin');
+    if(this.kickball_admin) this.rosterCheck();
+    this.modal.getResetModalObj.subscribe((data: any) => {
+      if (data) {
+        this.eventData = {
+          name: '',
+          dates: '',
+          location: '',
+          description: '',
+          p_name: this.profile_id
+        };
+        this.linkData = {
+          link_id: '',
+          name: '',
+          category: '',
+          link: '',
+          p_name: this.profile_id
+        }
+        if(this.kickball_admin) this.rosterCheck();
+      }
+      //this.modalService.getReset(false);
+    });
+    this.modal.getRefreshPage.subscribe((data: any) => {
+      if (data === 'kickball_section')
+        this.kickball_home();
+    });
+
+  }
+  eventCreate() {
+    this.eventData.p_name = this.profile_id;
+    this.modal.getObject(this.eventData);
+  }
+  linkCreate() {
+    this.linkData.p_name = this.profile_id;
+    this.modal.getObject(this.linkData);
+  }
+  linkDelete(linkData: any) {
+    linkData.p_name = this.profile_id;
+    this.modal.getObject(linkData);
+  }
+  rosterEdit(){
+    this.modal.getObject(this.rosterData);
   }
 
+  rosterCheck(){
+    this.api.getAllTeamList('697924294').subscribe(
+      (data: any) => {
+        console.log(data?.data);
+        this.rosterData.all = data?.data;
+      },
+      async (error: any) => {
+        this.alert.error('Error fetching Kickball players: ' + error.message);
+      }
+    );
+    this.api.getTeamList('kickball','697924294').subscribe(
+      (data: any) => {
+        console.log(data?.data);
+        this.rosterData.rostered = data?.data;
+      },
+      async (error: any) => {
+        this.alert.error('Error fetching Rostered players: ' + error.message);
+      }
+    );
+  }
   public login() {
     this.load.show('kb_profile');
     this.kb_placeholder = true;
@@ -294,7 +376,7 @@ export class KickballProfileComponent implements OnInit {
     );;
   }
   public kickball_home() {
-    //console.log(this.currentUser[0]?.roles.find((p:any)=>p.profile==='kickball')?.section_id);
+    
     this.kbApi.getKBUser(this.section_id).subscribe(
       (data: any) => {
         //console.log(data); // Handle the data as needed
@@ -310,6 +392,7 @@ export class KickballProfileComponent implements OnInit {
           this.kickball_username = this.kb_login?.username;
           this.kickball_password = this.kb_login?.password;
         }
+        
       },
       async (error: any) => {
         this.alert.error('Error fetching Kickball user info: ' + error.error);

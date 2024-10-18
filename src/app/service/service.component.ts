@@ -49,6 +49,14 @@ export class ApiService {
     return this.httpClient.get(`${environment.serverUrl}/team/dl_t_pfp?filename=${filename}`, { responseType: 'blob' });
   }
 
+  public getTeamList(section:string,team:string): any{
+    return this.httpClient.get<any>(`${environment.serverUrl}/team/read_team?section=${section}&team=${team}`);
+  }
+
+  public getAllTeamList(section:string): any{
+    return this.httpClient.get<any>(`${environment.serverUrl}/team/read_team?section=${section}`);
+  }
+
   public uploadImage(image: File, cred: any) {
     const formData = new FormData();
     formData.append('image', image);
