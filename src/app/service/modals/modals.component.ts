@@ -29,12 +29,12 @@ export class ModalsComponent {
     // @Input() component_object: any;
     private subscription!: Subscription;
     component_object: any;
+    copy_component_object:any;
     component_categories: any;
 
     listAdd: any = [];
 
-    kb_pfp_url: any;
-    kb_pfp_new: any;
+   
 
     attending: boolean = false;
     attend: any;
@@ -42,24 +42,31 @@ export class ModalsComponent {
     model: NgbDateStruct | undefined;
     modelList: Array<NgbDateStruct> = [];
 
+
+    
+    kb_addedPlayers: any[] = [];
+    kb_removedPlayers: any[] = [];
+    kb_pfp_url: any;
+    kb_pfp_new: any;
     kb_selectedPlayerId: number | null = null;
     kb_selectedRosteredPlayerId: number | null = null;
-    kb_show_new_player : boolean = false;
-    kb_new_player: any ={
+    kb_show_new_player: boolean = false;
+    kb_new_player: any = {
+        kickball_id: '',
         name: '',
         pfp: '',
         team_id: '',
         deleteToggle: true
     }
-    
+
 
     event_Submit: boolean = false;
     link_Submit: boolean = false;
 
     categories: any = [
-        { 
+        {
             profile: '179925',
-            list: ['Schedule','Annoucements','Tournaments','Statistics']
+            list: ['Schedule', 'Annoucements', 'Tournaments', 'Statistics']
         }
     ]
 
@@ -72,6 +79,7 @@ export class ModalsComponent {
     constructor(private modalService: ModalsService, private api: ApiService, private auth: AuthenticationService, private clutch: ClutchService) {
         this.modalService.getModalView.subscribe((data: any) => {
             this.component_object = data;
+            this.copy_component_object = JSON.parse(JSON.stringify(data));
             console.log(this.component_object);
             this.component_categories = this.categories.filter((c: any) => c.profile === this.component_object?.p_name)[0]?.list;
             //console.log(this.categories.filter((c: any) => c.profile === this.component_object?.p_name));
@@ -100,16 +108,16 @@ export class ModalsComponent {
 
     clutch_AddEvent() {
         this.event_Submit = true;
-        this.modelList.map((d:any)=>{
+        this.modelList.map((d: any) => {
             //.padStart(2, '0')
             const day = String(d.day);
             const month = String(d.month);
             const year = String(d.year);
-            const date =  `${month}/${day}/${year};`;
+            const date = `${month}/${day}/${year};`;
             if (date !== undefined && date !== null) {
                 this.component_object.dates += date;
             }
-            
+
         });
         this.component_object.dates.replace(/;$/, '');
         //console.log(this.component_object);
@@ -131,23 +139,29 @@ export class ModalsComponent {
         });
         this.modalService.getRefresh('clutch_section');
         this.closeModal();
-        setTimeout(()=>{
+        setTimeout(() => {
 
             this.event_Submit = false;
-      
-          },5000);
-        
-       
+
+        }, 5000);
+
+
     }
 
-    kb_selectPlayer(playerId: number): void {
+    /********************************************************************************************************
+     * 
+     *                                              Kickball Profile Modals
+     * 
+     * 
+     ********************************************************************************************************/
+    kb_selectPlayer(playerId: number) : any {
         this.kb_selectedPlayerId = playerId === this.kb_selectedPlayerId ? null : playerId; // Toggle selection
     }
-    kb_selectRosteredPlayer(playerId: number) {
+    kb_selectRosteredPlayer(playerId: number) : any {
         this.kb_selectedRosteredPlayerId = playerId === this.kb_selectedRosteredPlayerId ? null : playerId;
     }
 
-    kb_movePlayerToRoster(): void {
+    kb_movePlayerToRoster(): any {
         if (this.kb_selectedPlayerId !== null) {
             const playerIndex = this.component_object.all.findIndex((player: any) => player.kickball_id === this.kb_selectedPlayerId);
 
@@ -159,9 +173,10 @@ export class ModalsComponent {
                 this.kb_selectedPlayerId = null; // Reset selection
             }
         }
+        
     }
 
-    kb_moveToAll(): void {
+    kb_moveToAll(): any {
         if (this.kb_selectedRosteredPlayerId !== null) {
             const playerIndex = this.component_object.rostered.findIndex((player: any) => player.kickball_id === this.kb_selectedRosteredPlayerId);
             if (playerIndex !== -1) {
@@ -176,16 +191,73 @@ export class ModalsComponent {
         }
     }
 
-    kb_onSelectFile(event: any, player: any) {
+    kb_createPlayer() : any {
+        this.kb_new_player.kickball_id = (Math.random() * 10).toString(36).replace('.', '');
+        this.component_object.all.push(this.kb_new_player);
+        this.kb_new_player.name = '';
+    }
+
+    kb_onSelectFile(event: any, player: any): any {
         //console.log(event.target.files[0]);
         this.kb_pfp_url = URL.createObjectURL(event.target.files[0]);
         this.kb_pfp_new = event.target.files[0];
         player.pfp = this.kb_pfp_new.name;
         // this.save_changes = true;
         console.log(this.component_object.rostered);
-      }
+    }
 
+    kb_compareArrays(): any {
+        // Use a Set to track unique IDs
+        console.log(this.copy_component_object.rostered);
+        console.log(this.component_object.rostered);
+        const getIds = (arr: any[]) => new Set(arr.map(obj => obj.kickball_id));
     
+        const oldIds = getIds(this.copy_component_object.rostered);
+        const newIds = getIds(this.component_object.rostered);
+    
+        // Find added and removed IDs
+        const addedIds = [...newIds].filter(kickball_id => !oldIds.has(kickball_id));
+        const removedIds = [...oldIds].filter(kickball_id => !newIds.has(kickball_id));
+    
+        // Map IDs back to objects
+        this.kb_addedPlayers = this.component_object.rostered.filter((player:any) => addedIds.includes(player.kickball_id));
+        this.kb_removedPlayers = this.copy_component_object.rostered.filter((player:any) => removedIds.includes(player.kickball_id));
+        console.log(this.kb_addedPlayers );
+        console.log(this.kb_removedPlayers );
+    }
+
+    kb_saveRostered() : any{
+        //console.log(this.component_object.rostered);
+        this.kb_compareArrays();
+        // this.api.updateTeamRoster(this.component_object.rostered).subscribe({
+        //    next: (response:any) => {
+        //         console.log(response);
+        //    },
+        //    error: (error:any) =>{
+        //         console.log(error);
+        //    }
+        // });
+        // this.api.uploadImage(this.pfp_new, this.account?.account_id).subscribe({
+        //     next: (response:any) => {
+        //       console.log('Image uploaded successfully:\n', response);
+        //     },
+        //     error: (error:any) => {
+        //       console.error('Error uploading image:\n', error);
+        //       this.alertService.error(error);
+        //     }
+        //   });
+    }
+
+
+    /******************************************************************************************************
+     * 
+     * 
+     *                      Clutch Event Modals
+     * 
+     * 
+     * 
+     *****************************************************************************************************/
+
     clutch_EventAttendModal(status_obj: any) {
         if (this.attending)
             this.attend = "Yes";
@@ -203,7 +275,7 @@ export class ModalsComponent {
 
     modal_AddLink() {
         this.link_Submit = true;
-        
+
         //console.log(this.component_object);
         this.api.createLinkData(this.component_object).subscribe({
             next(response: any) {
@@ -214,13 +286,13 @@ export class ModalsComponent {
             }
         });
         this.closeModal();
-        setTimeout(()=>{
+        setTimeout(() => {
 
             this.link_Submit = false;
-      
-          },5000);
+
+        }, 5000);
     }
-    modal_DeleteLink(id:number) {
+    modal_DeleteLink(id: number) {
         this.api.removeLinkData(id).subscribe({
             next(data: any) {
                 console.log(data);

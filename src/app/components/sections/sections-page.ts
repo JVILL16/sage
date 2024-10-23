@@ -349,7 +349,7 @@ export class KickballProfileComponent implements OnInit {
                   const reader = new FileReader();
                   //console.log(data);
                   reader.onload = () => {
-                    player.pfp = reader.result as string;
+                    player.pfp_url = reader.result as string;
                     //console.log(player.pfp);
                   };
                   reader.readAsDataURL(data);
@@ -365,7 +365,7 @@ export class KickballProfileComponent implements OnInit {
                   const reader = new FileReader();
                   //console.log(data);
                   reader.onload = () => {
-                    player.pfp = reader.result as string;
+                    player.pfp_url = reader.result as string;
                     //console.log(player.pfp);
                   };
                   reader.readAsDataURL(data);

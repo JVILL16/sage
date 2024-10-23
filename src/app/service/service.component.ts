@@ -57,6 +57,10 @@ export class ApiService {
     return this.httpClient.get<any>(`${environment.serverUrl}/team/read_team?section=${section}`);
   }
 
+  public updateTeamRoster(rostered:any): Observable<any>{
+    return this.httpClient.post<any>(`${environment.serverUrl}/team/update_team`, rostered);
+  }
+
   public uploadImage(image: File, cred: any) {
     const formData = new FormData();
     formData.append('image', image);
