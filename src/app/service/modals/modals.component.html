@@ -279,7 +279,7 @@
                 <i class="fa-solid fa-minus"></i>
               </span>
               <div class="text-center m-3">
-                <img [src]="player.pfp ? player.pfp : '../../assets/pfp_default/user.png'" class="roster-img" alt="Player image">
+                <img [src]="player.pfp ? player.pfp_url : '../../assets/pfp_default/user.png'" class="roster-img" alt="Player image">
                 <!-- <div class="pfp-edit">
                   <input id="fileInput" class="file-input" type="file" accept="image/*" (change)="kb_onSelectFile($event)" />
                   <label for="fileInput" class="file-point">
@@ -293,10 +293,10 @@
                                       <p class="card-text">Team: {{ player.team }}</p> -->
               </div>
             </div>
-            <div *ngIf="!kb_show_new_player" class="card roster-card add-roster-card m-2 text-center" style="border: 4px dotted white;cursor: pointer;" (click)="component_object.all.push(kb_new_player)">
+            <div *ngIf="!kb_show_new_player" class="card roster-card add-roster-card m-2 text-center" style="border: 4px dotted white;cursor: pointer;" (click)="kb_createPlayer()">
              
               <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                <div class="btn btn-sm btn-success border-light rounded-circle text-center" (click)="component_object.all.push(kb_new_player)"><i class="fa-regular fa-plus"></i></div>
+                <div class="btn btn-sm btn-success border-light rounded-circle text-center" (click)="kb_createPlayer()"><i class="fa-regular fa-plus"></i></div>
                   <h6 class="card-title mt-2">Create Player</h6>
                   <input type="text" class="form-control form-control-sm" (click)="$event.stopPropagation()"  [(ngModel)]="kb_new_player.name" style="max-width:100px;z-index:10;">
                 
@@ -321,7 +321,7 @@
                 <i class="fa-solid fa-minus"></i>
               </span>
               <div class="text-center m-3">
-                <img [src]="player.pfp ? player.pfp : '../../assets/pfp_default/user.png'" class="roster-img" alt="Player image">
+                <img [src]="player.pfp ? player.pfp_url : '../../assets/pfp_default/user.png'" class="roster-img" alt="Player image">
                 <div class="pfp-edit">
                   <input id="fileInput" class="file-input" type="file" accept="image/*" (change)="kb_onSelectFile($event,player)" />
                   <label for="fileInput" class="file-point">
@@ -344,7 +344,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success">Save</button>
+        <button type="button" class="btn btn-success" (click)="kb_saveRostered()">Save</button>
       </div>
     </div>
   </div>
