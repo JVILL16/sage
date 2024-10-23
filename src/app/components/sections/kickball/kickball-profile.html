@@ -9,12 +9,12 @@
     <button class=" btn btn-info btn-sm rounded-pill me-2" data-bs-toggle="modal" data-bs-target="#linkAddModal"
         type="button" (click)="linkCreate()">
         <i class="fa-solid fa-link me-1"></i> Add Link</button>
-    <button class="btn btn-sm btn-info rounded-pill" data-bs-toggle="modal" data-bs-target="#eventAddModal"
+    <button class="btn btn-sm btn-info rounded-pill me-2" data-bs-toggle="modal" data-bs-target="#eventAddModal"
         type="button" (click)="eventCreate()">
         <i class="fa-solid fa-calendar-plus me-1"></i> Add Event</button>
     <button class="btn btn-sm btn-info rounded-pill" data-bs-toggle="modal" data-bs-target="#rosterTeamModal"
         type="button" (click)="rosterEdit()">
-        <i class="fa-solid fa-calendar-plus me-1"></i> Roster Check</button>
+        <i class="fa-solid fa-clipboard-user me-1"></i> Roster Check</button>
 </div>
 
 <div class="mt-3" *ngIf="kb_breadcrumbs.length!=0" [hidden]="kb_placeholder" style="display:flex;align-items: center;" >

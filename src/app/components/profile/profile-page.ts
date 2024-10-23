@@ -136,12 +136,12 @@ export class ProfileComponent implements OnInit{
             };
             reader.readAsDataURL(data);
           },error:(error:any) => {
-            console.error('Error loading profile picture:', error);
+            //console.error('Error loading profile picture:', error);
             this.alertService.error('Sorry, was not able to load profile picture.');
           }});
           //this.alertService.success('Profile information loaded');
         },error:(error:any) => {
-          console.error('Error getting profile:', error);
+          //console.error('Error getting profile:', error);
           this.alertService.error('Sorry, was not able to retrieve your profile information.');
         }
       });
@@ -165,10 +165,6 @@ export class ProfileComponent implements OnInit{
         this.sections.unshift( 'overview');
       else if(role.profile === 'admin')
         this.section_admin = true;
-      else if(role.profile === 'c_admin')
-        this.section_c_admin = true;
-      else if(role.profile === 'kb_admin')
-        this.section_kb_admin = true;
       else
         this.sections.push( role.profile );
         

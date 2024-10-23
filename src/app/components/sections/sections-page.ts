@@ -290,7 +290,6 @@ export class KickballProfileComponent implements OnInit {
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
     this.profile_id = this.currentUser[0].roles.find((p: any) => p.profile === 'kickball')?.profile_id;
     this.section_id = this.currentUser[0].roles.find((p: any) => p.profile === 'kickball')?.section_id;
-    this.kickball_admin = this.currentUser[0].roles.some((r: any) => r.profile === 'kb_admin');
     if(this.kickball_admin) this.rosterCheck();
     this.modal.getResetModalObj.subscribe((data: any) => {
       if (data) {
@@ -334,25 +333,60 @@ export class KickballProfileComponent implements OnInit {
     this.modal.getObject(this.rosterData);
   }
 
-  rosterCheck(){
-    this.api.getAllTeamList('697924294').subscribe(
-      (data: any) => {
-        console.log(data?.data);
-        this.rosterData.all = data?.data;
-      },
-      async (error: any) => {
-        this.alert.error('Error fetching Kickball players: ' + error.message);
-      }
-    );
-    this.api.getTeamList('kickball','697924294').subscribe(
+  rosterCheck() {
+    this.api.getTeamList('kickball', '697924294').subscribe(
       (data: any) => {
         console.log(data?.data);
         this.rosterData.rostered = data?.data;
+        this.api.getAllTeamList('kickball').subscribe(
+          (data: any) => {
+            console.log(data?.data);
+            this.rosterData.all = data?.data.filter((player: any) => !this.rosterData.rostered.some((rostered: any) => rostered.team_id === player.team_id));
+            console.log(this.rosterData.rostered);
+            this.rosterData.rostered.forEach((player: any) => {
+              this.api.getTeamProfiles(player.pfp).subscribe({
+                next: (data: Blob) => {
+                  const reader = new FileReader();
+                  //console.log(data);
+                  reader.onload = () => {
+                    player.pfp = reader.result as string;
+                    //console.log(player.pfp);
+                  };
+                  reader.readAsDataURL(data);
+                }, error: (error: any) => {
+                  //console.error('Error loading profile picture:', error);
+                  this.alert.error('Sorry, was not able to load profile picture. ' + error.messsage);
+                }
+              });
+            });
+            this.rosterData.all.forEach((player: any) => {
+              this.api.getTeamProfiles(player.pfp).subscribe({
+                next: (data: Blob) => {
+                  const reader = new FileReader();
+                  //console.log(data);
+                  reader.onload = () => {
+                    player.pfp = reader.result as string;
+                    //console.log(player.pfp);
+                  };
+                  reader.readAsDataURL(data);
+                }, error: (error: any) => {
+                  //console.error('Error loading profile picture:', error);
+                  this.alert.error('Sorry, was not able to load profile picture. ' + error.messsage);
+                }
+              });
+            });
+            console.log(this.rosterData.rostered);
+          },
+          async (error: any) => {
+            this.alert.error('Error fetching Kickball players: ' + error.message);
+          }
+        );
       },
       async (error: any) => {
         this.alert.error('Error fetching Rostered players: ' + error.message);
       }
     );
+
   }
   public login() {
     this.load.show('kb_profile');
@@ -381,6 +415,8 @@ export class KickballProfileComponent implements OnInit {
       (data: any) => {
         //console.log(data); // Handle the data as needed
         this.kb_login = data.data[0];
+        this.kickball_admin = this.kb_login?.admin;
+        if(this.kickball_admin) this.rosterCheck();
         this.kb_login_cookie = this.kb_login?.username && this.kb_login?.password ? true : false;
         //console.log(this.kb_login_cookie);
         if (this.kb_login_cookie) {

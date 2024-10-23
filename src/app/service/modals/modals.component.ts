@@ -33,7 +33,8 @@ export class ModalsComponent {
 
     listAdd: any = [];
 
-
+    kb_pfp_url: any;
+    kb_pfp_new: any;
 
     attending: boolean = false;
     attend: any;
@@ -41,6 +42,15 @@ export class ModalsComponent {
     model: NgbDateStruct | undefined;
     modelList: Array<NgbDateStruct> = [];
 
+    kb_selectedPlayerId: number | null = null;
+    kb_selectedRosteredPlayerId: number | null = null;
+    kb_show_new_player : boolean = false;
+    kb_new_player: any ={
+        name: '',
+        pfp: '',
+        team_id: '',
+        deleteToggle: true
+    }
     
 
     event_Submit: boolean = false;
@@ -130,6 +140,52 @@ export class ModalsComponent {
        
     }
 
+    kb_selectPlayer(playerId: number): void {
+        this.kb_selectedPlayerId = playerId === this.kb_selectedPlayerId ? null : playerId; // Toggle selection
+    }
+    kb_selectRosteredPlayer(playerId: number) {
+        this.kb_selectedRosteredPlayerId = playerId === this.kb_selectedRosteredPlayerId ? null : playerId;
+    }
+
+    kb_movePlayerToRoster(): void {
+        if (this.kb_selectedPlayerId !== null) {
+            const playerIndex = this.component_object.all.findIndex((player: any) => player.kickball_id === this.kb_selectedPlayerId);
+
+            if (playerIndex > -1) {
+                this.component_object.all[playerIndex].team_id = '697924294';
+                const player = this.component_object.all[playerIndex];
+                this.component_object.all.splice(playerIndex, 1); // Remove from 'all' list
+                this.component_object.rostered.push(player);       // Add to 'rostered' list
+                this.kb_selectedPlayerId = null; // Reset selection
+            }
+        }
+    }
+
+    kb_moveToAll(): void {
+        if (this.kb_selectedRosteredPlayerId !== null) {
+            const playerIndex = this.component_object.rostered.findIndex((player: any) => player.kickball_id === this.kb_selectedRosteredPlayerId);
+            if (playerIndex !== -1) {
+                this.component_object.rostered[playerIndex].team_id = '';
+                // Move player back to all players list
+                const player = this.component_object.rostered.splice(playerIndex, 1)[0];
+                this.component_object.all.push(player);
+
+                // Reset selectedRosteredPlayerId
+                this.kb_selectedRosteredPlayerId = null;
+            }
+        }
+    }
+
+    kb_onSelectFile(event: any, player: any) {
+        //console.log(event.target.files[0]);
+        this.kb_pfp_url = URL.createObjectURL(event.target.files[0]);
+        this.kb_pfp_new = event.target.files[0];
+        player.pfp = this.kb_pfp_new.name;
+        // this.save_changes = true;
+        console.log(this.component_object.rostered);
+      }
+
+    
     clutch_EventAttendModal(status_obj: any) {
         if (this.attending)
             this.attend = "Yes";
