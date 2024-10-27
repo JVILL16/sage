@@ -173,7 +173,7 @@ export class ProfileComponent implements OnInit{
     this.sections.push('settings');
   }
   onSelectFile(event: any) {
-    //console.log(event.target.files[0]);
+    console.log(event.target.files[0]);
     this.pfp_url = URL.createObjectURL(event.target.files[0]);
     this.pfp_new = event.target.files[0];
     this.account.pfp = this.pfp_new.name;

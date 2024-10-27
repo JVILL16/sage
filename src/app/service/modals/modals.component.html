@@ -3,7 +3,7 @@
   aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header gradiant-admin">
         <h5 class="modal-title" id="exampleModalLabel">Deleting a Role</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -23,7 +23,7 @@
   aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header gradiant-admin">
         <h5 class="modal-title" id="addRoleModalLabel">Select the Following Roles:</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -267,14 +267,16 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <div class="teamList"><b>All Kickball Players:</b></div>
         <div class="table-responsive" style="overflow-x: auto;">
           <!-- <h4>All Kickball Players:</h4> -->
+           
           <div class="d-flex flex-nowrap">
            
             <!-- <div *ngIf="component_object?.all?.length==0" class="alert alert-sm alert-warning">
               No kickball players to add :c
             </div> -->
-            <div *ngFor="let player of component_object.all; index as i" class="card roster-card m-2" [class.selected]="player.kickball_id === kb_selectedPlayerId"  (click)="kb_selectPlayer(player.kickball_id)" >
+            <div *ngFor="let player of component_object.all; index as i" class="card roster-card m-2" [class.selected-all]="player.kickball_id === kb_selectedPlayerId"  (click)="kb_selectPlayer(player.kickball_id)" >
               <span *ngIf="player?.deleteToggle" class="position-absolute deleteNewPlayer top-0 start-100 translate-middle badge rounded-pill bg-danger" (click)="component_object.all.splice(i,1)">
                 <i class="fa-solid fa-minus"></i>
               </span>
@@ -293,10 +295,10 @@
                                       <p class="card-text">Team: {{ player.team }}</p> -->
               </div>
             </div>
-            <div *ngIf="!kb_show_new_player" class="card roster-card add-roster-card m-2 text-center" style="border: 4px dotted white;cursor: pointer;" (click)="kb_createPlayer()">
+            <div *ngIf="!kb_show_new_player" class="card roster-card add-roster-card m-2 text-center" style="border: 4px dotted white;cursor: pointer;" (click)="kb_new_player.name ? kb_createPlayer(kb_new_player) : null">
              
               <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                <div class="btn btn-sm btn-success border-light rounded-circle text-center" (click)="kb_createPlayer()"><i class="fa-regular fa-plus"></i></div>
+                <div class="btn btn-sm btn-success border-light rounded-circle text-center" (click)="kb_new_player.name ? kb_createPlayer(kb_new_player) : null"><i class="fa-regular fa-plus"></i></div>
                   <h6 class="card-title mt-2">Create Player</h6>
                   <input type="text" class="form-control form-control-sm" (click)="$event.stopPropagation()"  [(ngModel)]="kb_new_player.name" style="max-width:100px;z-index:10;">
                 
@@ -306,25 +308,27 @@
           
         </div>
         <div class="text-center">
-          <button class="btn btn-sm btn-secondary me-2" (click)="kb_movePlayerToRoster()"><i class="fa-solid fa-arrow-down"></i></button>
-          <button class="btn btn-sm btn-secondary" (click)="kb_moveToAll()"><i class="fa-solid fa-arrow-up"></i></button>
+          <button class="btn btn-sm btn-success me-2" (click)="kb_movePlayerToRoster()"><i class="fa-solid fa-arrow-down"></i></button>
+          <button class="btn btn-sm btn-danger" (click)="kb_moveToAll()"><i class="fa-solid fa-arrow-up"></i></button>
         </div>
+        <div class="teamList"><b>Rostered Players:</b></div>
         <div class="table-responsive" style="overflow-x: auto;">
           <!-- <h4>Rostered Players:</h4> -->
+          
           <div class="d-flex flex-nowrap">
             
             <div *ngIf="component_object?.rostered?.length==0" class="alert alert-sm alert-warning">
               No rostered players yet :3
             </div>
-            <div *ngFor="let player of component_object.rostered;index as i" class="card roster-card m-2" [class.selected]="player.kickball_id === kb_selectedRosteredPlayerId"  (click)="kb_selectRosteredPlayer(player.kickball_id)">
+            <div *ngFor="let player of component_object.rostered;index as i" class="card roster-card m-2" [class.selected-roster]="player.kickball_id === kb_selectedRosteredPlayerId"  (click)="kb_selectRosteredPlayer(player.kickball_id)">
               <span *ngIf="player?.deleteToggle" class="position-absolute deleteNewPlayer top-0 start-100 translate-middle badge rounded-pill bg-danger" (click)="component_object.rostered.splice(i,1)">
                 <i class="fa-solid fa-minus"></i>
               </span>
               <div class="text-center m-3">
                 <img [src]="player.pfp ? player.pfp_url : '../../assets/pfp_default/user.png'" class="roster-img" alt="Player image">
                 <div class="pfp-edit">
-                  <input id="fileInput" class="file-input" type="file" accept="image/*" (change)="kb_onSelectFile($event,player)" />
-                  <label for="fileInput" class="file-point">
+                  <input id="fileInputKBPFP_{{i}}" class="file-input" type="file" accept="image/*" (change)="kb_onSelectPFP($event,player)" />
+                  <label for="fileInputKBPFP_{{i}}" class="file-point">
                     <i class=" fa-solid fa-camera" style="font-size:10px;"></i>
                   </label>
                 </div>
@@ -344,7 +348,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success" (click)="kb_saveRostered()">Save</button>
+        <button type="button" class="btn btn-success" [disabled]="!kb_save_changes" (click)="kb_saveRostered()"  data-bs-dismiss="modal">Save</button>
       </div>
     </div>
   </div>
