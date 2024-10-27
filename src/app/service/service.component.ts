@@ -48,7 +48,11 @@ export class ApiService {
   public getTeamProfiles(filename: string) {
     return this.httpClient.get(`${environment.serverUrl}/team/dl_t_pfp?filename=${filename}`, { responseType: 'blob' });
   }
-
+  public uploadPlayerImage(image: File) {
+    const formData = new FormData();
+    formData.append('image', image);
+    return this.httpClient.post(`${environment.serverUrl}/team/ul_t_pfp`, formData);
+  }
   public getTeamList(section:string,team:string): any{
     return this.httpClient.get<any>(`${environment.serverUrl}/team/read_team?section=${section}&team=${team}`);
   }

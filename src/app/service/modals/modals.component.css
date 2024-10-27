@@ -47,8 +47,8 @@
     width: 100%;
     height: 75px;
     border-radius: 10px;
-    object-fit: cover; /* Ensure the image covers the container */
-    position: relative;
+    object-fit: cover;
+    /* position: relative; */
   }
   .roster-card-container::-webkit-scrollbar {
     display: none; /* Hides scrollbar for cleaner look */
@@ -104,9 +104,13 @@
     display: none;
   }
 
-  .selected {
+  .selected-all {
     border: 2px solid green;  /* Highlight selected player */
     background-color: #4aea6f !important;  /* Light green background */
+  }
+  .selected-roster {
+    border: 2px solid red;  /* Highlight selected player */
+    background-color: #ff6f85 !important;  /* Light green background */
   }
 
   .deleteNewPlayer{
@@ -114,6 +118,13 @@
   }
   .deleteNewPlayer:hover{
     background-color: rgb(254, 94, 94);
+  }
+  .teamList{
+    font-size: 14px;
+    color: white;
+    text-align: center;
+    margin: 10px;
+
   }
   @media only screen and (min-width: 901px) {
    
