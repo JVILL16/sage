@@ -28,7 +28,13 @@ import { AboutComponent } from './components/about/about-page';
 import { AdminComponent } from './components/admin/admin-page';
 import { RegisterComponent } from './components/register/register-page';
 import { ProfileComponent } from './components/profile/profile-page';
-import { ClutchProfileComponent, KickballProfileComponent, SectionsComponent, SettingsProfileComponent } from './components/sections/sections-page';
+import { FeedbackComponent } from './components/feedback/feedback.component';
+import { AnnounceComponent } from './components/announce/announce.component';
+import { ClutchProfileComponent, 
+          KickballProfileComponent, 
+          SectionsComponent, 
+          SettingsProfileComponent 
+        } from './components/sections/sections-page';
 import { ClutchComponent } from './components/clutch/clutch-page';
 import { KickballComponent } from './components/kickball/kickball-page';
 import { CalendarComponent } from './components/calendar/calendar.component';
@@ -57,7 +63,9 @@ import { KickballService } from './service/python/kickball.service';
     NotFoundComponent,
     ClutchProfileComponent,
     KickballProfileComponent,
-    SettingsProfileComponent
+    SettingsProfileComponent,
+    FeedbackComponent,
+    AnnounceComponent
   ],
   imports: [
     BrowserModule,

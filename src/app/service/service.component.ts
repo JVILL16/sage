@@ -119,6 +119,18 @@ export class ApiService {
   public removeLinkData(id: number): any {
     return this.httpClient.delete(`${environment.serverUrl}/links/l_remove?id=${id}`);
   }
+
+
+  //feedback api
+  public createFeedback(feedback:any) : any {
+    return this.httpClient.post<any>(`${environment.serverUrl}/feedback/fb_create`, feedback);
+  }
+  public getGroupsFeedbacks(profile:any, team:any) : any {
+    return this.httpClient.get<any>(`${environment.serverUrl}/feedback/fb_read?profile=${profile}&team=${team}`);
+  }
+  public getSectionsFeedbacks(profile:any) : any {
+    return this.httpClient.get<any>(`${environment.serverUrl}/feedback/fb_read?profile=${profile}`);
+  }
   /**
    * 
    * This is for file uploads [TEST] 4/11/24 10:11AM

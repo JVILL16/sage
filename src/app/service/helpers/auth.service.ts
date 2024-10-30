@@ -16,6 +16,7 @@ export class AuthenticationService {
     private loggedIn = new BehaviorSubject<boolean>(false);
     private checkAdmin = new BehaviorSubject<boolean>(false);
     private userName = new BehaviorSubject<string>('');
+    private userEmail = new BehaviorSubject<string>('');
 
 
     currentUser: any;

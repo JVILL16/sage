@@ -1,0 +1,52 @@
+<div class="card shadow-lg">
+    <div class="card-header gradient-main">FEEDBACK</div>
+    <div class="card-body">
+        <div *ngIf="success_alert" role="alert" class="alert alert-sm alert-success">
+            {{success_alert_txt}}
+        </div>
+        <div [hidden]="success_alert" class="table-responsive">
+            <table class="table table-striped table-dark table-responsive table-data">
+                <tbody>
+                    <tr [hidden]="logon_email">
+                        <td colspan="2">
+                            <label class="form-label">Email: <span class="fs-9">(Optional)</span></label>
+                            <input type="email" class="form-control form-control-sm" [(ngModel)]="feedback_obj.email">
+                        </td>
+                    </tr>
+                    <tr *ngIf="logon_email">
+                        <td *ngIf="feedback_obj.email" colspan="2">
+                            <label class="form-label">Email:</label>
+                            <label class="form-label text-muted">{{feedback_obj.email}}</label>
+                        </td>
+                        <td *ngIf="!feedback_obj.email" colspan="2">
+                            <label class="form-label">Email:</label>
+                            <div class="alert alert-sm alert-warning" role="alert">
+                                *Please advise that your account has an invalid email address, please go to your
+                                settings and add / replace current email. No email will be sent out if not done so.
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="form-label">Subject:</label>
+                            <input type="text" class="form-control form-control-sm" [(ngModel)]="feedback_obj.title">
+                        </td>
+                        <td>
+                            <label class="form-label">Issue:</label>
+                            <select class="form-select form-select-sm" [(ngModel)]="feedback_obj.type">
+                                <option *ngFor="let issue of fb_issueTypes" [value]="issue">{{issue}}</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label class="form-label">Comments / Concerns:</label>
+                            <textarea type="text" class="form-control form-control-sm" rows="8"
+                                [(ngModel)]="feedback_obj.request"></textarea>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
