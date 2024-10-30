@@ -10,6 +10,7 @@ import { LoadingComponent} from './app/service/loading/loading.component';
 
 if (environment.production) {
   enableProdMode();
+  console.log = function(): void {}; //this is where we cancel all logs 
 }
 
 // platformBrowserDynamic().bootstrapModule(AppModule).then(ref => {

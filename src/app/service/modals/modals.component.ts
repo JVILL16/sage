@@ -305,6 +305,7 @@ export class ModalsComponent {
         this.component_object.rostered.forEach((newPlayer: any) => {
             const oldPlayer = this.copy_component_object.rostered.find((player: any) => player.kickball_id === newPlayer.kickball_id);
             if (oldPlayer && (oldPlayer.pfp !== newPlayer.pfp)) {
+                newPlayer.og_pfp = oldPlayer.pfp;
                 changes.push(newPlayer);
             }
         });
@@ -323,7 +324,7 @@ export class ModalsComponent {
                 }
             });
             if(player.file){
-                this.api.uploadPlayerImage(player.file).subscribe({
+                this.api.uploadPlayerImage(player.file,player.og_pfp).subscribe({
                     next: (response: any) => {
                         this.alert.success(player.name + "'s photo uploaded.");
                     },
