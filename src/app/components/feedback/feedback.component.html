@@ -49,4 +49,7 @@
             </table>
         </div>
     </div>
+    <div class="card-footer">
+        <button type="button" [disabled]="!feedback_obj.request" class="float-end btn btn-sm btn-success" (click)="sendFeedback()">Submit Feedback</button>
+    </div>
 </div>
