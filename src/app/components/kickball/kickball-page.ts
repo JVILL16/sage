@@ -71,7 +71,9 @@ export class KickballComponent implements OnInit {
   kb_pName: any = '578343';
   kb_tName: any = '697924294';
 
-  
+  counter(i: number) {
+    return new Array(i);
+  }
   scrollToSection() {
     const element = document.getElementById('target-section');
     if (element) {
