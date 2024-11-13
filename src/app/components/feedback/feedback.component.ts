@@ -14,8 +14,8 @@ import { AuthenticationService } from 'src/app/service/helpers/auth.service';
 
 export class FeedbackComponent implements OnInit {
 
-    @Input() p_name?: any = "";
-    @Input() t_name?: any = "";
+    @Input() p_name?: any = '';
+    @Input() t_name?: any = '';
 
     logon_email: boolean = false;
 
@@ -29,23 +29,19 @@ export class FeedbackComponent implements OnInit {
         title: '',
         request: '',
         email: '',
-        p_name: this.p_name,
-        t_name: this.t_name
+        p_name: '',
+        t_name: ''
     }
 
     fb_issueTypes: any = ["Feature","Bug","Error","Typo","Other"];
 
     constructor(private alert: AlertService, private api: ApiService, private load: LoadingService, private auth: AuthenticationService) {
         this.currentUser = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
-        console.log(this.currentUser);
-        if(this.currentUser[0]){
-            this.logon_email = false;
-            this.feedback_obj.email = this.currentUser[0]?.email;
-        } else
-            this.logon_email = false;
+        
      }
 
     sendFeedback(): any{
+        console.log(this.feedback_obj);
         this.api.createFeedback(this.feedback_obj).subscribe({
             next(response:any){
                 this.success_alert = true;
@@ -72,5 +68,14 @@ export class FeedbackComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        console.log(this.p_name);
+        console.log(this.currentUser);
+        this.feedback_obj.p_name = this.p_name;
+        this.feedback_obj.t_name = this.t_name;
+        if(this.currentUser[0]){
+            this.logon_email = false;
+            this.feedback_obj.email = this.currentUser[0]?.email;
+        } else
+            this.logon_email = false;
     }
 }
