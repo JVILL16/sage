@@ -95,98 +95,27 @@
         <div class="col-xl-12 kickball-header">
             <div id="target-section" class="d-flex justify-content-center align-items-center text-center">
                 <span class="kickball-title">Statistics</span>
-                
-
-
             </div>
-            <div class="row ">
-                <div *ngIf="!(player_stats | async)" class="placeholder-glow">
-                    <div class="col-12 col-xl-4">
-                        <div class="placeholder col-12 card border-secondary mt-3">
-                            <div class="card-body col-12">
-                                <div class="col-3">
+            <div class="row" *ngIf="!(player_stats | async)" >
+                <div class="col-12 col-xl-4 placeholder-glow" *ngFor="let load of counter(18)">
+                    <div class="placeholder col-12 card border-secondary mt-3">
+                        <div class="card-body">
+                            <div class="row col-12">
+                                <div class="col-4">
                                     <span class="placeholder kb-main-card img-thumbnail me-3 float-start"></span>
                                 </div>
-                                <div class="col-9">
+                                <div class="col-8">
                                     <span class="placeholder kb-main-card custom-placeholder"></span>
+                                    <span class="placeholder kb-main-card custom-placeholder mt-2"></span>
+                                    <span class="placeholder kb-main-card custom-placeholder mt-2"></span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="placeholder col-12 card border-secondary mt-3">
-                            <div class="card-body col-12">
-                                <div class="col-3">
-                                    <span class="placeholder kb-main-card img-thumbnail me-3 float-start"></span>
-                                </div>
-                                <div class="col-9">
-                                    <span class="placeholder kb-main-card custom-placeholder"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="placeholder col-12 card border-secondary mt-3">
-                            <div class="card-body col-12">
-                                <div class="col-3">
-                                    <span class="placeholder kb-main-card img-thumbnail me-3 float-start"></span>
-                                </div>
-                                <div class="col-9">
-                                    <span class="placeholder kb-main-card custom-placeholder"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="placeholder col-12 card border-secondary mt-3">
-                            <div class="card-body col-12">
-                                <div class="col-3">
-                                    <span class="placeholder kb-main-card img-thumbnail me-3 float-start"></span>
-                                </div>
-                                <div class="col-9">
-                                    <span class="placeholder kb-main-card custom-placeholder"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="placeholder col-12 card border-secondary mt-3">
-                            <div class="card-body col-12">
-                                <div class="col-3">
-                                    <span class="placeholder kb-main-card img-thumbnail me-3 float-start"></span>
-                                </div>
-                                <div class="col-9">
-                                    <span class="placeholder kb-main-card custom-placeholder"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="placeholder col-12 card border-secondary mt-3">
-                            <div class="card-body col-12">
-                                <div class="col-3">
-                                    <span class="placeholder kb-main-card img-thumbnail me-3 float-start"></span>
-                                </div>
-                                <div class="col-9">
-                                    <span class="placeholder kb-main-card custom-placeholder"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="placeholder col-12 card border-secondary mt-3">
-                            <div class="card-body col-12">
-                                <div class="col-3">
-                                    <span class="placeholder kb-main-card img-thumbnail me-3 float-start"></span>
-                                </div>
-                                <div class="col-9">
-                                    <span class="placeholder kb-main-card custom-placeholder"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="placeholder col-12 card border-secondary mt-3">
-                            <div class="card-body col-12">
-                                <div class="col-3">
-                                    <span class="placeholder kb-main-card img-thumbnail me-3 float-start"></span>
-                                </div>
-                                <div class="col-9">
-                                    <span class="placeholder kb-main-card custom-placeholder"></span>
-                                </div>
-                            </div>
+            
                         </div>
                     </div>
-              
-                    
-                    
                 </div>
+            </div>
+            <div class="row ">
                 <div class="col-12 col-xl-4" *ngFor="let player of player_stats | async; let i = index;">
                     <div class="card border-secondary">
                         
