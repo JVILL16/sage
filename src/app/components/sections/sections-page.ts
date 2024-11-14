@@ -246,6 +246,7 @@ export class KickballProfileComponent implements OnInit {
   currentUser: any;
   profile_id: any;
   section_id: any;
+  team_id: any;
 
   kickball_username: any = '';
   kickball_password: any = '';
@@ -281,6 +282,14 @@ export class KickballProfileComponent implements OnInit {
     rostered: []
   }
 
+  announceData: any = {
+    announcement: '',
+    color: '',
+    created_by: '',
+    p_name: '',
+    t_name: ''
+  }
+
   constructor(private kbApi: KickballService,
     private alert: AlertService,
     private load: LoadingService,
@@ -290,6 +299,7 @@ export class KickballProfileComponent implements OnInit {
     this.currentUser = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
     this.profile_id = this.currentUser[0].roles.find((p: any) => p.profile === 'kickball')?.profile_id;
     this.section_id = this.currentUser[0].roles.find((p: any) => p.profile === 'kickball')?.section_id;
+    this.team_id = '697924294';
     if(this.kickball_admin) this.rosterCheck();
     this.modal.getResetModalObj.subscribe((data: any) => {
       if (data) {
@@ -306,6 +316,13 @@ export class KickballProfileComponent implements OnInit {
           category: '',
           link: '',
           p_name: this.profile_id
+        }
+        this.announceData = {
+          announcement: '',
+          color: 'linear-gradient(#8ec0f2, #58a4f0, #1584f2);',
+          created_by: this.currentUser[0].account_id,
+          p_name: this.profile_id,
+          t_name: this.team_id
         }
         if(this.kickball_admin) this.rosterCheck();
       }
@@ -331,6 +348,13 @@ export class KickballProfileComponent implements OnInit {
   }
   rosterEdit(){
     this.modal.getObject(this.rosterData);
+  }
+  announceCreate(){
+    this.announceData.color = 'linear-gradient(#8ec0f2, #58a4f0, #1584f2);';
+    this.announceData.created_by =this.currentUser[0].account_id;
+    this.announceData.p_name = this.profile_id;
+    this.announceData.t_name = this.team_id;
+    this.modal.getObject(this.announceData);
   }
 
   rosterCheck() {

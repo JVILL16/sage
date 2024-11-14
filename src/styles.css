@@ -124,6 +124,11 @@ body {
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   background: linear-gradient(#3f87a6, #f69d3c);
 }
+.gradient-section {
+  font-family: Daily-Q;
+  color: white;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
 
 /*@media only screen and (min-width: 320px)*/
 @media only screen and (max-width: 900px) {

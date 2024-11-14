@@ -131,6 +131,17 @@ export class ApiService {
   public getSectionsFeedbacks(profile:any) : any {
     return this.httpClient.get<any>(`${environment.serverUrl}/feedback/fb_read?profile=${profile}`);
   }
+
+  //announcement api
+  public createAnnounce(announce:any) : any {
+    return this.httpClient.post<any>(`${environment.serverUrl}/announcements/announce_create`, announce);
+  }
+  public getGroupsAnnounce(profile:any, team:any) : any {
+    return this.httpClient.get<any>(`${environment.serverUrl}/announcements/announce_read?profile=${profile}&team=${team}`);
+  }
+  public getSectionsAnnounce(profile:any) : any {
+    return this.httpClient.get<any>(`${environment.serverUrl}/announcements/announce_read?profile=${profile}`);
+  }
   /**
    * 
    * This is for file uploads [TEST] 4/11/24 10:11AM

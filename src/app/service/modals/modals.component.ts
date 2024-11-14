@@ -150,6 +150,21 @@ export class ModalsComponent {
 
     }
 
+    announceAdd(){
+        console.log(this.component_object);
+        this.api.createAnnounce(this.component_object).subscribe({
+            next: (response: any) => {
+                console.log(response);
+                this.alert.success("Announcement Sent!");
+            },
+            error: (error: any) => {
+                console.log(error);
+                this.alert.error("Error processing Announcement");
+            }
+        });
+    }
+
+
     /********************************************************************************************************
      * 
      *                                              Kickball Profile Modals
@@ -417,6 +432,16 @@ export class ModalsComponent {
             }
         });
     }
+
+
+
+    /*********************************************************************
+     * 
+     *  Auth admin 
+     * 
+     * 
+     * 
+     *********************************************************************/
 
     auth_RemoveRoleModal(id: number) {
         this.auth.removerole(id).subscribe({
