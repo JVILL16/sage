@@ -319,7 +319,7 @@ export class KickballProfileComponent implements OnInit {
         }
         this.announceData = {
           announcement: '',
-          color: 'linear-gradient(#8ec0f2, #58a4f0, #1584f2);',
+          color: 'linear-gradient(#8ec0f2, #58a4f0, #1584f2)',
           created_by: this.currentUser[0].account_id,
           p_name: this.profile_id,
           t_name: this.team_id
@@ -350,11 +350,14 @@ export class KickballProfileComponent implements OnInit {
     this.modal.getObject(this.rosterData);
   }
   announceCreate(){
-    this.announceData.color = 'linear-gradient(#8ec0f2, #58a4f0, #1584f2);';
+    this.announceData.color = 'linear-gradient(#8ec0f2, #58a4f0, #1584f2)';
     this.announceData.created_by =this.currentUser[0].account_id;
     this.announceData.p_name = this.profile_id;
     this.announceData.t_name = this.team_id;
     this.modal.getObject(this.announceData);
+  }
+  announceList(){
+    this.modal.getObject({profile: this.profile_id,team : this.team_id, announceList: true, user: this.currentUser[0].account_id});
   }
 
   rosterCheck() {

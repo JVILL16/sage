@@ -1,0 +1,25 @@
+.card-body {
+    background-color: #343a40 !important;
+    color: white !important;
+}
+.card {
+    background-color: #343a40 !important;
+    color: white !important;
+}
+.profile-picture img {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+  .pfp-icon {
+    width: 100px;
+    border-radius: 50%;
+  }
+
+
+@media only screen and (max-width: 900px) {}
+
+@media only screen and (min-width: 901px) {}

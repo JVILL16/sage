@@ -15,9 +15,14 @@
     <button class="custom-btn-size btn btn-sm btn-info rounded-pill m-2" data-bs-toggle="modal" data-bs-target="#rosterTeamModal"
         type="button" (click)="rosterEdit()">
         <i class="fa-solid fa-clipboard-user me-1"></i> Roster Check</button>
-    <button class="custom-btn-size btn btn-sm btn-info rounded-pill m-2" data-bs-toggle="modal" data-bs-target="#announceTeamModal"
+    <button class="custom-btn-size btn btn-sm btn-info position-relative rounded-pill m-2" data-bs-toggle="modal" data-bs-target="#announceTeamModal"
         type="button" (click)="announceCreate()">
-        <i class="fa-solid fa-comment-dots me-1"></i> Add Announcement</button>
+        <i class="fa-solid fa-comment-dots me-1"></i> Add Announcement
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary" data-bs-toggle="modal" data-bs-target="#announceTeamListModal" 
+            (click)="$event.stopPropagation();$event.preventDefault();announceList()">
+            <i class="fa-solid fa-eye fa-bounce"></i>
+        </span>
+    </button>
         
 </div>
 

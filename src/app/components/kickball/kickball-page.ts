@@ -181,15 +181,7 @@ export class KickballComponent implements OnInit {
         this.load.hide('kb_main');
       });
 
-    this.api.getGroupsAnnounce(this.kb_pName, this.kb_tName).subscribe(
-      (data: any) => {
-        console.log(data);
-        this.load.hide('kb_main');
-      },
-      (error: any) => {
-        this.alert.error('Could not load team roster: ' + error.message);
-        this.load.hide('kb_main');
-      });
+    
   }
 
   ngOnInit(): void {

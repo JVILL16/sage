@@ -15,6 +15,7 @@ import { ClutchService } from '../helpers/clutch.service';
 import { JsonPipe, CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgbCalendar, NgbDatepickerModule, NgbDateStruct, NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import { AnnounceComponent } from 'src/app/components/announce/announce.component';
 
 @Component({
     selector: 'app-modal',
@@ -68,6 +69,8 @@ export class ModalsComponent {
         }
     ]
 
+    announce_messages :any = [];
+
     // @Input() account_id : any;
     // @Input() profiles : any;
     // @Input() profile_id : any;
@@ -82,6 +85,7 @@ export class ModalsComponent {
         this.modalService.getModalView.subscribe((data: any) => {
             this.component_object = data;
             this.copy_component_object = JSON.parse(JSON.stringify(data));
+            if(this.component_object?.announceList) this.announceDetail();
             console.log(this.component_object);
             this.component_categories = this.categories.filter((c: any) => c.profile === this.component_object?.p_name)[0]?.list;
             //console.log(this.categories.filter((c: any) => c.profile === this.component_object?.p_name));
@@ -150,6 +154,35 @@ export class ModalsComponent {
 
     }
 
+    announceDetail(){
+        this.api.getGroupsAnnounce(this.component_object.profile, this.component_object.team).subscribe(
+            (data: any) => {
+              console.log(data);
+              this.announce_messages = data.data;
+              this.announce_messages.forEach((account: any) => {
+                if(!account.pfp || account.pfp=='')
+                    account.pfp = 'assets/pfp_default/user.png';
+                this.api.getTeamProfiles(account.pfp).subscribe({
+                  next: (data: Blob) => {
+                    const reader = new FileReader();
+                    //console.log(data);
+                    reader.onload = () => {
+                      account.pfp_url = reader.result as string;
+                      //console.log(player.pfp);
+                    };
+                    reader.readAsDataURL(data);
+                  }, error: (error: any) => {
+                    //console.error('Error loading profile picture:', error);
+                    this.alert.error('Sorry, was not able to load profile picture. ' + error.messsage);
+                  }
+                });
+              });
+            },
+            (error: any) => {
+              this.alert.error('Could not load announcements: ' + error.message);
+            });
+    }
+
     announceAdd(){
         console.log(this.component_object);
         this.api.createAnnounce(this.component_object).subscribe({
@@ -163,7 +196,9 @@ export class ModalsComponent {
             }
         });
     }
+    announceDelete(id:number){
 
+    }
 
     /********************************************************************************************************
      * 

@@ -2,47 +2,57 @@
     font-family: Daily-Q;
     src: url('src/assets/fonts/daily-quantum/Daily Quantum.ttf');
 }
+
 .carousel-item img {
     width: 100%;
 }
-.stick-d{
+
+.stick-d {
     position: sticky;
     right: 0;
-   z-index: 1; /* Ensure the sticky columns are above other columns */
-  }
-  .stick-r{
+    z-index: 1;
+    /* Ensure the sticky columns are above other columns */
+}
+
+.stick-r {
     position: sticky;
     right: 60px;
-   z-index: 1; /* Ensure the sticky columns are above other columns */
-  }
-.card{
+    z-index: 1;
+    /* Ensure the sticky columns are above other columns */
+}
+
+.card {
     background: #343a40 !important;
 }
+
 .title-cap {
     font-family: Daily-Q;
     color: white;
     font-weight: bold;
     font-size: 33px;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-   /* // background-color: #9c9c9c;
+    /* // background-color: #9c9c9c;
     */
     background-position: 50%;
     background-image: url('src/assets/thumbnail-background.png');
 }
+
 .card-head {
     background-size: cover;
     background-position: 50%;
     background-image: url('src/assets/thumbnail-background.png');
 }
+
 .title {
     font-family: Daily-Q;
     color: #fff;
     font-size: 50px;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-   /* //background-color: #9c9c9c;
+    /* //background-color: #9c9c9c;
     //background-position: cover;
     */
 }
+
 #teamName {
     font-weight: bold;
     color: white;
@@ -50,27 +60,32 @@
     font-size: 20px;
     font-stretch: wider;
 }
+
 .soc-media {
-   /* // float:left;
+    /* // float:left;
     */
     margin-left: 60%;
 }
+
 .btn-success {
     border-color: #f89b4f;
     background-color: #f89b4f;
-   /* //color:rgb(251, 249, 249);
+    /* //color:rgb(251, 249, 249);
     */
 }
+
 .btn-success:hover {
     border-color: #73bffd;
     background-color: #73bffd;
 }
+
 .btn-info {
     border-color: #f89b4f;
     background-color: #f89b4f;
-   /* //color:rgb(251, 249, 249);
+    /* //color:rgb(251, 249, 249);
     */
 }
+
 .btn-info:hover {
     border-color: #73bffd;
     background-color: #73bffd;
@@ -81,26 +96,28 @@
 
 
     .table-admin th,
-  .table-admin td {
-    padding: 0.2rem;
-    font-size: 0.4rem; /* Reduce font size */
-  }
-  .table-admin th[style*="min-width"],
-  .table-admin td[style*="min-width"] {
-    min-width: 20px; /* Override minimum width on smaller screens */
-  }
-  .table-responsive {
-    overflow-x: auto;
-  }
-  .custom-btn-size{
-    --bs-btn-padding-y: .1rem;
-    --bs-btn-padding-x: .5rem;
-    --bs-btn-font-size: .5rem;
-}
+    .table-admin td {
+        padding: 0.2rem;
+        font-size: 0.4rem;
+        /* Reduce font size */
+    }
+
+    .table-admin th[style*="min-width"],
+    .table-admin td[style*="min-width"] {
+        min-width: 20px;
+        /* Override minimum width on smaller screens */
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    .custom-btn-size {
+        --bs-btn-padding-y: .1rem;
+        --bs-btn-padding-x: .5rem;
+        --bs-btn-font-size: .5rem;
+    }
 
 }
 
-@media only screen and (min-width: 901px) {
-
-    
-}
+@media only screen and (min-width: 901px) {}

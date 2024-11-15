@@ -1,0 +1,15 @@
+<div *ngFor="let message of messages" class="card" >
+    <div class="card-header gradient-section" [ngStyle]="{'background': message.color}">
+        <div class="profile-picture">
+            <img class="pfp-icon" [src]="message.pfp_url">
+            <span class="fs-2 ms-3">{{message.first_name}} {{message.last_name}}</span>
+        </div>
+        
+    </div>
+    <div class="card-body" >
+        <blockquote class="blockquote mb-0">
+            <p>{{message.announcement}}</p>
+            <footer class="blockquote-footer"><b>{{message.created_date | date:'fullDate'}}</b> | <i>{{message.created_date | date:'shortTime'}}</i></footer>
+          </blockquote>
+    </div>
+</div>
