@@ -178,28 +178,31 @@ export class ProfileComponent implements OnInit{
     this.pfp_new = event.target.files[0];
     this.account.pfp = this.pfp_new.name;
     this.save_changes = true;
+    this.edit_screen = true;
   }
   saveChanges(): void {
     this.api.updateUser(this.account).subscribe({
       next: (response:any) => {
         //console.log('User record updated:\n', response);
-        this.alertService.success('The profile has been updated!\n'+ response);
+        this.alertService.success('The profile has been updated!');
       },
       error: (error:any) => {
         //console.error('Error updated record:\n', error);
-        this.alertService.error('The was an error processing your updated profile.\n'+ error.error);
+        this.alertService.error('The was an error processing your updated profile.\n'+ error.message);
       }
     });
     this.api.uploadImage(this.pfp_new, this.account?.account_id).subscribe({
       next: (response:any) => {
-        console.log('Image uploaded successfully:\n', response);
+        console.log('Image uploaded successfully:\n' + response.message);
       },
       error: (error:any) => {
-        console.error('Error uploading image:\n', error);
-        this.alertService.error(error);
+        console.error('Error uploading image:\n'+ error.message);
+        this.alertService.error(error.message);
       }
     });
-
+    this.home_login();
+    this.save_changes = false;
+    this.edit_screen = false;
   }
 
   

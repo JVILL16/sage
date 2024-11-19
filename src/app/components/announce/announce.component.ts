@@ -27,9 +27,9 @@ export class AnnounceComponent implements OnInit {
               console.log(data);
               this.messages = data.data;
               this.messages.forEach((account: any) => {
-                if(!account.pfp || account.pfp=='')
+                if(!account.pfp || account.pfp==='')
                     account.pfp = 'assets/pfp_default/user.png';
-                this.api.getTeamProfiles(account.pfp).subscribe({
+                this.api.getUserProfile(account.created_by,account.pfp).subscribe({
                   next: (data: Blob) => {
                     const reader = new FileReader();
                     //console.log(data);
