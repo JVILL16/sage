@@ -7,8 +7,6 @@
     color: white !important;
 }
 .profile-picture img {
-    width: 75px;
-    height: 75px;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid #fff;
@@ -18,8 +16,26 @@
     width: 100px;
     border-radius: 50%;
   }
+  .blockquote-footer{
+    float: right;
+  }
 
+@media only screen and (max-width: 900px) {
+  .profile-picture img {
+    width: 50px;
+    height: 50px;
+  }
+  .blockquote{
+    font-size: 0.8rem;
+  }
+  .blockquote-footer{
+    font-size: 0.7rem;
+  }
+}
 
-@media only screen and (max-width: 900px) {}
-
-@media only screen and (min-width: 901px) {}
+@media only screen and (min-width: 901px) {
+  .profile-picture img {
+    width: 75px;
+    height: 75px;
+  }
+}
