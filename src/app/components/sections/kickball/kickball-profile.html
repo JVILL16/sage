@@ -88,21 +88,65 @@
 
 <div *ngIf="kickball_objectInfo?.Tier == 'profile'" [hidden]="kb_placeholder">
     <div class="card shadow-sm kb-login-card border-secondary mt-3" *ngFor="let info of kickball_userInfo">
-
+        <div class="card-header gradient-kickball">
+            <!-- leagueName text-decoration-underline -->
+            <span class="">{{info.League}}</span>
+        </div>
         <div class="card-body">
-            <div class="detail-info">
-                <img [src]="info.TeamInfo.Photo ? info.TeamInfo.Photo : '../assets/carousel-pics/sp_sacc.png'"
-                    class="img-thumbnail me-3 float-start">
-                <span class="leagueName text-decoration-underline">{{info.League}}</span><br>
-                <span class="teamName">{{info.TeamInfo.Name}}</span><br>
-                <span *ngIf="info.PlayerTier=='Player'" class="badge rounded-pill text-bg-primary">Player</span>
-                <span *ngIf="info.PlayerTier=='Non-Player'"
-                    class="badge rounded-pill text-bg-secondary">Non-Player</span>
-                <span *ngIf="info.PlayerTier=='Captain'" class="badge rounded-pill text-bg-light">Captain</span>
+            <div class="table-responsive">
+                <table class="table table-sm table-dark table-borderless table-kb-profile" style="margin:0 auto;width:300px;">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img [src]="info.TeamInfo.Photo ? info.TeamInfo.Photo : '../assets/carousel-pics/sp_sacc.png'"
+                                    class="img-thumbnail float-start">
+                            </td>
+                            <td class="align-middle float-start">
+                                <span class="teamName">{{info.TeamInfo.Name}}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-sm table-dark table-kb-profile mt-3">
+                    <thead>
+                        <tr>
+                            <th class="text-center align-middle">Player</th>
+                            <th class="text-center align-middle">League Skill</th>
+                            <th class="text-center align-middle">Rostered</th>
+                            <th class="text-center align-middle">Shirt Size</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center align-middle">
+                                <span *ngIf="info.PlayerTier=='Player'" class="badge rounded-pill text-bg-primary">Player</span>
+                                <span *ngIf="info.PlayerTier=='Non-Player'"
+                                    class="badge rounded-pill text-bg-secondary">Non-Player</span>
+                                <span *ngIf="info.PlayerTier=='Captain'" class="badge rounded-pill text-bg-light">Captain</span>
+                            </td>
+                            <td class="text-center align-middle">
+                                <span>{{info.Skill}}</span>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="d-inline-flex align-items-center justify-content-center text-white rounded-circle" style="width:25px;height:23px;"
+                                    [ngClass]="{'bg-success':info.Rostered, 'bg-black': !info.Rostered}">
+                                    <i class="fa-solid" [ngClass]="{'fa-check':info.Rostered, 'fa-circle': !info.Rostered}"></i>
+                                </div>
+                                
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="d-inline-flex align-items-center justify-content-center bg-black text-white rounded-circle" style="width:25px;height:23px;">
+                                    <span *ngIf="info.ShirtSize=='Small'" class="text-center align-middle"><b>S</b></span>
+                                    <span *ngIf="info.ShirtSize=='Medium'" class="text-center align-middle"><b>M</b></span>
+                                    <span *ngIf="info.ShirtSize=='Large'" class="text-center align-middle"><b>L</b></span>
+                                    <span *ngIf="info.ShirtSize=='X-Large'" class="text-center align-middle"><b>XL</b></span>
+                                    <span *ngIf="info.ShirtSize=='XX-Large'" class="text-center align-middle"><b>XXL</b></span>
 
-            </div>
-            <div class="side-info">
-                <b>League Skill:</b><br><span>{{info.Skill}}</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
 
@@ -110,7 +154,7 @@
         </div>
         <div class="card-footer">
 
-            <div class="text-center">
+            <div class="text-center align-middle">
                 <button *ngIf="info.Links.Schedule" class="btn btn-sm btn-outline-info custom-btn-size me-2"
                     (click)="kickball_link_team('schedule',info.Links.Schedule,null)">
                     <i class="fa-regular fa-calendar-days me-1"></i> Schedule
@@ -135,85 +179,24 @@
 </div>
 
 <!----------------------------------- Loading Placeholders ---------------------------------->
-<div *ngIf="kb_placeholder" class="placeholder-glow">
-    <div class="placeholder col-12 card shadow-sm kb-login-card border-secondary mt-3">
-        <div class="card-body row col-12">
-            <div class="col-3">
-                <span class="placeholder kb-login-card img-thumbnail"></span>
+<div *ngIf="kb_placeholder">
+    <div  class="placeholder-glow" *ngFor="let load of counter(10)">
+        <div class="placeholder col-12 card shadow-sm kb-login-card border-secondary mt-3">
+            <div class="card-body row col-12">
+                <div class="col-4">
+                    <span class="placeholder kb-login-card img-thumbnail"></span>
+                </div>
+                <div class="col-8">
+                    <span class="placeholder kb-login-card custom-placeholder"></span>
+                    <span class="placeholder kb-login-card custom-placeholder"></span>
+                    <span class="placeholder kb-login-card custom-placeholder"></span>
+                    <span class="placeholder kb-login-card custom-placeholder"></span>
+                </div>
             </div>
-            <div class="col-9">
-                <span class="placeholder kb-login-card custom-placeholder"></span>
-                <span class="placeholder kb-login-card custom-placeholder"></span>
-                <span class="placeholder kb-login-card custom-placeholder"></span>
-                <span class="placeholder kb-login-card custom-placeholder"></span>
-            </div>
-        </div>
-        <div class="card-footer">
-            <span class="placeholder col-12 kb-login-card custom-placeholder"></span>
-        </div>
-    </div>
-    <div class="placeholder col-12 card shadow-sm kb-login-card border-secondary mt-3">
-        <div class="card-body row col-12">
-            <div class="col-3">
-                <span class="placeholder kb-login-card img-thumbnail"></span>
-            </div>
-            <div class="col-9">
-                <span class="placeholder kb-login-card custom-placeholder"></span>
-                <span class="placeholder kb-login-card custom-placeholder"></span>
-                <span class="placeholder kb-login-card custom-placeholder"></span>
-                <span class="placeholder kb-login-card custom-placeholder"></span>
+            <div class="card-footer">
+                <span class="placeholder col-12 kb-login-card custom-placeholder"></span>
             </div>
         </div>
-        <div class="card-footer">
-            <span class="placeholder col-12 kb-login-card custom-placeholder"></span>
-        </div>
-    </div>
-    <div class="placeholder col-12 card shadow-sm kb-login-card border-secondary mt-3">
-        <div class="card-body row col-12">
-            <div class="col-3">
-                <span class="placeholder kb-login-card img-thumbnail"></span>
-            </div>
-            <div class="col-9">
-                <span class="placeholder kb-login-card custom-placeholder"></span>
-                <span class="placeholder kb-login-card custom-placeholder"></span>
-                <span class="placeholder kb-login-card custom-placeholder"></span>
-                <span class="placeholder kb-login-card custom-placeholder"></span>
-            </div>
-        </div>
-        <div class="card-footer">
-            <span class="placeholder col-12 kb-login-card custom-placeholder"></span>
-        </div>
-    </div>
-    <div class="placeholder col-12 card shadow-sm kb-login-card border-secondary mt-3">
-        <div class="card-body row col-12">
-            <div class="col-3">
-                <span class="placeholder kb-login-card img-thumbnail"></span>
-            </div>
-            <div class="col-9">
-                <span class="placeholder kb-login-card custom-placeholder"></span>
-                <span class="placeholder kb-login-card custom-placeholder"></span>
-                <span class="placeholder kb-login-card custom-placeholder"></span>
-                <span class="placeholder kb-login-card custom-placeholder"></span>
-            </div>
-        </div>
-        <div class="card-footer">
-            <span class="placeholder col-12 kb-login-card custom-placeholder"></span>
-        </div>
-    </div>
-    <div class="placeholder col-12 card shadow-sm kb-login-card border-secondary mt-3">
-        <div class="card-body row col-12">
-            <div class="col-3">
-                <span class="placeholder kb-login-card img-thumbnail"></span>
-            </div>
-            <div class="col-9">
-                <span class="placeholder kb-login-card custom-placeholder"></span>
-                <span class="placeholder kb-login-card custom-placeholder"></span>
-                <span class="placeholder kb-login-card custom-placeholder"></span>
-                <span class="placeholder kb-login-card custom-placeholder"></span>
-            </div>
-        </div>
-        <div class="card-footer">
-            <span class="placeholder col-12 kb-login-card custom-placeholder"></span>
-        </div>
+        
     </div>
 </div>

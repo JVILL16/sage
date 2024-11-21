@@ -289,7 +289,9 @@ export class KickballProfileComponent implements OnInit {
     p_name: '',
     t_name: ''
   }
-
+  counter(i: number) {
+    return new Array(i);
+  }
   constructor(private kbApi: KickballService,
     private alert: AlertService,
     private load: LoadingService,
