@@ -142,6 +142,9 @@ export class ApiService {
   public getSectionsAnnounce(profile:any) : any {
     return this.httpClient.get<any>(`${environment.serverUrl}/announcements/announce_read?profile=${profile}`);
   }
+  public removeAnnounceData(id: number): any {
+    return this.httpClient.delete(`${environment.serverUrl}/announcements/announce_remove?id=${id}`);
+  }
   /**
    * 
    * This is for file uploads [TEST] 4/11/24 10:11AM

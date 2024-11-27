@@ -510,6 +510,8 @@ export class KickballProfileComponent implements OnInit {
           this.kb_placeholder = false;
         }
       ); 
+      else if (page === 'invoice')
+        console.log('Invoice Page: ' + link );
     else {
       this.alert.error('Error fetching Kickball Link');
       this.kb_placeholder = false;

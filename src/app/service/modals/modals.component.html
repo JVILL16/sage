@@ -394,9 +394,9 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div *ngFor="let message of announce_messages" class="card position-relative" >
-          <div class="card-header">
-              <span class="fs-9 ms-3">{{message.first_name}} {{message.last_name}}</span>
+        <div *ngFor="let message of announce_messages" class="card position-relative mb-3" >
+          <div class="card-header bg-dark">
+              <span class="announce-name ms-3">{{message.first_name}} {{message.last_name}}</span>
           </div>
           <div class="card-body" >
               <div class="row col-12">
@@ -407,14 +407,18 @@
                   </div>
                   <div class="col-9">
                       <blockquote class="blockquote mb-0">
-                          <p [title]="message.announcement">{{ message.announcement.length > 20 ? (message.announcement | slice:0:20) + '...' : message.announcement }}</p>
+                        <div (click)="announce_desc=!announce_desc">
+                          <p *ngIf="announce_desc" >{{message.announcement}}</p>
+                          <p *ngIf="!announce_desc" [title]="message.announcement">{{ message.announcement.length > 50 ? (message.announcement | slice:0:50) + '...' : message.announcement }}</p>
+                        </div>
+                        
                           <footer class="blockquote-footer"><b>{{message.created_date | date:'fullDate'}}</b> | <i>{{message.created_date | date:'shortTime'}}</i></footer>
                       </blockquote>
                   </div>
               </div>
              
           </div>
-          <span *ngIf="component_object.user==message.created_by" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" (click)="announceDelete(message.id)">
+          <span *ngIf="component_object.user==message.created_by" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" (click)="announceDelete(message.id)" data-bs-dismiss="modal">
               <i class="fa-solid fa-xmark"></i>
           </span>
       </div>

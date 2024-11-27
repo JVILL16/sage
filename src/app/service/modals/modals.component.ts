@@ -57,7 +57,7 @@ export class ModalsComponent {
         team_id: '',
         deleteToggle: true
     }
-
+    announce_desc: boolean = false;
 
     event_Submit: boolean = false;
     link_Submit: boolean = false;
@@ -184,7 +184,7 @@ export class ModalsComponent {
     }
 
     announceAdd(){
-        console.log(this.component_object);
+        //console.log(this.component_object);
         this.api.createAnnounce(this.component_object).subscribe({
             next: (response: any) => {
                 console.log(response);
@@ -197,7 +197,16 @@ export class ModalsComponent {
         });
     }
     announceDelete(id:number){
-
+        this.api.removeAnnounceData(id).subscribe({
+            next: (response: any) => {
+                //console.log(response);
+                this.alert.success("Announcement Deleted!");
+            },
+            error: (error: any) => {
+                console.log(error);
+                this.alert.error("Error could not delete Announcement");
+            }
+        });
     }
 
     /********************************************************************************************************

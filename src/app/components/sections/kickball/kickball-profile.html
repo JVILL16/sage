@@ -28,7 +28,7 @@
 
 <div class="mt-3" *ngIf="kb_breadcrumbs.length!=0" [hidden]="kb_placeholder" style="display:flex;align-items: center;">
     <div *ngFor="let linkName of kb_breadcrumbs;let i = index">
-        <button type="button" class="btn btn-sm btn-outline-primary me-2" title="{{linkName?.League}}"
+        <button type="button" class="custom-btn-size btn btn-sm btn-outline-primary me-2" title="{{linkName?.League}}"
             (click)="kickball_link_team(linkName?.Tier,linkName?.Link,i)">{{linkName?.Name}}</button>
         <i *ngIf="i < kb_breadcrumbs.length - 1" class="fa-solid fa-right-long me-2"
             style="color:rgb(47, 140, 246)"></i>
@@ -85,7 +85,13 @@
     </div>
 </div>
 
-
+<div *ngIf="kickball_objectInfo?.Tier == 'invoice'" [hidden]="kb_placeholder">
+    <div class="card shadow-sm kb-login-card border-secondary mt-3">
+        <div>
+            <pre>{{kickball_objectInfo | json}}</pre>
+        </div>
+    </div>
+</div>
 <div *ngIf="kickball_objectInfo?.Tier == 'profile'" [hidden]="kb_placeholder">
     <div class="card shadow-sm kb-login-card border-secondary mt-3" *ngFor="let info of kickball_userInfo">
         <div class="card-header gradient-kickball">
@@ -94,59 +100,86 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-sm table-dark table-borderless table-kb-profile" style="margin:0 auto;width:300px;">
+                <table class="table table-sm table-dark table-borderless table-kb-profile w-100" >
                     <tbody>
                         <tr>
-                            <td>
+                            <td clsas="w-25">
                                 <img [src]="info.TeamInfo.Photo ? info.TeamInfo.Photo : '../assets/carousel-pics/sp_sacc.png'"
                                     class="img-thumbnail float-start">
                             </td>
-                            <td class="align-middle float-start">
-                                <span class="teamName">{{info.TeamInfo.Name}}</span>
+                            <td>
+                                <table class="w-100">
+                                    <tr>
+                                        <td class="align-middle text-center">
+                                            <span class="teamName"><b>{{info.TeamInfo.Name}}</b></span>
+                                        </td>
+                                    </tr>
+                                    <tr *ngIf="info.PlayerTier=='Captain'">
+                                        <td class="align-middle text-center">
+                                            <button class="btn btn-sm btn-outline-info custom-btn-size me-2"
+                                                (click)="kickball_link_team('invoice',info.Invoice,null)">
+                                                <i class="fa-solid fa-file-invoice me-1"></i> Invoice
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <table class="table table-sm table-dark table-kb-profile mt-3" style="margin:0 auto;">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center align-middle">Player</th>
+                                                        <th class="text-center align-middle">Skill</th>
+                                                        <th class="text-center align-middle">Rostered</th>
+                                                        <th class="text-center align-middle">Paid</th>
+                                                        <th class="text-center align-middle">Shirt</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="text-center align-middle">
+                                                            <span *ngIf="info.PlayerTier=='Player'" class="badge rounded-pill text-bg-primary">Player</span>
+                                                            <span *ngIf="info.PlayerTier=='Non-Player'"
+                                                                class="badge rounded-pill text-bg-secondary">Non-Player</span>
+                                                            <span *ngIf="info.PlayerTier=='Captain'" class="badge rounded-pill text-bg-light">Captain</span>
+                                                        </td>
+                                                        <td class="text-center align-middle">
+                                                            <span>{{info.Skill}}</span>
+                                                        </td>
+                                                        <td class="text-center align-middle">
+                                                            <div class="d-inline-flex align-items-center justify-content-center text-white rounded-circle" style="width:25px;height:23px;"
+                                                                [ngClass]="{'bg-success':info.Rostered, 'bg-black': !info.Rostered}">
+                                                                <i class="fa-solid" [ngClass]="{'fa-check':info.Rostered, 'fa-circle': !info.Rostered}"></i>
+                                                            </div>
+                                                            
+                                                        </td>
+                                                        <td class="text-center align-middle">
+                                                            <div class="d-inline-flex align-items-center justify-content-center text-white rounded-circle" style="width:25px;height:23px;"
+                                                                [ngClass]="{'bg-success':info.Paid, 'bg-black': !info.Paid}">
+                                                                <i class="fa-solid" [ngClass]="{'fa-check':info.Paid, 'fa-circle': !info.Paid}"></i>
+                                                            </div>
+                                                            
+                                                        </td>
+                                                        <td class="text-center align-middle">
+                                                            <div class="d-inline-flex align-items-center justify-content-center bg-black text-white rounded-circle" style="width:25px;height:23px;">
+                                                                <span *ngIf="info.ShirtSize=='Small'" class="text-center align-middle"><b>S</b></span>
+                                                                <span *ngIf="info.ShirtSize=='Medium'" class="text-center align-middle"><b>M</b></span>
+                                                                <span *ngIf="info.ShirtSize=='Large'" class="text-center align-middle"><b>L</b></span>
+                                                                <span *ngIf="info.ShirtSize=='X-Large'" class="text-center align-middle"><b>XL</b></span>
+                                                                <span *ngIf="info.ShirtSize=='XX-Large'" class="text-center align-middle"><b>XXL</b></span>
+                            
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <table class="table table-sm table-dark table-kb-profile mt-3">
-                    <thead>
-                        <tr>
-                            <th class="text-center align-middle">Player</th>
-                            <th class="text-center align-middle">League Skill</th>
-                            <th class="text-center align-middle">Rostered</th>
-                            <th class="text-center align-middle">Shirt Size</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="text-center align-middle">
-                                <span *ngIf="info.PlayerTier=='Player'" class="badge rounded-pill text-bg-primary">Player</span>
-                                <span *ngIf="info.PlayerTier=='Non-Player'"
-                                    class="badge rounded-pill text-bg-secondary">Non-Player</span>
-                                <span *ngIf="info.PlayerTier=='Captain'" class="badge rounded-pill text-bg-light">Captain</span>
-                            </td>
-                            <td class="text-center align-middle">
-                                <span>{{info.Skill}}</span>
-                            </td>
-                            <td class="text-center align-middle">
-                                <div class="d-inline-flex align-items-center justify-content-center text-white rounded-circle" style="width:25px;height:23px;"
-                                    [ngClass]="{'bg-success':info.Rostered, 'bg-black': !info.Rostered}">
-                                    <i class="fa-solid" [ngClass]="{'fa-check':info.Rostered, 'fa-circle': !info.Rostered}"></i>
-                                </div>
-                                
-                            </td>
-                            <td class="text-center align-middle">
-                                <div class="d-inline-flex align-items-center justify-content-center bg-black text-white rounded-circle" style="width:25px;height:23px;">
-                                    <span *ngIf="info.ShirtSize=='Small'" class="text-center align-middle"><b>S</b></span>
-                                    <span *ngIf="info.ShirtSize=='Medium'" class="text-center align-middle"><b>M</b></span>
-                                    <span *ngIf="info.ShirtSize=='Large'" class="text-center align-middle"><b>L</b></span>
-                                    <span *ngIf="info.ShirtSize=='X-Large'" class="text-center align-middle"><b>XL</b></span>
-                                    <span *ngIf="info.ShirtSize=='XX-Large'" class="text-center align-middle"><b>XXL</b></span>
-
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                
             </div>
 
 
@@ -155,19 +188,19 @@
         <div class="card-footer">
 
             <div class="text-center align-middle">
-                <button *ngIf="info.Links.Schedule" class="btn btn-sm btn-outline-info custom-btn-size me-2"
+                <button *ngIf="info.Links.Schedule" class="btn btn-sm btn-outline-info custom-btn-size me-1"
                     (click)="kickball_link_team('schedule',info.Links.Schedule,null)">
-                    <i class="fa-regular fa-calendar-days me-1"></i> Schedule
+                    <i class="fa-regular fa-calendar-days"></i> Schedule
                 </button>
-                <button *ngIf="info.Links.Standings" class="btn btn-sm btn-outline-info custom-btn-size me-2">
-                    <i class="fa-solid fa-ranking-star me-1"></i> Standings
+                <button *ngIf="info.Links.Standings" class="btn btn-sm btn-outline-info custom-btn-size me-1">
+                    <i class="fa-solid fa-ranking-star"></i> Standings
                 </button>
-                <button *ngIf="info.Links.TeamPage" class="btn btn-sm btn-outline-info custom-btn-size me-2"
+                <button *ngIf="info.Links.TeamPage" class="btn btn-sm btn-outline-info custom-btn-size me-1"
                     (click)="kickball_link_team('team',info.Links.TeamPage,null)">
-                    <i class="fa-solid fa-people-roof me-1"></i> Team Page
+                    <i class="fa-solid fa-people-roof"></i> Team
                 </button>
                 <button *ngIf="info.Links.Playoffs" class="btn btn-sm btn-outline-info custom-btn-size">
-                    <i class="fa-solid fa-trophy me-1"></i> Playoffs
+                    <i class="fa-solid fa-trophy"></i> Playoffs
                 </button>
             </div>
 
